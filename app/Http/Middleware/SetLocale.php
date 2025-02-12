@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Middleware;
 
 use Closure;
@@ -10,11 +9,15 @@ class SetLocale
 {
     /**
      * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $locale = $request->segment(1);
+        
+        if ($locale && in_array($locale, ['en', 'es', 'fr', 'de'])) {
+            app()->setLocale($locale);
+        }
+        
         return $next($request);
     }
 }
