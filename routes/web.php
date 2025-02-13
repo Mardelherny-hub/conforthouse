@@ -24,12 +24,12 @@ Route::group([
     'where' => ['locale' => 'en|es|fr|de']
 ], function () {
     // Página de inicio
-    Route::get('/', function () {
-        return view('welcome');
-    })->name('welcome');
+    //Route::get('/', function () {
+    //    return view('welcome');
+    //})->name('welcome');
 
     // Página home
-    Route::get('/home', function () {
+    Route::get('/', function () {
         return view('home');
     })->name('home');
 });
