@@ -1,13 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\Admin\AdminPropertyController;
+use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    // Ruta principal del panel de administración
+// Rutas protegidas para administración
+Route::middleware(['auth', 'verified'])->group(function () {
+    // Dashboard de administración
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    // Rutas para la gestión de propiedades
-    Route::resource('properties', PropertyController::class);
+
+    // CRUD de propiedades en el panel de administración
+    Route::resource('properties', AdminPropertyController::class);
 });

@@ -16,6 +16,11 @@ return [
     'prop_residenciales' => 'Residential',
     'prop_comerciales' => 'Commercial',
     'prop_exclusivas' => 'Exclusive',
+    'alquiler' => 'Rent',
+    'venta' => 'Sale',
+    'obra_nueva' => 'New Build',
+    'viviendas_de_lujo' => 'Luxury Homes',
+
     // Subcategorías de Servicios
     'serv_tasacion' => 'Valuation',
     'serv_consultoria' => 'Consulting',
@@ -99,5 +104,25 @@ return [
     'contact_form_message_placeholder' => 'Your Message*',
     'contact_form_message_error' => 'Please enter your message.',
     'contact_form_submit' => 'Send',
+
+    // PROPIEDADES
+    'properties_title' => 'Luxury Properties',
+    'properties_subtitle' => 'Find your ideal home among our available options.',
+    // buscador
+    'ordenar_por' => 'Sort by',
+    'mas_recientes' => 'Most Recent',
+    'menor_precio' => 'Lowest Price',
+    'mayor_precio' => 'Highest Price',
+    'tipo_de_propiedad' => 'Property Type',
+    'casa' => 'House',
+    'apartamento' => 'Apartment',
+    'finca' => 'Estate',
+    'ubicacion' => 'Location',
+    'todas' => 'All',
+    'ciudad_a' => 'City A',
+    'ciudad_b' => 'City B',
+    'ciudad_c' => 'City C',
+    //Propiedades fichas
+    'ver_detalles' => 'View Details',
 ];
 

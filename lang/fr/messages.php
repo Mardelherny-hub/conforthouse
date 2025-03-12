@@ -16,6 +16,10 @@ return [
     'prop_residenciales' => 'Résidentielles',
     'prop_comerciales' => 'Commerciales',
     'prop_exclusivas' => 'Exclusives',
+    'alquiler' => 'Location',
+    'venta' => 'Vente',
+    'obra_nueva' => 'Nouvelle Construction',
+    'viviendas_de_lujo' => 'Maisons de Luxe',
     // Subcategorías de Servicios
     'serv_tasacion' => 'Évaluation',
     'serv_consultoria' => 'Conseil',
@@ -99,5 +103,25 @@ return [
     'contact_form_message_placeholder' => 'Votre Message*',
     'contact_form_message_error' => 'Veuillez saisir votre message.',
     'contact_form_submit' => 'Envoyer',
+
+    // PROPIEDADES
+    'properties_title' => 'Propriétés de Luxe',
+    'properties_subtitle' => 'Trouvez votre maison idéale parmi nos options disponibles.',
+    // buscador
+    'ordenar_por' => 'Trier par',
+    'mas_recientes' => 'Plus Récents',
+    'menor_precio' => 'Prix le Plus Bas',
+    'mayor_precio' => 'Prix le Plus Élevé',
+    'tipo_de_propiedad' => 'Type de Propriété',
+    'casa' => 'Maison',
+    'apartamento' => 'Appartement',
+    'finca' => 'Domaine',
+    'ubicacion' => 'Emplacement',
+    'todas' => 'Toutes',
+    'ciudad_a' => 'Ville A',
+    'ciudad_b' => 'Ville B',
+    'ciudad_c' => 'Ville C',
+    // Propiedades fichas
+    'ver_detalles' => 'Voir les Détails',
 ];
 

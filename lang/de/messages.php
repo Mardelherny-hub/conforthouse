@@ -18,6 +18,11 @@ return [
     'prop_residenciales' => 'Wohnimmobilien',
     'prop_comerciales' => 'Gewerbeimmobilien',
     'prop_exclusivas' => 'Exklusive Immobilien',
+    'alquiler' => 'Miete',
+    'venta' => 'Verkauf',
+    'obra_nueva' => 'Neubau',
+    'viviendas_de_lujo' => 'Luxuswohnungen',
+
 
     // Subcategorías de Servicios
     'serv_tasacion' => 'Bewertung',
@@ -109,6 +114,28 @@ return [
     'contact_form_message_placeholder' => 'Ihre Nachricht*',
     'contact_form_message_error' => 'Bitte geben Sie Ihre Nachricht ein.',
     'contact_form_submit' => 'Senden',
+
+    // PROPIEDADES
+    'properties_title' => 'Luxusimmobilien',
+    'properties_subtitle' => 'Finden Sie Ihr ideales Zuhause unter unseren verfügbaren Optionen.',
+    // buscador
+    'ordenar_por' => 'Sortieren nach',
+    'mas_recientes' => 'Neueste',
+    'menor_precio' => 'Niedrigster Preis',
+    'mayor_precio' => 'Höchster Preis',
+    'tipo_de_propiedad' => 'Immobilientyp',
+    'casa' => 'Haus',
+    'apartamento' => 'Wohnung',
+    'finca' => 'Landgut',
+    'ubicacion' => 'Standort',
+    'todas' => 'Alle',
+    'ciudad_a' => 'Stadt A',
+    'ciudad_b' => 'Stadt B',
+    'ciudad_c' => 'Stadt C',
+    // Propiedades fichas
+    'ver_detalles' => 'Details anzeigen',
+
+    //
 ];
 
 

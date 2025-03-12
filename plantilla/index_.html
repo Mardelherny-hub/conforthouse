@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The World's Luxury Marketplace</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.12.0/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #f9f9f9;
+            background-color: #111111;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gold-text {
+            color: #e8d5b7;
+        }
+
+        .hero-section {
+            height: 80vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('../public/assets/images/gallery/big/big_2.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #e8d5b7;
+            transition: width 0.3s;
+        }
+
+        .nav-item:hover:after {
+            width: 100%;
+        }
+
+        .luxury-card {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .luxury-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .btn-gold {
+            background-color: #e8d5b7;
+            color: #111111;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            background-color: #111111;
+            color: #e8d5b7;
+            border: 1px solid #e8d5b7;
+        }
+
+        .testimonial-card {
+            background-color: #1a1a1a;
+            border-left: 4px solid #e8d5b7;
+        }
+
+        .podcast-banner {
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4)), url('/api/placeholder/1200/400');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="relative hero-section flex flex-col">
+        <nav class="container mx-auto px-6 py-6 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="text-2xl font-bold gold-text">
+                    <img src="../public/assets/images/rb/logo.png">
+
+                </div>
+            </div>
+
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="nav-item text-white hover:gold-text">Homes</a>
+                <a href="#" class="nav-item text-white hover:gold-text">Cars</a>
+                <a href="#" class="nav-item text-white hover:gold-text">Yachts</a>
+                <a href="#" class="nav-item text-white hover:gold-text">Jets</a>
+                <a href="#" class="nav-item text-white hover:gold-text">Journal</a>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#" class="text-white hover:gold-text">Login</a>
+                <a href="#" class="btn-gold px-4 py-2 rounded-sm">Register</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex items-center" x-data="{ open: false }">
+                <button @click="open = !open" class="text-white focus:outline-none">
+                    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                        <path x-show="!open" fill-rule="evenodd" clip-rule="evenodd" d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"></path>
+                        <path x-show="open" fill-rule="evenodd" clip-rule="evenodd" d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Hero Content -->
+        <div class="container mx-auto px-6 flex flex-col justify-center items-center h-full text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 tracking-tighter leading-tight">The World's Luxury Marketplace</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl">Discover the finest collection of exclusive properties, cars, yachts, and private jets.</p>
+            <a href="#" class="btn-gold px-8 py-3 text-lg font-semibold rounded-sm">Explore Collection</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Category Section -->
+        <section class="py-16 bg-black">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-12 text-center">Premium <span class="gold-text">Categories</span></h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Homes -->
+                    <div class="luxury-card relative overflow-hidden rounded-sm h-80 cursor-pointer">
+                        <img src="../public/assets/images/photography/architecture.jpg" alt="Luxury Home" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h3 class="text-2xl font-bold">Homes</h3>
+                            <p class="text-sm mt-2">Explore 2,548 properties</p>
+                        </div>
+                    </div>
+
+                    <!-- Cars -->
+                    <div class="luxury-card relative overflow-hidden rounded-sm h-80 cursor-pointer">
+                        <img src="../public/assets/images/photography/landscape.jpg" alt="Luxury Car" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h3 class="text-2xl font-bold">Cars</h3>
+                            <p class="text-sm mt-2">Explore 1,324 vehicles</p>
+                        </div>
+                    </div>
+
+                    <!-- Yachts -->
+                    <div class="luxury-card relative overflow-hidden rounded-sm h-80 cursor-pointer">
+                        <img src="../public/assets/images/photography/image2.jpg" alt="Luxury Yacht" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h3 class="text-2xl font-bold">Yachts</h3>
+                            <p class="text-sm mt-2">Explore 478 vessels</p>
+                        </div>
+                    </div>
+
+                    <!-- Jets -->
+                    <div class="luxury-card relative overflow-hidden rounded-sm h-80 cursor-pointer">
+                        <img src="../public/assets/images/photography/image3.jpg" alt="Private Jet" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h3 class="text-2xl font-bold">Jets</h3>
+                            <p class="text-sm mt-2">Explore 196 aircraft</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exclusive Content Section -->
+        <section class="py-16 bg-gray-300">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row items-center bg-black rounded-sm overflow-hidden">
+                    <div class="md:w-1/2">
+                        <img src="../public/assets/images/portfolio/grid-portfolio5.jpg" alt="Luxury Magazine" class="w-full h-full object-cover">
+                    </div>
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <h2 class="text-3xl font-bold mb-4">LUXE <span class="gold-text">Journal</span></h2>
+                        <p class="text-gray-300 mb-6">Discover our quarterly publication featuring the most exclusive properties and luxury items from around the world.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="btn-gold px-6 py-3 rounded-sm">Download Now</a>
+                            <a href="#" class="px-6 py-3 border border-gray-600 rounded-sm hover:border-gold-text transition duration-300">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trending Products Section -->
+        <section class="py-16 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="flex justify-between items-center mb-12">
+                    <h2 class="text-3xl font-bold">Trending <span class="gold-text">Properties</span></h2>
+                    <a href="#" class="text-sm gold-text hover:underline">View All Properties</a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Property 1 -->
+                    <div class="luxury-card bg-gray-300 rounded-sm overflow-hidden">
+                        <div class="relative">
+                            <img src="../public/assets/images/gallery/thumbnail/full_4/22.jpg" alt="Luxury Property" class="w-full h-64 object-cover">
+                            <div class="absolute top-4 left-4 bg-black bg-opacity-70 px-3 py-1 rounded-sm">
+                                <span class="text-sm font-medium">Featured</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="gold-text font-semibold">$12,500,000</span>
+                                <span class="text-gray-400 text-sm">Beverly Hills, CA</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Modern Hillside Villa</h3>
+                            <p class="text-gray-400 text-sm mb-4">5 bedrooms • 7 bathrooms • 8,200 sq ft</p>
+                            <a href="#" class="text-sm gold-text hover:underline">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Property 2 -->
+                    <div class="luxury-card bg-gray-300 rounded-sm overflow-hidden">
+                        <div class="relative">
+                            <img src="../public/assets/images/gallery/thumbnail/full_4/18.jpg" alt="Luxury Property" class="w-full h-64 object-cover">
+                            <div class="absolute top-4 left-4 bg-black bg-opacity-70 px-3 py-1 rounded-sm">
+                                <span class="text-sm font-medium">New Listing</span>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="gold-text font-semibold">$8,950,000</span>
+                                <span class="text-gray-400 text-sm">Miami Beach, FL</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Oceanfront Penthouse</h3>
+                            <p class="text-gray-400 text-sm mb-4">4 bedrooms • 5 bathrooms • 5,400 sq ft</p>
+                            <a href="#" class="text-sm gold-text hover:underline">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Property 3 -->
+                    <div class="luxury-card bg-gray-300 rounded-sm overflow-hidden">
+                        <div class="relative">
+                            <img src="../public/assets/images/gallery/thumbnail/full_4/20.jpg" alt="Luxury Property" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="gold-text font-semibold">$17,200,000</span>
+                                <span class="text-gray-400 text-sm">Aspen, CO</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Alpine Luxury Lodge</h3>
+                            <p class="text-gray-400 text-sm mb-4">6 bedrooms • 8 bathrooms • 10,800 sq ft</p>
+                            <a href="#" class="text-sm gold-text hover:underline">View Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Property 4 -->
+                    <div class="luxury-card bg-gray-300 rounded-sm overflow-hidden">
+                        <div class="relative">
+                            <img src="../public/assets/images/gallery/thumbnail/full_4/20.jpg" alt="Luxury Property" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="gold-text font-semibold">$9,475,000</span>
+                                <span class="text-gray-400 text-sm">Hamptons, NY</span>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-2">Coastal Estate</h3>
+                            <p class="text-gray-400 text-sm mb-4">5 bedrooms • 6 bathrooms • 7,500 sq ft</p>
+                            <a href="#" class="text-sm gold-text hover:underline">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journal/Blog Section -->
+        <section class="py-16 bg-gray-300">
+            <div class="container mx-auto px-6">
+                <div class="flex justify-between items-center mb-12">
+                    <h2 class="text-3xl font-bold">Latest from <span class="gold-text">LUXE Journal</span></h2>
+                    <a href="#" class="text-sm gold-text hover:underline">View All Articles</a>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Main Article -->
+                    <div class="luxury-card lg:col-span-2 relative overflow-hidden rounded-sm h-96">
+                        <img src="../public/assets/images/photography/portrait.jpg" alt="Main Article" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <span class="text-xs uppercase bg-gold-text text-black px-3 py-1 rounded-sm">Featured</span>
+                            <h3 class="text-2xl font-bold mt-3 mb-2">The Rise of Sustainable Luxury Real Estate</h3>
+                            <p class="text-gray-300 mb-3">How eco-friendly design is transforming high-end property development worldwide</p>
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
+                                    <img src="../public/assets/images/photography/lifestyle.jpg" alt="Author" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium">Sophia Reynolds</p>
+                                    <p class="text-xs text-gray-400">March 2, 2025 • 8 min read</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Side Articles -->
+                    <div class="space-y-6">
+                        <!-- Side Article 1 -->
+                        <div class="luxury-card flex bg-black rounded-sm overflow-hidden">
+                            <div class="w-1/3">
+                                <img src="../public/assets/images/photography/image4.jpg" alt="Side Article" class="w-full h-full object-cover">
+                            </div>
+                            <div class="w-2/3 p-4">
+                                <span class="text-xs gold-text">Cars</span>
+                                <h4 class="text-lg font-semibold my-1">The Most Anticipated Luxury Cars of 2025</h4>
+                                <p class="text-xs text-gray-400">February 28, 2025 • 5 min read</p>
+                            </div>
+                        </div>
+
+                        <!-- Side Article 2 -->
+                        <div class="luxury-card flex bg-black rounded-sm overflow-hidden">
+                            <div class="w-1/3">
+                                <img src="../public/assets/images/photography/image5.jpg" alt="Side Article" class="w-full h-full object-cover">
+                            </div>
+                            <div class="w-2/3 p-4">
+                                <span class="text-xs gold-text">Yachts</span>
+                                <h4 class="text-lg font-semibold my-1">Inside the World's Most Luxurious Superyachts</h4>
+                                <p class="text-xs text-gray-400">February 25, 2025 • 6 min read</p>
+                            </div>
+                        </div>
+
+                        <!-- Side Article 3 -->
+                        <div class="luxury-card flex bg-black rounded-sm overflow-hidden">
+                            <div class="w-1/3">
+                                <img src="../public/assets/images/photography/image3.jpg" alt="Side Article" class="w-full h-full object-cover">
+                            </div>
+                            <div class="w-2/3 p-4">
+                                <span class="text-xs gold-text">Jets</span>
+                                <h4 class="text-lg font-semibold my-1">Private Aviation Trends: The New Era of Luxury Travel</h4>
+                                <p class="text-xs text-gray-400">February 20, 2025 • 4 min read</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Podcast Section -->
+        <section class="py-16 podcast-banner">
+            <div class="container mx-auto px-6">
+                <div class="max-w-2xl">
+                    <h2 class="text-3xl font-bold mb-4">LUXE <span class="gold-text">Podcast</span></h2>
+                    <p class="text-gray-300 mb-6">Join our host Mark Jensen as he interviews industry experts and discusses the latest trends in luxury real estate and collectibles.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#" class="btn-gold px-6 py-3 rounded-sm text-center">Listen Now</a>
+                        <a href="#" class="px-6 py-3 border border-gray-600 rounded-sm hover:border-gold-text transition duration-300 text-center">View Episodes</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials & Collaborations -->
+        <section class="py-16 bg-black">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-12 text-center">Trusted by <span class="gold-text">Global Clients</span></h2>
+
+                <!-- Testimonials -->
+                <div class="max-w-4xl mx-auto mb-16">
+                    <div class="testimonial-card p-8">
+                        <p class="text-xl italic mb-6">"LUXE has consistently delivered exceptional service in helping me find the perfect properties for my portfolio. Their curation and attention to detail are unmatched in the luxury market."</p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                <img src="/api/placeholder/100/100" alt="Client" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <p class="font-medium">Jonathan Pierce</p>
+                                <p class="text-sm text-gray-400">CEO, Meridian Capital Group</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brand Logos -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+                    <div class="flex justify-center">
+                        <img src="/api/placeholder/200/80" alt="Bloomberg" class="h-6 opacity-70 hover:opacity-100 transition duration-300">
+                    </div>
+                    <div class="flex justify-center">
+                        <img src="/api/placeholder/200/80" alt="Forbes" class="h-6 opacity-70 hover:opacity-100 transition duration-300">
+                    </div>
+                    <div class="flex justify-center">
+                        <img src="/api/placeholder/200/80" alt="CNBC" class="h-6 opacity-70 hover:opacity-100 transition duration-300">
+                    </div>
+                    <div class="flex justify-center">
+                        <img src="/api/placeholder/200/80" alt="Financial Times" class="h-6 opacity-70 hover:opacity-100 transition duration-300">
+                    </div>
+                    <div class="flex justify-center">
+                        <img src="/api/placeholder/200/80" alt="Wall Street Journal" class="h-6 opacity-70 hover:opacity-100 transition duration-300">
+                    </div>
+                    <div class="flex justify-center">
+                        <img src="/api/placeholder/200/80" alt="Architectural Digest" class="h-6 opacity-70 hover:opacity-100 transition duration-300">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-300 pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <!-- Footer Main Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <div class="text-2xl font-bold gold-text mb-4">LUXE</div>
+                    <p class="text-gray-400 mb-6">The world's premier marketplace for luxury homes, vehicles, yachts, and private aircraft.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9

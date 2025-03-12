@@ -15,7 +15,7 @@
     <!--    Favicons
     =============================================
     -->
-    <link rel="icon" type="image/png"sizes="57x57" href="assets/images/favicons/favicon.png">    
+    <link rel="icon" type="image/png"sizes="57x57" href="assets/images/favicons/favicon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicons/favicon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon.png">
     <link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicons/favicon.png">
@@ -47,7 +47,7 @@
         <link id="color-scheme" href="{{ asset('assets/css/colors/default.css') }}" rel="stylesheet">
     </head>
     <body class="font-sans text-gray-900 antialiased bg-gray-100">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">            
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
             <div class="page-loader">
                 <div class="loader">Loading...</div>
             </div>
@@ -58,7 +58,7 @@
                 <section class="home-section home-parallax home-fade home-full-height" id="home">
                     <div class="hero-slider">
                     <ul class="slides">
-                        <li class="bg-dark-30 bg-dark" style="background-image:url(assets/images/section-8.jpg);">
+                        <li class="bg-dark-30 bg-dark" style="background-image:url({{ asset('assets/images/section-8.jpg') }});">
                         <div class="titan-caption">
                             <div class="caption-content">
                             <div class="font-alt mb-30 titan-title-size-1">{{ __('messages.welcome') }}</div>
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         </li>
-                        <li class="bg-dark-30 bg-dark" style="background-image:url(assets/images/section-9.jpg);">
+                        <li class="bg-dark-30 bg-dark" style="background-image:url({{ asset('assets/images/section-9.jpg') }});">
                         <div class="titan-caption">
                             <div class="caption-content">
                             <div class="font-alt mb-30 titan-title-size-2">{{ __('messages.hero2')}}
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         </li>
-                        <li class="bg-dark-30 bg-dark" style="background-image:url(assets/images/section-10.jpg);">
+                        <li class="bg-dark-30 bg-dark" style="background-image:url({{ asset('assets/images/section-10.jpg') }});">
                         <div class="titan-caption">
                             <div class="caption-content">
                             <div class="font-alt mb-30 titan-title-size-1">{{ __('messages.hero3')}}</div>
@@ -84,12 +84,12 @@
                         </li>
                     </ul>
                     </div>
-                
+
                 <!-- Page Content -->
-                    <main>                       
+                    <main>
 
                         {{ $slot }}
-                    
+
                         @include('layouts.footer_guest')
 
                         <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>

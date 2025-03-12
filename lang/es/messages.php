@@ -18,6 +18,10 @@ return [
     'prop_residenciales' => 'Residenciales',
     'prop_comerciales' => 'Comerciales',
     'prop_exclusivas' => 'Exclusivas',
+    'alquiler' => 'Alquiler',
+    'venta' => 'Venta',
+    'obra_nueva' => 'Obra Nueva',
+    'viviendas_de_lujo' => 'Viviendas de Lujo',
 
     // Subcategorías de Servicios
     'serv_tasacion' => 'Tasación',
@@ -111,5 +115,25 @@ return [
     'contact_form_message_error' => 'Por favor ingresa tu mensaje.',
     'contact_form_submit' => 'Enviar',
 
+
+    // PROPIEDADES
+    'properties_title' => 'Propiedades de Lujo',
+    'properties_subtitle' => 'Encuentra tu hogar ideal entre nuestras opciones disponibles.',
+    // buscador
+    'ordenar_por' => 'Ordenar por',
+    'mas_recientes' => 'Más Recientes',
+    'menor_precio' => 'Menor Precio',
+    'mayor_precio' => 'Mayor Precio',
+    'tipo_de_propiedad' => 'Tipo de Propiedad',
+    'casa' => 'Casa',
+    'apartamento' => 'Apartamento',
+    'finca' => 'Finca',
+    'ubicacion' => 'Ubicación',
+    'todas' => 'Todas',
+    'ciudad_a' => 'Ciudad A',
+    'ciudad_b' => 'Ciudad B',
+    'ciudad_c' => 'Ciudad C',
+    //Propiedades fichas
+    'ver_detalles' => 'Ver Detalles',
 ];
 
