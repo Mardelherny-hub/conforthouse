@@ -20,4 +20,10 @@ class City extends Model
     {
         return $this->hasMany(Address::class);
     }
+
+    //relacion con Province
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
 }

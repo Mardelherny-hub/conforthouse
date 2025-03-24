@@ -13,6 +13,8 @@ use App\Models\City;
 use App\Models\Province;
 use App\Models\AutonomousCommunity;
 use App\Models\PropertyImage;
+use App\Helpers\LibreTranslateHelper;
+use App\Models\PropertyTranslation;
 use Illuminate\Support\Facades\Log;
 
 
@@ -346,6 +348,9 @@ class AdminPropertyCreate extends Component
             'address_id' => $address->id,
         ]);
 
+        // Crear traducciones para la propiedad
+        $this->createTranslations($property);
+
         // Después de crear la propiedad, guardar las fotos
         if (!empty($this->tempPhotos)) {
             foreach ($this->tempPhotos as $index => $photo) {
@@ -375,5 +380,70 @@ class AdminPropertyCreate extends Component
 
         session()->flash('message', 'Propiedad creada con éxito.');
         return redirect()->route('admin.properties.index');
+    }
+
+    /**
+     * Crea traducciones para una propiedad
+     */
+    private function createTranslations($property)
+    {
+        // Idiomas a traducir
+        $languages = ['en', 'fr', 'de'];
+
+        // Campos que necesitan traducción
+        $fieldsToTranslate = [
+            'title' => $this->title,
+            'description' => $this->description,
+            'meta_description' => $this->meta_description,
+            'condition' => $this->condition,
+            'orientation' => $this->orientation,
+            'exterior_type' => $this->exterior_type,
+            'kitchen_type' => $this->kitchen_type,
+            'heating_type' => $this->heating_type,
+            'interior_carpentry' => $this->interior_carpentry,
+            'exterior_carpentry' => $this->exterior_carpentry,
+            'flooring_type' => $this->flooring_type,
+            'views' => $this->views,
+            'regime' => $this->regime
+        ];
+
+        try {
+
+            foreach ($languages as $lang) {
+                $translationData = [
+                    'property_id' => $property->id,
+                    'locale' => $lang,
+                ];
+
+                foreach ($fieldsToTranslate as $field => $value) {
+                    if (!empty($value)) {
+                        try {
+                            $translatedText = LibreTranslateHelper::translate($value, 'es', $lang);
+                            $translationData[$field] = $translatedText;
+
+                        } catch (\Exception $e) {
+                            Log::error("Error al traducir campo: $field", [
+                                'lang' => $lang,
+                                'error' => $e->getMessage(),
+                                'property_id' => $property->id
+                            ]);
+                            // Si falla la traducción, usar el texto original
+                            $translationData[$field] = $value;
+                        }
+                    }
+                }
+
+                // Guardar la traducción
+                PropertyTranslation::create($translationData);
+
+            }
+
+        } catch (\Exception $e) {
+            Log::error('Error general en el proceso de traducción', [
+                'property_id' => $property->id,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+        }
     }
 }

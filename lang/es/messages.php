@@ -13,6 +13,8 @@ return [
     'servicios' => 'Servicios',
     'about_us' => 'Sobre Nosotros',
     'contacto' => 'Contáctanos',
+    'atencion_exclusiva' => 'Atención Exclusiva',
+    'coleccion_privada' => 'Colección Privada',
 
     // Subcategorías de Propiedades
     'prop_residenciales' => 'Residenciales',
@@ -29,23 +31,45 @@ return [
     'serv_inversion' => 'Inversión',
 
     //Hero
-    'welcome' => '¡Bienvenidos a nuestro sitio web!',
-    'hero1' => 'Conforthouse Living',
-    'hero2' => 'Nuestros expertos están aquí para ayudarte a encontrar tu hogar perfecto',
-    'hero3' => '¡Explora nuestras propiedades y servicios ahora mismo!',
-    'hero4' => '¡Son Increíbles!',
-    'more' => 'Más',
+    // Slides
+    'slide_title_1' => 'Propiedades Exclusivas',
+    'slide_subtitle_1' => 'Descubre residencias únicas en las mejores ubicaciones',
+    'slide_title_2' => 'Villas de Ensueño',
+    'slide_subtitle_2' => 'Espacios diseñados para experiencias extraordinarias',
+    'slide_title_3' => 'Inversiones Premium',
+    'slide_subtitle_3' => 'Oportunidades inmobiliarias con alto potencial',
+
+    // Hero Titles
+    'hero_title_1' => 'Conforthouse',
+    'hero_highlight_1' => 'Living',
+    'hero_title_2' => 'Propiedades',
+    'hero_highlight_2' => 'Exclusivas',
+    'hero_title_3' => 'El Arte de Vivir con',
+    'hero_highlight_3' => 'Elegancia',
+
+    // Buttons
+    'explore_properties' => 'Explorar propiedades',
+    'contact_now' => 'Contactar ahora',
+
+    // Stats
+    'exclusive_properties' => 'Propiedades Exclusivas',
+    'countries' => 'Países',
+    'satisfied_clients' => 'Clientes Satisfechos',
+
+    // Other
+    'discover' => 'Descubrir',
 
     // Footer
     'footer_about_title' => 'Sobre Conforthouse Living',
     'footer_about_description' => 'Conforthouse Living es una agencia inmobiliaria especializada en bienes raíces de lujo. Contamos con oficinas en las principales ciudades de España y ofrecemos una amplia cartera de propiedades exclusivas, incluyendo casas, apartamentos y fincas.',
-    'footer_phone' => 'Teléfono',
-    'footer_fax' => 'Fax',
-    'footer_email' => 'Correo electrónico',
-    'footer_coments_title' => 'Comentarios Recientes',
-    'footer_categories_title' => 'Categorías de Propiedades',
-    'footer_popular_title' => 'Propiedades Populares',
-
+    'footer_inicio' => 'Inicio',
+    'footer_contacto' => 'Contacto',
+    'footer_enlaces' => 'Enlaces',
+    'footer_newsletter' =>  'Boletín',
+    'footer_newsletter_title' => 'Suscríbase a nuestro boletín',
+    'su correo electrónico' => 'Su correo Electrónico',
+    'suscribirse' => 'Suscribirse',
+    'derechos' => 'Todos los derechos reservados',
 
     // Otros
     'copyright' => '© 2024 Conforthouse Living, Todos los Derechos Reservados',
@@ -120,6 +144,7 @@ return [
     'properties_title' => 'Propiedades de Lujo',
     'properties_subtitle' => 'Encuentra tu hogar ideal entre nuestras opciones disponibles.',
     // buscador
+    'que_esta_bunscando' => '¿Qué estás buscando?',
     'ordenar_por' => 'Ordenar por',
     'mas_recientes' => 'Más Recientes',
     'menor_precio' => 'Menor Precio',
@@ -130,9 +155,9 @@ return [
     'finca' => 'Finca',
     'ubicacion' => 'Ubicación',
     'todas' => 'Todas',
-    'ciudad_a' => 'Ciudad A',
-    'ciudad_b' => 'Ciudad B',
-    'ciudad_c' => 'Ciudad C',
+    'lugar_a' => 'Playa',
+    'lugar_b' => 'Montaña',
+    'lugar_c' => 'Ciudad',
     //Propiedades fichas
     'ver_detalles' => 'Ver Detalles',
 ];

@@ -4,10 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Property;
+use App\Models\Operation;
+use App\Models\PropertyType;
+use App\Models\Status;
+use App\Models\Address;
+use App\Models\City;
+use App\Models\AutonomousCommunity;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use App\Helpers\LibreTranslateHelper;
 use App\Models\PropertyTranslation;
 use App\Helpers\BreadcrumbHelper;
+use Illuminate\Support\Facades\Log;
+
 
 class AdminPropertyController extends Controller
 {
@@ -31,37 +40,27 @@ class AdminPropertyController extends Controller
 
     public function store(Request $request)
     {
-        $property = Property::create($request->all());
-
-        // Idiomas a traducir
-        $languages = ['en', 'fr', 'de'];
-
-        foreach ($languages as $lang) {
-            PropertyTranslation::create([
-                'property_id' => $property->id,
-                'locale' => $lang,
-                'operation' => LibreTranslateHelper::translate($request->operation, 'es', $lang),
-                'property_type' => LibreTranslateHelper::translate($request->property_type, 'es', $lang),
-                'condition' => LibreTranslateHelper::translate($request->condition, 'es', $lang),
-                'orientation' => LibreTranslateHelper::translate($request->orientation, 'es', $lang),
-                'exterior_type' => LibreTranslateHelper::translate($request->exterior_type, 'es', $lang),
-                'kitchen_type' => LibreTranslateHelper::translate($request->kitchen_type, 'es', $lang),
-                'heating_type' => LibreTranslateHelper::translate($request->heating_type, 'es', $lang),
-                'interior_carpentry' => LibreTranslateHelper::translate($request->interior_carpentry, 'es', $lang),
-                'exterior_carpentry' => LibreTranslateHelper::translate($request->exterior_carpentry, 'es', $lang),
-                'flooring_type' => LibreTranslateHelper::translate($request->flooring_type, 'es', $lang),
-                'views' => LibreTranslateHelper::translate($request->views, 'es', $lang),
-                'regime' => LibreTranslateHelper::translate($request->regime, 'es', $lang),
-                'description' => LibreTranslateHelper::translate($request->description, 'es', $lang),
-            ]);
-        }
-
-        return redirect()->route('admin.properties.index')->with('success', 'Propiedad creada con traducciones');
+       // se maneja desde el componente de Livewire
     }
 
     public function edit(Property $property)
     {
-        return view('admin.properties.edit', compact('property'));
+        $property = Property::with('translations')->with('operation')->find($property->id);
+        $operations = Operation::all();
+        $propertyTypes = PropertyType::all();
+        $statuses = Status::all();
+        $addresses = Address::all();
+        $cities = City::all();
+        $autonomous_communities = AutonomousCommunity::all();
+        $provinces = Province::all();
+        //dd($property);
+        return view('admin.properties.edit', compact('property', 'operations', 'propertyTypes', 'statuses', 'addresses', 'cities', 'autonomous_communities', 'provinces'));
+    }
+
+    public function show(Property $property)
+    {
+        $property = Property::with('translations')->find($property->id);
+        return view('admin.properties.show', compact('property'));
     }
 
     public function update(Request $request, Property $property)

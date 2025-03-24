@@ -13,4 +13,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // CRUD de propiedades en el panel de administración
     Route::resource('properties', AdminPropertyController::class);
+    Route::get('properties/{property}/images/create', [PropertyImageController::class, 'create'])->name('properties.images.create');
+    Route::get('properties/{property}/images/{image}/edit', [PropertyImageController::class, 'edit'])->name('properties.images.edit');
 });

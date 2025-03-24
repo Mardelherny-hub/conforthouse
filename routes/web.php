@@ -67,7 +67,13 @@ Route::get('/clear', function() {
     Artisan::call('view:clear');
     Artisan::call('event:clear');
     Artisan::call('clear-compiled');
+    Artisan::call('optimize:clear');
     return "Cache is cleared";
+});
+
+Route::get('/symlink', function () {
+    Artisan::call('storage:link');
+    return 'The storage link has been created!';
 });
 
 

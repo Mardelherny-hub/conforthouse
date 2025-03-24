@@ -1,10 +1,8 @@
 import './bootstrap';
 
-// Importando CoreUI JS
-import { CoreUI } from '@coreui/coreui';
+import '../css/app.css';
 
-// Importando CSS de CoreUI
-import '@coreui/coreui/dist/css/coreui.min.css';
+// Import Alpine.js
 
 import Alpine from 'alpinejs';
 
