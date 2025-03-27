@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminPropertyController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminClientController;
 
 // Rutas protegidas para administración
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -13,6 +14,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // CRUD de propiedades en el panel de administración
     Route::resource('properties', AdminPropertyController::class);
-    Route::get('properties/{property}/images/create', [PropertyImageController::class, 'create'])->name('properties.images.create');
-    Route::get('properties/{property}/images/{image}/edit', [PropertyImageController::class, 'edit'])->name('properties.images.edit');
+
+     // CRUD de clientes
+     Route::resource('clients', AdminClientController::class);
 });
