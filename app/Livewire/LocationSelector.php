@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Livewire;
 
 use Livewire\Component;
@@ -12,11 +11,17 @@ class LocationSelector extends Component
     public $autonomous_community_id;
     public $province_id;
     public $city_id;
-
     public $autonomousCommunities;
     public $provinces = [];
     public $cities = [];
     public $isEdit = false;
+
+    // New property to prevent multiple dispatches
+    public $preventDispatch = false;
+
+    protected $listeners = [
+        'resetLocationSelector' => 'resetSelector'
+    ];
 
     public function mount($selectedCity = null)
     {
@@ -26,43 +31,65 @@ class LocationSelector extends Component
             $this->isEdit = true;
             $this->city_id = $selectedCity;
 
-            // Obtenemos la ciudad con sus relaciones
             $city = City::with(['province.autonomousCommunity'])->find($selectedCity);
 
             if ($city) {
-                // Establecemos los IDs de provincia y comunidad autónoma
                 $this->province_id = $city->province_id;
                 $this->autonomous_community_id = $city->province->autonomous_community_id;
 
-                // Cargamos las provincias de la comunidad seleccionada
                 $this->provinces = Province::where('autonomous_community_id', $this->autonomous_community_id)->get();
-
-                // Cargamos las ciudades de la provincia seleccionada
                 $this->cities = City::where('province_id', $this->province_id)->get();
             }
         }
     }
 
+    public function updatedAutonomousCommunityId($value)
+    {
+        $this->provinces = $value
+            ? Province::where('autonomous_community_id', $value)->get()
+            : [];
+
+        $this->cities = [];
+        $this->province_id = null;
+        $this->city_id = null;
+
+        $this->dispatchLocationEvent('autonomous_community', $value);
+    }
+
     public function updatedProvinceId($value)
     {
-        if ($value) {
-            $this->cities = City::where('province_id', $value)->get();
-        } else {
-            $this->cities = [];
-        }
+        $this->cities = $value
+            ? City::where('province_id', $value)->get()
+            : [];
+
         $this->city_id = null;
-        $this->dispatch('location-updated', [
-            'type' => 'province',
-            'value' => $value
-        ]);
+
+        $this->dispatchLocationEvent('province', $value);
     }
 
     public function updatedCityId($value)
     {
-        $this->dispatch('location-updated', [
-            'type' => 'city',
-            'value' => $value
-        ]);
+        $this->dispatchLocationEvent('city', $value);
+    }
+
+    private function dispatchLocationEvent($type, $value)
+    {
+        if (!$this->preventDispatch) {
+            $this->dispatch('location-updated', [
+                'type' => $type,
+                'value' => $value
+            ])->to('admin.properties.location-form');
+        }
+    }
+
+    public function resetSelector()
+    {
+        $this->autonomous_community_id = null;
+        $this->province_id = null;
+        $this->city_id = null;
+        $this->provinces = [];
+        $this->cities = [];
+        $this->isEdit = false;
     }
 
     public function getSelectedLocationDataProperty()

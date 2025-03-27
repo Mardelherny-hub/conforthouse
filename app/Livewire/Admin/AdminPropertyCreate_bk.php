@@ -16,9 +16,6 @@ use App\Models\PropertyImage;
 use App\Helpers\LibreTranslateHelper;
 use App\Models\PropertyTranslation;
 use Illuminate\Support\Facades\Log;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Storage;
-
 
 
 class AdminPropertyCreate extends Component
@@ -104,6 +101,10 @@ class AdminPropertyCreate extends Component
             'operations' => Operation::all(),
             'propertyTypes' => PropertyType::all(),
             'statuses' => Status::all(),
+            //'autonomousCommunities' => AutonomousCommunity::all(),
+            // Usa las propiedades que ya has cargado en los métodos updated*
+            //'provinces' => $this->provinces,
+            //'cities' => $this->cities,
         ]);
     }
 
@@ -140,8 +141,8 @@ class AdminPropertyCreate extends Component
             ];
         } elseif ($this->step == 2) {
             $rules = [
-                'autonomous_community' => 'nullable',
-                'province' => 'nullable',
+                'autonomous_community' => 'required',
+                'province' => 'required',
                 'city' => 'required',
                 'street' => 'required',
                 'number' => 'required',
@@ -181,7 +182,41 @@ class AdminPropertyCreate extends Component
             $this->dispatchBrowserEvent('photos-updated');
         }
     }
+    /*
+    // Métodos para actualizar dependencias en cascada
+    public function updatedAutonomousCommunityId()
+    {
+        $this->province_id = null;
+        $this->city_id = null;
 
+        // Cargar provincias que pertenecen a la comunidad autónoma seleccionada
+        if ($this->autonomous_community_id) {
+            $this->provinces = Province::where('autonomous_community_id', $this->autonomous_community_id)
+                ->orderBy('name')
+                ->get();
+        } else {
+            $this->provinces = [];
+        }
+
+        // Limpiar ciudades ya que no hay provincia seleccionada
+        $this->cities = [];
+    }
+
+
+    public function updatedProvinceId()
+    {
+        $this->city_id = null;
+
+        // Cargar ciudades que pertenecen a la provincia seleccionada
+        if ($this->province_id) {
+            $this->cities = City::where('province_id', $this->province_id)
+                ->orderBy('name')
+                ->get();
+        } else {
+            $this->cities = [];
+        }
+    }
+*/
     // Método para actualizar imágenes (wire:model)
     public function updatedPhotos()
     {
@@ -191,16 +226,14 @@ class AdminPropertyCreate extends Component
             ]);
 
             foreach ($this->photos as $photo) {
-                $this->tempPhotos[] = [
-                    'original' => $photo,
-                ];
+                $this->tempPhotos[] = $photo;
             }
 
             $this->photos = []; // Limpiar el array de fotos después de procesarlas
         }
     }
 
-    // Manejar la limpieza completa de fotos
+    // Añade este método para manejar la limpieza completa de fotos
     public function clearAllPhotos()
     {
         $this->tempPhotos = [];
@@ -222,16 +255,14 @@ class AdminPropertyCreate extends Component
         try {
             // Asegurarse de que existe el directorio para las miniaturas
             $thumbnailDir = 'property-thumbnails';
-            // Asegurarse de que existe el directorio en storage/app/public
-            if (!Storage::disk('public')->exists($thumbnailDir)) {
-                Storage::disk('public')->makeDirectory($thumbnailDir);
+            $storagePath = storage_path('app/public/storage/' . $thumbnailDir);
+
+            if (!file_exists($storagePath)) {
+                mkdir($storagePath, 0755, true);
             }
 
-            // Get the correct photo object
-            $photoObject = $photo['original'];
-
             // Crear una instancia de la imagen
-            $image = Image::make($photoObject->getRealPath());
+            $image = \Intervention\Image\Facades\Image::make($photo->getRealPath());
 
             // Redimensionar a un tamaño de miniatura
             $image->resize(300, null, function ($constraint) {
@@ -240,13 +271,13 @@ class AdminPropertyCreate extends Component
             });
 
             // Generar un nombre único para la miniatura
-            $filename = 'thumb_' . time() . '_' . uniqid() . '.' . $photoObject->getClientOriginalExtension();
+            $filename = 'thumb_' . time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
 
             // Ruta relativa para la BD
             $thumbnailPath = $thumbnailDir . '/' . $filename;
 
             // Ruta completa del sistema de archivos
-            $fullPath = storage_path('app/public/' . $thumbnailPath);
+            $fullPath = $storagePath . '/' . $filename;
 
             // Guardar la miniatura
             $image->save($fullPath);
@@ -263,14 +294,20 @@ class AdminPropertyCreate extends Component
     public function save()
     {
         // Validar el paso actual
-        try {
-            $this->validateStep();
-        } catch (\Exception $e) {
-            // Si hay errores, mostrar un mensaje de error y no continuar
-            Log::error('Error: ' . $e->getMessage());
-            session()->flash('error', 'Por favor, completa todos los campos correctamente.');
-            return;
-        }
+        $this->validateStep();
+
+        // Crear dirección
+        $address = Address::create([
+            'street' => $this->street,
+            'number' => $this->number,
+            'floor' => $this->floor,
+            'door' => $this->door,
+            'postal_code' => $this->postal_code,
+            'district' => $this->district,
+            'city' => $this->city,
+            'province' => $this->province,
+            'autonomous_community' => $this->autonomous_community,
+        ]);
 
         // Crear propiedad
         $property = Property::create([
@@ -302,20 +339,7 @@ class AdminPropertyCreate extends Component
             'regime' => $this->regime,
             'google_map' => $this->google_map,
             'description' => $this->description,
-        ]);
-
-        // Crear dirección
-        $address = Address::create([
-            'property_id' => $property->id,
-            'street' => $this->street,
-            'number' => $this->number,
-            'floor' => $this->floor,
-            'door' => $this->door,
-            'postal_code' => $this->postal_code,
-            'district' => $this->district,
-            'city' => $this->city,
-            'province' => $this->province,
-            'autonomous_community' => $this->autonomous_community,
+            'address_id' => $address->id,
         ]);
 
         // Crear traducciones para la propiedad
@@ -329,7 +353,7 @@ class AdminPropertyCreate extends Component
                     $thumbnailPath = $this->createThumbnail($photo);
 
                     // Guardar la imagen original
-                    $imagePath = $photo['original']->store('property-images', 'public');
+                    $imagePath = $photo->store('property-images', 'public');
 
                     // Guardar en la base de datos
                     PropertyImage::create([

@@ -58,7 +58,7 @@ class Property extends Model
 
     public function address()
     {
-        return $this->belongsTo(Address::class)->withDefault();
+        return $this->hasOne(Address::class);
     }
 
     // Métodos para acceder a ciudad, provincia y comuna sin depender de distrito

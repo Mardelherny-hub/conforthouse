@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <form wire:submit.prevent="save">
+        <form wire:submit="save">
             <!-- Paso 1: Información básica -->
             @if ($step == 1)
                 <div>
@@ -148,55 +148,38 @@
                 <div>
                     <h2 class="text-xl font-bold mb-4">Ubicación</h2>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                         <div>
                             <label class="block text-gray-700 mb-1">Comunidad Autónoma</label>
-                            <select wire:model.live="autonomous_community_id" class="w-full border p-2 rounded">
-                                <option value="">Seleccione...</option>
-                                @foreach ($autonomousCommunities as $community)
-                                    <option value="{{ $community->id }}">{{ $community->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('autonomous_community_id')
+                            <div class="relative">
+                                <input type="text" wire:model="autonomous_community"
+                                    class="w-full border p-2 rounded">
+                            </div>
+                            @error('autonomous_community')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
                         </div>
-
                         <div>
                             <label class="block text-gray-700 mb-1">Provincia</label>
-                            <select wire:model.live="province_id" class="w-full border p-2 rounded"
-                                {{ !$autonomous_community_id ? 'disabled' : '' }}>
-                                <option value="">Seleccione...</option>
-                                @foreach ($provinces as $province)
-                                    <option value="{{ $province->id }}">{{ $province->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('province_id')
+                            <div class="relative">
+                                <input type="text" wire:model="province" class="w-full border p-2 rounded">
+                            </div>
+                            @error('province')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Ciudad</label>
+                            <div class="relative">
+                                <input type="text" wire:model="city" class="w-full border p-2 rounded">
+                            </div>
+                            @error('city')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                            <label class="block text-gray-700 mb-1">Ciudad</label>
-                            <select wire:model.live="city_id" class="w-full border p-2 rounded"
-                                {{ !$province_id ? 'disabled' : '' }}>
-                                <option value="">Seleccione...</option>
-                                @foreach ($cities as $city)
-                                    <option value="{{ $city->id }}">{{ $city->id }} | {{ $city->name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('city_id')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                            @enderror
-                        </div>
-
-                        <div>
-                            <label class="block text-gray-700 mb-1">Distrito</label>
-                            <input type="text" </div>
-                        </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                             <div>
@@ -218,8 +201,8 @@
 
                                 <div>
                                     <label class="block text-gray-700 mb-1">Código Postal</label>
-                                    <input type="text" wire:model="zip_code" class="w-full border p-2 rounded">
-                                    @error('zip_code')
+                                    <input type="text" wire:model="postal_code" class="w-full border p-2 rounded">
+                                    @error('postal_code')
                                         <span class="text-red-500 text-sm">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -254,7 +237,7 @@
                             </div>
                         </div>
 
-                        <div class="mb-4">
+                        <div class="mb-4 grid-cols-2 gap-4">
                             <label class="block text-gray-700 mb-1">Enlace de Google Maps</label>
                             <input type="url" wire:model="google_map" class="w-full border p-2 rounded">
                             @error('google_map')
@@ -473,7 +456,8 @@
                     <h2 class="text-xl font-bold mb-4">Fotos de la Propiedad</h2>
 
                     <div class="mb-4">
-                        <p class="text-gray-600 mb-2">Sube imágenes de la propiedad. La primera imagen será la
+                        <p class="text-gray-600 mb-2">Sube imágenes de la propiedad. La primera imagen será
+                            la
                             destacada en los listados.</p>
 
                         <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
@@ -483,6 +467,12 @@
                             <label class="block text-gray-700 mb-2">Subir imágenes</label>
                             <input type="file" wire:model="photos" class="w-full p-2 border rounded" multiple
                                 accept="image/*">
+                            @error('photos')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                            @error('photos.*')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
 
                             <!-- Barra de progreso durante la carga -->
                             <div x-show="isUploading" class="mt-2">
@@ -492,118 +482,85 @@
                                 </div>
                                 <p class="text-sm text-gray-600 mt-1">Subiendo... <span x-text="progress"></span>%</p>
                             </div>
+                        </div>
 
-                            @error('photos.*')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                            @enderror
-                        </div><!-- Paso 4: Fotos (Versión corregida) -->
-                        @elseif ($step == 4)
-                            <div>
-                                <h2 class="text-xl font-bold mb-4">Fotos de la Propiedad</h2>
-
-                                <div class="mb-4">
-                                    <p class="text-gray-600 mb-2">Sube imágenes de la propiedad. La primera imagen será
-                                        la
-                                        destacada en los listados.</p>
-
-                                    <div x-data="{ isUploading: false, progress: 0 }" x-on:livewire-upload-start="isUploading = true"
-                                        x-on:livewire-upload-finish="isUploading = false"
-                                        x-on:livewire-upload-error="isUploading = false"
-                                        x-on:livewire-upload-progress="progress = $event.detail.progress"
-                                        class="mb-4">
-                                        <label class="block text-gray-700 mb-2">Subir imágenes</label>
-                                        <input type="file" wire:model="photos" class="w-full p-2 border rounded"
-                                            multiple accept="image/*">
-                                        @error('photos')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-                                        @error('photos.*')
-                                            <span class="text-red-500 text-sm">{{ $message }}</span>
-                                        @enderror
-
-                                        <!-- Barra de progreso durante la carga -->
-                                        <div x-show="isUploading" class="mt-2">
-                                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                                <div class="bg-blue-600 h-2.5 rounded-full"
-                                                    x-bind:style="`width: ${progress}%`"></div>
+                        <!-- Previsualización de imágenes subidas -->
+                        @if (count($tempPhotos) > 0)
+                            <h3 class="text-lg font-semibold mb-2">Imágenes cargadas
+                                ({{ count($tempPhotos) }})</h3>
+                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                @foreach ($tempPhotos as $index => $photo)
+                                    <div class="relative group">
+                                        <img src="{{ $photo['original']->temporaryUrl() }}"
+                                            alt="Imagen {{ $index + 1 }}" class="w-full h-32 object-cover rounded">
+                                        <!-- Indicador de imagen destacada para la primera imagen -->
+                                        @if ($index === 0)
+                                            <div
+                                                class="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded text-xs">
+                                                Destacada
                                             </div>
-                                            <p class="text-sm text-gray-600 mt-1">Subiendo... <span
-                                                    x-text="progress"></span>%</p>
-                                        </div>
+                                        @endif
+
+                                        <!-- Botón para eliminar la imagen -->
+                                        <button type="button" wire:click="removePhoto({{ $index }})"
+                                            class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-70 hover:opacity-100"
+                                            title="Eliminar imagen">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
                                     </div>
-
-                                    <!-- Previsualización de imágenes subidas -->
-                                    @if (count($tempPhotos) > 0)
-                                        <h3 class="text-lg font-semibold mb-2">Imágenes cargadas
-                                            ({{ count($tempPhotos) }})</h3>
-                                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                            @foreach ($tempPhotos as $index => $photo)
-                                                <div class="relative group">
-                                                    <img src="{{ $photo->temporaryUrl() }}"
-                                                        alt="{{ $title ?? 'Imagen de propiedad' }}"
-                                                        class="w-full h-40 object-cover rounded shadow-md">
-
-                                                    <!-- Indicador de imagen destacada para la primera imagen -->
-                                                    @if ($index === 0)
-                                                        <div
-                                                            class="absolute top-2 left-2 bg-green-500 text-white px-2 py-1 rounded text-xs">
-                                                            Destacada
-                                                        </div>
-                                                    @endif
-
-                                                    <!-- Botón para eliminar la imagen -->
-                                                    <button type="button"
-                                                        wire:click="removePhoto({{ $index }})"
-                                                        class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-70 hover:opacity-100"
-                                                        title="Eliminar imagen">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
-                                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    @endif
-                                </div>
-
-                                <div class="mt-4 p-4 bg-blue-50 rounded">
-                                    <h3 class="text-blue-800 font-semibold mb-2">Consejos para fotos de calidad:</h3>
-                                    <ul class="list-disc list-inside text-blue-700 text-sm">
-                                        <li>Utiliza fotos horizontales para una mejor visualización</li>
-                                        <li>Asegúrate de que las habitaciones estén bien iluminadas</li>
-                                        <li>La primera foto será la destacada en los listados</li>
-                                        <li>Intenta mostrar los espacios más atractivos de la propiedad</li>
-                                        <li>Tamaño máximo por imagen: 2MB</li>
-                                    </ul>
-                                </div>
+                                @endforeach
                             </div>
                         @endif
+                    </div>
 
-                        <!-- Botones de navegación -->
-                        <div class="flex justify-between mt-6">
-                            @if ($step > 1)
-                                <button type="button" wire:click="prevStep"
-                                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded">
-                                    Anterior
-                                </button>
-                            @else
-                                <div></div>
-                            @endif
+                    <div class="mt-4 p-4 bg-blue-50 rounded">
+                        <h3 class="text-blue-800 font-semibold mb-2">Consejos para fotos de calidad:</h3>
+                        <ul class="list-disc list-inside text-blue-700 text-sm">
+                            <li>Utiliza fotos horizontales para una mejor visualización</li>
+                            <li>Asegúrate de que las habitaciones estén bien iluminadas</li>
+                            <li>La primera foto será la destacada en los listados</li>
+                            <li>Intenta mostrar los espacios más atractivos de la propiedad</li>
+                            <li>Tamaño máximo por imagen: 2MB</li>
+                        </ul>
+                    </div>
+                </div>
+            @endif
 
-                            @if ($step < $totalSteps)
-                                <button type="button" wire:click="nextStep"
-                                    class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
-                                    Siguiente
-                                </button>
-                            @else
-                                <button type="submit"
-                                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
-                                    Guardar Propiedad
-                                </button>
-                            @endif
-                        </div>
-        </form>
+    <!-- Botones de navegación -->
+    <div class="flex justify-between mt-6">
+        @if ($step > 1)
+            <button type="button" wire:click="prevStep"
+                class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded">
+                Anterior
+            </button>
+        @else
+            <div></div>
+        @endif
+
+        @if ($step < $totalSteps)
+            <button type="button" wire:click="nextStep"
+                class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition">
+                Siguiente
+            </button>
+        @else
+            <button wire:click="save"
+                wire:loading.attr="disabled"
+                class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 active:bg-green-800 focus:outline-none focus:border-green-900 focus:ring focus:ring-green-300 disabled:opacity-25 transition">
+                <span wire:loading.remove wire:target="save">Guardar Propiedad</span>
+                <span wire:loading wire:target="save" class="flex items-center">
+                    <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Guardando...
+                </span>
+            </button>
+        @endif
     </div>
+    </form>
+</div>
 </div>

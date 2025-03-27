@@ -55,44 +55,8 @@ return new class extends Migration {
             $table->string('name'); // Nombre traducido del estado
             $table->timestamps(); // Timestamps para seguimiento de creación y actualización
         });
-        // Crear la tabla de comunidades autónomas
-        Schema::create('autonomous_communities', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->string('code')->unique(); // Código de la comunidad
-            $table->timestamps();
-        });
 
-        // Crear la tabla de provincias
-        Schema::create('provinces', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->string('code')->unique(); // Código de la provincia
-            $table->foreignId('autonomous_community_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
-        });
 
-        // Crear la tabla de ciudades/municipios
-        Schema::create('cities', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('code'); // Código de la ciudad
-            $table->foreignId('province_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
-        });
-
-        // Crear la tabla de direcciones
-        Schema::create('addresses', function (Blueprint $table) {
-            $table->id(); // ID único para la dirección
-            $table->string('street'); // Calle de la dirección
-            $table->integer('number')->nullable(); // Número de la dirección (opcional)
-            $table->string('floor')->nullable(); // Piso de la dirección (opcional)
-            $table->string('door')->nullable(); // Puerta de la dirección (opcional)
-            $table->string('postal_code')->nullable(); // Código postal (opcional)
-            $table->foreignId('city_id')->nullable()->constrained()->onDelete('set null');
-            $table->string('district')->nullable(); // Campo manual para el distrito
-            $table->timestamps(); // Timestamps para seguimiento de creación y actualización
-        });
 
         // Crear la tabla de propiedades
         Schema::create('properties', function (Blueprint $table) {
@@ -101,7 +65,6 @@ return new class extends Migration {
             $table->foreignId('operation_id')->constrained('operations')->onDelete('cascade'); // ID de la operación relacionada
             $table->foreignId('property_type_id')->constrained('property_types')->onDelete('cascade'); // ID del tipo de propiedad relacionado
             $table->foreignId('status_id')->constrained('statuses')->onDelete('cascade'); // ID del estado relacionado
-            $table->foreignId('address_id')->nullable()->constrained('addresses')->onDelete('set null'); // ID de la dirección relacionada (opcional)
             $table->string('title'); // Título de la propiedad
             $table->text('meta_description'); // Descripción meta para SEO
             $table->decimal('price', 10, 2); // Precio de la propiedad
@@ -121,11 +84,27 @@ return new class extends Migration {
             $table->string('interior_carpentry'); // Tipo de carpintería interior
             $table->string('exterior_carpentry'); // Tipo de carpintería exterior
             $table->string('flooring_type'); // Tipo de suelo
-            $table->string('views'); // Vistas de la propiedad
-            $table->integer('distance_to_sea'); // Distancia al mar
-            $table->string('regime'); // Régimen de la propiedad
+            $table->string('views')->nullable(); // Vistas de la propiedad
+            $table->integer('distance_to_sea')->nullable(); // Distancia al mar
+            $table->string('regime')->nullable(); // Régimen de la propiedad
             $table->string('google_map')->nullable(); // Enlace a Google Maps (opcional)
             $table->text('description')->nullable(); // Descripción de la propiedad (opcional)
+            $table->timestamps(); // Timestamps para seguimiento de creación y actualización
+        });
+
+        // Crear la tabla de direcciones
+        Schema::create('addresses', function (Blueprint $table) {
+            $table->id(); // ID único para la dirección
+            $table->foreignId('property_id')->constrained('properties')->onDelete('cascade'); // ID de la propiedad relacionada
+            $table->string('street'); // Calle de la dirección
+            $table->integer('number')->nullable(); // Número de la dirección (opcional)
+            $table->string('floor')->nullable(); // Piso de la dirección (opcional)
+            $table->string('door')->nullable(); // Puerta de la dirección (opcional)
+            $table->string('postal_code')->nullable(); // Código postal (opcional)
+            $table->string('district')->nullable(); // Campo manual para el distrito
+            $table->string('city')->nullable(); // Ciudad de la dirección (opcional)
+            $table->string('province')->nullable(); // Provincia de la dirección (opcional)
+            $table->string('autonomous_community')->nullable(); // Comunidad autónoma de la dirección (opcional)
             $table->timestamps(); // Timestamps para seguimiento de creación y actualización
         });
 

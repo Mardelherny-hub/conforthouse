@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
 
-        // Cargar Comunidades Autónomas
+        /* Cargar Comunidades Autónomas
         $ccaa = json_decode(file_get_contents(database_path('data/ccaa.json')), true);
         foreach ($ccaa as $community) {
             AutonomousCommunity::create([
@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
                 'code' => $community['code']
             ]);
         }
-
-        // Cargar Provincias
+        */
+        /* Cargar Provincias
         $provinces = json_decode(file_get_contents(database_path('data/provincias.json')), true);
         foreach ($provinces as $province) {
             $community = AutonomousCommunity::where('code', $province['parent_code'])->first();
@@ -52,9 +52,10 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         }
-
+        */
         //llamar a FixedDataSeeder
         $this->call(FixedDataSeeder::class);
+
 
         //llamar a PropertiesTableSeeder
         $this->call(PropertiesTableSeeder::class);

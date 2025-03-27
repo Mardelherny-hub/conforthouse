@@ -150,10 +150,28 @@
                                         <span>{{ $property->address->postal_code }}</span>
                                     </div>
                                     @endif
+                                    @if($property->address->district)
+                                    <div class="flex justify-between">
+                                        <span class="font-medium">Distrito:</span>
+                                        <span>{{ $property->address->district }}</span>
+                                    </div>
+                                    @endif
                                     @if($property->address->city)
                                     <div class="flex justify-between">
                                         <span class="font-medium">Ciudad:</span>
-                                        <span>{{ $property->address->city->name }}</span>
+                                        <span>{{ $property->address->city }}</span>
+                                    </div>
+                                    @endif
+                                    @if($property->address->province)
+                                    <div class="flex justify-between">
+                                        <span class="font-medium">Provincia:</span>
+                                        <span>{{ $property->address->province }}</span>
+                                    </div>
+                                    @endif
+                                    @if($property->address->autonomous_community)
+                                    <div class="flex justify-between">
+                                        <span class="font-medium">Comunidad autónoma:</span>
+                                        <span>{{ $property->address->autonomous_community }}</span>
                                     </div>
                                     @endif
                                 @else

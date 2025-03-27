@@ -10,14 +10,11 @@ class Address extends Model
     use HasFactory;
 
     protected $fillable = [
-        'street', 'number', 'floor', 'door', 'postal_code', 'district', 'city_id'
+        'property_id', 'street', 'number', 'floor', 'door', 'postal_code', 'district', 'city', 'province', 'autonomous_community',
     ];
+    /*
+    desestimamos los registros de ciudades provincias y comunidades autónomas
 
-    // Relación con Ciudad (Accedemos desde District)
-    public function city()
-    {
-        return $this->belongsTo(City::class);
-    }
 
     // Relación con Provincia (Accedemos desde Ciudad)
     public function province()
@@ -30,9 +27,16 @@ class Address extends Model
     {
         return $this->city() ? $this->city()->commune() : null;
     }
+    */
 
-    public function properties()
+    public function property()
     {
-        return $this->hasMany(Property::class);
+        return $this->belongsTo(Property::class);
+    }
+
+    // Relación con Ciudad
+    public function city()
+    {
+        return $this->belongsTo(City::class);
     }
 }

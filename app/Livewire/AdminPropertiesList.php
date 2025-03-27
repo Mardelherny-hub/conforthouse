@@ -118,9 +118,7 @@ class AdminPropertiesList extends Component
                         $addressQuery->where('street', 'like', '%' . $this->search . '%')
                                     ->orWhere('number', 'like', '%' . $this->search . '%')
                                     ->orWhere('postal_code', 'like', '%' . $this->search . '%')
-                                    ->orWhereHas('city', function($cityQuery) {
-                                        $cityQuery->where('name', 'like', '%' . $this->search . '%');
-                                    });
+                                    ->orWhere('city', 'like', '%' . $this->search . '%');
                     });
             })
             ->when($statusFilter, function ($query) use ($statusFilter) {

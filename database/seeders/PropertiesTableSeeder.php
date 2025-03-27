@@ -30,7 +30,6 @@ class PropertiesTableSeeder extends Seeder
                 'operation_id' => $faker->randomElement($operations),
                 'property_type_id' => $faker->randomElement($propertyTypes),
                 'status_id' => $faker->randomElement($statuses),
-                'address_id' => $faker->randomElement($addresses),
                 'title' => $faker->sentence(3),
                 'meta_description' => $faker->sentence(10),
                 'price' => $faker->randomFloat(2, 50000, 1000000),

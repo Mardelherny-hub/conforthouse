@@ -50,11 +50,11 @@ class AdminPropertyController extends Controller
         $propertyTypes = PropertyType::all();
         $statuses = Status::all();
         $addresses = Address::all();
-        $cities = City::all();
-        $autonomous_communities = AutonomousCommunity::all();
-        $provinces = Province::all();
+        //$cities = City::all();
+        //$autonomous_communities = AutonomousCommunity::all();
+        //$provinces = Province::all();
         //dd($property);
-        return view('admin.properties.edit', compact('property', 'operations', 'propertyTypes', 'statuses', 'addresses', 'cities', 'autonomous_communities', 'provinces'));
+        return view('admin.properties.edit', compact('property', 'operations', 'propertyTypes', 'statuses', 'addresses'));
     }
 
     public function show(Property $property)
