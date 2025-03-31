@@ -150,6 +150,19 @@ return [
     // Buscador
     'search_property_placeholder' => 'Suchen Sie Ihre Luxusimmobilie...',
     'search_button' => 'Suchen',
+    'clear_button' => 'Löschen',
+
+    //resultados filtros y buscador
+    'filtered_results' => 'Gefilterte Ergebnisse',
+    'operation' => 'Operation',
+    'type' => 'Typ',
+    'no_properties_found' => 'Keine Immobilien gefunden',
+    'try_different_filters' => 'Versuchen Sie es mit anderen Filtern',
+    'price_range' => 'Preisbereich',
+    'to' => 'bis',
+    'currency' => 'Euros',
+    'searching' => 'Suchen',
+
     // Servicios Home
     'services_card1_title' => 'Individuelle Beratung',
     'services_card1_description' => 'Unsere Experten bieten maßgeschneiderte Beratung, um Ihnen zu helfen, Ihre Traumimmobilie zu finden.',

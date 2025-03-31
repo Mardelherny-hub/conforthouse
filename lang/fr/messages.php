@@ -142,6 +142,19 @@ return [
     // Buscador
     'search_property_placeholder' => 'Rechercher votre propriété de luxe...',
     'search_button' => 'Rechercher',
+    'clear_button' => 'Effacer',
+
+    //resultados filtros y buscador
+    'filtered_results' => 'Résultats de la Recherche',
+    'operation' => 'Opération',
+    'type' => 'Type',
+    'no_properties_found' => 'Aucune propriété trouvée',
+    'try_different_filters' => 'Essayez des filtres différents',
+    'price_range' => 'Gamme de Prix',
+    'to' => 'à',
+    'currency' => 'Euros',
+    'searching' => 'Recherche en cours',
+
     // Servicios Home
     'services_card1_title' => 'Conseil Personnalisé',
     'services_card1_description' => 'Nos experts offrent des conseils sur mesure pour vous aider à trouver la propriété de vos rêves.',

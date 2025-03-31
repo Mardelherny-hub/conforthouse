@@ -141,6 +141,19 @@ return [
     // Buscador
     'search_property_placeholder' => 'Search your luxury property...',
     'search_button' => 'Search',
+    'clear_button' => 'Clear',
+
+    //resultados filtros y buscador
+    'filtered_results' => 'Filtered Results',
+    'operation' => 'Operation',
+    'type' => 'Type',
+    'no_properties_found' => 'No properties found',
+    'try_different_filters' => 'Try different filters',
+    'price_range' => 'Price Range',
+    'to' => 'to',
+    'currency' => 'Euros',
+    'searching' => 'Searching',
+
     // Servicios Home
     'services_card1_title' => 'Personalized Advisory',
     'services_card1_description' => 'Our experts offer tailored advice to help you find your dream property.',

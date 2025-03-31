@@ -42,36 +42,52 @@
                         x-transition:enter-end="opacity-100 transform translate-y-0"
                         class="absolute top-10 right-0 bg-gray-900 bg-opacity-95 backdrop-blur-md border border-amber-300/20 rounded-sm p-4 w-72 luxury-dropdown"
                         style="display: none;">
-                        <form id="searchForm" class="flex flex-col space-y-4">
-                            <input type="text" placeholder="{{ __('messages.que_esta_bunscando') }}"
-                                class="bg-transparent border-b border-amber-300/30 px-2 py-1 text-white focus:outline-none focus:border-amber-300/70 transition duration-300 font-luxury-sans text-sm">
-                            <div class="grid grid-cols-2 gap-2 mt-2">
-                                <select
-                                    class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
-                                    <option value="" class="bg-gray-800 text-amber-100">{{ __('messages.Tipo') }}
-                                    </option>
-                                    @foreach ($types as $type)
-                                        <option value="{{ $type->id }}"
-                                            class="bg-gray-800 text-amber-100 hover:bg-gray-700"> {{ $type->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <select
-                                    class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
-                                    <option value="" class="bg-gray-800 text-amber-100">
-                                        {{ __('messages.Operación') }}</option>
-                                    @foreach ($operations as $operation)
-                                        <option value="{{ $operation->id }}"
-                                            class="bg-gray-800 text-amber-100 hover:bg-gray-700"> {{ $operation->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <button type="submit"
-                                class="bg-amber-300/80 hover:bg-amber-400 text-gray-900 px-4 py-2 rounded-sm text-sm font-medium transition duration-300 font-luxury-sans btn-luxury">
-                                {{ __('messages.search_button') }}
-                            </button>
-                        </form>
+                        <form action="{{ route('prop.index', ['locale' => app()->getLocale()]) }}" method="GET"
+                            id="searchForm" class="flex flex-col space-y-4">
+                               <!-- Campo de búsqueda por texto -->
+                               <input type="text" name="search" placeholder="{{ __('messages.que_esta_bunscando') }}"
+                               class="bg-transparent border-b border-amber-300/30 px-2 py-1 text-white focus:outline-none focus:border-amber-300/70 transition duration-300 font-luxury-sans text-sm">
+
+                               <div class="grid grid-cols-2 gap-2 mt-2">
+                                   <!-- Selector de tipo -->
+                                   <select id="type_id" name="type_id"
+                                   class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
+                                       <option value="">{{ __('messages.tipo_de_propiedad') }}</option>
+                                       @foreach ($types as $type)
+                                       <option value="{{ $type->id }}">
+                                           {{ $type->name }}
+                                       </option>
+                                       @endforeach
+                                   </select>
+
+                                   <!-- Selector de operación (añadido el atributo name) -->
+                                   <select name="operation_id"
+                                   class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
+                                       <option value="" class="bg-gray-800 text-amber-100">
+                                           {{ __('messages.Operación') }}</option>
+                                       @foreach ($operations as $operation)
+                                       <option value="{{ $operation->id }}"
+                                       class="bg-gray-800 text-amber-100 hover:bg-gray-700">
+                                           {{ $operation->name }}
+                                       </option>
+                                       @endforeach
+                                   </select>
+                               </div>
+
+                               <!-- Rangos de precio (añadidos) -->
+                               <div class="grid grid-cols-2 gap-2">
+                                   <input type="number" name="min_price" placeholder="{{ __('messages.menor_precio') }}"
+                                   class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
+
+                                   <input type="number" name="max_price" placeholder="{{ __('messages.mayor_precio') }}"
+                                   class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
+                               </div>
+
+                               <button type="submit"
+                               class="bg-amber-300/80 hover:bg-amber-400 text-gray-900 px-4 py-2 rounded-sm text-sm font-medium transition duration-300 font-luxury-sans btn-luxury">
+                                   {{ __('messages.search_button') }}
+                               </button>
+                           </form>
                     </div>
                 </div>
             </div>

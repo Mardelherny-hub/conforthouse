@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Property;
 use App\Models\PropertyType;
+use App\Models\Operation;
 use App\Models\District;
 use App\Models\PropertyTranslation;
 use Illuminate\Http\Request;
@@ -14,22 +15,73 @@ class PropertyController extends Controller
 {
     public function index(Request $request)
     {
-        $locale = app()->getLocale(); // Obtener el idioma actual
+        $locale = app()->getLocale();
+        $operationId = $request->query('operation_id');
+        $typeId = $request->query('type_id');
+        $max_price = $request->query('max_price');
+        $min_price = $request->query('min_price');
+        $search = $request->query('search'); // Añadido para manejar búsquedas por texto
 
-        // Obtener propiedades con su imagen principal, tipo, operación y estado
-        $properties = Property::with(['images', 'propertyType', 'operation', 'status'])
-            ->latest()
-            ->paginate(9);
+        // Consulta base con relaciones necesarias
+        $query = Property::with(['images', 'propertyType', 'operation', 'status']);
+
+        // Aplicar filtros si existen
+        if ($operationId) {
+            $query->where('operation_id', $operationId);
+        }
+
+        if ($typeId) {
+            $query->where('property_type_id', $typeId);
+        }
+
+        if ($max_price && $min_price) {
+            $query->whereBetween('price', [$min_price, $max_price]);
+        } elseif ($max_price) {
+            $query->where('price', '<=', $max_price);
+        } elseif ($min_price) {
+            $query->where('price', '>=', $min_price);
+        }
+
+        // Añadir búsqueda por texto
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
+        // Obtener resultados paginados
+        $properties = $query->latest()->paginate(9);
 
         // Aplicar traducciones a cada propiedad
         foreach ($properties as $property) {
             $this->applyTranslations($property, $locale);
-
-            // Traducir tipo, estado y operación
             $this->translateRelations($property, $locale);
         }
 
-        return view('properties.index', compact('properties'));
+        // Obtener operaciones y tipos para los filtros del formulario
+        $operations = Operation::all();
+        $propertyTypes = PropertyType::all();
+
+        // Traducir las operaciones y tipos para mostrar en los filtros
+        foreach ($operations as $operation) {
+            $this->translateRelation($operation, 'name', $locale);
+        }
+
+        foreach ($propertyTypes as $type) {
+            $this->translateRelation($type, 'name', $locale);
+        }
+
+        return view('properties.index', compact(
+            'properties',
+            'operationId',
+            'typeId',
+            'max_price',
+            'min_price',
+            'operations',
+            'propertyTypes',
+            'search'
+        ));
     }
 
     public function show($locale, $id)
