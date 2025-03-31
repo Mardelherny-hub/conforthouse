@@ -33,6 +33,8 @@ class FixedDataSeeder extends Seeder
             ['name' => 'Casa', 'translations' => ['en' => 'House', 'fr' => 'Maison', 'de' => 'Haus']],
             ['name' => 'Departamento', 'translations' => ['en' => 'Apartment', 'fr' => 'Appartement', 'de' => 'Wohnung']],
             ['name' => 'Ático', 'translations' => ['en' => 'Penthouse', 'fr' => 'Penthouse', 'de' => 'Dachgeschoss']],
+            ['name' => 'Obra Nueva', 'translations' => ['en' => 'New Build', 'fr' => 'Nouveau Bâtiment', 'de' => 'Neubau']],
+            ['name' => 'Adosado', 'translations' => ['en' => 'Townhouse', 'fr' => 'Maison Mitoyenne', 'de' => 'Reihenhaus']],
         ];
 
         foreach ($propertyTypes as $type) {
@@ -55,4 +57,6 @@ class FixedDataSeeder extends Seeder
         }
     }
 }
+
+
 

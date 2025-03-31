@@ -74,7 +74,66 @@ return [
     'copyright' => '© 2024 Conforthouse Living, All Rights Reserved',
     'property_list' => 'Property List',
     'contact_us' => 'Contact Us',
-    // HOME
+     /*
+    *HOME
+    */
+    //Encabezado de sección con elemento decorativo
+    'descubre' => 'Discover',
+    'nuestras' => 'Our',
+    'Categorías' => 'Categories',
+    'Explora' => 'Explore our selection of exclusive properties to find your next ideal home',
+    'Ver todas las categorías' => 'View all categories',
+
+    //Sección de Propiedad Destacada
+    'Propiedad Destacada' => 'Featured Property',
+    'Contactar' => 'Contact',
+
+    //Trending Properties Section
+    'Propiedades' => 'Properties',
+    'Trending' => 'Trending',
+
+    // Sección servicios exclusivos
+    'servicios_exclusivos' => 'Exclusive <span class="text-amber-400">Services</span>',    'Ver Todos los Servicios' => 'View All Services',
+    'Destacado' => 'Featured',
+    'Property Valuation' => 'Property Valuation',
+    'We accurately value each property, offering a detailed and objective analysis of the luxury real estate market.' => 'We accurately value each property, offering a detailed and objective analysis of the luxury real estate market.',
+    'Servicio Premium' => 'Premium Service',
+    'Consulta disponibilidad' => 'Check availability',
+    'Legales' => 'Legal Notice',
+    'R&B Servicio Jurídico Gratuito' => 'R&B Free Legal Service',
+    'Especializado en derecho inmobiliario' => 'Specialized in real estate law',
+    'Estrategia' => 'Strategy',
+    'Personalized Consulting' => 'Personalized Consulting',
+    'Adaptada a las necesidades de cada cliente en el mercado inmobiliario' => 'Adapted to the needs of each client in the real estate market',
+    'Tecnología' => 'Technology',
+    'Property Management' => 'Property Management',
+    'Comprehensive administration and management services for properties' => 'Comprehensive administration and management services for properties',
+
+    //CTA
+    'cta_descripcion' => 'Our Exclusive Services for clients seeking personalized and high-quality solutions in wealth management and financial advisory',
+    'Solicitar Información' => 'Request Information',
+    'Ver Servicios' => 'View Services',
+
+    //Sección Contacto
+    'titulo_contacto' => 'Get in Touch with <span class="text-amber-600">Us</span>',
+    'Envíenos un mensaje' => 'Send us a message',
+    'Nombre completo' => 'Full Name',
+    'Su nombre' => 'Your Name',
+    'Correo electrónico' => 'Email Address',
+    'Su email' => 'Your Email Address',
+    'telefono' => 'Phone Number',
+    'Su teléfono' => 'Your Phone Number',
+    'Asunto' => 'Subject',
+    'Su asunto' => 'Your Subject',
+    'Mensaje' => 'Message',
+    'Su mensaje' => 'Your Message',
+    'Enviar Mensaje' => 'Send Message',
+
+    // Información de contacto
+    'Información de contacto' => 'Contact Information',
+    'Dirección' => 'Address',
+
+
     // Callout
     'home_callout_title' => 'Looking for first-class real estate advice?',
     'home_callout_subtitle' => 'We are here to help you',
@@ -152,7 +211,54 @@ return [
     'lugar_a' => 'Beach',
     'lugar_b' => 'Mountain',
     'lugar_c' => 'City',
+    'titulo_propiedades' => 'Our <span class="text-amber-400">Premium</span> Properties',
+    'subtitulo_propiedades' => 'Explore our selection of exclusive properties',
+
     //Propiedades fichas
-    'ver_detalles' => 'View Details',
+    'descubrir' => 'Discover',
+    'Estado' => 'Status',
+    'Descripción Detallada' => 'Detailed Description',
+    'Características de la Propiedad' => 'Property Features',
+    'Detalles Básicos' => 'Basic Details',
+    'Referencia' => 'Reference',
+    'Tipo' => 'Type',
+    'Operación' => 'Operation',
+    'Condición' => 'Condition',
+    'Año construcción' => 'Year Built',
+    'Régimen' => 'Regime',
+    'Distribución' => 'Layout',
+    'Superficie' => 'Surface Area',
+    'Habitaciones' => 'Rooms',
+    'Baños' => 'Bathrooms',
+    'Planta' => 'Floor',
+    'Plantas totales' => 'Total Floors',
+    'Plazas de garaje' => 'Garage Spaces',
+    'Características' => 'Features',
+    'Orientación' => 'Orientation',
+    'Exterior' => 'Exterior',
+    'Vistas' => 'Views',
+    'Distancia al mar' => 'Distance to the Sea',
+    'Acabados' => 'Finishes',
+    'Cocina' => 'Kitchen',
+    'Calefacción' => 'Heating',
+    'Suelo' => 'Flooring',
+    'Carpinterías interior' => 'Interior Woodwork',
+    'Carpinterías exterior' => 'Exterior Woodwork',
+    'Economía' => 'Economy',
+    'Precio' => 'Price',
+    'Gastos comunidad' => 'Community Fees',
+    'Precio/m²' => 'Price/m²',
+    'Ubicación' => 'Location',
+
+    // Contact Form
+    'Contacta con nosotros' => 'Contact Us',
+    'Solicita más información sobre esta propiedad. Te responderemos a la mayor brevedad posible' => 'Request more information about this property. We will respond as soon as possible.',
+    'Teléfono (opcional)' => 'Phone (optional)',
+    'Me interesa esta propiedad. Quisiera recibir más información' => 'I am interested in this property. I would like to receive more information.',
+    'acepto_politica' => 'I accept the <a href="#" class="text-amber-600 hover:underline">privacy policy</a>',
+
+    // Related Properties Section
+    'Propiedades Similares' => 'Similar Properties',
+
 ];
 

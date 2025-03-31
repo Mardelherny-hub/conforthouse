@@ -19,6 +19,7 @@ class BasicInfoForm extends Component
     public $property_type_id;
     public $status_id;
     public $title;
+    public $description;
     public $meta_description;
 
     // Para mensajes de éxito o error
@@ -32,6 +33,7 @@ class BasicInfoForm extends Component
         'property_type_id' => 'required|exists:property_types,id',
         'status_id' => 'required|exists:statuses,id',
         'title' => 'required|string|max:255',
+        'description' => 'required|string',
         'meta_description' => 'nullable|string|max:500',
     ];
 
@@ -54,6 +56,7 @@ class BasicInfoForm extends Component
         $this->property_type_id = $property->property_type_id;
         $this->status_id = $property->status_id;
         $this->title = $property->title;
+        $this->description = $property->description;
         $this->meta_description = $property->meta_description;
     }
 
@@ -79,6 +82,7 @@ class BasicInfoForm extends Component
                 'property_type_id' => $this->property_type_id,
                 'status_id' => $this->status_id,
                 'title' => $this->title,
+                'description' => $this->description,
                 'meta_description' => $this->meta_description,
             ]);
 
@@ -101,6 +105,7 @@ class BasicInfoForm extends Component
         // Campos que necesitan traducción en esta sección
         $fieldsToTranslate = [
             'title' => $this->title,
+            'description' => $this->description,
             'meta_description' => $this->meta_description,
         ];
 

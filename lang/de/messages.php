@@ -78,7 +78,71 @@ return [
     'property_list' => 'Immobilienliste',
     'contact_us' => 'Kontaktieren Sie uns',
 
-    // HOME
+     /*
+    *HOME
+    */
+    //Encabezado de sección con elemento decorativo
+    'descubre' => 'Entdecken',
+    'nuestras' => 'Unsere',
+    'Categorías' => 'Kategorien',
+    'Explora' => 'Durchsuchen Sie unsere Auswahl an exklusiven Immobilien, um Ihr ideales Zuhause zu finden',
+    'Ver todas las categorías' => 'Alle Kategorien anzeigen',
+
+    //Sección de Propiedad Destacada
+    'Propiedad Destacada' => 'Hervorgehobene Immobilie',
+    'Contactar' => 'Kontaktieren',
+
+    //Trending Properties Section
+    'Propiedades' => 'Immobilien',
+    'Trending' => 'Aktuelle Trends',
+
+    // Sección servicios exclusivos
+    'servicios_exclusivos' => 'Exklusive <span class="text-amber-400">Dienstleistungen</span>',
+    'Ver Todos los Servicios' => 'Alle Dienstleistungen anzeigen',
+    'Destacado' => 'Hervorgehoben',
+    'Property Valuation' => 'Immobilienbewertung',
+    'We accurately value each property, offering a detailed and objective analysis of the luxury real estate market.' => 'Wir bewerten jede Immobilie präzise und bieten eine detaillierte und objektive Analyse des Luxusimmobilienmarktes.',
+    'Servicio Premium' => 'Premium-Service',
+    'Consulta disponibilidad' => 'Verfügbarkeit anfragen',
+    'Legales' => 'Rechtliche Hinweise',
+    'R&B Servicio Jurídico Gratuito' => 'R&B Kostenloser Rechtsdienst',
+    'Especializado en derecho inmobiliario' => 'Spezialisiert auf Immobilienrecht',
+    'Estrategia' => 'Strategie',
+    'Personalized Consulting' => 'Individuelle Beratung',
+    'Adaptada a las necesidades de cada cliente en el mercado inmobiliario' => 'Angepasst an die Bedürfnisse jedes Kunden auf dem Immobilienmarkt',
+    'Tecnología' => 'Technologie',
+    'Property Management' => 'Immobilienverwaltung',
+    'Comprehensive administration and management services for properties' => 'Umfassende Verwaltungs- und Managementdienste für Immobilien',
+
+    // CTA
+    'cta_descripcion' => 'Unsere Exklusiven Dienstleistungen für Kunden, die maßgeschneiderte und hochwertige Lösungen im Vermögensmanagement und in der Finanzberatung suchen',
+    'Solicitar Información' => 'Angebot anfordern',
+    'Ver Servicios' => 'Dienstleistungen anzeigen',
+    'Su nombre' => 'Ihr Name',
+    'Correo electrónico' => 'E-Mail-Adresse',
+    'Su email' => 'Ihre E-Mail-Adresse',
+    'telefono' => 'Telefonnummer',
+    'Su teléfono' => 'Ihre Telefonnummer',
+
+    //Sección Contacto
+    'titulo_contacto' => 'Kontaktieren Sie <span class="text-amber-600">Uns</span>',
+    'Envíenos un mensaje' => 'Senden Sie uns eine Nachricht',
+    'Nombre completo' => 'Vollständiger Name',
+    'Su nombre' => 'Ihr Name',
+    'Correo electrónico' => 'E-Mail-Adresse',
+    'Su email' => 'Ihre E-Mail-Adresse',
+    'telefono' => 'Telefonnummer',
+    'Su teléfono' => 'Ihre Telefonnummer',
+    'Asunto' => 'Betreff',
+    'Su asunto' => 'Ihr Betreff',
+    'Mensaje' => 'Nachricht',
+    'Su mensaje' => 'Ihre Nachricht',
+    'Enviar Mensaje' => 'Nachricht senden',
+
+    // Información de contacto
+    'Información de contacto' => 'Kontaktinformationen',
+    'Dirección' => 'Adresse',
+
     // Callout
     'home_callout_title' => 'Suchen Sie erstklassige Immobilienberatung?',
     'home_callout_subtitle' => 'Wir sind hier, um Ihnen zu helfen',
@@ -158,10 +222,55 @@ return [
     'lugar_a' => 'Strand',
     'lugar_b' => 'Berg',
     'lugar_c' => 'Stadt',
-    // Propiedades fichas
-    'ver_detalles' => 'Details anzeigen',
+    'titulo_propiedades' => 'Unsere <span class="text-amber-400">Premium</span>-Immobilien',
+    'subtitulo_propiedades' => 'Entdecken Sie unsere Auswahl an exklusiven Immobilien',
 
-    //
+    // propiedades fichas
+    'descubrir' => 'Entdecken',
+    'Estado' => 'Status',
+    'Descripción Detallada' => 'Detaillierte Beschreibung',
+    'Características de la Propiedad' => 'Immobilienmerkmale',
+    'Detalles Básicos' => 'Grundlegende Details',
+    'Referencia' => 'Referenz',
+    'Tipo' => 'Typ',
+    'Operación' => 'Transaktion',
+    'Condición' => 'Zustand',
+    'Año construcción' => 'Baujahr',
+    'Régimen' => 'Regime',
+    'Distribución' => 'Aufteilung',
+    'Superficie' => 'Fläche',
+    'Habitaciones' => 'Zimmer',
+    'Baños' => 'Badezimmer',
+    'Planta' => 'Etage',
+    'Plantas totales' => 'Gesamtanzahl der Etagen',
+    'Plazas de garaje' => 'Garagenplätze',
+    'Características' => 'Merkmale',
+    'Orientación' => 'Ausrichtung',
+    'Exterior' => 'Außenbereich',
+    'Vistas' => 'Aussicht',
+    'Distancia al mar' => 'Entfernung zum Meer',
+    'Acabados' => 'Oberflächen',
+    'Cocina' => 'Küche',
+    'Calefacción' => 'Heizung',
+    'Suelo' => 'Bodenbelag',
+    'Carpinterías interior' => 'Innenholzarbeiten',
+    'Carpinterías exterior' => 'Außenholzarbeiten',
+    'Economía' => 'Wirtschaft',
+    'Precio' => 'Preis',
+    'Gastos comunidad' => 'Gemeinschaftskosten',
+    'Precio/m²' => 'Preis/m²',
+    'Ubicación' => 'Lage',
+
+    // Kontaktformular
+    'Contacta con nosotros' => 'Kontaktieren Sie uns',
+    'Solicita más información sobre esta propiedad. Te responderemos a la mayor brevedad posible' => 'Fordern Sie weitere Informationen zu dieser Immobilie an. Wir werden Ihnen so schnell wie möglich antworten.',
+    'Teléfono (opcional)' => 'Telefon (optional)',
+    'Me interesa esta propiedad. Quisiera recibir más información' => 'Ich interessiere mich für diese Immobilie. Ich möchte weitere Informationen erhalten.',
+    'acepto_politica' => 'Ich akzeptiere die <a href="#" class="text-amber-600 hover:underline">Datenschutzrichtlinie</a>',
+
+    // Ähnliche Immobilien
+    'Propiedades Similares' => 'Ähnliche Immobilien',
+
 ];
 
 

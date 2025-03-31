@@ -75,7 +75,66 @@ return [
     'copyright' => '© 2024 Conforthouse Living, Tous Droits Réservés',
     'property_list' => 'Liste des Propriétés',
     'contact_us' => 'Contactez-nous',
-    // HOME
+     /*
+    *HOME
+    */
+    //Encabezado de sección con elemento decorativo
+    'descubre' => 'Découvrez',
+    'nuestras' => 'Nos',
+    'Categorías' => 'Catégories',
+    'Explora' => 'Parcourez notre sélection de propriétés exclusives pour trouver votre maison idéale',
+    'Ver todas las categorías' => 'Voir toutes les catégories',
+
+    //Sección de Propiedad Destacada
+    'Propiedad Destacada' => 'Propriété Vedette',
+    'Contactar' => 'Contacter',
+
+    //Trending Properties Section
+    'Propiedades' => 'Propriétés',
+    'Trending' => 'Tendances',
+
+    // Sección servicios exclusivos
+    'servicios_exclusivos' => 'Services <span class="text-amber-400">Exclusifs</span>',
+    'Ver Todos los Servicios' => 'Voir Tous les Services',
+    'Destacado' => 'Vedette',
+    'Property Valuation' => 'Évaluation de Propriétés',
+    'We accurately value each property, offering a detailed and objective analysis of the luxury real estate market.' => 'Nous évaluons avec précision chaque propriété, offrant une analyse détaillée et objective du marché immobilier de luxe.',
+    'Servicio Premium' => 'Service Premium',
+    'Consulta disponibilidad' => 'Consulter la disponibilité',
+    'Legales' => 'Légal',
+    'R&B Servicio Jurídico Gratuito' => 'R&B Service Juridique Gratuit',
+    'Especializado en derecho inmobiliario' => 'Spécialisé en droit immobilier',
+    'Estrategia' => 'Stratégie',
+    'Personalized Consulting' => 'Consultation Personnalisée',
+    'Adaptada a las necesidades de cada cliente en el mercado inmobiliario' => 'Adaptée aux besoins de chaque client sur le marché immobilier',
+    'Tecnología' => 'Technologie',
+    'Property Management' => 'Gestion de Propriétés',
+    'Comprehensive administration and management services for properties' => 'Services complets d\'administration et de gestion pour les propriétés',
+
+    //CTA
+    'cta_descripcion' => 'Nos Services Exclusifs pour les clients recherchant des solutions personnalisées et de haute qualité en gestion de patrimoine et en conseil financier',
+    'Solicitar Información' => 'Demander des Informations',
+    'Ver Servicios' => 'Voir les Services',
+
+    //Sección Contacto
+    'titulo_contacto' => 'Contactez <span class="text-amber-600">Nous</span>',
+    'Envíenos un mensaje' => 'Envoyez-nous un message',
+    'Nombre completo' => 'Nom Complet',
+    'Su nombre' => 'Votre Nom',
+    'Correo electrónico' => 'Adresse Email',
+    'Su email' => 'Votre Email',
+    'telefono' => 'Numéro de Téléphone',
+    'Su teléfono' => 'Votre Téléphone',
+    'Asunto' => 'Objet',
+    'Su asunto' => 'Votre Objet',
+    'Mensaje' => 'Message',
+    'Su mensaje' => 'Votre Message',
+    'Enviar Mensaje' => 'Envoyer le Message',
+
+    // Información de contacto
+    'Información de contacto' => 'Informations de Contact',
+    'Dirección' => 'Adresse',
+
     // Callout
     'home_callout_title' => 'Vous cherchez des conseils immobiliers de première classe?',
     'home_callout_subtitle' => 'Nous sommes là pour vous aider',
@@ -153,7 +212,53 @@ return [
     'lugar_a' => 'Plage',
     'lugar_b' => 'Montagne',
     'lugar_c' => 'Ville',
-    // Propiedades fichas
-    'ver_detalles' => 'Voir les Détails',
+    'titulo_propiedades' => 'Nos <span class="text-amber-400">Propriétés</span> Premium',
+    'subtitulo_propiedades' => 'Découvrez notre sélection de propriétés exclusives',
+
+    //propiedades fichas
+    'descubrir' => 'Découvrir',
+    'Estado' => 'État',
+    'Descripción Detallada' => 'Description détaillée',
+    'Características de la Propiedad' => 'Caractéristiques de la Propriété',
+    'Detalles Básicos' => 'Détails de Base',
+    'Referencia' => 'Référence',
+    'Tipo' => 'Type',
+    'Operación' => 'Opération',
+    'Condición' => 'État',
+    'Año construcción' => 'Année de Construction',
+    'Régimen' => 'Régime',
+    'Distribución' => 'Disposition',
+    'Superficie' => 'Superficie',
+    'Habitaciones' => 'Chambres',
+    'Baños' => 'Salles de Bain',
+    'Planta' => 'Étage',
+    'Plantas totales' => 'Étages Totaux',
+    'Plazas de garaje' => 'Places de Garage',
+    'Características' => 'Caractéristiques',
+    'Orientación' => 'Orientation',
+    'Exterior' => 'Extérieur',
+    'Vistas' => 'Vues',
+    'Distancia al mar' => 'Distance à la Mer',
+    'Acabados' => 'Finitions',
+    'Cocina' => 'Cuisine',
+    'Calefacción' => 'Chauffage',
+    'Suelo' => 'Sol',
+    'Carpinterías interior' => 'Menuiserie Intérieure',
+    'Carpinterías exterior' => 'Menuiserie Extérieure',
+    'Economía' => 'Économie',
+    'Precio' => 'Prix',
+    'Gastos comunidad' => 'Charges de Copropriété',
+    'Precio/m²' => 'Prix/m²',
+    'Ubicación' => 'Emplacement',
+
+    // Formulaire de Contact
+    'Contacta con nosotros' => 'Contactez-nous',
+    'Solicita más información sobre esta propiedad. Te responderemos a la mayor brevedad posible' => 'Demandez plus d’informations sur cette propriété. Nous vous répondrons dès que possible.',
+    'Teléfono (opcional)' => 'Téléphone (optionnel)',
+    'Me interesa esta propiedad. Quisiera recibir más información' => 'Cette propriété m’intéresse. Je souhaite recevoir plus d’informations.',
+    'acepto_politica' => 'J’accepte la <a href="#" class="text-amber-600 hover:underline">politique de confidentialité</a>',
+
+    // Section Propriétés Similaires
+    'Propiedades Similares' => 'Propriétés Similaires',
 ];
 

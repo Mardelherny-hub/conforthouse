@@ -76,8 +76,65 @@ return [
 
     'property_list' => 'Listado de Propiedades',
     'contact_us' => 'Contáctanos',
+    'Ver todas las categorías' => 'Ver todas las categorías',
+    /*
+    *HOME
+    */
+    //Category Section Encabezado de sección con elemento decorativo
+    'descubre' => 'Descubre',
+    'nuestras' => 'Nuestras',
+    'Categorías' => 'Categorías',
+    'Explora' => 'Explora nuestra selección de propiedades exclusivas para encontrar tu próximo hogar ideal',
 
-    // HOME
+    //Sección de Propiedad Destacada
+    'Propiedad Destacada' => 'Propiedad Destacada',
+    'Contactar' => 'Contactar',
+
+    //Trending Properties Section
+    'Propiedades' => 'Propiedades',
+    'Trending' => 'Tendencias',
+
+    // Sección servicios exclusivos
+    'servicios_exclusivos' => 'Servicios <span class="text-amber-400">Exclusivos</span>',    'Ver Todos los Servicios' => 'Ver Todos los Servicios',
+    'Destacado' => 'Destacado',
+    'Property Valuation' => 'Tasación de Propiedades',
+    'We accurately value each property, offering a detailed and objective analysis of the luxury real estate market.' => 'Valoramos con precisión cada propiedad, ofreciendo un análisis detallado y objetivo del mercado inmobiliario de lujo.',
+    'Servicio Premium' => 'Servicio Premium',
+    'Consulta disponibilidad' => 'Consulta disponibilidad',
+    'Legales' => 'Legales',
+    'R&B Servicio Jurídico Gratuito' => 'R&B Servicio Jurídico Gratuito',
+    'Especializado en derecho inmobiliario' => 'Especializado en derecho inmobiliario',
+    'Estrategia' => 'Estrategia',
+    'Personalized Consulting' => 'Consultoría Personalizada',
+    'Adaptada a las necesidades de cada cliente en el mercado inmobiliario' => 'Adaptada a las necesidades de cada cliente en el mercado inmobiliario',
+    'Tecnología' => 'Tecnología',
+    'Property Management' => 'Gestión de Propiedades',
+    'Comprehensive administration and management services for properties' => 'Servicios integrales de administración y gestión para propiedades',
+
+    // CTA
+    'cta_descripcion' => 'Nuestros Servicios Exclusivos para clientes que buscan soluciones personalizadas y de alta calidad en gestión patrimonial y asesoramiento financiero',
+    'Solicitar Información' => 'Solicitar Información',
+    'Ver Servicios' => 'Ver Servicios',
+
+    //Sección Contacto
+    'titulo_contacto' => 'Contáctese con <span class="text-amber-600">Nosotros</span>',
+    'Envíenos un mensaje' => 'Envíenos un mensaje',
+    'Nombre completo' => 'Nombre completo',
+    'Su nombre' => 'Su nombre',
+    'Correo electrónico' => 'Correo electrónico',
+    'Su email' => 'Su correo electrónico',
+    'telefono' => 'Teléfono',
+    'Su teléfono' => 'Su teléfono',
+    'Asunto' => 'Asunto',
+    'Su asunto' => 'Su asunto',
+    'Mensaje' => 'Mensaje',
+    'Su mensaje' => 'Su mensaje',
+    'Enviar Mensaje' => 'Enviar Mensaje',
+
+    // Información de contacto
+    'Información de contacto' => 'Información de contacto',
+    'Dirección' => 'Dirección',
+
     // Callout
     'home_callout_title' => '¿Buscas asesoría inmobiliaria de primera clase?',
     'home_callout_subtitle' => 'Estamos aquí para ayudarte',
@@ -158,7 +215,57 @@ return [
     'lugar_a' => 'Playa',
     'lugar_b' => 'Montaña',
     'lugar_c' => 'Ciudad',
+    'titulo_propiedades' => 'Nuestras <span class="text-amber-400">Propiedades</span> Premium',
+    'subtitulo_propiedades' => 'Explora nuestra selección de propiedades exclusivas',
+
     //Propiedades fichas
-    'ver_detalles' => 'Ver Detalles',
+    'descubrir' => 'Descubrir',
+    'Estado' => 'Estado',
+    'Descripción Detallada' => 'Descripción Detallada',
+    'Características de la Propiedad' => 'Características de la Propiedad',
+    'Detalles Básicos' => 'Detalles Básicos',
+    'Referencia' => 'Referencia',
+    'Tipo' => 'Tipo',
+    'Operación' => 'Operación',
+    'Condición' => 'Condición',
+    'Año construcción' => 'Año construcción',
+    'Régimen' => 'Régimen',
+    'Distribución' => 'Distribución',
+    'Superficie' => 'Superficie',
+    'Habitaciones' => 'Habitaciones',
+    'Baños' => 'Baños',
+    'Planta' => 'Planta',
+    'Plantas totales' => 'Plantas totales',
+    'Plazas de garaje' => 'Plazas de garaje',
+    'Características' => 'Características',
+    'Orientación' => 'Orientación',
+    'Exterior' => 'Exterior',
+    'Vistas' => 'Vistas',
+    'Distancia al mar' => 'Distancia al mar',
+    'Acabados' => 'Acabados',
+    'Cocina' => 'Cocina',
+    'Calefacción' => 'Calefacción',
+    'Suelo' => 'Suelo',
+    'Carpinterías interior' => 'Carpinterías interior',
+    'Carpinterías exterior' => 'Carpinterías exterior',
+    'Economía' => 'Economía',
+    'Precio' => 'Precio',
+    'Gastos comunidad' => 'Gastos comunidad',
+    'Precio/m²' => 'Precio/m²',
+    'Ubicación' => 'Ubicación',
+    //Formulario de contacto
+    'Contacta con nosotros' => 'Contacta con nosotros',
+    'Solicita más información sobre esta propiedad. Te responderemos a la mayor brevedad posible' => 'Solicita más información sobre esta propiedad. Te responderemos a la mayor brevedad posible',
+    'Teléfono (opcional)' => 'Teléfono (opcional)',
+    'Me interesa esta propiedad. Quisiera recibir más información' => 'Me interesa esta propiedad. Quisiera recibir más información',
+    'acepto_politica' => 'Acepto la <a href="#" class="text-amber-600 hover:underline">política de privacidad</a>',
+
+
+    //sección propiedades relacionadas
+    'Propiedades Similares' => 'Propiedades Similares',
+
+
+
+
 ];
 

@@ -58,13 +58,13 @@ class DatabaseSeeder extends Seeder
 
 
         //llamar a PropertiesTableSeeder
-        $this->call(PropertiesTableSeeder::class);
+        //$this->call(PropertiesTableSeeder::class);
 
         //llamar a AddressSeeder
-        $this->call(AddressSeeder::class);
+        //$this->call(AddressSeeder::class);
 
         //llamar a ImagesSeeder
-        $this->call(PropertyImageSeeder::class);
+        //$this->call(PropertyImageSeeder::class);
 
 
 

@@ -92,6 +92,16 @@
             @enderror
         </div>
 
+        <!-- Descripción -->
+        <div class="md:col-span-3">
+            <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
+            <textarea wire:model.defer="description" id="description" rows="2"
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
+            @error('description')
+                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+            @enderror
+        </div>
+
         <!-- Meta descripción -->
         <div class="md:col-span-3">
             <label for="meta_description" class="block text-sm font-medium text-gray-700 mb-1">Meta descripción</label>

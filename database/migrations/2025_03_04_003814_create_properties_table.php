@@ -65,6 +65,7 @@ return new class extends Migration {
             $table->foreignId('operation_id')->constrained('operations')->onDelete('cascade'); // ID de la operación relacionada
             $table->foreignId('property_type_id')->constrained('property_types')->onDelete('cascade'); // ID del tipo de propiedad relacionado
             $table->foreignId('status_id')->constrained('statuses')->onDelete('cascade'); // ID del estado relacionado
+            $table->boolean('is_featured')->default(false); // Indica si la propiedad es destacada
             $table->string('title'); // Título de la propiedad
             $table->text('meta_description'); // Descripción meta para SEO
             $table->decimal('price', 10, 2); // Precio de la propiedad
@@ -89,6 +90,7 @@ return new class extends Migration {
             $table->string('regime')->nullable(); // Régimen de la propiedad
             $table->string('google_map')->nullable(); // Enlace a Google Maps (opcional)
             $table->text('description')->nullable(); // Descripción de la propiedad (opcional)
+            $table->text('video')->nullable(); // Enlace a video de youtube.com (opcional)
             $table->timestamps(); // Timestamps para seguimiento de creación y actualización
         });
 

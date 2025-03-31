@@ -33,10 +33,7 @@ Route::group([
     'middleware' => ['web', 'setLocale'],
     'where' => ['locale' => 'en|es|fr|de']
     ], function () {
-    // Página de inicio
-    //Route::get('/', function () {
-    //    return view('welcome');
-    //})->name('welcome');
+
 
     // Página home
     Route::get('/', function () {

@@ -132,7 +132,7 @@
             <!-- Menú de navegación -->
             <!-- Container para el nav que ocupa todo el ancho -->
             <div class="absolute top-0 left-0 right-0 z-50">
-                @include('layouts.nav_guest')
+                <x-navigation />
             </div>
 
             <!-- Hero Content con animaciones elegantes -->

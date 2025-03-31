@@ -12,14 +12,13 @@
                     <div class="flex items-center justify-center">
                         <div class="h-[1px] w-12 bg-gradient-to-r from-transparent to-amber-300"></div>
                         <span
-                            class="mx-4 text-amber-400 text-sm luxury-nav uppercase tracking-widest font-light">Descubre</span>
+                            class="mx-4 text-amber-400 text-sm luxury-nav uppercase tracking-widest font-light">{{ __('messages.descubre') }}</span>
                         <div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-amber-300"></div>
                     </div>
                 </div>
-                <h2 class="text-4xl font-luxury font-light mb-3 text-gray-900">Nuestras <span
-                        class="text-amber-400">Categorías</span> Premium</h2>
-                <p class="text-gray-500 max-w-xl mx-auto luxury-nav">Explora nuestra selección de propiedades exclusivas
-                    para encontrar tu próximo hogar ideal</p>
+                <h2 class="text-4xl font-luxury font-light mb-3 text-gray-900">{{ __('messages.nuestras') }} <span
+                        class="text-amber-400">{{ __('messages.Categorías') }}</span> Premium</h2>
+                <p class="text-gray-500 max-w-xl mx-auto luxury-nav">{{ __('messages.Explora') }}</p>
             </div>
 
             <!-- Grid de categorías con animación en hover -->
@@ -198,7 +197,7 @@
             <div class="text-center mt-12">
                 <a href="#"
                     class="btn-luxury inline-block bg-transparent border border-amber-400 text-amber-500 hover:bg-amber-400 hover:text-gray-900 px-10 py-3 text-sm font-medium luxury-nav uppercase tracking-widest rounded-sm transition-all duration-500">
-                    Ver todas las categorías
+                    {{ __('messages.Ver todas las categorías') }}
                 </a>
             </div>
         </div>
@@ -230,7 +229,7 @@
                         <div class="transform transition-transform duration-500 group-hover:-translate-y-2">
                             <span
                                 class="text-xs uppercase font-luxury tracking-widest bg-amber-100 dark:bg-transparent dark:text-amber-300 text-gray-800 px-3 py-1 rounded-sm mb-6 inline-block relative">
-                                Propiedad Destacada
+                                {{ __('messages.Propiedad Destacada') }}
                             </span>
 
                             <h2
@@ -268,11 +267,11 @@
                             class="overflow-hidden opacity-90 transition-all duration-500 group-hover:opacity-100 mt-8 flex space-x-4">
                             <a href="#"
                                 class="btn-luxury bg-amber-500 text-white px-6 py-3 rounded-sm font-luxury tracking-wider text-sm uppercase transition-all hover:bg-amber-600">
-                                Ver Detalles
+                                {{ __('messages.ver_detalles') }}
                             </a>
                             <a href="#"
                                 class="btn-luxury px-6 py-3 border border-gray-300 dark:border-amber-500/30 rounded-sm text-gray-600 dark:text-white font-luxury tracking-wider text-sm uppercase transition-all hover:border-amber-500 dark:hover:border-amber-500 dark:hover:bg-amber-900/20">
-                                Contactar
+                                {{ __('messages.Contactar') }}
                             </a>
                         </div>
                     </div>
@@ -287,7 +286,7 @@
             <!-- Encabezado con estilo de lujo -->
             <div class="flex justify-between items-center mb-16 relative">
                 <h2 class="text-3xl md:text-4xl font-luxury font-light dark-text dark:text-white">
-                    Trending <span class="text-amber-600 dark:text-amber-400">Properties</span>
+                    {{ __('messages.Trending') }} <span class="text-amber-600 dark:text-amber-400">{{ __('messages.Propiedades') }}</span>
                 </h2>
                 <div class="absolute top-full left-0 w-24 h-px bg-amber-300 mt-4 opacity-70"></div>
 
@@ -593,13 +592,13 @@
         <div class="container mx-auto px-6">
             <div class="flex justify-between items-center mb-16">
                 <div class="relative">
-                    <h2 class="font-luxury text-4xl font-light dark-text">Servicios <span
-                            class="text-amber-400">Exclusivos</span></h2>
+                    <h2 class="font-luxury text-4xl font-light dark-text">{!! __('messages.servicios_exclusivos') !!}</h2>
+
                     <div class="absolute -bottom-4 left-0 w-16 h-px bg-gradient-to-r from-text-amber-300 to-transparent"></div>
                 </div>
                 <a href="#"
                     class="text-sm text-amber-500 hover:underline group transition-all duration-300 flex items-center">
-                    Ver Todos los Servicios
+                    {{ __('messages.Ver Todos los Servicios') }}
                     <span
                         class="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">&rarr;</span>
                 </a>
@@ -614,21 +613,19 @@
                     </div>
                     <div class="absolute bottom-0 left-0 p-8">
                         <span
-                            class="text-xs uppercase bg-amber-300 text-gray-800 px-4 py-1 rounded-sm font-luxury tracking-wider">Destacado</span>
+                            class="text-xs uppercase bg-amber-300 text-gray-800 px-4 py-1 rounded-sm font-luxury tracking-wider">{{ __('messages.Destacado') }}</span>
                         <h3 class="font-luxury text-3xl font-light mt-4 mb-3 text-white">
-                            Property Valuation</h3>
-                        <p class="text-gray-200 mb-5 max-w-xl">We accurately value each property, offering a detailed
-                            and
-                            objective analysis of the luxury real estate market. </p>
+                            {{ __('messages.Property Valuation') }}</h3>
+                        <p class="text-gray-200 mb-5 max-w-xl">{{ __('messages.We accurately value each property, offering a detailed and objective analysis of the luxury real estate market.') }} </p>
                         <div class="flex items-center">
                             <div
                                 class="w-10 h-10 rounded-full overflow-hidden mr-4 flex items-center justify-center bg-e8d4b8/90">
                                 <span class="icon-wallet text-gray-800"></span>
                             </div>
                             <div>
-                                <p class="text-sm font-medium text-white font-luxury tracking-wider">Servicio Premium
+                                <p class="text-sm font-medium text-white font-luxury tracking-wider">{{ __('messages.Servicio Premium') }}
                                 </p>
-                                <p class="text-xs text-gray-300">Consulta disponibilidad</p>
+                                <p class="text-xs text-gray-300">{{ __('messages.Consulta disponibilidad') }}</p>
                             </div>
                         </div>
                     </div>
@@ -654,11 +651,9 @@
                                 </div>
                             </div>
                             <div class="w-2/3 p-4">
-                                <span class="text-xs text-amber-500 font-luxury tracking-wider">Legales</span>
-                                <h4 class="text-lg font-luxury font-semibold my-1 dark-text">R&B Servicio Jurídico
-                                    Gratuito</h4>
-                                <p class="text-xs text-gray-500">Ponemos gratuitamente a su servicio un abogado
-                                    especializado en derecho inmobiliario. </p>
+                                <span class="text-xs text-amber-500 font-luxury tracking-wider">{{ __('messages.Legales') }}</span>
+                                <h4 class="text-md font-luxury font-semibold my-1 dark-text">{{ __('messages.R&B Servicio Jurídico Gratuito') }} </h4>
+                                <p class="text-xs text-gray-500">{{ __('messages.Especializado en derecho inmobiliario') }}. </p>
                             </div>
                         </div>
 
@@ -677,11 +672,10 @@
                                 </div>
                             </div>
                             <div class="w-2/3 p-4">
-                                <span class="text-xs text-amber-500 font-luxury tracking-wider">Estrategia</span>
-                                <h4 class="text-lg font-luxury font-semibold my-1 dark-text">Personalized Consulting
+                                <span class="text-xs text-amber-500 font-luxury tracking-wider">{{ __('messages.Estrategia') }}</span>
+                                <h4 class="text-md font-luxury font-semibold my-1 dark-text">{{ __('messages.Personalized Consulting') }}
                                 </h4>
-                                <p class="text-xs text-gray-500">Comprehensive advice adapted to the specific needs of
-                                    each client in the high-end real estate market. </p>
+                                <p class="text-xs text-gray-500">{{ __('messages.Adaptada a las necesidades de cada cliente en el mercado inmobiliario') }}. </p>
                             </div>
                         </div>
 
@@ -700,10 +694,9 @@
                                 </div>
                             </div>
                             <div class="w-2/3 p-4">
-                                <span class="text-xs text-amber-500 font-luxury tracking-wider">Tecnología</span>
-                                <h4 class="text-lg font-luxury font-semibold my-1 dark-text">Property Management</h4>
-                                <p class="text-xs text-gray-500">Comprehensive administration and management services
-                                    for luxury properties. </p>
+                                <span class="text-xs text-amber-500 font-luxury tracking-wider">{{ __('messages.Tecnología') }}</span>
+                                <h4 class="text-md font-luxury font-semibold my-1 dark-text">{{ __('messages.Property Management') }}</h4>
+                                <p class="text-xs text-gray-500">{{ __('messages.Comprehensive administration and management services for properties') }}. </p>
                             </div>
                         </div>
                     </div>
@@ -728,22 +721,21 @@
                 <div class="absolute -left-8 top-0 bottom-0 w-px bg-gradient-to-b from-amber-300/80 via-amber-300/40 to-transparent">
                 </div>
 
-                <h2 class="font-luxury text-4xl font-light mb-6 text-white">Servicios <span class="text-amber-300">Exclusivos</span></h2>
+                <h2 class="font-luxury text-4xl font-light dark-text">{!! __('messages.servicios_exclusivos') !!}</h2>
 
                 <p class="text-gray-200 mb-8 leading-relaxed">
-                    Nuestros Servicios Exclusivos para clientes que buscan soluciones personalizadas y de alta calidad
-                    en gestión patrimonial y asesoramiento financiero.
+                    {{ __('messages.cta_descripcion') }}.
                 </p>
 
                 <div class="flex flex-col sm:flex-row space-y-5 sm:space-y-0 sm:space-x-6 mt-10">
                     <!-- Botón principal con amber -->
                     <a href="#" class="bg-amber-300 px-8 py-3 rounded-sm text-center font-luxury tracking-wider text-gray-900 hover:shadow-lg transition-all duration-300 group relative">
-                        <span class="relative z-10">Solicitar Información</span>
+                        <span class="relative z-10">{{ __('messages.Solicitar Información') }}</span>
                     </a>
 
                     <!-- Botón secundario con amber -->
                     <a href="#" class="px-8 py-3 border border-amber-300/30 rounded-sm text-white hover:border-amber-300 transition-all duration-300 text-center font-luxury tracking-wider group overflow-hidden relative">
-                        <span class="relative z-10 group-hover:text-gray-900 transition-colors duration-300">Ver Servicios</span>
+                        <span class="relative z-10 group-hover:text-gray-900 transition-colors duration-300">{{ __('messages.Ver Servicios') }}</span>
                         <div class="absolute inset-0 bg-amber-300/90 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
                         </div>
                     </a>
@@ -767,8 +759,10 @@
 
         <div class="container mx-auto px-6 relative z-10">
             <div class="relative text-center mb-20 inline-block mx-auto">
-                <h2 class="font-luxury text-4xl font-light dark-text">Contáctese con <span
-                        class="text-amber-600">Nosotros</span></h2>
+                <h2 class="font-luxury text-4xl font-light dark-text">
+                    {!! __('messages.titulo_contacto') !!}
+                </h2>
+
                 <div
                     class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent">
                 </div>
@@ -778,28 +772,26 @@
                 <!-- Formulario de Contacto -->
                 <div
                     class="bg-white p-10 shadow-xl rounded-sm border-t border-amber-200 transition-all duration-300 hover:shadow-2xl">
-                    <h3 class="font-luxury text-2xl font-medium mb-8 dark-text">Envíenos un mensaje</h3>
+                    <h3 class="font-luxury text-2xl font-medium mb-8 dark-text">{{ __('messages.Envíenos un mensaje') }}</h3>
                     <form>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                             <div class="group">
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-700">Nombre
-                                    completo</label>
+                                <label for="name" class="block mb-2 text-sm font-medium text-gray-700">{{ __('messages.Nombre completo') }}</label>
                                 <div class="relative">
                                     <input type="text" id="name"
                                         class="w-full px-4 py-3 border border-gray-200 rounded-sm focus:outline-none focus:border-amber-500 transition-all duration-300"
-                                        placeholder="Su nombre">
+                                        placeholder="{{ __('messages.Su nombre') }}">
                                     <div
                                         class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-focus-within:w-full transition-all duration-300">
                                     </div>
                                 </div>
                             </div>
                             <div class="group">
-                                <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Correo
-                                    electrónico</label>
+                                <label for="email" class="block mb-2 text-sm font-medium text-gray-700">{{ __('messages.Correo electrónico') }}</label>
                                 <div class="relative">
                                     <input type="email" id="email"
                                         class="w-full px-4 py-3 border border-gray-200 rounded-sm focus:outline-none focus:border-amber-500 transition-all duration-300"
-                                        placeholder="Su email">
+                                        placeholder="{{ __('messages.Su email') }}">
                                     <div
                                         class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-focus-within:w-full transition-all duration-300">
                                     </div>
@@ -808,39 +800,33 @@
                         </div>
                         <div class="mb-8 group">
                             <label for="phone"
-                                class="block mb-2 text-sm font-medium text-gray-700">Teléfono</label>
+                                class="block mb-2 text-sm font-medium text-gray-700">{{ __('messages.telefono') }}</label>
                             <div class="relative">
                                 <input type="tel" id="phone"
                                     class="w-full px-4 py-3 border border-gray-200 rounded-sm focus:outline-none focus:border-amber-500 transition-all duration-300"
-                                    placeholder="Su teléfono">
+                                    placeholder="{{ __('messages.Su teléfono') }}">
                                 <div
                                     class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-focus-within:w-full transition-all duration-300">
                                 </div>
                             </div>
                         </div>
                         <div class="mb-8 group">
-                            <label for="subject" class="block mb-2 text-sm font-medium text-gray-700">Asunto</label>
+                            <label for="subject" class="block mb-2 text-sm font-medium text-gray-700">{{ __('messages.Asunto') }}</label>
                             <div class="relative">
-                                <select id="subject"
-                                    class="w-full px-4 py-3 border border-gray-200 rounded-sm focus:outline-none focus:border-amber-500 appearance-none transition-all duration-300"
-                                    style="background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width=\"20\" height=\"20\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 10l5 5 5-5z\" fill=\"%23333\"/></svg>'); background-repeat: no-repeat; background-position: right 10px center;">
-                                    <option value="">Seleccione un asunto</option>
-                                    <option value="property">Consulta sobre una propiedad</option>
-                                    <option value="service">Servicios exclusivos</option>
-                                    <option value="partnership">Colaboraciones</option>
-                                    <option value="other">Otros</option>
-                                </select>
+                                <input type="text" id="subject"
+                                    class="w-full px-4 py-3 border border-gray-200 rounded-sm focus:outline-none focus:border-amber-500 transition-all duration-300"
+                                    placeholder="{{ __('messages.Su asunto') }}">
                                 <div
                                     class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-focus-within:w-full transition-all duration-300">
                                 </div>
                             </div>
                         </div>
                         <div class="mb-8 group">
-                            <label for="message" class="block mb-2 text-sm font-medium text-gray-700">Mensaje</label>
+                            <label for="message" class="block mb-2 text-sm font-medium text-gray-700">{{ __('messages.Mensaje') }}</label>
                             <div class="relative">
                                 <textarea id="message" rows="4"
                                     class="w-full px-4 py-3 border border-gray-200 rounded-sm focus:outline-none focus:border-amber-500 transition-all duration-300"
-                                    placeholder="Su mensaje"></textarea>
+                                    placeholder="{{ __('messages.Su mensaje') }}"></textarea>
                                 <div
                                     class="absolute bottom-0 left-0 w-0 h-0.5 bg-amber-400 group-focus-within:w-full transition-all duration-300">
                                 </div>
@@ -848,9 +834,7 @@
                         </div>
                         <button type="submit"
                             class="btn-luxury bg-gradient-to-r from-[#a67c00] to-[#d4af37] text-white px-6 py-3 rounded-sm w-full transition duration-300 font-luxury tracking-wider shadow-md hover:shadow-lg">
-
-                            Enviar
-                            mensaje</button>
+                            {{ __('messages.Enviar Mensaje') }}</button>
                     </form>
                 </div>
 
@@ -858,7 +842,7 @@
                 <div class="flex flex-col h-full">
                     <div
                         class="bg-white p-10 shadow-xl rounded-sm border-t border-amber-200 mb-8 transition-all duration-300 hover:shadow-2xl">
-                        <h3 class="font-luxury text-2xl font-medium mb-8 dark-text">Información de contacto</h3>
+                        <h3 class="font-luxury text-2xl font-medium mb-8 dark-text">{{ __('messages.Información de contacto') }}</h3>
                         <div class="space-y-6">
                             <div class="flex items-start group hover:translate-x-1 transition-transform duration-300">
                                 <div
@@ -866,7 +850,7 @@
                                     <i class="icon-location-pin"></i>
                                 </div>
                                 <div>
-                                    <p class="font-medium dark-text font-luxury">Dirección</p>
+                                    <p class="font-medium dark-text font-luxury">{{ __('messages.Dirección') }}</p>
                                     <p class="text-gray-600">Avenida Diagonal 640, 08017 Barcelona, España</p>
                                 </div>
                             </div>
@@ -886,7 +870,7 @@
                                     <i class="icon-phone"></i>
                                 </div>
                                 <div>
-                                    <p class="font-medium dark-text font-luxury">Teléfono</p>
+                                    <p class="font-medium dark-text font-luxury">{{ __('messages.telefono') }}</p>
                                     <p class="text-gray-600">+34 932 000 000</p>
                                 </div>
                             </div>

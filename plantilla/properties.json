@@ -1,0 +1,453 @@
+Array
+(
+    [0] => Array
+        (
+            [title] => Adosado en El Verger - Zona Zona de la playa
+            [reference] => CLV-164
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 3
+                    [surface] => 1732
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22786026/18-1s.jpg
+        )
+
+    [1] => Array
+        (
+            [title] => Adosado en El Verger - Zona Zona de la playa
+            [reference] => CLV-176
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 3
+                    [surface] => 1632
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22803047/46-1s.jpg
+        )
+
+    [2] => Array
+        (
+            [title] => Ãtico en Orihuela Costa - Zona Lomas de Cabo Roig
+            [reference] => CLV-239
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 2
+                    [bathrooms] => 2
+                    [surface] => 1912
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/23111072/34-1s.jpg
+        )
+
+    [3] => Array
+        (
+            [title] => Ãtico en Denia - Zona Las marinas
+            [reference] => CLV-155
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 3
+                    [surface] => 2462
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22785160/9-1s.jpg
+        )
+
+    [4] => Array
+        (
+            [title] => Chalet en Manacor - Zona Cala mandia
+            [reference] => CLV-114
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 2
+                    [surface] => 1542
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22630526/5-1s.jpg
+        )
+
+    [5] => Array
+        (
+            [title] => Ãtico DÃºplex en El Verger - Zona Zona de la playa
+            [reference] => CLV-166
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 2
+                    [surface] => 1582
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22786036/22-1s.jpg
+        )
+
+    [6] => Array
+        (
+            [title] => Villa en Finestrat - Zona Golf piug campana
+            [reference] => CLV-196
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 4
+                    [surface] => 1412
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22930025/5-1s.jpg
+        )
+
+    [7] => Array
+        (
+            [title] => Ãtico DÃºplex en Torrevieja - Zona Playa del cura
+            [reference] => CLV-249
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 3
+                    [surface] => 1632
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/23132231/28-1s.jpg
+        )
+
+    [8] => Array
+        (
+            [title] => Piso en Calpe - Zona Playa arenal-bol
+            [reference] => CLV-132
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 2
+                    [surface] => 1452
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22650748/14-1s.jpg
+        )
+
+    [9] => Array
+        (
+            [title] => Casa Tipo DÃºplex en Orihuela Costa - Zona Punta Prima
+            [reference] => CLV-232
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 4
+                    [bathrooms] => 3
+                    [surface] => 1722
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/23097550/10-1s.jpg
+        )
+
+    [10] => Array
+        (
+            [title] => Piso en Benidorm - Zona Levante
+            [reference] => CLV-117
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 2
+                    [bathrooms] => 2
+                    [surface] => 1042
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22636523/29-1s.jpg
+        )
+
+    [11] => Array
+        (
+            [title] => Chalet en Manacor - Zona Cala mandia
+            [reference] => RA465
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 4
+                    [bathrooms] => 4
+                    [surface] => 2292
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22447566/2-1s.jpg
+        )
+
+    [12] => Array
+        (
+            [title] => Villa en Finestrat - Zona Golf piug campana
+            [reference] => CLV-200
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 4
+                    [surface] => 2252
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22930170/12-1s.jpg
+        )
+
+    [13] => Array
+        (
+            [title] => Chalet en Manacor - Zona Cala mandia
+            [reference] => CLV-115
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 4
+                    [bathrooms] => 4
+                    [surface] => 2312
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22630901/8-1s.jpg
+        )
+
+    [14] => Array
+        (
+            [title] => Piso en Calpe - Zona Avd. Europa
+            [reference] => CLV-142
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 2
+                    [surface] => 1262
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22668107/13-1s.jpg
+        )
+
+    [15] => Array
+        (
+            [title] => Chalet en Finestrat - Zona BalcÃ³n de finestrat
+            [reference] => CLV-192
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 3
+                    [surface] => 3302
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22854338/7-1s.jpg
+        )
+
+    [16] => Array
+        (
+            [title] => Villa en Torrevieja - Zona La Mata
+            [reference] => CLV-229
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 4
+                    [bathrooms] => 4
+                    [surface] => 3102
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/23087898/37-1s.jpg
+        )
+
+    [17] => Array
+        (
+            [title] => Piso en Benidorm - Zona Levante
+            [reference] => CLV-119
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 2
+                    [surface] => 1902
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22637651/43-1s.jpg
+        )
+
+    [18] => Array
+        (
+            [title] => Villa en Finestrat - Zona BalcÃ³n de finestrat
+            [reference] => CLV-181
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 4
+                    [bathrooms] => 5
+                    [surface] => 3222
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22854023/7-1s.jpg
+        )
+
+    [19] => Array
+        (
+            [title] => Villa en Benitachell - Zona Benitachell - Cumbres del Sol
+            [reference] => CLV-205
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 3
+                    [surface] => 4902
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22953818/10-1s.jpg
+        )
+
+    [20] => Array
+        (
+            [title] => Piso en El Verger - Zona Zona de la playa
+            [reference] => CLV-171
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 2
+                    [bathrooms] => 2
+                    [surface] => 1732
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22802952/33-1s.jpg
+        )
+
+    [21] => Array
+        (
+            [title] => Adosado en El Verger - Zona Zona de la playa
+            [reference] => CLV-161
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 2
+                    [bathrooms] => 2
+                    [surface] => 1122
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22786016/12-1s.jpg
+        )
+
+    [22] => Array
+        (
+            [title] => Ãtico en Torrevieja - Zona Playa de los Naufragos
+            [reference] => CLV-254
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 2
+                    [bathrooms] => 2
+                    [surface] => 1762
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/23186036/13-1s.jpg
+        )
+
+    [23] => Array
+        (
+            [title] => Adosado en El Verger - Zona Zona de la playa
+            [reference] => CLV-173
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 2
+                    [bathrooms] => 3
+                    [surface] => 1182
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22802989/37-1s.jpg
+        )
+
+    [24] => Array
+        (
+            [title] => Ãtico en Torrevieja - Zona Playa de los Naufragos
+            [reference] => CLV-255
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 2
+                    [bathrooms] => 2
+                    [surface] => 1912
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/23186047/15-1s.jpg
+        )
+
+    [25] => Array
+        (
+            [title] => Ãtico en El Verger - Zona Zona de la playa
+            [reference] => CLV-162
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 2
+                    [bathrooms] => 2
+                    [surface] => 1312
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22786020/14-1s.jpg
+        )
+
+    [26] => Array
+        (
+            [title] => Chalet en Manacor - Zona Cala mandia
+            [reference] => RA464
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 2
+                    [bathrooms] => 2
+                    [surface] => 1202
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22447562/2-1s.jpg
+        )
+
+    [27] => Array
+        (
+            [title] => Ãtico en Torrevieja - Zona Playa de los Naufragos
+            [reference] => CLV-256
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 2
+                    [bathrooms] => 2
+                    [surface] => 1762
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/23186056/13-1s.jpg
+        )
+
+    [28] => Array
+        (
+            [title] => Adosado en El Verger - Zona Zona de la playa
+            [reference] => CLV-174
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 3
+                    [surface] => 1502
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22803004/39-1s.jpg
+        )
+
+    [29] => Array
+        (
+            [title] => Piso en El Verger - Zona Zona de la playa
+            [reference] => CLV-163
+            [price] => 0
+            [features] => Array
+                (
+                    [bedrooms] => 3
+                    [bathrooms] => 2
+                    [surface] => 1182
+                )
+
+            [image] => https://fotos15.apinmo.com/11855/22786023/16-1s.jpg
+        )
+
+)

@@ -1,18 +1,13 @@
-<nav x-data="{ scrolled: false }"
-     @scroll.window="scrolled = (window.pageYOffset > 20)"
-     :class="{ 'bg-dark/45 backdrop-blur-md shadow-xl border-b border-amber-300/20': scrolled }"
-     class="fixed top-0 left-0 right-0 w-full transition-all duration-300 z-50">
+<nav x-data="{ scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 20)"
+    :class="{ 'bg-dark/45 backdrop-blur-md shadow-xl border-b border-amber-300/20': scrolled }"
+    class="fixed top-0 left-0 right-0 w-full transition-all duration-300 z-50">
 
-     <!-- Contenedor para el contenido del nav -->
-     <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Contenedor para el contenido del nav -->
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
         <!-- Línea decorativa superior - visible solo cuando no hay scroll -->
-        <div x-show="!scrolled"
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100"
-            x-transition:leave-end="opacity-0"
+        <div x-show="!scrolled" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
             class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-40">
         </div>
 
@@ -42,8 +37,7 @@
                     </button>
 
                     <!-- Dropdown de búsqueda -->
-                    <div x-show="open" @click.away="open = false"
-                        x-transition:enter="transition ease-out duration-300"
+                    <div x-show="open" @click.away="open = false" x-transition:enter="transition ease-out duration-300"
                         x-transition:enter-start="opacity-0 transform -translate-y-2"
                         x-transition:enter-end="opacity-100 transform translate-y-0"
                         class="absolute top-10 right-0 bg-gray-900 bg-opacity-95 backdrop-blur-md border border-amber-300/20 rounded-sm p-4 w-72 luxury-dropdown"
@@ -51,28 +45,28 @@
                         <form id="searchForm" class="flex flex-col space-y-4">
                             <input type="text" placeholder="{{ __('messages.que_esta_bunscando') }}"
                                 class="bg-transparent border-b border-amber-300/30 px-2 py-1 text-white focus:outline-none focus:border-amber-300/70 transition duration-300 font-luxury-sans text-sm">
-
                             <div class="grid grid-cols-2 gap-2 mt-2">
                                 <select
                                     class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
-                                    <option value="">{{ __('messages.tipo_de_propiedad') }}</option>
-                                    @foreach ($types as $type )
-                                        <option value="{{ $type->id }}"> {{ $type->name }} </option>
+                                    <option value="" class="bg-gray-800 text-amber-100">{{ __('messages.Tipo') }}
+                                    </option>
+                                    @foreach ($types as $type)
+                                        <option value="{{ $type->id }}"
+                                            class="bg-gray-800 text-amber-100 hover:bg-gray-700"> {{ $type->name }}
+                                        </option>
                                     @endforeach
-                                    <option value="villa">{{ __('messages.apartamento') }}</option>
-                                    <option value="penthouse">{{ __('messages.finca') }}</option>
-                                    <option value="mansion">{{ __('messages.casa') }}</option>
                                 </select>
-
                                 <select
                                     class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
-                                    <option value="">{{ __('messages.ubicacion') }}</option>
-                                    <option value="beach">{{ __('messages.lugar_a') }}</option>
-                                    <option value="mountain">{{ __('messages.lugar_b') }}</option>
-                                    <option value="city">{{ __('messages.lugar_c') }}</option>
+                                    <option value="" class="bg-gray-800 text-amber-100">
+                                        {{ __('messages.Operación') }}</option>
+                                    @foreach ($operations as $operation)
+                                        <option value="{{ $operation->id }}"
+                                            class="bg-gray-800 text-amber-100 hover:bg-gray-700"> {{ $operation->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
-
                             <button type="submit"
                                 class="bg-amber-300/80 hover:bg-amber-400 text-gray-900 px-4 py-2 rounded-sm text-sm font-medium transition duration-300 font-luxury-sans btn-luxury">
                                 {{ __('messages.search_button') }}
@@ -97,8 +91,8 @@
 
                     <!-- Propiedad destacada en menú -->
                     <div class="mb-4 featured-property">
-                        <img src="{{ asset('assets/images/gallery/thumbnail/full_1/15.jpg') }}" alt="Propiedad destacada"
-                            class="w-full h-32 object-cover rounded-sm"
+                        <img src="{{ asset('assets/images/gallery/thumbnail/full_1/15.jpg') }}"
+                            alt="Propiedad destacada" class="w-full h-32 object-cover rounded-sm"
                             onerror="this.src='https://via.placeholder.com/300x150?text=Propiedad+Destacada'">
                         <div class="property-label">
                             <p class="text-amber-300 text-xs font-luxury">Propiedad destacada</p>
@@ -134,8 +128,8 @@
                         <a href="{{ route('prop.index', ['locale' => app()->getLocale()]) }}"
                             class="text-amber-300 hover:text-amber-200 transition duration-300 flex items-center justify-between font-luxury">
                             <span>Colección exclusiva</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
@@ -171,7 +165,8 @@
                             </span>
                             <div>
                                 <p class="text-amber-300 font-luxury text-sm">{{ __('messages.serv_tasacion') }}</p>
-                                <p class="text-gray-400 text-xs font-luxury-sans">Valoración profesional de su propiedad
+                                <p class="text-gray-400 text-xs font-luxury-sans">Valoración profesional de su
+                                    propiedad
                                 </p>
                             </div>
                         </a>
@@ -185,8 +180,10 @@
                                 </svg>
                             </span>
                             <div>
-                                <p class="text-amber-300 font-luxury text-sm">{{ __('messages.serv_consultoria') }}</p>
-                                <p class="text-gray-400 text-xs font-luxury-sans">Asesoramiento inmobiliario personalizado
+                                <p class="text-amber-300 font-luxury text-sm">{{ __('messages.serv_consultoria') }}
+                                </p>
+                                <p class="text-gray-400 text-xs font-luxury-sans">Asesoramiento inmobiliario
+                                    personalizado
                                 </p>
                             </div>
                         </a>
@@ -201,7 +198,8 @@
                             </span>
                             <div>
                                 <p class="text-amber-300 font-luxury text-sm">{{ __('messages.serv_inversion') }}</p>
-                                <p class="text-gray-400 text-xs font-luxury-sans">Oportunidades de inversión inmobiliaria
+                                <p class="text-gray-400 text-xs font-luxury-sans">Oportunidades de inversión
+                                    inmobiliaria
                                 </p>
                             </div>
                         </a>
@@ -226,7 +224,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7" />
                     </svg>
                 </button>
-                <div x-show="open" x-cloac @click.away="open = false" x-transition:enter="transition ease-out duration-300"
+                <div x-show="open" x-cloac @click.away="open = false"
+                    x-transition:enter="transition ease-out duration-300"
                     x-transition:enter-start="opacity-0 transform scale-98"
                     x-transition:enter-end="opacity-100 transform scale-100"
                     class="absolute right-0 z-10 mt-4 rounded-sm p-3 w-48 luxury-dropdown">
@@ -266,16 +265,16 @@
             <!-- Botón de acceso -->
             <a href="{{ route('prop.index', ['locale' => app()->getLocale()]) }}"
                 class="border border-amber-300 px-5 py-2 text-amber-300 hover:bg-amber-300 hover:text-gray-900 transition duration-500 font-luxury text-sm btn-luxury">
-            {{ __('messages.coleccion_privada') }}
+                {{ __('messages.coleccion_privada') }}
             </a>
         </div>
 
         <!-- Botón de menú móvil -->
         <div class="lg:hidden relative z-20" x-data="{ open: false }">
-            <button @click="open = !open"
-                class="text-amber-300 hover:text-amber-200 focus:outline-none">
+            <button @click="open = !open" class="text-amber-300 hover:text-amber-200 focus:outline-none">
                 <svg x-show="!open" class="h-6 w-6 fill-current" viewBox="0 0 24 24">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"></path>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z">
+                    </path>
                 </svg>
                 <svg x-show="open" class="h-6 w-6 fill-current" viewBox="0 0 24 24">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -334,8 +333,8 @@
                         <span class="font-luxury">{{ __('messages.propiedades') }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
-                            <path x-show="!subMenu" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M19 9l-7 7-7-7" />
+                            <path x-show="!subMenu" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M19 9l-7 7-7-7" />
                             <path x-show="subMenu" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                 d="M5 15l7-7 7 7" />
                         </svg>
@@ -361,8 +360,8 @@
                         <span class="font-luxury">{{ __('messages.servicios') }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
-                            <path x-show="!subMenu" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M19 9l-7 7-7-7" />
+                            <path x-show="!subMenu" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M19 9l-7 7-7-7" />
                             <path x-show="subMenu" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                 d="M5 15l7-7 7 7" />
                         </svg>
@@ -396,8 +395,8 @@
                         </div>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor">
-                            <path x-show="!subMenu" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                d="M19 9l-7 7-7-7" />
+                            <path x-show="!subMenu" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="1.5" d="M19 9l-7 7-7-7" />
                             <path x-show="subMenu" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                 d="M5 15l7-7 7 7" />
                         </svg>
@@ -444,12 +443,9 @@
         </div>
 
         <!-- Línea decorativa inferior - visible solo cuando no hay scroll -->
-        <div x-show="!scrolled"
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100"
+        <div x-show="!scrolled" x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
             class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-40">
         </div>
