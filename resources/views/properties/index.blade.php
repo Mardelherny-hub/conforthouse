@@ -75,11 +75,10 @@
                     <a href="{{ route('prop.index', ['locale' => app()->getLocale()]) }}"
                         class="btn-luxury bg-gradient-to-r from-[#d4af37] to-[#a67c00] text-white px-6 py-3 rounded-sm w-full transition duration-300 font-luxury tracking-wider shadow-md hover:shadow-lg flex justify-center items-center"
                         duration-300 font-luxury tracking-wider shadow-md hover:shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 24 24"
-                            fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M19.793 4.793a1 1 0 00-1.414-1.414L3 18.586V21h2.414L19.793 6.207zM5 19v-.586L17.586 5H18v.414L5.414 19H5z"
-                                clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.36 2.72L15.61 6.47C15.18 5.27 14.32 4.27 13.15 3.67L16.9 0L19.36 2.72Z"/>
+                            <path d="M13.83 7.89C13.25 7.31 12.29 7.31 11.71 7.89C11.13 8.47 11.13 9.43 11.71 10.01C12.29 10.59 13.25 10.59 13.83 10.01C14.41 9.43 14.41 8.47 13.83 7.89Z"/>
+                            <path d="M10.93 10.79L3.62 18.1C2.89 18.83 2.89 20.02 3.62 20.75C4.35 21.48 5.54 21.48 6.27 20.75L13.58 13.44L10.93 10.79Z"/>
                         </svg>
                         {{ __('messages.clear_button') }}
                     </a>

@@ -107,36 +107,23 @@
 
                     <!-- Propiedad destacada en menú -->
                     <div class="mb-4 featured-property">
-                        <img src="{{ asset('assets/images/gallery/thumbnail/full_1/15.jpg') }}"
+                        <img src="/storage/{{ $property->images->first()->image_path }}"
                             alt="Propiedad destacada" class="w-full h-32 object-cover rounded-sm"
                             onerror="this.src='https://via.placeholder.com/300x150?text=Propiedad+Destacada'">
-                        <div class="property-label">
-                            <p class="text-amber-300 text-xs font-luxury">Propiedad destacada</p>
-                            <p class="text-white text-sm font-luxury-sans">Villa con vistas al mediterráneo</p>
+                        <div class="property-label  bg-dark/45 p-1">
+                            <p class="text-amber-400 text-sm bold font-luxury">Propiedad destacada</p>
+                            <p class="text-white text-sm font-luxury-sans">{{ $property->title }}</p>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-x-6 gap-y-3">
-                        <a href="#"
-                            class="text-amber-300 hover:text-amber-200 transition duration-300 font-luxury-sans text-sm flex items-center">
+                        @foreach($operations as $operation)
+                        <a href="{{ route('prop.index', ['locale' => app()->getLocale(), 'operation_id' => $operation->id]) }}"
+                           class="text-amber-300 hover:text-amber-200 transition duration-300 font-luxury-sans text-sm flex items-center">
                             <span class="w-1 h-1 bg-amber-400 rounded-full mr-2"></span>
-                            {{ __('messages.alquiler') }}
+                            {{ $operation->name }}
                         </a>
-                        <a href="#"
-                            class="text-amber-300 hover:text-amber-200 transition duration-300 font-luxury-sans text-sm flex items-center">
-                            <span class="w-1 h-1 bg-amber-400 rounded-full mr-2"></span>
-                            {{ __('messages.venta') }}
-                        </a>
-                        <a href="#"
-                            class="text-amber-300 hover:text-amber-200 transition duration-300 font-luxury-sans text-sm flex items-center">
-                            <span class="w-1 h-1 bg-amber-400 rounded-full mr-2"></span>
-                            {{ __('messages.obra_nueva') }}
-                        </a>
-                        <a href="#"
-                            class="text-amber-300 hover:text-amber-200 transition duration-300 font-luxury-sans text-sm flex items-center">
-                            <span class="w-1 h-1 bg-amber-400 rounded-full mr-2"></span>
-                            {{ __('messages.viviendas_de_lujo') }}
-                        </a>
+                        @endforeach
                     </div>
 
                     <!-- CTA para colección privada -->
@@ -154,7 +141,7 @@
                 </div>
             </div>
 
-            <div x-data="{ open: false }" class="relative group">
+            <!--<div x-data="{ open: false }" class="relative group">
                 <button @click="open = !open"
                     class="flex items-center text-white hover:text-amber-300 transition duration-300 menu-link font-luxury">
                     {{ __('messages.servicios') }}
@@ -168,7 +155,7 @@
                     x-transition:enter-end="opacity-100 transform scale-100"
                     class="absolute z-10 mt-4 rounded-sm p-4 w-72 luxury-dropdown">
 
-                    <!-- Servicios con iconos -->
+                     Servicios con iconos
                     <div class="grid grid-cols-1 gap-3">
                         <a href="#" class="flex items-center group">
                             <span
@@ -221,11 +208,13 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div>-->
 
-            <a href="#"
+            <a href="{{ route('services', ['locale' =>app()->getlocale()]) }}"
+                class="text-white hover:text-amber-300 transition duration-300 menu-link font-luxury">{{ __('messages.servicios') }}</a>
+            <a href="{{ route('about', ['locale' =>app()->getlocale()]) }}"
                 class="text-white hover:text-amber-300 transition duration-300 menu-link font-luxury">{{ __('messages.about_us') }}</a>
-            <a href="#"
+            <a href="{{ route('contact', ['locale' =>app()->getlocale()]) }}"
                 class="text-white hover:text-amber-300 transition duration-300 menu-link font-luxury">{{ __('messages.contacto') }}</a>
 
             <!-- Selector de idioma mejorado -->

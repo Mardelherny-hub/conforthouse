@@ -190,4 +190,23 @@ class PropertyController extends Controller
             ]);
         }
     }
+    public function services($locale)
+    {
+        return view('services.index', compact('locale'));
+    }
+
+    public function about($locale)
+    {
+        return view('about.index', compact('locale'));
+    }
+
+    public function contact($locale)
+    {
+        return view('contact.index', compact('locale'));
+    }
+
+    public function privacy($locale)
+    {
+        return view('privacy.index', compact('locale'));
+    }
 }

@@ -13,7 +13,7 @@ class NavGuestController extends Controller
     public function compose(View $view)
     {
         // Obtener la propiedad destacada
-        //$property = Property::where('is_featured', true)->first();
+        $property = Property::where('is_featured', true)->first();
 
         // Obtener los tipos de propiedades
         $types = PropertyType::all();
@@ -25,9 +25,9 @@ class NavGuestController extends Controller
         $locale = app()->getLocale();
 
         // Aplicar traducciones si hay una propiedad destacada
-        //if ($property) {
-        //    $this->applyPropertyTranslation($property, $locale);
-        //}
+        if ($property) {
+            $this->applyPropertyTranslation($property, $locale);
+        }
 
         // Aplicar traducciones a los tipos de propiedades
         $this->applyCollectionTranslations($types, $locale, 'type');
@@ -36,7 +36,7 @@ class NavGuestController extends Controller
         $this->applyCollectionTranslations($operations, $locale, 'operation');
 
         $view->with([
-            //'property' => $property,
+            'property' => $property,
             'types' => $types,
             'operations' => $operations,
         ]);

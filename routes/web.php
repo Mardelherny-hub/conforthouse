@@ -44,7 +44,21 @@ Route::group([
     Route::get('/properties/{id}', [PropertyController::class, 'show'])->name('prop.show');
     Route::get('/properties', [PropertyController::class, 'index'])->name('prop.index');
 
+    //Página Servicios
+    Route::get('/services', [PropertyController::class, 'services'])->name('services');
+
+    // Página sobre nosotros
+    Route::get('/about', [PropertyController::class, 'about'])->name('about');
+
+    // Página contact
+    Route::get('/contact', [PropertyController::class, 'contact'])->name('contact');
+
+    //Página Privacy
+        Route::get('/privacy', [PropertyController::class, 'privacy'])->name('privacy');
+
+
     });
+
 
 // Rutas protegidas para usuarios autenticados (No admin)
 Route::middleware(['auth', 'verified'])->group(function () {
