@@ -18,4 +18,9 @@ class Status extends Model
         return $this->hasMany(Property::class);
     }
 
+    public function translations()
+    {
+        return $this->hasMany(StatusTranslation::class);
+    }
+
 }

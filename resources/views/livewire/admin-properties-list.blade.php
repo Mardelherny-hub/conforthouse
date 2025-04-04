@@ -96,18 +96,6 @@
                             <option value="commercial">Local Comercial</option>
                         </select>
                     </div>
-
-                    <div>
-                        <label for="min_price" class="block text-sm font-medium text-gray-700">Precio mínimo</label>
-                        <input wire:model.live.debounce.500ms="filters.min_price" type="number" id="min_price"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                    </div>
-
-                    <div>
-                        <label for="max_price" class="block text-sm font-medium text-gray-700">Precio máximo</label>
-                        <input wire:model.live.debounce.500ms="filters.max_price" type="number" id="max_price"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                    </div>
                 </div>
 
                 <div x-show="open" class="mt-4 flex justify-end">
@@ -196,25 +184,6 @@
                                         <th scope="col"
                                             class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                             <div class="flex items-center cursor-pointer"
-                                                wire:click="sortBy('price')">
-                                                Precio
-                                                @if ($sortField === 'price')
-                                                    <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor"
-                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                        @if ($sortDirection === 'asc')
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="M5 15l7-7 7 7"></path>
-                                                        @else
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                                        @endif
-                                                    </svg>
-                                                @endif
-                                            </div>
-                                        </th>
-                                        <th scope="col"
-                                            class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                            <div class="flex items-center cursor-pointer"
                                                 wire:click="sortBy('property_type')">
                                                 Tipo
                                                 @if ($sortField === 'property_type')
@@ -231,6 +200,11 @@
                                                 @endif
                                             </div>
                                         </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                           Destacada
+                                        </th>
+
                                         <th scope="col"
                                             class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
                                             <div class="flex items-center cursor-pointer"
@@ -320,11 +294,28 @@
                                                 {{ $property->reference }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm leading-5 text-gray-500">
-                                                ${{ number_format($property->price, 2) }}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm leading-5 text-gray-500">
                                                 {{ $property->propertyType->name }}
                                             </td>
+                                            <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
+                                                <label class="flex items-center cursor-pointer" for="toggle-{{ $property->id }}">
+                                                    <span class="sr-only">{{ $property->is_featured ? 'Desactivar' : 'Activar' }} destacado</span>
+
+                                                    <!-- Hidden Input con id único -->
+                                                    <input
+                                                        type="checkbox"
+                                                        id="toggle-{{ $property->id }}"
+                                                        wire:click="toggleFeatured({{ $property->id }})"
+                                                        @if($property->is_featured) checked @endif
+                                                        class="sr-only peer">
+
+                                                    <!-- Switch con círculo que va de derecha a izquierda -->
+                                                    <div class="w-11 h-6 bg-gray-300 peer-checked:bg-blue-600 rounded-full relative transition-colors duration-200">
+                                                        <div class="w-5 h-5 bg-white rounded-full absolute right-1 top-1 shadow transition-transform duration-200 ease-in-out peer-checked:translate-x-[-16px]"></div>
+                                                    </div>
+                                                </label>
+                                            </td>
+
+
                                             <td class="px-6 py-4 whitespace-nowrap text-sm leading-5 text-gray-500">
                                                 {{ $property->status->name }}
                                             </td>

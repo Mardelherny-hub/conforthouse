@@ -18,7 +18,7 @@ use App\Models\PropertyTranslation;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Str;
 
 
 class AdminPropertyCreate extends Component
@@ -217,7 +217,7 @@ class AdminPropertyCreate extends Component
     }
 
     // Método para crear miniaturas
-    private function createThumbnail($photo)
+    private function createThumbnail($photo, $slugTitle = null)
     {
         try {
             // Asegurarse de que existe el directorio para las miniaturas
@@ -239,8 +239,12 @@ class AdminPropertyCreate extends Component
                 $constraint->upsize();
             });
 
-            // Generar un nombre único para la miniatura
-            $filename = 'thumb_' . time() . '_' . uniqid() . '.' . $photoObject->getClientOriginalExtension();
+            // Generar un nombre para la miniatura basado en el título de la propiedad
+            if ($slugTitle) {
+                $filename = 'thumb_' . $slugTitle . '_' . uniqid() . '.' . $photoObject->getClientOriginalExtension();
+            } else {
+                $filename = 'thumb_' . time() . '_' . uniqid() . '.' . $photoObject->getClientOriginalExtension();
+            }
 
             // Ruta relativa para la BD
             $thumbnailPath = $thumbnailDir . '/' . $filename;
@@ -325,11 +329,16 @@ class AdminPropertyCreate extends Component
         if (!empty($this->tempPhotos)) {
             foreach ($this->tempPhotos as $index => $photo) {
                 try {
-                    // Crear miniatura primero (mientras el archivo temporal está disponible)
-                    $thumbnailPath = $this->createThumbnail($photo);
+                    // Generar un nombre de archivo basado en el título de la propiedad
+                    $slugTitle = Str::slug($this->title); // Convertir el título a un formato slug (URL amigable)
+                    $fileExtension = $photo['original']->getClientOriginalExtension();
+                    $fileName = $slugTitle . '-' . ($index + 1) . '.' . $fileExtension;
 
-                    // Guardar la imagen original
-                    $imagePath = $photo['original']->store('property-images', 'public');
+                    // Crear miniatura primero (mientras el archivo temporal está disponible)
+                    $thumbnailPath = $this->createThumbnail($photo, $slugTitle . '-thumb-' . ($index + 1));
+
+                    // Guardar la imagen original con el nombre personalizado
+                    $imagePath = $photo['original']->storeAs('property-images', $fileName, 'public');
 
                     // Guardar en la base de datos
                     PropertyImage::create([

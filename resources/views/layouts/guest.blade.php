@@ -179,7 +179,7 @@
 
                     <!-- Botones estilizados con efecto lujoso -->
                     <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-6 mb-6 sm:mb-8">
-                        <a href="#"
+                        <a href="{{ route('prop.index', ['locale' => app()->getLocale()]) }}"
                             class="btn-luxury bg-amber-300 hover:bg-amber-400
                                    px-4 sm:px-6 md:px-10
                                    py-2 sm:py-3
@@ -190,7 +190,7 @@
                                    shadow-lg hover:shadow-xl">
                             {{ __('messages.explore_properties') }}
                         </a>
-                        <a href="#"
+                        <a href="{{ route('contact', ['locale' => app()->getLocale()]) }}"
                             class="btn-luxury bg-transparent
                                    border border-white/70 hover:border-amber-300
                                    hover:text-amber-300

@@ -16,9 +16,15 @@ return [
     'coleccion_privada' => 'Private Collection',
 
     // Subcategorías de Propiedades
-    'prop_residenciales' => 'Residential',
-    'prop_comerciales' => 'Commercial',
-    'prop_exclusivas' => 'Exclusive',
+    'Residencias' => 'Residential',
+    'Explore' => 'Explore',
+    'Mansiones, penthouses y residencias exclusivas' => 'Luxury Residences',
+    'Apartamentos' => 'Apartments',
+    'Apartamentos de lujo y áticos con vistas panorámicas' => 'Luxury Apartments',
+    'Villas' => 'Villas',
+    'Villas exclusivas con amplios jardines y piscina privada' => 'Exclusive Villas',
+    'Fincas' => 'Estates',
+    'Haciendas y fincas de lujo con amplios terrenos' => 'Luxury Estates',
     'alquiler' => 'Rent',
     'venta' => 'Sale',
     'obra_nueva' => 'New Build',

@@ -108,6 +108,10 @@ class PropertyController extends Controller
         foreach ($rel_properties as $rel_property) {
             $this->applyTranslations($rel_property, $locale);
         }
+        // Traducir tipo, estado y operación
+        $this->translateRelations($rel_property, $locale);
+
+        //dd($rel_properties);
 
         return view('properties.show', compact('property', 'rel_properties'));
     }
@@ -128,6 +132,16 @@ class PropertyController extends Controller
             $property->title = $translation->title ?? $property->title;
             $property->description = $translation->description ?? $property->description;
             $property->meta_description = $translation->meta_description ?? $property->meta_description;
+            $property->condition = $translation->condition ?? $property->condition;
+            $property->orientation = $translation->orientation ?? $property->orientation;
+            $property->exterior_type = $translation->exterior_type ?? $property->exterior_type;
+            $property->kitchen_type = $translation->kitchen_type ?? $property->kitchen_type;
+            $property->heating_type = $translation->heating_type ?? $property->heating_type;
+            $property->interior_carpentry = $translation->interior_carpentry ?? $property->interior_carpentry;
+            $property->exterior_carpentry = $translation->exterior_carpentry ?? $property->exterior_carpentry;
+            $property->flooring_type = $translation->flooring_type ?? $property->flooring_type;
+            $property->views = $translation->views ?? $property->views;
+            $property->regime = $translation->regime ?? $property->regime;
         }
     }
 

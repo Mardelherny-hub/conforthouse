@@ -84,6 +84,16 @@ class AdminPropertiesList extends Component
         session()->flash('message', 'Propiedad eliminada correctamente.');
     }
 
+    public function toggleFeatured($propertyId)
+    {
+        $property = Property::findOrFail($propertyId);
+        $property->is_featured = !$property->is_featured;
+        $property->save();
+
+        session()->flash('message', 'Estado de propiedad destacada actualizado.');
+    }
+
+
     public function render()
     {
         Log::info('Filter values:', [

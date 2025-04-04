@@ -44,50 +44,50 @@
                         style="display: none;">
                         <form action="{{ route('prop.index', ['locale' => app()->getLocale()]) }}" method="GET"
                             id="searchForm" class="flex flex-col space-y-4">
-                               <!-- Campo de búsqueda por texto -->
-                               <input type="text" name="search" placeholder="{{ __('messages.que_esta_bunscando') }}"
-                               class="bg-transparent border-b border-amber-300/30 px-2 py-1 text-white focus:outline-none focus:border-amber-300/70 transition duration-300 font-luxury-sans text-sm">
+                            <!-- Campo de búsqueda por texto -->
+                            <input type="text" name="search" placeholder="{{ __('messages.que_esta_bunscando') }}"
+                                class="bg-transparent border-b border-amber-300/30 px-2 py-1 text-white focus:outline-none focus:border-amber-300/70 transition duration-300 font-luxury-sans text-sm">
 
-                               <div class="grid grid-cols-2 gap-2 mt-2">
-                                   <!-- Selector de tipo -->
-                                   <select id="type_id" name="type_id"
-                                   class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
-                                       <option value="">{{ __('messages.tipo_de_propiedad') }}</option>
-                                       @foreach ($types as $type)
-                                       <option value="{{ $type->id }}">
-                                           {{ $type->name }}
-                                       </option>
-                                       @endforeach
-                                   </select>
+                            <div class="grid grid-cols-2 gap-2 mt-2">
+                                <!-- Selector de tipo -->
+                                <select id="type_id" name="type_id"
+                                    class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
+                                    <option value="">{{ __('messages.tipo_de_propiedad') }}</option>
+                                    @foreach ($types as $type)
+                                        <option value="{{ $type->id }}">
+                                            {{ $type->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
 
-                                   <!-- Selector de operación (añadido el atributo name) -->
-                                   <select name="operation_id"
-                                   class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
-                                       <option value="" class="bg-gray-800 text-amber-100">
-                                           {{ __('messages.Operación') }}</option>
-                                       @foreach ($operations as $operation)
-                                       <option value="{{ $operation->id }}"
-                                       class="bg-gray-800 text-amber-100 hover:bg-gray-700">
-                                           {{ $operation->name }}
-                                       </option>
-                                       @endforeach
-                                   </select>
-                               </div>
+                                <!-- Selector de operación (añadido el atributo name) -->
+                                <select name="operation_id"
+                                    class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
+                                    <option value="" class="bg-gray-800 text-amber-100">
+                                        {{ __('messages.Operación') }}</option>
+                                    @foreach ($operations as $operation)
+                                        <option value="{{ $operation->id }}"
+                                            class="bg-gray-800 text-amber-100 hover:bg-gray-700">
+                                            {{ $operation->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
-                               <!-- Rangos de precio (añadidos) -->
-                               <div class="grid grid-cols-2 gap-2">
-                                   <input type="number" name="min_price" placeholder="{{ __('messages.menor_precio') }}"
-                                   class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
+                            <!-- Rangos de precio (añadidos) -->
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="number" name="min_price" placeholder="{{ __('messages.menor_precio') }}"
+                                    class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
 
-                                   <input type="number" name="max_price" placeholder="{{ __('messages.mayor_precio') }}"
-                                   class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
-                               </div>
+                                <input type="number" name="max_price" placeholder="{{ __('messages.mayor_precio') }}"
+                                    class="bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
+                            </div>
 
-                               <button type="submit"
-                               class="bg-amber-300/80 hover:bg-amber-400 text-gray-900 px-4 py-2 rounded-sm text-sm font-medium transition duration-300 font-luxury-sans btn-luxury">
-                                   {{ __('messages.search_button') }}
-                               </button>
-                           </form>
+                            <button type="submit"
+                                class="bg-amber-300/80 hover:bg-amber-400 text-gray-900 px-4 py-2 rounded-sm text-sm font-medium transition duration-300 font-luxury-sans btn-luxury">
+                                {{ __('messages.search_button') }}
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -107,22 +107,22 @@
 
                     <!-- Propiedad destacada en menú -->
                     <div class="mb-4 featured-property">
-                        <img src="/storage/{{ $property->images->first()->image_path }}"
-                            alt="Propiedad destacada" class="w-full h-32 object-cover rounded-sm"
+                        <img src="/storage/{{ $property->images->first()->image_path }}" alt="{{ __('messages.Propiedad Destacada') }}"
+                            class="w-full h-32 object-cover rounded-sm"
                             onerror="this.src='https://via.placeholder.com/300x150?text=Propiedad+Destacada'">
                         <div class="property-label  bg-dark/45 p-1">
-                            <p class="text-amber-400 text-sm bold font-luxury">Propiedad destacada</p>
+                            <p class="text-amber-400 text-sm bold font-luxury">{{ __('messages.Propiedad Destacada') }}</p>
                             <p class="text-white text-sm font-luxury-sans">{{ $property->title }}</p>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-x-6 gap-y-3">
-                        @foreach($operations as $operation)
-                        <a href="{{ route('prop.index', ['locale' => app()->getLocale(), 'operation_id' => $operation->id]) }}"
-                           class="text-amber-300 hover:text-amber-200 transition duration-300 font-luxury-sans text-sm flex items-center">
-                            <span class="w-1 h-1 bg-amber-400 rounded-full mr-2"></span>
-                            {{ $operation->name }}
-                        </a>
+                        @foreach ($operations as $operation)
+                            <a href="{{ route('prop.index', ['locale' => app()->getLocale(), 'operation_id' => $operation->id]) }}"
+                                class="text-amber-300 hover:text-amber-200 transition duration-300 font-luxury-sans text-sm flex items-center">
+                                <span class="w-1 h-1 bg-amber-400 rounded-full mr-2"></span>
+                                {{ $operation->name }}
+                            </a>
                         @endforeach
                     </div>
 
@@ -210,11 +210,11 @@
                 </div>
             </div>-->
 
-            <a href="{{ route('services', ['locale' =>app()->getlocale()]) }}"
+            <a href="{{ route('services', ['locale' => app()->getlocale()]) }}"
                 class="text-white hover:text-amber-300 transition duration-300 menu-link font-luxury">{{ __('messages.servicios') }}</a>
-            <a href="{{ route('about', ['locale' =>app()->getlocale()]) }}"
+            <a href="{{ route('about', ['locale' => app()->getlocale()]) }}"
                 class="text-white hover:text-amber-300 transition duration-300 menu-link font-luxury">{{ __('messages.about_us') }}</a>
-            <a href="{{ route('contact', ['locale' =>app()->getlocale()]) }}"
+            <a href="{{ route('contact', ['locale' => app()->getlocale()]) }}"
                 class="text-white hover:text-amber-300 transition duration-300 menu-link font-luxury">{{ __('messages.contacto') }}</a>
 
             <!-- Selector de idioma mejorado -->
@@ -260,6 +260,17 @@
             </div>
         </div>
 
+        <!-- Acceso discreto al Back Office -->
+        <div class="flex items-center space-x-4">
+            <a href="/login"
+                class="text-gray-400 hover:text-amber-300 transition duration-300 ml-2 opacity-60"
+                title="Portal interno">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            </a>
+        </div>
+
         <!-- Contacto y CTA -->
         <div class="hidden lg:flex items-center space-x-4">
             <!-- Número de contacto exclusivo -->
@@ -296,37 +307,45 @@
 
                 <!-- Teléfono de contacto en móvil -->
                 <div class="px-4 pb-4 mb-4 border-b border-amber-300/20">
-                    <p class="text-amber-300 text-xs font-luxury-sans">Atención exclusiva</p>
+                    <p class="text-amber-300 text-xs font-luxury-sans">{{ __('messages.atencion_exclusiva') }}</p>
                     <p class="text-white font-luxury text-sm">+34 900 123 456</p>
                 </div>
 
                 <!-- Buscador móvil -->
-                <div class="px-4 pb-4 mb-4 border-b border-amber-300/20">
-                    <form id="searchFormMobile" class="flex flex-col space-y-4">
-                        <input type="text" placeholder="¿Qué está buscando?"
+                <div
+                    id="searchForm" class="px-4 pb-4 mb-4 border-b border-amber-300/20">
+                    <form action="{{ route('prop.index', ['locale' => app()->getLocale()]) }}" method="GET"
+                         id="searchFormMobile" class="flex flex-col space-y-4">
+                        <input type="text" name="search" placeholder="{{ __('messages.que_esta_bunscando') }}"
                             class="w-full bg-transparent border-b border-amber-300/30 px-2 py-1 text-white focus:outline-none focus:border-amber-300/70 transition duration-300 font-luxury-sans text-sm">
 
                         <div class="grid grid-cols-1 gap-2">
-                            <select
+                            <select id="type_id" name="type_id"
                                 class="w-full bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
-                                <option value="">Tipo de propiedad</option>
-                                <option value="villa">Villa</option>
-                                <option value="penthouse">Ático</option>
-                                <option value="mansion">Mansión</option>
+                                <option value="">{{ __('messages.tipo_de_propiedad') }}</option>
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->id }}">
+                                        {{ $type->name }}
+                                    </option>
+                                @endforeach
                             </select>
 
-                            <select
+                            <select  name="operation_id"
                                 class="w-full bg-gray-800 bg-opacity-50 border border-amber-300/20 rounded-sm px-2 py-1 text-amber-100 text-sm focus:outline-none focus:border-amber-300/70 font-luxury-sans">
-                                <option value="">Ubicación</option>
-                                <option value="beach">Primera línea</option>
-                                <option value="mountain">Montaña</option>
-                                <option value="city">Centro ciudad</option>
+                                <option value="" class="bg-gray-800 text-amber-100">
+                                    {{ __('messages.Operación') }}</option>
+                                @foreach ($operations as $operation)
+                                    <option value="{{ $operation->id }}"
+                                        class="bg-gray-800 text-amber-100 hover:bg-gray-700">
+                                        {{ $operation->name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
                         <button type="submit"
                             class="w-full bg-amber-300/80 hover:bg-amber-400 text-gray-900 px-4 py-2 rounded-sm text-sm font-medium transition duration-300 font-luxury-sans btn-luxury">
-                            Buscar propiedades
+                            {{ __('messages.search_button') }}
                         </button>
                     </form>
                 </div>
@@ -348,18 +367,15 @@
                         x-transition:enter-start="opacity-0 transform -translate-y-2"
                         x-transition:enter-end="opacity-100 transform translate-y-0"
                         class="pl-8 pb-2 pt-1 bg-gray-800 bg-opacity-50">
-                        <a href="#"
-                            class="block px-4 py-2 text-white hover:text-amber-300 transition duration-300 font-luxury-sans">{{ __('messages.alquiler') }}</a>
-                        <a href="#"
-                            class="block px-4 py-2 text-white hover:text-amber-300 transition duration-300 font-luxury-sans">{{ __('messages.venta') }}</a>
-                        <a href="#"
-                            class="block px-4 py-2 text-white hover:text-amber-300 transition duration-300 font-luxury-sans">{{ __('messages.obra_nueva') }}</a>
-                        <a href="{{ route('prop.index', ['locale' => app()->getLocale()]) }}"
-                            class="block px-4 py-2 text-white hover:text-amber-300 transition duration-300 font-luxury-sans">{{ __('messages.viviendas_de_lujo') }}</a>
+                        @foreach ($operations as $operation)
+                            <a href="{{ route('prop.index', ['locale' => app()->getLocale(), 'operation_id' => $operation->id]) }}"
+                                class="block px-4 py-2 text-sm text-white hover:text-amber-300 transition duration-300 font-luxury-sans">{{ $operation->name }}</a>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
 
-                <div x-data="{ subMenu: false }" class="relative">
+                <!-- <div x-data="{ subMenu: false }" class="relative">
                     <button @click="subMenu = !subMenu"
                         class="w-full text-left px-4 py-3 text-amber-300 hover:bg-amber-300/10 flex justify-between items-center transition duration-300">
                         <span class="font-luxury">{{ __('messages.servicios') }}</span>
@@ -382,11 +398,13 @@
                         <a href="#"
                             class="block px-4 py-2 text-white hover:text-amber-300 transition duration-300 font-luxury-sans">{{ __('messages.serv_inversion') }}</a>
                     </div>
-                </div>
+                </div> -->
 
-                <a href="#"
+                <a href="{{ route('services', ['locale' => app()->getlocale()]) }}"
+                    class="block px-4 py-3 text-amber-300 hover:bg-amber-300/10 transition duration-300 font-luxury">{{ __('messages.servicios') }}</a>
+                <a href="{{ route('about', ['locale' => app()->getlocale()]) }}"
                     class="block px-4 py-3 text-amber-300 hover:bg-amber-300/10 transition duration-300 font-luxury">{{ __('messages.about_us') }}</a>
-                <a href="#"
+                <a href="{{ route('contact', ['locale' => app()->getlocale()]) }}"
                     class="block px-4 py-3 text-amber-300 hover:bg-amber-300/10 transition duration-300 font-luxury">{{ __('messages.contacto') }}</a>
 
                 <!-- Selector de idioma móvil -->
@@ -441,7 +459,7 @@
                 <div class="px-4 pt-4 mt-4 border-t border-amber-300/20">
                     <a href="{{ route('prop.index', ['locale' => app()->getLocale()]) }}"
                         class="block w-full text-center px-4 py-2 bg-amber-300 text-gray-900 rounded-sm hover:bg-amber-400 transition duration-300 font-luxury">
-                        Colección Privada
+                        {{ __('messages.coleccion_privada') }}
                     </a>
                 </div>
             </div>
@@ -454,6 +472,8 @@
             x-transition:leave-end="opacity-0"
             class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-40">
         </div>
+
+
     </div>
 </nav>
 <!-- Espaciador para compensar el nav fijo -->

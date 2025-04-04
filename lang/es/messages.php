@@ -17,9 +17,15 @@ return [
     'coleccion_privada' => 'Colección Privada',
 
     // Subcategorías de Propiedades
-    'prop_residenciales' => 'Residenciales',
-    'prop_comerciales' => 'Comerciales',
-    'prop_exclusivas' => 'Exclusivas',
+    'Residencias' => 'Residencias',
+    'Explore' => 'Explora',
+    'Mansiones, penthouses y residencias exclusivas' => 'Mansiones, penthouses y residencias exclusivas',
+    'Apartamentos' => 'Apartamentos',
+    'Apartamentos de lujo y áticos con vistas panorámicas' => 'Apartamentos de lujo y áticos con vistas panorámicas',
+    'Villas' => 'Villas',
+    'Villas exclusivas con amplios jardines y piscina privada' => 'Villas exclusivas con amplios jardines y piscina privada',
+    'Fincas' => 'Fincas',
+    'Haciendas y fincas de lujo con amplios terrenos' => 'Haciendas y fincas de lujo con amplios terrenos',
     'alquiler' => 'Alquiler',
     'venta' => 'Venta',
     'obra_nueva' => 'Obra Nueva',
@@ -89,6 +95,9 @@ return [
     //Sección de Propiedad Destacada
     'Propiedad Destacada' => 'Propiedad Destacada',
     'Contactar' => 'Contactar',
+    'Ver Detalles' => 'Ver Detalles',
+    'habitaciones' => 'habitaciones',
+    'banios' => 'baños',
 
     //Trending Properties Section
     'Propiedades' => 'Propiedades',
@@ -189,6 +198,7 @@ return [
     // Propiedades Destacadas
     'featured_properties_title' => 'Propiedades Destacadas',
     'featured_properties_see' => 'Ver Todas las Propiedades',
+
     // Formulario de Solicitud
     'request_form_title' => 'Solicitar Información sobre Propiedades',
     'request_form_description' => '¿Estás buscando la casa de tus sueños o oportunidades de inversión exclusivas? Completa tus datos y uno de nuestros especialistas en propiedades de lujo se pondrá en contacto contigo pronto.',

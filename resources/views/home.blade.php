@@ -42,32 +42,26 @@
                         class="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-300 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100">
                     </div>
 
-                    <!-- Contenido con animación -->
-                    <div
-                        class="absolute bottom-0 left-0 p-8 transform transition-transform duration-500 group-hover:translate-y-0">
+                    <a href="{{ route('prop.index', ['locale' => app()->getLocale(), 'type_id' => 1]) }}" class="block absolute bottom-0 left-0 w-full p-8 transform transition-transform duration-500 group-hover:translate-y-0 z-10">
                         <div class="transition-all duration-500 transform group-hover:-translate-y-2">
-                            <h3
-                                class="text-2xl font-luxury text-white mb-1 group-hover:text-amber-300 transition-colors duration-300">
-                                Residencias</h3>
-                            <p
-                                class="text-sm text-gray-300 transition-all duration-500 opacity-80 group-hover:opacity-100">
-                                Explore 2,548 propiedades</p>
+                            <h3 class="text-2xl font-luxury text-white mb-1 group-hover:text-amber-300 transition-colors duration-300">
+                                {{ __('messages.Residencias') }}</h3>
+                            <p class="text-sm text-gray-300 transition-all duration-500 opacity-80 group-hover:opacity-100">
+                                {{ __('messages.Explore') }} 2,548 {{ __('messages.propiedades') }}</p>
                         </div>
-                        <div
-                            class="overflow-hidden h-0 opacity-0 transition-all duration-500 group-hover:h-16 group-hover:opacity-100 mt-3">
-                            <p class="text-sm text-white/70 mb-4">Mansiones, penthouses y residencias exclusivas</p>
-                            <a href="#"
-                                class="inline-flex items-center text-amber-300 text-xs uppercase tracking-widest luxury-nav">
-                                Descubrir
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
+                        <div class="overflow-hidden h-0 opacity-0 transition-all duration-500 group-hover:h-16 group-hover:opacity-100 mt-3">
+                            <p class="text-sm text-white/70 mb-4 justify-end">
+                                {{ __('messages.Mansiones, penthouses y residencias exclusivas') }}
+
+                                <span class="flex justify-end text-amber-300 text-xs uppercase tracking-widest luxury-nav">
+                                    {{ __('messages.discover') }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            </p>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <!-- Categoría 2: Apartments -->
@@ -83,32 +77,32 @@
                     <div
                         class="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-300 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100">
                     </div>
-                    <div
-                        class="absolute bottom-0 left-0 p-8 transform transition-transform duration-500 group-hover:translate-y-0">
-                        <div class="transition-all duration-500 transform group-hover:-translate-y-2">
-                            <h3
-                                class="text-2xl font-luxury text-white mb-1 group-hover:text-amber-300 transition-colors duration-300">
-                                Apartamentos</h3>
-                            <p
-                                class="text-sm text-gray-300 transition-all duration-500 opacity-80 group-hover:opacity-100">
-                                Explore 1,873 propiedades</p>
-                        </div>
+                    <a href="{{ route('prop.index', ['locale' => app()->getLocale(), 'type_id' => 2]) }}" class="block absolute bottom-0 left-0 w-full p-8 transform transition-transform duration-500 group-hover:translate-y-0 z-10">
                         <div
-                            class="overflow-hidden h-0 opacity-0 transition-all duration-500 group-hover:h-16 group-hover:opacity-100 mt-3">
-                            <p class="text-sm text-white/70 mb-4">Apartamentos de lujo y áticos con vistas panorámicas
-                            </p>
-                            <a href="#"
-                                class="inline-flex items-center text-amber-300 text-xs uppercase tracking-widest luxury-nav">
-                                Descubrir
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
+                            class="absolute bottom-0 left-0 p-8 transform transition-transform duration-500 group-hover:translate-y-0">
+                            <div class="transition-all duration-500 transform group-hover:-translate-y-2">
+                                <h3
+                                    class="text-2xl font-luxury text-white mb-1 group-hover:text-amber-300 transition-colors duration-300">
+                                    {{ __('messages.Apartamentos') }}</h3>
+                                <p
+                                    class="text-sm text-gray-300 transition-all duration-500 opacity-80 group-hover:opacity-100">
+                                    {{ __('messages.Explore') }} 1,873 {{ __('messages.propiedades') }}</p>
+                            </div>
+                            <div
+                                class="overflow-hidden h-0 opacity-0 transition-all duration-500 group-hover:h-16 group-hover:opacity-100 mt-3">
+                                <p class="text-sm text-white/70 mb-4">
+                                    {{ __('messages.Apartamentos de lujo y áticos con vistas panorámicas') }}
+
+                                    <span class="flex justify-end text-amber-300 text-xs uppercase tracking-widest luxury-nav">
+                                        {{ __('messages.discover') }}
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </span>
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <!-- Categoría 3: Villas -->
@@ -124,32 +118,27 @@
                     <div
                         class="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-300 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100">
                     </div>
-                    <div
-                        class="absolute bottom-0 left-0 p-8 transform transition-transform duration-500 group-hover:translate-y-0">
+
+                    <a href="{{ route('prop.index', ['locale' => app()->getLocale(), 'type_id' => 1]) }}" class="block absolute bottom-0 left-0 w-full p-8 transform transition-transform duration-500 group-hover:translate-y-0 z-10">
                         <div class="transition-all duration-500 transform group-hover:-translate-y-2">
-                            <h3
-                                class="text-2xl font-luxury text-white mb-1 group-hover:text-amber-300 transition-colors duration-300">
-                                Villas</h3>
-                            <p
-                                class="text-sm text-gray-300 transition-all duration-500 opacity-80 group-hover:opacity-100">
-                                Explore 964 propiedades</p>
+                            <h3 class="text-2xl font-luxury text-white mb-1 group-hover:text-amber-300 transition-colors duration-300">
+                                {{ __('messages.Villas') }}</h3>
+                            <p class="text-sm text-gray-300 transition-all duration-500 opacity-80 group-hover:opacity-100">
+                                {{ __('messages.Explore') }} 964 {{ __('messages.propiedades') }}</p>
                         </div>
-                        <div
-                            class="overflow-hidden h-0 opacity-0 transition-all duration-500 group-hover:h-16 group-hover:opacity-100 mt-3">
-                            <p class="text-sm text-white/70 mb-4">Villas exclusivas con amplios jardines y piscina
-                                privada</p>
-                            <a href="#"
-                                class="inline-flex items-center text-amber-300 text-xs uppercase tracking-widest luxury-nav">
-                                Descubrir
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
+                        <div class="overflow-hidden h-0 opacity-0 transition-all duration-500 group-hover:h-16 group-hover:opacity-100 mt-3">
+                            <p class="text-sm text-white/70 mb-4">
+                                {{ __('messages.Villas exclusivas con amplios jardines y piscina privada') }}
+
+                                <span class="flex justify-end text-amber-300 text-xs uppercase tracking-widest luxury-nav">
+                                    {{ __('messages.discover') }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            </p>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <!-- Categoría 4: Estates -->
@@ -165,37 +154,31 @@
                     <div
                         class="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-300 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100">
                     </div>
-                    <div
-                        class="absolute bottom-0 left-0 p-8 transform transition-transform duration-500 group-hover:translate-y-0">
+                    <a href="{{ route('prop.index', ['locale' => app()->getLocale(), 'type_id' => 1]) }}" class="block absolute bottom-0 left-0 w-full p-8 transform transition-transform duration-500 group-hover:translate-y-0 z-10">
                         <div class="transition-all duration-500 transform group-hover:-translate-y-2">
-                            <h3
-                                class="text-2xl font-luxury text-white mb-1 group-hover:text-amber-300 transition-colors duration-300">
-                                Fincas</h3>
-                            <p
-                                class="text-sm text-gray-300 transition-all duration-500 opacity-80 group-hover:opacity-100">
-                                Explore 452 propiedades</p>
+                            <h3 class="text-2xl font-luxury text-white mb-1 group-hover:text-amber-300 transition-colors duration-300">
+                                {{ __('messages.Fincas') }}</h3>
+                            <p class="text-sm text-gray-300 transition-all duration-500 opacity-80 group-hover:opacity-100">
+                                {{ __('messages.Explore') }} 452 {{ __('messages.propiedades') }}</p>
                         </div>
-                        <div
-                            class="overflow-hidden h-0 opacity-0 transition-all duration-500 group-hover:h-16 group-hover:opacity-100 mt-3">
-                            <p class="text-sm text-white/70 mb-4">Haciendas y fincas de lujo con amplios terrenos</p>
-                            <a href="#"
-                                class="inline-flex items-center text-amber-300 text-xs uppercase tracking-widest luxury-nav">
-                                Descubrir
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
+                        <div class="overflow-hidden h-0 opacity-0 transition-all duration-500 group-hover:h-16 group-hover:opacity-100 mt-3">
+                            <p class="text-sm text-white/70 mb-4">
+                                {{ __('messages.Haciendas y fincas de lujo con amplios terrenos') }}
+                                <span class="flex justify-end text-amber-300 text-xs uppercase tracking-widest luxury-nav">
+                                    {{ __('messages.discover') }}
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            </p>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
 
             <!-- Botón Ver Todas las Categorías -->
             <div class="text-center mt-12">
-                <a href="#"
+                <a href="{{ route('prop.index', ['locale' => app()->getLocale()]) }}"
                     class="btn-luxury inline-block bg-transparent border border-amber-400 text-amber-500 hover:bg-amber-400 hover:text-gray-900 px-10 py-3 text-sm font-medium luxury-nav uppercase tracking-widest rounded-sm transition-all duration-500">
                     {{ __('messages.Ver todas las categorías') }}
                 </a>
@@ -204,81 +187,90 @@
     </section>
 
     <!-- Sección de Propiedad Destacada -->
-    <section class="py-16 bg-dark">
-        <div class="container mx-auto px-6">
-            <div
-                class="group relative overflow-hidden rounded-sm shadow-xl transform transition-all duration-500 hover:shadow-2xl">
-                <div class="flex flex-col md:flex-row">
-                    <!-- Contenedor de imagen con efecto hover -->
-                    <div class="md:w-1/2 h-96 md:h-auto relative overflow-hidden">
-                        <img src="{{ asset('assets/images/home/villa_serenidad.jpg') }}" alt="Propiedad Destacada"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                        <!-- Overlay con gradiente para profundidad -->
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-90">
-                        </div>
-                    </div>
-
-                    <!-- Contenido con diseño de lujo -->
-                    <div class="md:w-1/2 p-8 md:p-12 bg-white dark:bg-gray-900 relative">
-                        <!-- Línea decorativa inferior que aparece en hover -->
-                        <div
-                            class="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-300 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100">
-                        </div>
-
-                        <div class="transform transition-transform duration-500 group-hover:-translate-y-2">
-                            <span
-                                class="text-xs uppercase font-luxury tracking-widest bg-amber-100 dark:bg-transparent dark:text-amber-300 text-gray-800 px-3 py-1 rounded-sm mb-6 inline-block relative">
-                                {{ __('messages.Propiedad Destacada') }}
-                            </span>
-
-                            <h2
-                                class="text-3xl font-luxury font-light mb-2 dark:text-white group-hover:text-amber-300 transition-colors duration-300">
-                                Villa <span class="text-amber-600 dark:text-amber-300">Serenidad</span>
-                            </h2>
-
-                            <p class="text-gray-700 dark:text-gray-300 mb-2 font-medium">Beverly Hills, California</p>
-
-                            <p
-                                class="text-gray-600 dark:text-gray-400 mb-6 transition-all duration-500 opacity-90 group-hover:opacity-100">
-                                Exclusiva propiedad de 850m² con vistas panorámicas al océano Pacífico. Cinco
-                                habitaciones,
-                                piscina infinita, bodega y cine privado.
-                            </p>
-
-                            <div class="flex flex-wrap gap-4 mb-6">
-                                <div class="flex items-center mr-4">
-                                    <i class="icon-size-fullscreen text-amber-500 mr-2"></i>
-                                    <span class="text-gray-700 dark:text-gray-300">850m²</span>
-                                </div>
-                                <div class="flex items-center mr-4">
-                                    <i class="icon-home text-amber-500 mr-2"></i>
-                                    <span class="text-gray-700 dark:text-gray-300">5 Habitaciones</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <i class="icon-drop text-amber-500 mr-2"></i>
-                                    <span class="text-gray-700 dark:text-gray-300">6 Baños</span>
-                                </div>
+    @if($featuredProperty)
+        <section class="py-16 bg-dark">
+            <div class="container mx-auto px-6">
+                <div
+                    class="group relative overflow-hidden rounded-sm shadow-xl transform transition-all duration-500 hover:shadow-2xl">
+                    <div class="flex flex-col md:flex-row">
+                        <!-- Contenedor de imagen con efecto hover -->
+                        <div class="md:w-1/2 h-96 md:h-auto relative overflow-hidden">
+                            <img src="/storage/{{ $featuredProperty->images->first()->image_path }}" alt="{{ $featuredProperty->title }}"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <!-- Overlay con gradiente para profundidad -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-90">
                             </div>
                         </div>
 
-                        <!-- Botones con aparición en hover -->
-                        <div
-                            class="overflow-hidden opacity-90 transition-all duration-500 group-hover:opacity-100 mt-8 flex space-x-4">
-                            <a href="#"
-                                class="btn-luxury bg-amber-500 text-white px-6 py-3 rounded-sm font-luxury tracking-wider text-sm uppercase transition-all hover:bg-amber-600">
-                                {{ __('messages.ver_detalles') }}
-                            </a>
-                            <a href="#"
-                                class="btn-luxury px-6 py-3 border border-gray-300 dark:border-amber-500/30 rounded-sm text-gray-600 dark:text-white font-luxury tracking-wider text-sm uppercase transition-all hover:border-amber-500 dark:hover:border-amber-500 dark:hover:bg-amber-900/20">
-                                {{ __('messages.Contactar') }}
-                            </a>
+                        <!-- Contenido con diseño de lujo -->
+                        <div class="md:w-1/2 p-8 md:p-12 bg-white dark:bg-gray-900 relative">
+                            <!-- Línea decorativa inferior que aparece en hover -->
+                            <div
+                                class="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-300 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100">
+                            </div>
+
+                            <div class="transform transition-transform duration-500 group-hover:-translate-y-2">
+                                <span
+                                    class="text-xs uppercase font-luxury tracking-widest bg-amber-100 dark:bg-transparent dark:text-amber-300 text-gray-800 px-3 py-1 rounded-sm mb-6 inline-block relative">
+                                    {{ __('messages.Propiedad Destacada') }}
+                                </span>
+
+                                <h2
+                                    class="text-3xl font-luxury font-light mb-2 dark:text-white group-hover:text-amber-300 transition-colors duration-300">
+                                    {{ $featuredProperty->title }}
+                                </h2>
+
+                                <p class="text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                                    {{ $featuredProperty->address->province }} | {{ $featuredProperty->address->city }} | {{ $featuredProperty->address->district }}
+                                </p>
+
+                                <p
+                                    class="leading-loose text-gray-600 dark:text-gray-400 mb-6 transition-all duration-500 opacity-90 group-hover:opacity-100">
+                                    {!! substr(nl2br($featuredProperty->description), 0, 300) !!} ...
+                                </p>
+
+                                <div class="flex flex-wrap gap-4 mb-6">
+                                    <div class="flex items-center mr-4">
+                                        <i class="icon-size-fullscreen text-amber-500 mr-2"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">
+                                            {{ $featuredProperty->built_area }}m²
+                                        </span>
+                                    </div>
+                                    <div class="flex items-center mr-4">
+                                        <i class="icon-home text-amber-500 mr-2"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">
+                                            {{ $featuredProperty->rooms }} {{ __('messages.habitaciones') }}
+                                        </span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="icon-drop text-amber-500 mr-2"></i>
+                                        <span class="text-gray-700 dark:text-gray-300">
+                                            {{ $featuredProperty->bathrooms }} {{ __('messages.banios') }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Botones con aparición en hover -->
+                            <div
+                                class="overflow-hidden opacity-90 transition-all duration-500 group-hover:opacity-100 mt-8 flex space-x-4">
+                                <a href="{{ route('prop.show', ['locale' => app()->getLocale(), 'id' => $featuredProperty->id]) }}"
+                                    class="btn-luxury bg-amber-500 text-white px-6 py-3 rounded-sm font-luxury tracking-wider text-sm uppercase transition-all hover:bg-amber-600">
+                                    {{ __('messages.Ver Detalles') }}
+                                </a>
+                                <a href="{{ route('contact', ['locale' => app()->getLocale()]) }}"
+                                    class="btn-luxury px-6 py-3 border border-gray-300 dark:border-amber-500/30 rounded-sm text-gray-600 dark:text-white font-luxury tracking-wider text-sm uppercase transition-all hover:border-amber-500 dark:hover:border-amber-500 dark:hover:bg-amber-900/20">
+                                    {{ __('messages.Contactar') }}
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
+
 
     <!-- Trending Properties Section -->
     <section class="py-20 bg-gray-50 dark:bg-gray-900">
@@ -305,280 +297,90 @@
 
             <!-- Grid de propiedades -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Property 1 -->
-                <div
-                    class="luxury-card group bg-white dark:bg-gray-800 rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 relative">
-                    <div class="relative overflow-hidden">
-                        <img src="{{ asset('assets/images/home/trend-1.jpg') }}" alt="Modern Hillside Villa"
-                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+                @foreach ($properties as $property)
 
-                        <!-- Overlay con gradiente -->
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <!-- Property 1 -->
+                    <div class="luxury-card group bg-white dark:bg-gray-800 rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 relative">
+                        <div class="relative overflow-hidden">
+                            <img src="/storage/{{ $property->images->first()->image_path }}" alt="Modern Hillside Villa"
+                                class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
+
+                            <!-- Overlay con gradiente -->
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            </div>
+
+                            <!-- Etiqueta Featured con estilo de lujo -->
+                            <div class="absolute top-4 left-4 bg-amber-100 dark:bg-amber-900/70 px-3 py-1 rounded-sm z-10">
+                                @if ($property->is_featured == 1)
+                                    <span
+                                        class="text-xs font-luxury tracking-wider uppercase text-amber-800 dark:text-amber-200">Featured
+                                    </span>
+                                @else
+                                    <span
+                                        class="text-xs font-luxury tracking-wider uppercase text-green-800 dark:text-green-200">New
+                                    </span>
+                                @endif
+
+                            </div>
+
+                            <!-- Precio flotante que aparece en hover -->
+                            <div
+                                class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 z-10">
+                                <span
+                                    class="text-white font-luxury text-lg bg-black/70 px-3 py-1 rounded-sm">€ {{ $property->price }}</span>
+                            </div>
                         </div>
 
-                        <!-- Etiqueta Featured con estilo de lujo -->
-                        <div class="absolute top-4 left-4 bg-amber-100 dark:bg-amber-900/70 px-3 py-1 rounded-sm z-10">
-                            <span
-                                class="text-xs font-luxury tracking-wider uppercase text-amber-800 dark:text-amber-200">Featured</span>
-                        </div>
+                        <div class="p-6 relative">
+                            <!-- Línea decorativa que aparece en hover -->
+                            <div
+                                class="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-300 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100">
+                            </div>
 
-                        <!-- Precio flotante que aparece en hover -->
-                        <div
-                            class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 z-10">
-                            <span
-                                class="text-white font-luxury text-lg bg-black/70 px-3 py-1 rounded-sm">$12,500,000</span>
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-amber-600 dark:text-amber-400 font-luxury text-lg">€ {{ $property->price }}</span>
+                                <span class="text-gray-600 dark:text-gray-400 text-sm font-luxury">{{ $property->address->district }} {{ $property->address->city }} {{ $property->address->province }} </span>
+                            </div>
+
+                            <h3
+                                class="text-xl font-luxury font-medium mb-3 text-gray-800 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-300">
+                                {{ $property->title }}
+                            </h3>
+
+                            <div class="flex flex-wrap gap-4 mb-5">
+                                <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
+                                    <i class="icon-home text-amber-500 mr-2"></i>
+                                    <span>{{ $property->rooms }} {{ __('messages.habitaciones') }}</span>
+                                </div>
+                                <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
+                                    <i class="icon-drop text-amber-500 mr-2"></i>
+                                    <span>{{ $property->bathrooms }} {{ __('messages.banios') }}</span>
+                                </div>
+                                <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
+                                    <i class="icon-size-fullscreen text-amber-500 mr-2"></i>
+                                    <span>{{ $property->built_area }} m²</span>
+                                </div>
+                            </div>
+
+                            <a href="{{ route('prop.show', ['locale' => app()->getLocale(), 'id' => $property->id]) }}"
+                                class="inline-flex items-center text-sm text-amber-600 dark:text-amber-400 font-luxury tracking-wider group-hover:text-amber-800 dark:group-hover:text-amber-300 transition-colors duration-300">
+                                {{ __('messages.Ver Detalles') }}
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="h-4 w-4 ml-2 opacity-0 transform -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </a>
                         </div>
                     </div>
 
-                    <div class="p-6 relative">
-                        <!-- Línea decorativa que aparece en hover -->
-                        <div
-                            class="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-300 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100">
-                        </div>
-
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-amber-600 dark:text-amber-400 font-luxury text-lg">$12,500,000</span>
-                            <span class="text-gray-600 dark:text-gray-400 text-sm font-luxury">Beverly Hills, CA</span>
-                        </div>
-
-                        <h3
-                            class="text-xl font-luxury font-medium mb-3 text-gray-800 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-300">
-                            Modern Hillside Villa</h3>
-
-                        <div class="flex flex-wrap gap-4 mb-5">
-                            <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
-                                <i class="icon-home text-amber-500 mr-2"></i>
-                                <span>5 bedrooms</span>
-                            </div>
-                            <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
-                                <i class="icon-drop text-amber-500 mr-2"></i>
-                                <span>7 bathrooms</span>
-                            </div>
-                            <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
-                                <i class="icon-size-fullscreen text-amber-500 mr-2"></i>
-                                <span>8,200 sq ft</span>
-                            </div>
-                        </div>
-
-                        <a href="#"
-                            class="inline-flex items-center text-sm text-amber-600 dark:text-amber-400 font-luxury tracking-wider group-hover:text-amber-800 dark:group-hover:text-amber-300 transition-colors duration-300">
-                            View Details
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 ml-2 opacity-0 transform -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-                                viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
+                @endforeach
                 </div>
 
-                <!-- Property 2 -->
-                <div
-                    class="luxury-card group bg-white dark:bg-gray-800 rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 relative">
-                    <div class="relative overflow-hidden">
-                        <img src="{{ asset('assets/images/home/trend-2.png') }}" alt="Oceanfront Mansion"
-                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
 
-                        <!-- Overlay con gradiente -->
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-
-                        <!-- Etiqueta New con estilo de lujo -->
-                        <div class="absolute top-4 left-4 bg-green-100 dark:bg-green-900/70 px-3 py-1 rounded-sm z-10">
-                            <span
-                                class="text-xs font-luxury tracking-wider uppercase text-green-800 dark:text-green-200">New</span>
-                        </div>
-
-                        <!-- Precio flotante que aparece en hover -->
-                        <div
-                            class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 z-10">
-                            <span
-                                class="text-white font-luxury text-lg bg-black/70 px-3 py-1 rounded-sm">$18,900,000</span>
-                        </div>
-                    </div>
-
-                    <div class="p-6 relative">
-                        <!-- Línea decorativa que aparece en hover -->
-                        <div
-                            class="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-300 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100">
-                        </div>
-
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-amber-600 dark:text-amber-400 font-luxury text-lg">$18,900,000</span>
-                            <span class="text-gray-600 dark:text-gray-400 text-sm font-luxury">Malibu, CA</span>
-                        </div>
-
-                        <h3
-                            class="text-xl font-luxury font-medium mb-3 text-gray-800 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-300">
-                            Oceanfront Mansion</h3>
-
-                        <div class="flex flex-wrap gap-4 mb-5">
-                            <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
-                                <i class="icon-home text-amber-500 mr-2"></i>
-                                <span>6 bedrooms</span>
-                            </div>
-                            <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
-                                <i class="icon-drop text-amber-500 mr-2"></i>
-                                <span>8 bathrooms</span>
-                            </div>
-                            <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
-                                <i class="icon-size-fullscreen text-amber-500 mr-2"></i>
-                                <span>10,800 sq ft</span>
-                            </div>
-                        </div>
-
-                        <a href="#"
-                            class="inline-flex items-center text-sm text-amber-600 dark:text-amber-400 font-luxury tracking-wider group-hover:text-amber-800 dark:group-hover:text-amber-300 transition-colors duration-300">
-                            View Details
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 ml-2 opacity-0 transform -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-                                viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Property 3 -->
-                <div
-                    class="luxury-card group bg-white dark:bg-gray-800 rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 relative">
-                    <div class="relative overflow-hidden">
-                        <img src="{{ asset('assets/images/home/trend-3.jpg') }}" alt="Contemporary Penthouse"
-                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
-
-                        <!-- Overlay con gradiente -->
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-
-                        <!-- Precio flotante que aparece en hover -->
-                        <div
-                            class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 z-10">
-                            <span
-                                class="text-white font-luxury text-lg bg-black/70 px-3 py-1 rounded-sm">$9,750,000</span>
-                        </div>
-                    </div>
-
-                    <div class="p-6 relative">
-                        <!-- Línea decorativa que aparece en hover -->
-                        <div
-                            class="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-300 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100">
-                        </div>
-
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-amber-600 dark:text-amber-400 font-luxury text-lg">$9,750,000</span>
-                            <span class="text-gray-600 dark:text-gray-400 text-sm font-luxury">Los Angeles, CA</span>
-                        </div>
-
-                        <h3
-                            class="text-xl font-luxury font-medium mb-3 text-gray-800 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-300">
-                            Contemporary Penthouse</h3>
-
-                        <div class="flex flex-wrap gap-4 mb-5">
-                            <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
-                                <i class="icon-home text-amber-500 mr-2"></i>
-                                <span>4 bedrooms</span>
-                            </div>
-                            <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
-                                <i class="icon-drop text-amber-500 mr-2"></i>
-                                <span>5 bathrooms</span>
-                            </div>
-                            <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
-                                <i class="icon-size-fullscreen text-amber-500 mr-2"></i>
-                                <span>6,400 sq ft</span>
-                            </div>
-                        </div>
-
-                        <a href="#"
-                            class="inline-flex items-center text-sm text-amber-600 dark:text-amber-400 font-luxury tracking-wider group-hover:text-amber-800 dark:group-hover:text-amber-300 transition-colors duration-300">
-                            View Details
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 ml-2 opacity-0 transform -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-                                viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Property 4 -->
-                <div
-                    class="luxury-card group bg-white dark:bg-gray-800 rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-500 relative">
-                    <div class="relative overflow-hidden">
-                        <img src="{{ asset('assets/images/home/trend-4.jpg') }}" alt="Historic Estate"
-                            class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110">
-
-                        <!-- Overlay con gradiente -->
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-
-                        <!-- Etiqueta Exclusive con estilo de lujo -->
-                        <div
-                            class="absolute top-4 left-4 bg-purple-100 dark:bg-purple-900/70 px-3 py-1 rounded-sm z-10">
-                            <span
-                                class="text-xs font-luxury tracking-wider uppercase text-purple-800 dark:text-purple-200">Exclusive</span>
-                        </div>
-
-                        <!-- Precio flotante que aparece en hover -->
-                        <div
-                            class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 z-10">
-                            <span
-                                class="text-white font-luxury text-lg bg-black/70 px-3 py-1 rounded-sm">$22,500,000</span>
-                        </div>
-                    </div>
-
-                    <div class="p-6 relative">
-                        <!-- Línea decorativa que aparece en hover -->
-                        <div
-                            class="absolute bottom-0 left-0 right-0 h-0.5 bg-amber-300 transform scale-x-0 origin-left transition-transform duration-500 group-hover:scale-x-100">
-                        </div>
-
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-amber-600 dark:text-amber-400 font-luxury text-lg">$22,500,000</span>
-                            <span class="text-gray-600 dark:text-gray-400 text-sm font-luxury">Montecito, CA</span>
-                        </div>
-
-                        <h3
-                            class="text-xl font-luxury font-medium mb-3 text-gray-800 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-300">
-                            Historic Estate</h3>
-
-                        <div class="flex flex-wrap gap-4 mb-5">
-                            <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
-                                <i class="icon-home text-amber-500 mr-2"></i>
-                                <span>8 bedrooms</span>
-                            </div>
-                            <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
-                                <i class="icon-drop text-amber-500 mr-2"></i>
-                                <span>10 bathrooms</span>
-                            </div>
-                            <div class="flex items-center text-gray-600 dark:text-gray-400 text-sm">
-                                <i class="icon-size-fullscreen text-amber-500 mr-2"></i>
-                                <span>15,200 sq ft</span>
-                            </div>
-                        </div>
-
-                        <a href="#"
-                            class="inline-flex items-center text-sm text-amber-600 dark:text-amber-400 font-luxury tracking-wider group-hover:text-amber-800 dark:group-hover:text-amber-300 transition-colors duration-300">
-                            View Details
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-4 w-4 ml-2 opacity-0 transform -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
-                                viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -729,12 +531,12 @@
 
                 <div class="flex flex-col sm:flex-row space-y-5 sm:space-y-0 sm:space-x-6 mt-10">
                     <!-- Botón principal con amber -->
-                    <a href="#" class="bg-amber-300 px-8 py-3 rounded-sm text-center font-luxury tracking-wider text-gray-900 hover:shadow-lg transition-all duration-300 group relative">
+                    <a href="{{ route('contact', ['locale' => app()->getLocale()]) }}" class="bg-amber-300 px-8 py-3 rounded-sm text-center font-luxury tracking-wider text-gray-900 hover:shadow-lg transition-all duration-300 group relative">
                         <span class="relative z-10">{{ __('messages.Solicitar Información') }}</span>
                     </a>
 
                     <!-- Botón secundario con amber -->
-                    <a href="#" class="px-8 py-3 border border-amber-300/30 rounded-sm text-white hover:border-amber-300 transition-all duration-300 text-center font-luxury tracking-wider group overflow-hidden relative">
+                    <a href="{{ route('services', ['locale' => app()->getLocale()]) }}" class="px-8 py-3 border border-amber-300/30 rounded-sm text-white hover:border-amber-300 transition-all duration-300 text-center font-luxury tracking-wider group overflow-hidden relative">
                         <span class="relative z-10 group-hover:text-gray-900 transition-colors duration-300">{{ __('messages.Ver Servicios') }}</span>
                         <div class="absolute inset-0 bg-amber-300/90 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left">
                         </div>

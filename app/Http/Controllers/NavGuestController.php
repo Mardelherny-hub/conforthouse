@@ -12,8 +12,8 @@ class NavGuestController extends Controller
 {
     public function compose(View $view)
     {
-        // Obtener la propiedad destacada
-        $property = Property::where('is_featured', true)->first();
+        // Obtener la propiedad destacada o la última propiedad publicada si no hay destacada
+        $property = Property::where('is_featured', true)->first() ?? Property::latest()->first();
 
         // Obtener los tipos de propiedades
         $types = PropertyType::all();

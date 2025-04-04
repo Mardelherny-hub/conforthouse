@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 //Artisan
 use Illuminate\Support\Facades\Artisan;
 
@@ -36,9 +37,7 @@ Route::group([
 
 
     // Página home
-    Route::get('/', function () {
-        return view('home');
-    })->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     // Páginas properties
     Route::get('/properties/{id}', [PropertyController::class, 'show'])->name('prop.show');

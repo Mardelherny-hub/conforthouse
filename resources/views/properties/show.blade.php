@@ -303,7 +303,7 @@
                                     <span class="font-medium">{{ $property->flooring_type }}</span>
                                 </li>
                                 <li class="flex items-center justify-between border-b border-gray-100 pb-2">
-                                    <span class="text-gray-600">{{ _('messages.Carpinterías interior') }}:</span>
+                                    <span class="text-gray-600">{{ __('messages.Carpinterías interior') }}:</span>
                                     <span class="font-medium">{{ $property->interior_carpentry }}</span>
                                 </li>
                                 <li class="flex items-center justify-between border-b border-gray-100 pb-2">
@@ -430,7 +430,7 @@
                     <div
                         class="group relative overflow-hidden rounded-sm h-96 cursor-pointer shadow-xl transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-1">
                         <div class="absolute inset-0 overflow-hidden">
-                            <img src="{{ $relProperty->firstImage->image_path }}" alt="{{ $relProperty->title }}"
+                            <img src="/storage/{{ $relProperty->firstImage->thumbnail_path }}" alt="{{ $relProperty->title }}"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         </div>
                         <div

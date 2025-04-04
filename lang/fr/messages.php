@@ -16,13 +16,20 @@ return [
     'coleccion_privada' => 'Collection Privée',
 
     // Subcategorías de Propiedades
-    'prop_residenciales' => 'Résidentielles',
-    'prop_comerciales' => 'Commerciales',
-    'prop_exclusivas' => 'Exclusives',
+    'Residencias' => 'Résidences',
+    'Explore' => 'Explorer',
+    'Mansiones, penthouses y residencias exclusivas' => 'Mansions, penthouses et résidences exclusives',
+    'Apartamentos' => 'Appartements',
+    'Apartamentos de lujo y áticos con vistas panorámicas' => 'Appartements de luxe et penthouses avec vue panoramique',
+    'Villas' => 'Villas',
+    'Villas exclusivas con amplios jardines y piscina privada' => 'Villas exclusives avec grands jardins et piscine privée',
+    'Fincas' => 'Domaines',
+    'Haciendas y fincas de lujo con amplios terrenos' => 'Haciendas et domaines de luxe avec vastes terrains',
     'alquiler' => 'Location',
     'venta' => 'Vente',
-    'obra_nueva' => 'Nouvelle Construction',
-    'viviendas_de_lujo' => 'Maisons de Luxe',
+    'obra_nueva' => 'Programme Neuf',
+    'viviendas_de_lujo' => 'Logements de Luxe',
+
     // Subcategorías de Servicios
     'serv_tasacion' => 'Évaluation',
     'serv_consultoria' => 'Conseil',
@@ -88,6 +95,9 @@ return [
     //Sección de Propiedad Destacada
     'Propiedad Destacada' => 'Propriété Vedette',
     'Contactar' => 'Contacter',
+    'Ver Detalles' => 'Voir les Détails',
+    'habitaciones' => 'chambres',
+    'banios' => 'salles de bain',
 
     //Trending Properties Section
     'Propiedades' => 'Propriétés',
