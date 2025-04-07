@@ -16,6 +16,13 @@ return [
     'atencion_exclusiva' => 'Exklusiver Service',
     'coleccion_privada' => 'Private Sammlung',
 
+    // Login
+    'bienvenido' => 'Willkommen',
+    'portal_exclusivo' => 'Exklusives Portal',
+    'login' => 'Anmelden',
+    'remember_me' => 'Angemeldet bleiben',
+    'forgot_password' => 'Passwort vergessen?',
+
     // Subcategorías de Propiedades
     'Residencias' => 'Residenzen',
     'Explore' => 'Entdecken',

@@ -7,6 +7,7 @@ return [
     'lang_es' => 'Español',
     'lang_de' => 'Deutsch',
     'sel_lang' => 'Language',
+
     // Menú principal
     'propiedades' => 'Properties',
     'servicios' => 'Services',
@@ -14,6 +15,13 @@ return [
     'contacto' => 'Contact Us',
     'atencion_exclusiva' => 'Exclusive Service',
     'coleccion_privada' => 'Private Collection',
+
+    // Login
+    'bienvenido' => 'Welcome',
+    'portal_exclusivo' => 'Exclusive Portal',
+    'login' => 'Login',
+    'remember_me' => 'Remember Me',
+    'forgot_password' => 'Forgot Password?',
 
     // Subcategorías de Propiedades
     'Residencias' => 'Residential',

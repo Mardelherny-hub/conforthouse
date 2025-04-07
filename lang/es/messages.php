@@ -16,6 +16,13 @@ return [
     'atencion_exclusiva' => 'Atención Exclusiva',
     'coleccion_privada' => 'Colección Privada',
 
+    // Login
+    'bienvenido' => 'Bienvenido',
+    'portal_exclusivo' => 'Portal Exclusivo',
+    'login' => 'Iniciar Sesión',
+    'remember_me' => 'Recordarme',
+    'forgot_password' => '¿Olvidaste tu contraseña?',
+
     // Subcategorías de Propiedades
     'Residencias' => 'Residencias',
     'Explore' => 'Explora',

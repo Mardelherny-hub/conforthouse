@@ -52,7 +52,7 @@ Route::group([
     // Página contact
     Route::get('/contact', [PropertyController::class, 'contact'])->name('contact');
 
-    //Página Privacy
+    // Página Privacy
         Route::get('/privacy', [PropertyController::class, 'privacy'])->name('privacy');
 
 

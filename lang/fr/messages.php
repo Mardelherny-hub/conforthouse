@@ -35,7 +35,13 @@ return [
     'serv_consultoria' => 'Conseil',
     'serv_inversion' => 'Investissement',
 
-    //Hero
+    // Login
+    'bienvenido' => 'Bienvenue',
+    'portal_exclusivo' => 'Portail Exclusif',
+    'login' => 'Connexion',
+    'remember_me' => 'Se souvenir de moi',
+    'forgot_password' => 'Mot de passe oublié?',
+
     // Slides
     'slide_title_1' => 'Propriétés Exclusives',
     'slide_subtitle_1' => 'Découvrez des résidences uniques dans les meilleurs emplacements',

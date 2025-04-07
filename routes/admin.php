@@ -6,20 +6,78 @@ use App\Http\Controllers\Admin\AdminPropertyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminCaracteristicController;
+use App\Http\Controllers\Admin\UserController;
 
-// Rutas protegidas para administración
-Route::middleware(['auth', 'verified'])->group(function () {
-    // Dashboard de administración
+// 🔐 Rutas protegidas por rol y permiso
+Route::middleware(['auth', 'verified', 'role:admin|agente'])->group(function () {
+
+    // 🏠 Dashboard (visible con cualquier rol válido)
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+    // 📦 Propiedades
+    Route::get('properties', [AdminPropertyController::class, 'index'])
+        ->name('properties.index')
+        ->middleware('permission:ver propiedades');
 
-    // CRUD de propiedades en el panel de administración
-    Route::resource('properties', AdminPropertyController::class);
+    Route::get('properties/create', [AdminPropertyController::class, 'create'])
+        ->name('properties.create')
+        ->middleware('permission:crear propiedades');
 
-     // CRUD de clientes
-     Route::resource('clients', AdminClientController::class);
+    Route::post('properties', [AdminPropertyController::class, 'store'])
+        ->name('properties.store')
+        ->middleware('permission:crear propiedades');
+    Route::get('properties/{property}', [AdminPropertyController::class, 'show'])
+        ->name('properties.show')
+        ->middleware('permission:ver propiedades');
 
-     //CRUD de características de propiedades
-    Route::resource('caracteristics', AdminCaracteristicController::class);
+    Route::get('properties/{property}/edit', [AdminPropertyController::class, 'edit'])
+        ->name('properties.edit')
+        ->middleware('permission:editar propiedades');
 
+    Route::put('properties/{property}', [AdminPropertyController::class, 'update'])
+        ->name('properties.update')
+        ->middleware('permission:editar propiedades');
+
+    Route::delete('properties/{property}', [AdminPropertyController::class, 'destroy'])
+        ->name('properties.destroy')
+        ->middleware('permission:eliminar propiedades');
+
+    // Clientes
+    Route::resource('clients', AdminClientController::class)
+        ->middleware('permission:gestionar clientes');
+
+    // Características
+    Route::resource('caracteristics', AdminCaracteristicController::class)
+        ->middleware('permission:gestionar características');
+
+    // Gestión de usuarios
+    Route::get('users', [UserController::class, 'index'])
+    ->name('users.index')
+    ->middleware('permission:gestionar usuarios');
+
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])
+    ->name('users.edit')
+    ->middleware('permission:gestionar usuarios');
+
+    Route::put('users/{user}', [UserController::class, 'update'])
+    ->name('users.update')
+    ->middleware('permission:gestionar usuarios');
+
+    Route::delete('users/{user}', [UserController::class, 'destroy'])
+    ->name('users.destroy')
+    ->middleware('permission:gestionar usuarios');
+
+    // Papelera de usuarios
+    Route::get('users/trash', [UserController::class, 'trash'])
+    ->name('users.trash')
+    ->middleware('permission:gestionar usuarios');
+
+    Route::post('users/{id}/restore', [UserController::class, 'restore'])
+    ->name('users.restore')
+    ->middleware('permission:gestionar usuarios');
+
+    Route::delete('users/{id}/force-delete', [UserController::class, 'forceDelete'])
+    ->name('users.forceDelete')
+    ->middleware('permission:gestionar usuarios');
 });
+

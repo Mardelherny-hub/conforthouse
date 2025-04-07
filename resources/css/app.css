@@ -373,5 +373,89 @@
 }
 
 
+/* Colores de lujo basados en la navegación existente */
+:root {
+    --gold-300: #f0c987;
+    --gold-400: #e6b964;
+    --gold-500: #dcaa41;
+    --gold-600: #c99a37;
+    --gold-700: #b68a2f;
+  }
+
+  /* Estilos específicos para la página de login */
+  .login-page {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), url('/assets/images/login/login.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  /* Estilos de fuentes de lujo */
+  .font-serif {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* Personalización de los botones y elementos de marca */
+  .bg-gold-600 {
+    background-color: var(--gold-600);
+  }
+  .bg-gold-700 {
+    background-color: var(--gold-700);
+  }
+  .text-gold-300 {
+    color: var(--gold-300);
+  }
+  .text-gold-400 {
+    color: var(--gold-400);
+  }
+  .text-gold-500 {
+    color: var(--gold-500);
+  }
+  .text-gold-600 {
+    color: var(--gold-600);
+  }
+
+  .hover\:bg-gold-700:hover {
+    background-color: var(--gold-700);
+  }
+  .hover\:text-gold-500:hover {
+    color: var(--gold-500);
+  }
+  .hover\:text-gold-600:hover {
+    color: var(--gold-600);
+  }
+  .focus\:ring-gold-500:focus {
+    --tw-ring-color: var(--gold-500);
+  }
+  .focus\:border-gold-500:focus {
+    border-color: var(--gold-500);
+  }
+
+  /* Animaciones y transiciones */
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .duration-300 {
+    transition-duration: 300ms;
+  }
+
+  /* Sombras elegantes */
+  .shadow-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Navbar marca específica (para mantener coherencia con la navegación) */
+  .navbar-brand {
+    text-decoration: none;
+    color: var(--gold-600);
+    font-family: 'Cormorant Garamond', serif;
+    transition: color 0.3s ease;
+  }
+
+  .navbar-brand:hover {
+    color: var(--gold-500);
+    text-decoration: none;
+  }
 
 

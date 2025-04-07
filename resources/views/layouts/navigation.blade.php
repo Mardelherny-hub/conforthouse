@@ -15,15 +15,53 @@
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.properties.index')" :active="request()->routeIs('properties.index')">
-                        {{ __('Propiedades') }}
-                    </x-nav-link>
+                    {{-- Propiedades dropdown --}}
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="inline-flex items-center px-1 pt-6 pb-6 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none transition" style="padding-bottom: 20px;"                         >
+                                {{ __('Propiedades') }}
+                                <svg class="ms-1 h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('admin.properties.index')" :active="request()->routeIs('admin.properties.index')">
+                                {{ __('Listado') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.caracteristics.index')" :active="request()->routeIs('admin.caracteristics.index')">
+                                {{ __('Características') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+                    {{-- Fin Propiedades --}}
+
                     <x-nav-link :href="route('admin.clients.index')" :active="request()->routeIs('clients.index')">
                         {{ __('Clientes') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.caracteristics.index')" :active="request()->routeIs('caracteristics.index')">
-                        {{ __('Características') }}
-                    </x-nav-link>
+
+                     {{-- Usuarios dropdown --}}
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <button class="inline-flex items-center px-1 pt-6 pb-6 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none transition"  style="padding-bottom: 20px;">
+                                {{ __('Usuarios') }}
+                                <svg class="ms-1 h-4 w-4 fill-current" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
+                                {{ __('Listado') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.users.trash')" :active="request()->routeIs('admin.users.trash')">
+                                {{ __('Papelera') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+                    {{-- Fin Usuarios --}}
                 </div>
             </div>
 
