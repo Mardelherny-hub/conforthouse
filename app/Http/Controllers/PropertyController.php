@@ -84,12 +84,25 @@ class PropertyController extends Controller
         ));
     }
 
-    public function show($locale, $id)
+    public function show($locale, $slug)
     {
-        // Obtener propiedad con imágenes, tipo, operación y estado
-        $property = Property::with(['images', 'propertyType', 'operation', 'status'])
-            ->findOrFail($id);
 
+        // Primero intentar buscar por slug en la tabla principal
+        $propertyQuery = Property::with(['images', 'propertyType', 'operation', 'status']);
+
+        // Buscar la propiedad primero por el slug en la tabla principal
+        $property = $propertyQuery->where('slug', $slug)->first();
+
+
+        if (!$property) {
+            $propertyId = PropertyTranslation::where('slug', $slug)
+                                            ->where('locale', $locale)
+                                            ->value('property_id');
+             if ($propertyId) {
+            $property = Property::with(['images', 'propertyType', 'operation', 'status'])->where('id', $propertyId)->firstOrFail();
+            }
+
+        }
         // Aplicar traducciones a la propiedad
         $this->applyTranslations($property, $locale);
 

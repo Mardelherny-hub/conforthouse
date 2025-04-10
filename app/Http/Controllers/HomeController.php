@@ -34,6 +34,8 @@ class HomeController extends Controller
             $featuredProperty = Property::with(['images', 'address'])->latest()->first();
         }
 
+        //dd($properties);
+
 
         return view('home', compact('properties', 'featuredProperty'));
     }
@@ -46,6 +48,7 @@ class HomeController extends Controller
         if ($translation) {
             // Aplicar traducción si existe
             $property->title = $translation->title ?? $property->title;
+            $property->slug = $translation->slug ?? $property->slug;
             $property->description = $translation->description ?? $property->description;
             $property->meta_description = $translation->meta_description ?? $property->meta_description;
             $property->condition = $translation->condition ?? $property->condition;

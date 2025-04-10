@@ -457,7 +457,7 @@
                                     <span class="text-amber-300 text-xl font-bold">
                                         €{{ number_format($relProperty->price, 0, ',', '.') }}
                                     </span>
-                                    <a href="{{ route('prop.show', ['locale' => app()->getLocale(), 'id' => $relProperty->id]) }}"
+                                    <a href="{{ route('prop.show', ['locale' => app()->getLocale(), 'slug' => $relProperty->slug]) }}"
                                         class="inline-flex items-center text-amber-300 text-xs uppercase tracking-widest luxury-nav">
                                         {{ __('messages.discover') }}
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2"

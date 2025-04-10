@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Property extends Model
 {
@@ -16,6 +17,7 @@ class Property extends Model
         'status_id',
         'address_id',
         'title',
+        'slug',
         'meta_description',
         'price',
         'community_expenses',
@@ -40,6 +42,29 @@ class Property extends Model
         'google_map',
         'description'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($property) {
+            $property->slug = static::generateUniqueSlug($property->title);
+        });
+    }
+
+    protected static function generateUniqueSlug($title)
+    {
+        $slug = Str::slug($title);
+        $originalSlug = $slug;
+        $counter = 1;
+
+        // Verificamos si el slug ya existe en la tabla properties
+        while (static::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $counter++;
+        }
+
+        return $slug;
+    }
 
     public function operation()
     {

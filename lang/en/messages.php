@@ -74,7 +74,8 @@ return [
 
     // Footer
     'footer_about_title' => 'About Conforthouse Living',
-    'footer_about_description' => 'Conforthouse Living is a real estate agency specialized in luxury real estate. We have offices in major Spanish cities and offer an extensive portfolio of exclusive properties, including houses, apartments, and estates.',
+    'footer_about_description' => 'Conforthouse Living is a real estate agency specializing in high-end properties. We offer a carefully curated selection of exclusive homes, apartments, and estates in prime locations. Our service is personalized, helping each client find their ideal property.
+',
     'footer_inicio' => 'Home',
     'footer_contacto' => 'Contact',
     'footer_enlaces' => 'Links',
@@ -101,6 +102,9 @@ return [
     //Sección de Propiedad Destacada
     'Propiedad Destacada' => 'Featured Property',
     'Contactar' => 'Contact',
+    'Ver Detalles' => 'View Details',
+    'habitaciones' => 'Rooms',
+    'banios' => 'Bathrooms',
 
     //Trending Properties Section
     'Propiedades' => 'Properties',
@@ -114,7 +118,7 @@ return [
     'Servicio Premium' => 'Premium Service',
     'Consulta disponibilidad' => 'Check availability',
     'Legales' => 'Legal Notice',
-    'R&B Servicio Jurídico Gratuito' => 'R&B Free Legal Service',
+    ' Servicio Jurídico Gratuito' => ' Free Legal Service',
     'Especializado en derecho inmobiliario' => 'Specialized in real estate law',
     'Estrategia' => 'Strategy',
     'Personalized Consulting' => 'Personalized Consulting',
@@ -306,13 +310,13 @@ return [
         'contact_us_button' => 'Contact',
         'testimonials_title' => 'What Our Clients Say',
         'testimonials_subtitle' => 'Discover the experiences of those who trusted us to find their home or make their investments in .',
-        'testimonial_1' => 'The R&B Conforthouse team was amazing. They helped me find the perfect apartment in downtown  in record time. Very professional and attentive!',
+        'testimonial_1' => 'The Conforthouse Living team was amazing. They helped me find the perfect apartment in downtown  in record time. Very professional and attentive!',
         'client_name_1' => 'Ana Martínez',
         'client_title_1' => 'Buyer',
         'testimonial_2' => 'As a foreign investor, I greatly appreciated the legal help they provided. They made the buying process simple and hassle-free. Highly recommended!',
         'client_name_2' => 'John Smith',
         'client_title_2' => 'Investor',
-        'testimonial_3' => 'Selling my property in  with R&B Conforthouse was a very positive experience. Their knowledge of the local market and marketing strategy were key to a quick sale at the best price.',
+        'testimonial_3' => 'Selling my property in  with Conforthouse Living was a very positive experience. Their knowledge of the local market and marketing strategy were key to a quick sale at the best price.',
         'client_name_3' => 'Isabelle Dubois',
         'client_title_3' => 'Seller',
         'learn_more' => 'Learn More',
@@ -320,7 +324,7 @@ return [
         // About us Page
     'about_subtitle' => 'Get to Know Our Story',
     'about_title' => 'Passion for Finding Your Ideal Place in ',
-    'about_desc_1' => 'At R&B Conforthouse, we are more than just a real estate agency; we are a team of professionals passionate about connecting people with the perfect home in . Our history is built on trust, dedication, and a deep understanding of the local market.',
+    'about_desc_1' => 'At Conforthouse Living, we are more than just a real estate agency; we are a team of professionals passionate about connecting people with the perfect home in . Our history is built on trust, dedication, and a deep understanding of the local market.',
     'about_desc_2' => 'Since our beginnings, we have been committed to offering exceptional service, guiding our clients through every step of the property buying, selling, or renting process. We understand that each client is unique and strive to exceed their expectations with personalized and transparent solutions.',
     'value_1_title' => 'Commitment',
     'value_1_desc' => 'We are dedicated to achieving your real estate goals, working tirelessly to find the best option for you.',
@@ -352,7 +356,7 @@ return [
     'history_title' => 'Our Journey',
     'history_subtitle' => 'A look at the milestones that have made us leaders in ',
     'history_year_1' => '2015',
-    'history_desc_1' => 'Foundation of R&B Conforthouse with the vision of offering a different real estate service in .',
+    'history_desc_1' => 'Foundation of Conforthouse Living with the vision of offering a different real estate service in .',
     'history_year_2' => '2018',
     'history_desc_2' => 'Expansion of our services and consolidation as one of the leading agencies in the city.',
     'history_year_3' => 'Present',

@@ -263,16 +263,29 @@ class Operations extends Component
 
     public function getOperationsProperty()
     {
-        return Operation::with(['translations' => function($query) {
+        $query = Operation::query();
+
+        if ($this->locale === 'es') {
+            // Para español, buscar en la tabla operations
+            if ($this->search) {
+                $query->where('name', 'like', '%' . $this->search . '%');
+            }
+        } else {
+            // Para otros idiomas, cargar las traducciones
+            $query->with(['translations' => function($query) {
                 $query->where('locale', $this->locale);
-            }])
-            ->when($this->search, function($query) {
+            }]);
+
+            // Búsqueda en traducciones para idiomas que no son español
+            if ($this->search) {
                 $query->whereHas('translations', function($query) {
-                    $query->where('name', 'like', '%' . $this->search . '%');
+                    $query->where('name', 'like', '%' . $this->search . '%')
+                        ->where('locale', $this->locale);
                 });
-            })
-            ->orderBy('id', 'desc')
-            ->paginate($this->perPage);
+            }
+        }
+
+        return $query->orderBy('id', 'desc')->paginate($this->perPage);
     }
 
     public function render()

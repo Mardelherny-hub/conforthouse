@@ -255,7 +255,7 @@
                             <!-- Botones con aparición en hover -->
                             <div
                                 class="overflow-hidden opacity-90 transition-all duration-500 group-hover:opacity-100 mt-8 flex space-x-4">
-                                <a href="{{ route('prop.show', ['locale' => app()->getLocale(), 'id' => $featuredProperty->id]) }}"
+                                <a href="{{ route('prop.show', ['locale' => app()->getLocale(), 'slug' => $featuredProperty->slug ?? '']) }}"
                                     class="btn-luxury bg-amber-500 text-white px-6 py-3 rounded-sm font-luxury tracking-wider text-sm uppercase transition-all hover:bg-amber-600">
                                     {{ __('messages.Ver Detalles') }}
                                 </a>
@@ -363,7 +363,7 @@
                                 </div>
                             </div>
 
-                            <a href="{{ route('prop.show', ['locale' => app()->getLocale(), 'id' => $property->id]) }}"
+                            <a href="{{ route('prop.show', ['locale' => app()->getLocale(), 'slug' => $property->slug ?? '']) }}"
                                 class="inline-flex items-center text-sm text-amber-600 dark:text-amber-400 font-luxury tracking-wider group-hover:text-amber-800 dark:group-hover:text-amber-300 transition-colors duration-300">
                                 {{ __('messages.Ver Detalles') }}
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -454,7 +454,7 @@
                             </div>
                             <div class="w-2/3 p-4">
                                 <span class="text-xs text-amber-500 font-luxury tracking-wider">{{ __('messages.Legales') }}</span>
-                                <h4 class="text-md font-luxury font-semibold my-1 dark-text">{{ __('messages.R&B Servicio Jurídico Gratuito') }} </h4>
+                                <h4 class="text-md font-luxury font-semibold my-1 dark-text">{{ __('messages. Servicio Jurídico Gratuito') }} </h4>
                                 <p class="text-xs text-gray-500">{{ __('messages.Especializado en derecho inmobiliario') }}. </p>
                             </div>
                         </div>

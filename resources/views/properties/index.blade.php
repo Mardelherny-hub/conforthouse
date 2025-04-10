@@ -205,7 +205,7 @@
                                     <span class="text-amber-300 text-xl font-bold">
                                         €{{ number_format($property->price, 0, ',', '.') }}
                                     </span>
-                                    <a href="{{ route('prop.show', ['locale' => app()->getLocale(), 'id' => $property->id]) }}"
+                                    <a href="{{ route('prop.show', ['locale' => app()->getLocale(), 'slug' => $property->slug]) }}"
                                         class="inline-flex items-center text-amber-300 text-xs uppercase tracking-widest luxury-nav hover:text-amber-400 transition-colors duration-300">
                                         {{ __('messages.descubrir') }}
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2"

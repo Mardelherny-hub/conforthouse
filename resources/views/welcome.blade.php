@@ -613,7 +613,7 @@
                             </div>
                             <div class="w-2/3 p-4">
                                 <span class="text-xs cream-text">Legales</span>
-                                <h4 class="text-lg font-semibold my-1 dark-text">R&B Servicio Jurídico Gratuito</h4>
+                                <h4 class="text-lg font-semibold my-1 dark-text"> Servicio Jurídico Gratuito</h4>
                                 <p class="text-xs text-gray-500">Ponemos gratuitamente a su servicio un abogado
                                     especializado en derecho inmobiliario. </p>
                             </div>

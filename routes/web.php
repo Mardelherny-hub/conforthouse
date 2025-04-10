@@ -40,8 +40,9 @@ Route::group([
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
     // Páginas properties
-    Route::get('/properties/{id}', [PropertyController::class, 'show'])->name('prop.show');
     Route::get('/properties', [PropertyController::class, 'index'])->name('prop.index');
+    Route::get('/properties/{slug}', [PropertyController::class, 'show'])->name('prop.show');
+
 
     //Página Servicios
     Route::get('/services', [PropertyController::class, 'services'])->name('services');

@@ -1,5 +1,5 @@
 <nav x-data="{ scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 20)"
-    :class="{ 'bg-dark/45 backdrop-blur-md shadow-xl border-b border-amber-300/20': scrolled }"
+    :class="{ 'bg-dark/85 backdrop-blur-md shadow-xl border-b border-amber-300/20': scrolled }"
     class="fixed top-0 left-0 right-0 w-full transition-all duration-300 z-50">
 
     <!-- Contenedor para el contenido del nav -->
@@ -8,7 +8,7 @@
         <div x-show="!scrolled" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-            class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-40">
+            class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-60">
         </div>
 
         <!-- Logo y branding -->
@@ -235,22 +235,22 @@
                     x-transition:enter-end="opacity-100 transform scale-100"
                     class="absolute right-0 z-10 mt-4 rounded-sm p-3 w-48 luxury-dropdown">
                     <div class="flex flex-col space-y-2">
-                        <a href="{{ route(Route::currentRouteName(), ['locale' => 'es'] + Route::current()->parameters()) }}"
+                        <a href="{{ route(Route::currentRouteName(), localized_route_parameters('es')) }}"
                             class="flex justify-between items-center px-3 py-2 rounded-sm hover:bg-amber-300/10 transition duration-300">
                             <span class="text-amber-300 text-sm font-luxury-sans">{{ __('messages.lang_es') }}</span>
                             <img src="{{ asset('assets/images/flags/4x3/es.svg') }}" alt="Spanish" class="w-5 h-4">
                         </a>
-                        <a href="{{ route(Route::currentRouteName(), ['locale' => 'en'] + Route::current()->parameters()) }}"
+                        <a href="{{ route(Route::currentRouteName(), localized_route_parameters('en')) }}"
                             class="flex justify-between items-center px-3 py-2 rounded-sm hover:bg-amber-300/10 transition duration-300">
                             <span class="text-amber-300 text-sm font-luxury-sans">{{ __('messages.lang_en') }}</span>
                             <img src="{{ asset('assets/images/flags/4x3/en.svg') }}" alt="English" class="w-5 h-4">
                         </a>
-                        <a href="{{ route(Route::currentRouteName(), ['locale' => 'fr'] + Route::current()->parameters()) }}"
+                        <a href="{{ route(Route::currentRouteName(), localized_route_parameters('fr')) }}"
                             class="flex justify-between items-center px-3 py-2 rounded-sm hover:bg-amber-300/10 transition duration-300">
                             <span class="text-amber-300 text-sm font-luxury-sans">{{ __('messages.lang_fr') }}</span>
                             <img src="{{ asset('assets/images/flags/4x3/fr.svg') }}" alt="French" class="w-5 h-4">
                         </a>
-                        <a href="{{ route(Route::currentRouteName(), ['locale' => 'de'] + Route::current()->parameters()) }}"
+                        <a href="{{ route(Route::currentRouteName(), localized_route_parameters('de')) }}"
                             class="flex justify-between items-center px-3 py-2 rounded-sm hover:bg-amber-300/10 transition duration-300">
                             <span class="text-amber-300 text-sm font-luxury-sans">{{ __('messages.lang_de') }}</span>
                             <img src="{{ asset('assets/images/flags/4x3/de.svg') }}" alt="German" class="w-5 h-4">
@@ -279,10 +279,10 @@
                 <p class="text-white font-luxury-sans">+34 900 123 456</p>
             </div>
             <!-- Botón de acceso -->
-            <a href="{{ route('prop.index', ['locale' => app()->getLocale()]) }}"
-                class="border border-amber-300 px-5 py-2 text-amber-300 hover:bg-amber-300 hover:text-gray-900 transition duration-500 font-luxury text-sm btn-luxury">
+             <a href="{{ route('prop.index', ['locale' => app()->getLocale()]) }}"
+                class="relative border-2 border-amber-300/80 px-6 py-3 text-amber-300 hover:bg-amber-300 hover:text-gray-900 transition-all duration-500 font-luxury text-sm btn-luxury shadow-[0_0_15px_rgba(251,191,36,0.3)] hover:shadow-[0_0_20px_rgba(251,191,36,0.5)]">
                 {{ __('messages.coleccion_privada') }}
-            </a>
+             </a>
         </div>
 
         <!-- Botón de menú móvil -->
