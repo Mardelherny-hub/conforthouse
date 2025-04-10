@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\Models\PropertyImage;
 use Illuminate\Support\Facades\DB;
+use App\Helpers\YoutubeHelper;
 
 class ImagesForm extends Component
 {
@@ -19,12 +20,47 @@ class ImagesForm extends Component
     public $tempPhotos = [];
     public $existingImages = [];
 
+    // Video
+    public $video = null;
+    public $videoPreview = null;
+
     protected $listeners = ['refreshImages' => '$refresh'];
 
     public function mount($property)
     {
         $this->property = $property;
         $this->loadExistingImages();
+        $this->video = $property->video;
+        $this->updateVideoPreview();
+    }
+
+    public function updatedVideo()
+    {
+        $this->validateVideo();
+        $this->updateVideoPreview();
+    }
+
+    protected function validateVideo()
+    {
+        $this->validate([
+            'video' => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    if (!empty($value) && !YoutubeHelper::getVideoId($value)) {
+                        $fail('Por favor, introduce una URL válida de YouTube.');
+                    }
+                },
+            ],
+        ]);
+    }
+
+    protected function updateVideoPreview()
+    {
+        if (!empty($this->video)) {
+            $this->videoPreview = YoutubeHelper::getVideoId($this->video);
+        } else {
+            $this->videoPreview = null;
+        }
     }
 
     public function loadExistingImages()
@@ -105,11 +141,51 @@ class ImagesForm extends Component
         }
     }
 
+    public function saveAll()
+    {
+        try {
+            // Validate video
+            $this->validateVideo();
+
+            // Save video if changed
+            if ($this->video !== $this->property->video) {
+                $videoId = !empty($this->video) ? YoutubeHelper::getVideoId($this->video) : null;
+                $this->property->update(['video' => $videoId]);
+            }
+
+            // Save images
+            if (!empty($this->tempPhotos)) {
+                $this->saveImages();
+            }
+
+            session()->flash('message', 'Cambios guardados con éxito.');
+            $this->dispatch('saved');
+
+        } catch (\Exception $e) {
+            Log::error('Error saving images and video: ' . $e->getMessage());
+            session()->flash('error', 'Error al guardar los cambios. Por favor, intente nuevamente.');
+        }
+    }
+
     public function saveImages()
     {
         $this->validate([
             'tempPhotos.*' => 'array',
+            'video' => [
+                    'nullable',
+                    function ($attribute, $value, $fail) {
+                        if (!empty($value) && !YoutubeHelper::getVideoId($value)) {
+                            $fail('Por favor, introduce una URL válida de YouTube.');
+                        }
+                    },
+                ],
         ]);
+
+        // Save video URL
+        if ($this->video !== $this->property->video) {
+            $videoId = !empty($this->video) ? YoutubeHelper::getVideoId($this->video) : null;
+            $this->property->update(['video' => $videoId]);
+        }
 
         if (!empty($this->tempPhotos)) {
             // Obtener el último orden de imagen existente

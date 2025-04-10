@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Helpers\YouTubeHelper;
 
 
 class AdminPropertyCreate extends Component
@@ -83,6 +84,8 @@ class AdminPropertyCreate extends Component
     public $photos = [];
     public $tempPhotos = []; // Para almacenar temporalmente las fotos subidas
 
+    //Video
+    public $video;
 
     // Opciones para selects
     public $orientationOptions = ['Norte', 'Sur', 'Este', 'Oeste', 'Noreste', 'Noroeste', 'Sureste', 'Suroeste'];
@@ -163,6 +166,17 @@ class AdminPropertyCreate extends Component
         } elseif ($this->step == 4) {
             $rules = [
                 'photos.*' => 'image|max:2048', // Máximo 2MB por imagen
+                'video' => [
+                'nullable',
+                function ($attribute, $value, $fail) {
+                    if (!empty($value)) {
+                        $videoId = YoutubeHelper::getVideoId($value);
+                        if (!$videoId) {
+                            $fail('La URL del video no es válida. Por favor, introduce una URL de YouTube válida.');
+                        }
+                    }
+                }
+            ]
             ];
         }
 
@@ -269,6 +283,10 @@ class AdminPropertyCreate extends Component
         // Validar el paso actual
         try {
             $this->validateStep();
+
+            // Procesar URL de YouTube
+            $videoId = !empty($this->video) ? YoutubeHelper::getVideoId($this->video) : null;
+
         } catch (\Exception $e) {
             // Si hay errores, mostrar un mensaje de error y no continuar
             Log::error('Error: ' . $e->getMessage());
@@ -305,6 +323,7 @@ class AdminPropertyCreate extends Component
             'distance_to_sea' => $this->distance_to_sea,
             'regime' => $this->regime,
             'google_map' => $this->google_map,
+            'video' => $videoId,
             'description' => $this->description,
         ]);
 

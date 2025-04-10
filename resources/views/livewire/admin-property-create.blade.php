@@ -450,7 +450,7 @@
                 </div>
             @endif
 
-            <!-- Paso 4: Fotos -->
+            <!-- Paso 4: Fotos y Video -->
             @if ($step == 4)
                 <div>
                     <h2 class="text-xl font-bold mb-4">Fotos de la Propiedad</h2>
@@ -525,6 +525,24 @@
                             <li>La primera foto será la destacada en los listados</li>
                             <li>Intenta mostrar los espacios más atractivos de la propiedad</li>
                             <li>Tamaño máximo por imagen: 2MB</li>
+                        </ul>
+                    </div>
+
+                    <!-- Agregar Video -->
+                    <h2 class="text-xl font-bold mb-4 mt-6">Video de la Propiedad</h2>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-1">Enlace de YouTube o Vimeo</label>
+                        <input type="url" wire:model="video" class="w-full border p-2 rounded">
+                        @error('video')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="mt-4 p-4 bg-blue-50 rounded">
+                        <h3 class="text-blue-800 font-semibold mb-2">Acepta cualquier formato de URL de YouTube</h3>
+                        <ul class="list-disc list-inside text-blue-700 text-sm">
+                            <li>//youtube.com/watch?v=XXX</li>
+                            <li>https://youtu.be/XXX</li>
+                            <li>O simplemente el ID del video</li>
                         </ul>
                     </div>
                 </div>

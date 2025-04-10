@@ -40,6 +40,7 @@ class Property extends Model
         'distance_to_sea',
         'regime',
         'google_map',
+        'video',
         'description'
     ];
 
