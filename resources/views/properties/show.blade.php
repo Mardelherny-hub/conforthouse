@@ -89,10 +89,16 @@
                 }" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
                     {{-- Imagen Principal --}}
                     <div class="relative group">
-                        <img src="/storage/{{ $property->images->first()->image_path }}" alt="{{ $property->title }}"
-                            @click="openModal(0)"
-                            class="w-full h-[500px] object-cover rounded-lg shadow-xl transform transition-all duration-700 group-hover:scale-105 cursor-pointer">
-
+                        @if($property->images->isNotEmpty())
+                            <img src="/storage/{{ $property->images->first()->image_path }}"
+                                alt="{{ $property->title }}"
+                                @click="openModal(0)"
+                                class="w-full h-[500px] object-cover rounded-lg shadow-xl transform transition-all duration-700 group-hover:scale-105 cursor-pointer">
+                        @else
+                            <img src="/images/placeholder-property.jpg"
+                                alt="{{ $property->title }}"
+                                class="w-full h-[500px] object-cover rounded-lg shadow-xl">
+                        @endif
                         {{-- Overlay con gradiente --}}
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-70 rounded-lg">
@@ -248,6 +254,56 @@
             {{-- Columna Principal con Características --}}
             <div class="md:col-span-2">
                 <h1 class="text-4xl font-luxury text-gray-800 mb-4">{{ $property->title }}</h1>
+                {{-- Compartir en redes sociales --}}
+                    <div class="flex items-center space-x-4 mb-6">
+                        {{-- Share text
+                        <span class="text-gray-600 font-medium">{{ __('messages.Compartir') }}:</span>
+                        --}}
+                        {{-- Facebook --}}
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->url()) }}"
+                            target="_blank"
+                            class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+
+                        {{-- Twitter/X --}}
+                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->url()) }}&text={{ urlencode($property->title) }}"
+                            target="_blank"
+                            class="flex items-center justify-center w-8 h-8 rounded-full bg-black text-white hover:bg-gray-800 transition-colors">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                            </svg>
+                        </a>
+
+                        {{-- WhatsApp --}}
+                        <a href="https://wa.me/?text={{ urlencode($property->title . ' ' . request()->url()) }}"
+                            target="_blank"
+                            class="flex items-center justify-center w-8 h-8 rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12.048 2.088c-5.523 0-10 4.477-10 10 0 1.899.531 3.673 1.454 5.18L2.024 21.98l4.832-1.402A9.96 9.96 0 0012.048 22.088c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 1.6c4.64 0 8.4 3.76 8.4 8.4s-3.76 8.4-8.4 8.4c-1.698 0-3.276-.504-4.595-1.37l-.497-.324-.576.167-2.077.603.621-2.112.18-.612-.342-.524c-.913-1.399-1.414-3.044-1.414-4.828 0-4.64 3.76-8.4 8.4-8.4z" clip-rule="evenodd"></path>
+                                <path d="M8.464 7.192c.192.508.384 1.016.576 1.524.096.256.192.508.264.76.144.508-.048 1.016-.384 1.368-.192.196-.384.388-.576.58-.192.196-.192.388-.096.58.48.76 1.056 1.428 1.728 1.98.768.652 1.632 1.112 2.592 1.368.192.052.384.1.576.148.384.1.768-.052 1.056-.292.384-.352.768-.704 1.152-1.056.288-.256.576-.256.864 0 .48.352.96.704 1.44 1.056.24.196.48.388.72.58.384.292.384.58 0 .872-.48.388-.96.776-1.44 1.164-.432.34-.912.484-1.44.388-.144-.024-.288-.048-.432-.072-1.572-.352-2.976-1.112-4.224-2.128-1.056-.86-1.968-1.86-2.736-2.992-.432-.632-.768-1.316-.96-2.076-.144-.58-.048-1.112.336-1.572.432-.508.864-1.016 1.296-1.524.288-.34.288-.632 0-.972-.36-.46-.72-.92-1.08-1.38-.192-.244-.384-.244-.576 0-.384.352-.768.704-1.152 1.056-.288.256-.384.58-.336.92z"></path>
+                            </svg>
+                        </a>
+
+                        {{-- LinkedIn --}}
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(request()->url()) }}&title={{ urlencode($property->title) }}"
+                            target="_blank"
+                            class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-700 text-white hover:bg-blue-800 transition-colors">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+
+                        {{-- Email --}}
+                        <a href="mailto:?subject={{ urlencode($property->title) }}&body={{ urlencode(request()->url()) }}"
+                            class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-600 text-white hover:bg-gray-700 transition-colors">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </a>
+                    </div>
                 <p class="text-gray-600 mb-6">{!! nl2br($property->description) !!}</p>
 
                 {{-- Características Principales --}}

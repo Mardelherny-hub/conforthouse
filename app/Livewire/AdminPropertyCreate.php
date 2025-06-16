@@ -13,7 +13,9 @@ use App\Models\City;
 use App\Models\Province;
 use App\Models\AutonomousCommunity;
 use App\Models\PropertyImage;
-use App\Helpers\LibreTranslateHelper;
+//use App\Helpers\LibreTranslateHelper;
+use App\Helpers\GoogleTranslateHelper;
+use App\Services\GoogleTranslateService;
 use App\Models\PropertyTranslation;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\Facades\Image;
@@ -25,6 +27,9 @@ use App\Helpers\YouTubeHelper;
 class AdminPropertyCreate extends Component
 {
     use WithFileUploads;
+
+    // Traducciones
+    //protected $translator;
 
     // Control de pasos
     public $step = 1;
@@ -98,7 +103,7 @@ class AdminPropertyCreate extends Component
 
     public function mount()
     {
-        //
+        //$this->translator = new GoogleTranslateService();
     }
 
     public function render()
@@ -380,6 +385,7 @@ class AdminPropertyCreate extends Component
         return redirect()->route('admin.properties.index');
     }
 
+
     /**
      * Crea traducciones para una propiedad
      */
@@ -406,26 +412,42 @@ class AdminPropertyCreate extends Component
         ];
 
         try {
-
             foreach ($languages as $lang) {
                 $translationData = [
                     'property_id' => $property->id,
                     'locale' => $lang,
                 ];
 
-                foreach ($fieldsToTranslate as $field => $value) {
-                    if (!empty($value)) {
-                        try {
-                            $translatedText = LibreTranslateHelper::translate($value, 'es', $lang);
-                            $translationData[$field] = $translatedText;
+                try {
+                    // Recolectar solo los campos no vacíos para traducir
+                    $textsToTranslate = [];
+                    $fieldsToProcess = [];
 
-                        } catch (\Exception $e) {
-                            Log::error("Error al traducir campo: $field", [
-                                'lang' => $lang,
-                                'error' => $e->getMessage(),
-                                'property_id' => $property->id
-                            ]);
-                            // Si falla la traducción, usar el texto original
+                    foreach ($fieldsToTranslate as $field => $value) {
+                        if (!empty($value)) {
+                            $textsToTranslate[] = $value;
+                            $fieldsToProcess[] = $field;
+                        }
+                    }
+
+                    if (!empty($textsToTranslate)) {
+                        // Traducir todos los textos en un lote
+                        $translatedTexts = GoogleTranslateHelper::translateBatch($textsToTranslate, 'es', $lang);
+
+                        // Asignar traducciones a los campos correspondientes
+                        foreach ($fieldsToProcess as $i => $field) {
+                            $translationData[$field] = $translatedTexts[$i] ?? $fieldsToTranslate[$field];
+                        }
+                    }
+                } catch (\Exception $e) {
+                    Log::error("Error al traducir al idioma $lang", [
+                        'property_id' => $property->id,
+                        'error' => $e->getMessage()
+                    ]);
+
+                    // Fallback: usar los textos originales
+                    foreach ($fieldsToTranslate as $field => $value) {
+                        if (!empty($value)) {
                             $translationData[$field] = $value;
                         }
                     }
@@ -433,9 +455,7 @@ class AdminPropertyCreate extends Component
 
                 // Guardar la traducción
                 PropertyTranslation::create($translationData);
-
             }
-
         } catch (\Exception $e) {
             Log::error('Error general en el proceso de traducción', [
                 'property_id' => $property->id,

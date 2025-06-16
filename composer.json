@@ -12,8 +12,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.6",
-        "spatie/laravel-permission": "^6.16",
-        "stichoza/google-translate-php": "^5.2"
+        "spatie/laravel-permission": "^6.16"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -35,7 +34,8 @@
             "app/Helpers/LibreTranslateHelper.php",
             "app/Helpers/BreadcrumbHelper.php",
             "app/Helpers/LocalizedRouteParameters.php",
-            "app/Helpers/YouTubeHelper.php"
+            "app/Helpers/YouTubeHelper.php",
+            "app/Helpers/GoogleTranslateHelper.php"
         ]
     },
     "autoload-dev": {
@@ -45,7 +45,8 @@
         "files": [
             "app/Helpers/LibreTranslateHelper.php",
             "app/Helpers/BreadcrumbHelper.php",
-            "app/Helpers/YouTubeHelper.php"
+            "app/Helpers/YouTubeHelper.php",
+            "app/Helpers/GoogleTranslateHelper.php"
         ]
     },
     "scripts": {

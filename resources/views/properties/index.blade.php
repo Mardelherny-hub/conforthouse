@@ -167,7 +167,9 @@
                         class="group relative overflow-hidden rounded-sm h-96 cursor-pointer shadow-xl transform transition-all duration-500 hover:shadow-2xl hover:-translate-y-1">
                         {{-- Imagen con efecto de zoom --}}
                         <div class="absolute inset-0 overflow-hidden">
-                            <img src="/storage/{{ $property->images->first()->image_path }}"
+                            <img src="{{ $property->images->first()
+                                ? '/storage/' . $property->images->first()->image_path
+                                : '/images/placeholder-property.jpg' }}"
                                 alt="{{ $property->title }}"
                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         </div>
@@ -223,12 +225,15 @@
             </div>
         @endif
 
-        {{-- Paginación --}}
-        @if ($properties->hasPages())
-            <div class="mt-8">
-                {{ $properties->appends(['operation_id' => $operationId, 'type_id' => $typeId, 'price' => $price])->links() }}
-            </div>
-        @endif
+        {{-- Paginación
+        <div class="mt-8">
+            {{ $properties->appends([
+                'operation_id' => $operationId,
+                'type_id' => $typeId,
+                'min_price' => $min_price,
+                'max_price' => $max_price
+            ])->links() }}
+        </div>--}}
 
         {{-- Paginación --}}
         <div class="my-8 flex justify-center items-center space-x-2">
