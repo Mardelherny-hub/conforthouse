@@ -1,0 +1,81 @@
+[29-May-2025 15:12:53 America/Mexico_City] PHP Warning:  require(/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/../symfony/string/Resources/functions.php): Failed to open stream: No such file or directory in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php on line 41
+[29-May-2025 15:12:53 America/Mexico_City] PHP Fatal error:  Uncaught Error: Failed opening required '/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/../symfony/string/Resources/functions.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php(45): {closure}('b6b991a57620e2f...', '/home3/victora5...')
+#1 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/autoload.php(25): ComposerAutoloaderInit9c491b8531eec05ba41a11d9276a5749::getLoader()
+#2 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/public/index.php(34): require('/home3/victora5...')
+#3 {main}
+  thrown in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php on line 41
+[29-May-2025 15:17:28 America/Mexico_City] PHP Warning:  require(/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/../symfony/var-dumper/Resources/functions/dump.php): Failed to open stream: No such file or directory in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php on line 41
+[29-May-2025 15:17:28 America/Mexico_City] PHP Fatal error:  Uncaught Error: Failed opening required '/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/../symfony/var-dumper/Resources/functions/dump.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php(45): {closure}('667aeda72477189...', '/home3/victora5...')
+#1 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/autoload.php(25): ComposerAutoloaderInit9c491b8531eec05ba41a11d9276a5749::getLoader()
+#2 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/public/index.php(34): require('/home3/victora5...')
+#3 {main}
+  thrown in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php on line 41
+[29-May-2025 15:28:37 America/Mexico_City] PHP Warning:  require(/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/../myclabs/deep-copy/src/DeepCopy/deep_copy.php): Failed to open stream: No such file or directory in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php on line 41
+[29-May-2025 15:28:37 America/Mexico_City] PHP Fatal error:  Uncaught Error: Failed opening required '/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/../myclabs/deep-copy/src/DeepCopy/deep_copy.php' (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php:41
+Stack trace:
+#0 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php(45): {closure}('6124b4c8570aa39...', '/home3/victora5...')
+#1 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/autoload.php(25): ComposerAutoloaderInit9c491b8531eec05ba41a11d9276a5749::getLoader()
+#2 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/public/index.php(34): require('/home3/victora5...')
+#3 {main}
+  thrown in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php on line 41
+[29-May-2025 16:23:12 America/Mexico_City] PHP Warning:  include(/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/../phpunit/phpunit/src/Event/Events/Application/StartedSubscriber.php): Failed to open stream: No such file or directory in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php on line 576
+[29-May-2025 16:23:12 America/Mexico_City] PHP Warning:  include(): Failed opening '/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/../phpunit/phpunit/src/Event/Events/Application/StartedSubscriber.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php on line 576
+[29-May-2025 16:23:12 America/Mexico_City] PHP Fatal error:  Uncaught Error: Interface "PHPUnit\Event\Application\StartedSubscriber" not found in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/nunomaduro/collision/src/Adapters/Phpunit/Subscribers/EnsurePrinterIsRegisteredSubscriber.php:66
+Stack trace:
+#0 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php(576): include()
+#1 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}('/home3/victora5...')
+#2 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php(11): Composer\Autoload\ClassLoader->loadClass('NunoMaduro\\Coll...')
+#3 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php(41): require('/home3/victora5...')
+#4 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php(45): {closure}('a1cfe24d14977df...', '/home3/victora5...')
+#5 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/autoload.php(25): ComposerAutoloaderInit9c491b8531eec05ba41a11d9276a5749::getLoader()
+#6 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/public/index.php(34): require('/home3/victora5...')
+#7 {main}
+  thrown in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/nunomaduro/collision/src/Adapters/Phpunit/Subscribers/EnsurePrinterIsRegisteredSubscriber.php on line 66
+[29-May-2025 16:25:12 America/Mexico_City] PHP Warning:  include(/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/../phpunit/phpunit/src/Event/Events/Application/StartedSubscriber.php): Failed to open stream: No such file or directory in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php on line 576
+[29-May-2025 16:25:12 America/Mexico_City] PHP Warning:  include(): Failed opening '/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/../phpunit/phpunit/src/Event/Events/Application/StartedSubscriber.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php on line 576
+[29-May-2025 16:25:12 America/Mexico_City] PHP Fatal error:  Uncaught Error: Interface "PHPUnit\Event\Application\StartedSubscriber" not found in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/nunomaduro/collision/src/Adapters/Phpunit/Subscribers/EnsurePrinterIsRegisteredSubscriber.php:66
+Stack trace:
+#0 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php(576): include()
+#1 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}('/home3/victora5...')
+#2 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php(11): Composer\Autoload\ClassLoader->loadClass('NunoMaduro\\Coll...')
+#3 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php(41): require('/home3/victora5...')
+#4 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/autoload_real.php(45): {closure}('a1cfe24d14977df...', '/home3/victora5...')
+#5 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/autoload.php(25): ComposerAutoloaderInit9c491b8531eec05ba41a11d9276a5749::getLoader()
+#6 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/public/index.php(34): require('/home3/victora5...')
+#7 {main}
+  thrown in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/nunomaduro/collision/src/Adapters/Phpunit/Subscribers/EnsurePrinterIsRegisteredSubscriber.php on line 66
+[29-May-2025 16:29:54 America/Mexico_City] PHP Warning:  include(/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/voku/portable-ascii/src/voku/helper/data/ascii_by_languages.php): Failed to open stream: No such file or directory in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/voku/portable-ascii/src/voku/helper/ASCII.php on line 1371
+[29-May-2025 16:29:54 America/Mexico_City] PHP Warning:  include(): Failed opening '/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/voku/portable-ascii/src/voku/helper/data/ascii_by_languages.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/voku/portable-ascii/src/voku/helper/ASCII.php on line 1371
+[29-May-2025 16:29:54 America/Mexico_City] PHP Warning:  foreach() argument must be of type array|object, bool given in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/voku/portable-ascii/src/voku/helper/ASCII.php on line 444
+[29-May-2025 16:29:54 America/Mexico_City] PHP Warning:  Undefined array key "-" in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/voku/portable-ascii/src/voku/helper/ASCII.php on line 449
+[29-May-2025 16:29:54 America/Mexico_City] PHP Warning:  include(/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/../laravel/framework/src/Illuminate/Foundation/Http/Events/RequestHandled.php): Failed to open stream: No such file or directory in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php on line 576
+[29-May-2025 16:29:54 America/Mexico_City] PHP Warning:  include(): Failed opening '/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/../laravel/framework/src/Illuminate/Foundation/Http/Events/RequestHandled.php' for inclusion (include_path='.:/opt/cpanel/ea-php82/root/usr/share/pear') in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php on line 576
+[29-May-2025 16:29:54 America/Mexico_City] PHP Fatal error:  Uncaught Error: Class "Illuminate\Foundation\Http\Events\RequestHandled" not found in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php:152
+Stack trace:
+#0 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/public/index.php(51): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#1 {main}
+  thrown in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php on line 152
+[29-May-2025 22:34:31 UTC] PHP Fatal error:  During class fetch: Uncaught ErrorException: include(/home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/../laravel/framework/src/Illuminate/Database/Eloquent/Concerns/HasAttributes.php): Failed to open stream: No such file or directory in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php:576
+Stack trace:
+#0 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(255): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'include(/home3/...', '/home3/victora5...', 576)
+#1 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php(576): Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(2, 'include(/home3/...', '/home3/victora5...', 576)
+#2 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php(576): include('/home3/victora5...')
+#3 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}('/home3/victora5...')
+#4 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(27): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#5 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php(576): include('/home3/victora5...')
+#6 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}('/home3/victora5...')
+#7 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/laravel/framework/src/Illuminate/Database/DatabaseServiceProvider.php(41): Composer\Autoload\ClassLoader->loadClass('Illuminate\\Data...')
+#8 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(817): Illuminate\Database\DatabaseServiceProvider->register()
+#9 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(75): Illuminate\Foundation\Application->register(Object(Illuminate\Database\DatabaseServiceProvider))
+#10 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(794): Illuminate\Foundation\ProviderRepository->load(Array)
+#11 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#12 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(286): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap(Object(Illuminate\Foundation\Application))
+#13 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(186): Illuminate\Foundation\Application->bootstrapWith(Array)
+#14 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(170): Illuminate\Foundation\Http\Kernel->bootstrap()
+#15 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#16 /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/public/index.php(51): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#17 {main} in /home3/victora5/inmobiliaria.estudioalcalde.net/inmobiliaria/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php on line 27

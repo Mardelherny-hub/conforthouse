@@ -1,0 +1,22 @@
+{
+    "name": "Conforthouse Living",
+    "short_name": "Conforthouse",
+    "description": "Propiedades de lujo y servicios inmobiliarios exclusivos",
+    "icons": [
+        {
+            "src": "assets/images/favicons/favicon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/images/favicons/favicon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#FFC107",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "start_url": "/",
+    "scope": "/"
+}
