@@ -40,7 +40,7 @@
 <body class="font-sans text-gray-900 antialiased bg-gray-100">
 
     <!-- Header Navigation -->
-    <header class="relative w-full h-[400px] sm:h-[500px] bg-cover bg-center flex items-end pb-10">
+    <header class="relative w-full h-[400px] sm:h-[500px] lg:h-[750px] bg-cover bg-center flex items-end pb-10">
 
         <!-- Estructura principal del header con menú y contenido hero -->
         <div class="relative w-full h-full flex flex-col z-30">
@@ -51,10 +51,9 @@
             </div>
 
             <!-- Contenido del hero -->
-            <!-- Imagen de fondo aleatoria -->
                 <div
                 class="absolute inset-0 bg-cover bg-center"
-                style="background-image: url('{{ $backgroundImage ??  asset('assets/images/slides/slide1.webp') }}')"
+                style="background-image: url('{{ asset('assets/images/home/hero.webp') }}')"
             ></div>
 
             <!-- Overlay oscuro -->

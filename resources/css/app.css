@@ -102,67 +102,1071 @@
 /* ==========================================================================
    COMPONENTES BASE JAMESEDITION STYLE
    ========================================================================== */
+/* ==========================================================================
+   JAMES EDITION NAVIGATION STYLES
+   Clean, minimal, sophisticated aesthetic
+   ========================================================================== */
 
-/* Navegación Luxury */
-.luxury-nav {
-  background: rgba(0, 0, 0, 0.95) !important;
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(184, 115, 26, 0.1);
-  transition: var(--transition-base);
+/* Main Navigation Container */
+/* Main Navigation Container */
+.james-nav {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.5s ease-out;
 }
 
-.luxury-nav-scrolled {
-  background: rgba(0, 0, 0, 0.98);
-  box-shadow: var(--shadow-lg);
+/* Scrolled State - White Background */
+.james-nav-scrolled {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.nav-link-luxury {
-  position: relative;
-  color: var(--neutral-white);
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  font-size: 0.875rem;
-  transition: var(--transition-base);
-  padding: 0.75rem 1.25rem;
+.james-nav-scrolled .james-nav-link {
+    color: rgba(0, 0, 0, 0.8) !important;
 }
 
-.nav-link-luxury::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 50%;
-  background: var(--gradient-gold);
-  transition: var(--transition-base);
-  transform: translateX(-50%);
+.james-nav-scrolled .james-nav-link:hover,
+.james-nav-scrolled .james-nav-link.active {
+    color: #000000 !important;
 }
 
-.nav-link-luxury:hover,
-.nav-link-luxury.active {
-  color: var(--gold-400);
+.james-nav-scrolled .james-nav-link.active::after {
+    background: #000000 !important;
 }
 
-.nav-link-luxury:hover::after,
-.nav-link-luxury.active::after {
-  width: 80%;
+.james-nav-scrolled .james-lang-btn {
+    color: rgba(0, 0, 0, 0.7) !important;
 }
 
-/* Logo Style */
-.luxury-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.75rem;
-  font-weight: 600;
-  color: var(--gold-600);
-  letter-spacing: 0.05em;
-  transition: var(--transition-base);
+.james-nav-scrolled .james-lang-btn:hover {
+    color: #000000 !important;
+    background-color: rgba(0, 0, 0, 0.05) !important;
 }
 
-.luxury-logo:hover {
-  color: var(--gold-500);
-  text-shadow: 0 0 20px rgba(184, 115, 26, 0.3);
+.james-nav-scrolled .james-search-btn {
+    color: rgba(0, 0, 0, 0.7) !important;
+    border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.james-nav-scrolled .james-search-btn:hover {
+    color: #000000 !important;
+    border-color: rgba(0, 0, 0, 0.4) !important;
+    background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.james-nav-scrolled .james-login-btn {
+    color: rgba(0, 0, 0, 0.7) !important;
+    border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.james-nav-scrolled .james-login-btn:hover {
+    color: #000000 !important;
+    border-color: rgba(0, 0, 0, 0.4) !important;
+    background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.james-nav-scrolled .james-mobile-btn {
+    color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.james-nav-scrolled .james-mobile-btn:hover {
+    color: #000000 !important;
+}
+
+/* Scrolled State - White Background */
+.james-nav-scrolled {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.james-nav-scrolled .james-nav-link {
+    color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.james-nav-scrolled .james-nav-link:hover,
+.james-nav-scrolled .james-nav-link.active {
+    color: #000000 !important;
+}
+
+.james-nav-scrolled .james-nav-link.active::after {
+    background: #000000 !important;
+}
+
+.james-nav-scrolled .james-lang-btn {
+    color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.james-nav-scrolled .james-lang-btn:hover {
+    color: #000000 !important;
+    background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.james-nav-scrolled .james-search-btn {
+    color: rgba(0, 0, 0, 0.7) !important;
+    border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.james-nav-scrolled .james-search-btn:hover {
+    color: #000000 !important;
+    border-color: rgba(0, 0, 0, 0.4) !important;
+    background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.james-nav-scrolled .james-login-btn {
+    color: rgba(0, 0, 0, 0.7) !important;
+    border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.james-nav-scrolled .james-login-btn:hover {
+    color: #000000 !important;
+    border-color: rgba(0, 0, 0, 0.4) !important;
+    background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+.james-nav-scrolled .james-mobile-btn {
+    color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.james-nav-scrolled .james-mobile-btn:hover {
+    color: #000000 !important;
+}
+
+/* Logo Styles */
+.james-logo img {
+    filter: brightness(1.2);
+    transition: all 0.3s ease;
+}
+
+.james-logo:hover img {
+    filter: brightness(1.4);
+    transform: scale(1.02);
+}
+
+/* Navigation Links - James Edition Style */
+.james-nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    padding: 8px 0;
+    position: relative;
+}
+
+.james-nav-link:hover,
+.james-nav-link.active {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.james-nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #ffffff;
+}
+
+/* Dropdown Styles - Clean White Background */
+.james-dropdown-item {
+    display: block;
+    padding: 10px 16px;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    border: none;
+    background: none;
+}
+
+.james-dropdown-item:hover {
+    background-color: #f9fafb;
+    color: #111827;
+    text-decoration: none;
+}
+
+/* Language Button */
+.james-lang-btn {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    font-weight: 400;
+    padding: 6px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.james-lang-btn:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Search Button */
+.james-search-btn {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    font-weight: 400;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    background: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.james-search-btn:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Call-to-Action Button (Sell With Us) */
+.james-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: #1f2937;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.james-cta-btn:hover {
+    background-color: #374151;
+    color: #ffffff;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+/* Login Button */
+.james-login-btn {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    font-weight: 400;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    background: none;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.james-login-btn:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}
+
+/* Mobile Menu Button */
+.james-mobile-btn {
+    color: rgba(255, 255, 255, 0.9);
+    padding: 8px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.james-mobile-btn:hover {
+    color: #ffffff;
+}
+
+/* Mobile Menu Styles */
+.james-mobile-link {
+    display: block;
+    color: #374151;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 12px 0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.james-mobile-link:hover {
+    color: #111827;
+    text-decoration: none;
+}
+
+.james-mobile-sublink {
+    display: block;
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 8px 0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.james-mobile-sublink:hover {
+    color: #374151;
+    text-decoration: none;
+}
+
+/* Mobile Search Button */
+.james-mobile-search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    background: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    gap: 8px;
+}
+
+.james-mobile-search-btn:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+}
+
+/* Mobile CTA Button */
+.james-mobile-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #1f2937;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.james-mobile-cta-btn:hover {
+    background-color: #374151;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .james-nav-link {
+        font-size: 13px;
+    }
+    
+    .james-search-btn {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+    
+    .james-cta-btn,
+    .james-login-btn {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .james-nav {
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+}
+
+/* Smooth Transitions */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus States for Accessibility */
+.james-nav-link:focus,
+.james-search-btn:focus,
+.james-cta-btn:focus,
+.james-login-btn:focus,
+.james-lang-btn:focus,
+.james-mobile-btn:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Dropdown Shadow */
+.james-nav .relative > div[x-show] {
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Override any existing styles */
+.james-nav .james-nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.02em !important;
+    text-transform: none !important;
+}
+
+.james-nav .james-nav-link:hover {
+    color: #ffffff !important;
+}
+
+/* Clean up any conflicting styles */
+.james-nav button,
+.james-nav a {
+    border: none;
+    background: none;
+    text-decoration: none;
+}
+
+.james-nav button:focus,
+.james-nav a:focus {
+    outline: none;
+}
+
+/* Ensure proper z-index layering */
+.james-nav {
+    z-index: 50;
+}
+
+.james-nav .relative > div {
+    z-index: 60;
+}
+
+/* ==========================================================================
+   JAMES EDITION HOME PAGE STYLES
+   Clean, minimal, sophisticated design
+   ========================================================================== */
+
+/* Hero Section */
+.james-hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+
+.james-hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.james-hero-background img {
+    filter: brightness(0.6);
+}
+
+.james-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%);
+    z-index: 2;
+}
+
+.james-hero-content {
+    position: relative;
+    z-index: 3;
+    color: white;
+    text-align: center;
+}
+
+.james-hero-title {
+    font-size: 4.5rem;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.02em;
+}
+
+.james-hero-title-accent {
+    font-weight: 400;
+    display: block;
+}
+
+.james-hero-subtitle {
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 2rem;
+}
+
+.james-stat {
+    text-align: center;
+}
+
+.james-stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 300;
+    font-family: 'Playfair Display', Georgia, serif;
+    margin-bottom: 0.5rem;
+}
+
+.james-stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.8;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Categories Navigation */
+.james-categories {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0;
+}
+
+.james-categories-grid {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+}
+
+.james-category-item {
+    flex-shrink: 0;
+    border-right: 1px solid #e5e7eb;
+}
+
+.james-category-item:last-child {
+    border-right: none;
+}
+
+.james-category-item.active {
+    background: #f9fafb;
+}
+
+.james-category-link {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    text-decoration: none;
+    color: #374151;
+    transition: all 0.2s ease;
+    min-width: 140px;
+}
+
+.james-category-link:hover {
+    background: #f9fafb;
+    text-decoration: none;
+    color: #111827;
+}
+
+.james-category-name {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-category-count {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Featured Property */
+.james-featured {
+    background: white;
+    padding: 4rem 0;
+}
+
+.james-featured-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.james-featured-image {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+}
+
+.james-featured-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: white;
+    color: #111827;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: 'Inter', sans-serif;
+    z-index: 2;
+}
+
+.james-featured-content {
+    max-width: 500px;
+}
+
+.james-featured-location {
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-featured-title {
+    font-size: 2rem;
+    font-weight: 300;
+    color: #111827;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+.james-featured-price {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-featured-specs {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-spec-separator {
+    opacity: 0.5;
+}
+
+.james-featured-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4b5563;
+    margin-bottom: 2rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-featured-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Properties Grid */
+.james-properties {
+    background: #f9fafb;
+    padding: 4rem 0;
+}
+
+.james-section-header {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.james-section-title {
+    font-size: 2rem;
+    font-weight: 300;
+    color: #111827;
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+.james-view-all {
+    font-size: 0.875rem;
+    color: #374151;
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    transition: color 0.2s ease;
+}
+
+.james-view-all:hover {
+    color: #111827;
+    text-decoration: none;
+}
+
+.james-properties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.james-property-card {
+    background: white;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.james-property-card:hover {
+    border-color: #e5e7eb;
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.james-property-image {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+}
+
+.james-property-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.james-property-card:hover .james-property-image img {
+    transform: scale(1.05);
+}
+
+.james-property-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: 'Inter', sans-serif;
+    z-index: 2;
+}
+
+.james-property-badge.featured {
+    background: #111827;
+    color: white;
+}
+
+.james-property-badge.new {
+    background: white;
+    color: #111827;
+}
+
+.james-property-content {
+    padding: 1.5rem;
+}
+
+.james-property-location {
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-property-title {
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: #111827;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+.james-property-specs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-property-price {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-property-link {
+    font-size: 0.875rem;
+    color: #374151;
+    text-decoration: none;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    transition: color 0.2s ease;
+}
+
+.james-property-link:hover {
+    color: #111827;
+    text-decoration: none;
+}
+
+/* Services Section */
+.james-services {
+    background: white;
+    padding: 4rem 0;
+}
+
+.james-services-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.james-services-title {
+    font-size: 2rem;
+    font-weight: 300;
+    color: #111827;
+    margin-bottom: 1.5rem;
+    font-family: 'Playfair Display', Georgia, serif;
+}
+
+.james-services-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4b5563;
+    margin-bottom: 2rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-services-list {
+    margin-bottom: 2rem;
+}
+
+.james-service-item {
+    margin-bottom: 1.5rem;
+}
+
+.james-service-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 0.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-service-description {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.5;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-services-image {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+}
+
+/* Contact CTA */
+.james-cta {
+    background: #f9fafb;
+    padding: 4rem 0;
+}
+
+.james-cta-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #111827;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1.2;
+}
+
+.james-cta-description {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #4b5563;
+    margin-bottom: 2rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Buttons */
+.james-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    background: #111827;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid #111827;
+}
+
+.james-btn-primary:hover {
+    background: #374151;
+    color: white;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.james-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    color: #111827;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid #d1d5db;
+}
+
+.james-btn-secondary:hover {
+    background: #f9fafb;
+    color: #111827;
+    text-decoration: none;
+    border-color: #9ca3af;
+}
+
+.james-btn-outline {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    color: #374151;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid #d1d5db;
+}
+
+.james-btn-outline:hover {
+    background: white;
+    color: #111827;
+    text-decoration: none;
+    border-color: #9ca3af;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .james-hero-title {
+        font-size: 3.5rem;
+    }
+    
+    .james-hero-stats {
+        gap: 2rem;
+    }
+    
+    .james-featured-container,
+    .james-services-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .james-categories-grid {
+        overflow-x: scroll;
+    }
+}
+
+@media (max-width: 768px) {
+    .james-hero {
+        height: 80vh;
+    }
+    
+    .james-hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .james-hero-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .james-properties-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .james-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .james-cta-title {
+        font-size: 2rem;
+    }
+    
+    .james-cta-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .james-category-link {
+        min-width: 120px;
+        padding: 1rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .james-hero-title {
+        font-size: 2rem;
+    }
+    
+    .james-hero-subtitle {
+        font-size: 0.75rem;
+    }
+    
+    .james-featured-actions,
+    .james-cta-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .james-btn-primary,
+    .james-btn-secondary,
+    .james-btn-outline {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 /* ==========================================================================

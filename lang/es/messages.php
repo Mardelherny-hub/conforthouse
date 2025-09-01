@@ -160,6 +160,7 @@ return [
     'search_button' => 'Buscar',
     'clear_button' => 'Limpiar',
 
+
     //resultados filtros y buscador
     'filtered_results' => 'Resultados de la búsqueda',
     'operation' => 'Operación',
@@ -492,6 +493,11 @@ return [
 'luxury_apartments' => 'Apartamentos de lujo',
 'penthouses' => 'Penthouses',
 'premium_properties' => 'Propiedades premium',
+
+'buscar' => 'Buscar',
+
+'inicio' => 'Inicio',
+'todas_propiedades' => 'Propiedades',
 
 ];
 
