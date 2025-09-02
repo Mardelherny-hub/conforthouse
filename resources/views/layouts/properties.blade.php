@@ -37,28 +37,17 @@
 
 </head>
 
-<body class="font-sans text-gray-900 antialiased bg-gray-100">
-
+<body class="font-sans text-gray-900 antialiased bg-white">
     <!-- Header Navigation -->
-    <header class="relative w-full h-[400px] sm:h-[500px] lg:h-[750px] bg-cover bg-center flex items-end pb-10">
+    <header class="relative w-full h-[80px] bg-white border-b border-gray-100">
 
-        <!-- Estructura principal del header con menú y contenido hero -->
-        <div class="relative w-full h-full flex flex-col z-30">
-            <!-- Menú de navegación -->
-            <!-- Container para el nav que ocupa todo el ancho -->
-            <div class="absolute top-0 left-0 right-0 z-50">
+        <!-- Estructura principal del header con solo navegación -->
+        <div class="relative w-full h-full flex items-center z-30">
+            <!-- Solo navegación -->
+            <div class="w-full">
                 <x-navigation />
             </div>
-
-            <!-- Contenido del hero -->
-                <div
-                class="absolute inset-0 bg-cover bg-center"
-                style="background-image: url('{{ asset('assets/images/home/hero.webp') }}')"
-            ></div>
-
-            <!-- Overlay oscuro -->
-            <div class="absolute inset-0 bg-black/50"></div>
-
+        </div>
     </header>
 
 
@@ -71,10 +60,7 @@
 
         <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
     </main>
-    </section>
-    </div>
-    </div>
-
+    
     <!-- Antes de </body> -->
     <x-search-modal :operations="$operations ?? collect()" :property-types="$propertyTypes ?? collect()" />
 

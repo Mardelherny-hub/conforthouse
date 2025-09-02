@@ -499,5 +499,8 @@ return [
 'inicio' => 'Inicio',
 'todas_propiedades' => 'Propiedades',
 
+'footer_description' => 'Luxury real estate specialists in premium properties...',
+'footer_quick_links' => 'Quick Links',
+
 ];
 

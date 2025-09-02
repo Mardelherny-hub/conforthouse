@@ -1,5 +1,5 @@
 <!-- resources/views/components/search-modal.blade.php -->
-@props(['operations' => collect(), 'propertyTypes' => collect()])
+@props(['types' => collect(), 'operations' => collect()])
 
 <div x-data="{ 
     searchOpen: false,
@@ -22,7 +22,7 @@ class="relative z-50">
          x-transition:leave="transition ease-in duration-200"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
-         class="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm z-40"
+         class="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm z-40"
          @click="searchOpen = false">
     </div>
 
@@ -36,21 +36,17 @@ class="relative z-50">
          x-transition:leave-end="opacity-0 scale-95 -translate-y-4"
          class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl mx-4 z-50">
 
-        <div class="bg-white rounded-lg shadow-luxury overflow-hidden">
-            <!-- Header -->
-            <div class="bg-luxury-gradient p-6">
+        <div class="bg-white shadow-2xl overflow-hidden">
+            
+            <!-- Header - Minimal James Edition Style -->
+            <div class="px-8 py-6 border-b border-gray-100">
                 <div class="flex items-center justify-between">
-                    <div>
-                        <h3 class="text-xl font-luxury font-semibold text-white">
-                            {{ __('messages.search_properties') }}
-                        </h3>
-                        <p class="text-white/90 text-sm mt-1">
-                            {{ __('messages.find_your_dream_property') }}
-                        </p>
-                    </div>
+                    <h3 class="text-xl font-body font-medium text-gray-900">
+                        Search Properties
+                    </h3>
                     <button @click="searchOpen = false"
-                            class="text-white/80 hover:text-white transition-colors duration-200 p-1">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            class="text-gray-400 hover:text-gray-600 transition-colors duration-200 p-1">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                     </button>
@@ -58,35 +54,35 @@ class="relative z-50">
             </div>
 
             <!-- Search Form -->
-            <div class="p-6">
-                <form action="{{ route('properties.index', ['locale' => app()->getLocale()]) }}" method="GET" class="space-y-6">
+            <div class="p-8">
+                <form action="{{ route('properties.index', ['locale' => app()->getLocale()]) }}" method="GET" class="space-y-8">
                     
                     <!-- Main Search Bar -->
                     <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg class="h-5 w-5 text-gold-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                            </svg>
-                        </div>
                         <input type="text" 
                                name="search" 
                                x-model="searchQuery"
-                               class="w-full pl-10 pr-4 py-4 border-2 border-neutral-200 rounded-lg focus:border-gold-500 focus:ring-0 text-lg placeholder-neutral-500 font-body"
-                               placeholder="{{ __('messages.search_property_placeholder') }}">
+                               class="w-full px-4 py-4 text-lg border border-gray-200 hover:border-gray-300 focus:border-gray-900 focus:ring-0 transition-colors duration-200 font-body placeholder-gray-500"
+                               placeholder="{{ __('messages.que_esta_bunscando') }}">
+                        <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
                     </div>
 
                     <!-- Filter Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         
                         <!-- Operation Type -->
                         <div class="space-y-2">
-                            <label class="block text-sm font-medium text-neutral-700 font-body">
-                                {{ __('messages.operation') }}
+                            <label class="block text-sm font-body font-medium text-gray-700">
+                                {{ __('messages.Operación') }}
                             </label>
                             <select name="operation_id" 
                                     x-model="selectedOperation"
-                                    class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:border-gold-500 focus:ring-0 font-body">
-                                <option value="">{{ __('messages.all_operations') }}</option>
+                                    class="w-full px-4 py-3 border border-gray-200 hover:border-gray-300 focus:border-gray-900 focus:ring-0 transition-colors duration-200 font-body bg-white">
+                                <option value="">All Operations</option>
                                 @foreach($operations as $operation)
                                     <option value="{{ $operation->id }}">{{ $operation->name }}</option>
                                 @endforeach
@@ -95,14 +91,14 @@ class="relative z-50">
 
                         <!-- Property Type -->
                         <div class="space-y-2">
-                            <label class="block text-sm font-medium text-neutral-700 font-body">
-                                {{ __('messages.property_type') }}
+                            <label class="block text-sm font-body font-medium text-gray-700">
+                                {{ __('messages.tipo_de_propiedad') }}
                             </label>
                             <select name="type_id" 
                                     x-model="selectedType"
-                                    class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:border-gold-500 focus:ring-0 font-body">
-                                <option value="">{{ __('messages.all_types') }}</option>
-                                @foreach($propertyTypes as $type)
+                                    class="w-full px-4 py-3 border border-gray-200 hover:border-gray-300 focus:border-gray-900 focus:ring-0 transition-colors duration-200 font-body bg-white">
+                                <option value="">All Types</option>
+                                @foreach($types as $type)
                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
                                 @endforeach
                             </select>
@@ -110,13 +106,13 @@ class="relative z-50">
 
                         <!-- Bedrooms -->
                         <div class="space-y-2">
-                            <label class="block text-sm font-medium text-neutral-700 font-body">
-                                {{ __('messages.bedrooms') }}
+                            <label class="block text-sm font-body font-medium text-gray-700">
+                                Bedrooms
                             </label>
                             <select name="rooms" 
                                     x-model="rooms"
-                                    class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:border-gold-500 focus:ring-0 font-body">
-                                <option value="">{{ __('messages.any') }}</option>
+                                    class="w-full px-4 py-3 border border-gray-200 hover:border-gray-300 focus:border-gray-900 focus:ring-0 transition-colors duration-200 font-body bg-white">
+                                <option value="">Any</option>
                                 <option value="1">1+</option>
                                 <option value="2">2+</option>
                                 <option value="3">3+</option>
@@ -127,13 +123,13 @@ class="relative z-50">
 
                         <!-- Bathrooms -->
                         <div class="space-y-2">
-                            <label class="block text-sm font-medium text-neutral-700 font-body">
-                                {{ __('messages.bathrooms') }}
+                            <label class="block text-sm font-body font-medium text-gray-700">
+                                Bathrooms
                             </label>
                             <select name="bathrooms" 
                                     x-model="bathrooms"
-                                    class="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:border-gold-500 focus:ring-0 font-body">
-                                <option value="">{{ __('messages.any') }}</option>
+                                    class="w-full px-4 py-3 border border-gray-200 hover:border-gray-300 focus:border-gray-900 focus:ring-0 transition-colors duration-200 font-body bg-white">
+                                <option value="">Any</option>
                                 <option value="1">1+</option>
                                 <option value="2">2+</option>
                                 <option value="3">3+</option>
@@ -144,34 +140,34 @@ class="relative z-50">
 
                     <!-- Price Range -->
                     <div class="space-y-4">
-                        <label class="block text-sm font-medium text-neutral-700 font-body">
-                            {{ __('messages.price_range') }}
+                        <label class="block text-sm font-body font-medium text-gray-700">
+                            Price Range
                         </label>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="relative">
-                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-500">€</span>
+                                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">€</span>
                                 <input type="number" 
                                        name="min_price" 
                                        x-model="minPrice"
-                                       class="w-full pl-8 pr-4 py-3 border border-neutral-300 rounded-lg focus:border-gold-500 focus:ring-0 font-body"
-                                       placeholder="{{ __('messages.min_price') }}">
+                                       class="w-full pl-8 pr-4 py-3 border border-gray-200 hover:border-gray-300 focus:border-gray-900 focus:ring-0 transition-colors duration-200 font-body"
+                                       placeholder="Min price">
                             </div>
                             <div class="relative">
-                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-500">€</span>
+                                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">€</span>
                                 <input type="number" 
                                        name="max_price" 
                                        x-model="maxPrice"
-                                       class="w-full pl-8 pr-4 py-3 border border-neutral-300 rounded-lg focus:border-gold-500 focus:ring-0 font-body"
-                                       placeholder="{{ __('messages.max_price') }}">
+                                       class="w-full pl-8 pr-4 py-3 border border-gray-200 hover:border-gray-300 focus:border-gray-900 focus:ring-0 transition-colors duration-200 font-body"
+                                       placeholder="Max price">
                             </div>
                         </div>
                     </div>
 
                     <!-- Action Buttons -->
-                    <div class="flex flex-col sm:flex-row gap-4 pt-4 border-t border-neutral-200">
+                    <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-100">
                         <button type="submit" 
-                                class="btn-luxury-primary flex-1 flex items-center justify-center space-x-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                class="james-btn-primary flex-1 flex items-center justify-center space-x-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                             </svg>
                             <span>{{ __('messages.search_button') }}</span>
@@ -179,8 +175,8 @@ class="relative z-50">
                         
                         <button type="button" 
                                 @click="searchQuery = ''; selectedOperation = ''; selectedType = ''; minPrice = ''; maxPrice = ''; rooms = ''; bathrooms = ''"
-                                class="btn-luxury-secondary flex-1 flex items-center justify-center space-x-2">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                class="james-btn-secondary flex-1 flex items-center justify-center space-x-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                             </svg>
                             <span>{{ __('messages.clear_button') }}</span>
@@ -188,30 +184,30 @@ class="relative z-50">
                     </div>
 
                     <!-- Popular Searches -->
-                    <div class="pt-4 border-t border-neutral-100">
-                        <p class="text-sm font-medium text-neutral-700 mb-3 font-body">
-                            {{ __('messages.popular_searches') }}
+                    <div class="pt-6 border-t border-gray-50">
+                        <p class="text-sm font-body font-medium text-gray-700 mb-4">
+                            Popular Searches
                         </p>
-                        <div class="flex flex-wrap gap-2">
+                        <div class="flex flex-wrap gap-3">
                             <button type="button" 
-                                    @click="searchQuery = 'villa'; selectedType = '3'"
-                                    class="px-3 py-1 text-xs bg-gold-100 text-gold-800 rounded-full hover:bg-gold-200 transition-colors duration-200 font-body">
-                                {{ __('messages.luxury_villas') }}
+                                    @click="searchQuery = 'villa'"
+                                    class="px-4 py-2 text-sm bg-gray-50 text-gray-700 hover:bg-gray-100 transition-colors duration-200 font-body border border-gray-200">
+                                Luxury Villas
                             </button>
                             <button type="button" 
-                                    @click="searchQuery = 'apartment'; selectedType = '2'"
-                                    class="px-3 py-1 text-xs bg-gold-100 text-gold-800 rounded-full hover:bg-gold-200 transition-colors duration-200 font-body">
-                                {{ __('messages.luxury_apartments') }}
+                                    @click="searchQuery = 'apartment'"
+                                    class="px-4 py-2 text-sm bg-gray-50 text-gray-700 hover:bg-gray-100 transition-colors duration-200 font-body border border-gray-200">
+                                Premium Apartments
                             </button>
                             <button type="button" 
                                     @click="searchQuery = 'penthouse'"
-                                    class="px-3 py-1 text-xs bg-gold-100 text-gold-800 rounded-full hover:bg-gold-200 transition-colors duration-200 font-body">
-                                {{ __('messages.penthouses') }}
+                                    class="px-4 py-2 text-sm bg-gray-50 text-gray-700 hover:bg-gray-100 transition-colors duration-200 font-body border border-gray-200">
+                                Penthouses
                             </button>
                             <button type="button" 
                                     @click="minPrice = '1000000'"
-                                    class="px-3 py-1 text-xs bg-champagne-100 text-champagne-800 rounded-full hover:bg-champagne-200 transition-colors duration-200 font-body">
-                                {{ __('messages.premium_properties') }}
+                                    class="px-4 py-2 text-sm bg-gray-50 text-gray-700 hover:bg-gray-100 transition-colors duration-200 font-body border border-gray-200">
+                                €1M+ Properties
                             </button>
                         </div>
                     </div>
@@ -220,4 +216,3 @@ class="relative z-50">
         </div>
     </div>
 </div>
-

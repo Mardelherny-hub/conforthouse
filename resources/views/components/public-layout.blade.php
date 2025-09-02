@@ -71,9 +71,6 @@
 
         <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
     </main>
-    </section>
-    </div>
-    </div>
 
     <!-- Antes de </body> -->
     <x-search-modal :operations="$operations ?? collect()" :property-types="$propertyTypes ?? collect()" />

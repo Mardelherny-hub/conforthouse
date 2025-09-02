@@ -139,13 +139,12 @@
                 </div>
                 
                 <!-- Search Button -->
-                <button x-data x-on:click="$dispatch('open-search')" 
-                        class="james-search-btn">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" 
-                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                <!-- En navigation.blade.php, dentro del menú desktop -->
+                <button @click="$dispatch('open-search')" class="james-search-btn font-body">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
-                    <span class="ml-2 text-sm">{{ __('messages.buscar') }}</span>
+                    Search
                 </button>
 
                 <!-- Sell With Us Button (James Edition Style) 
@@ -235,7 +234,7 @@
                 <a href="#contacto" class="james-mobile-link">{{ __('messages.contacto') }}</a>
 
                 <!-- Mobile Actions -->
-                <div class="pt-4 mt-6 border-t border-gray-100 space-y-3">
+                 <div class="pt-4 mt-6 border-t border-gray-100 space-y-3">
                     <button x-data x-on:click="$dispatch('open-search')" 
                             class="james-mobile-search-btn">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2">
@@ -245,10 +244,10 @@
                         <span>{{ __('messages.buscar') }}</span>
                     </button>
                     
-                    <a href="#" class="james-mobile-cta-btn">
-                        Sell With Us
-                    </a>
-                </div>
+                {{--    <a href="#" class="james-mobile-cta-btn">
+                        Sell With Ussss
+                    </a>{{-- --}} --}}
+                </div> 
             </div>
         </div>
     </div>
