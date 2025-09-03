@@ -1,5 +1,5 @@
 <!-- Floating Contact Buttons -->
-<div class="fixed bottom-8 right-8 z-50">
+{{-- <div class="fixed bottom-8 right-8 z-50">
     <!-- WhatsApp Button -->
     <div class="relative group">
         <!-- Main Button -->
@@ -25,10 +25,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <!-- Call Button (alternative option) -->
-<div class="fixed bottom-8 left-8 z-50 hidden lg:block">
+{{-- <div class="fixed bottom-8 left-8 z-50 hidden lg:block">
     <div class="relative group">
         <!-- Main Button -->
         <a href="tel:+5491123456789" 
@@ -49,7 +49,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <!-- Back to Top Button -->
 <div class="fixed bottom-32 right-8 z-40" id="backToTop" style="display: none;">

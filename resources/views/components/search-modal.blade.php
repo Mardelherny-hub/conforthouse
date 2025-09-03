@@ -12,6 +12,8 @@
     bathrooms: ''
 }"
 x-on:open-search.window="searchOpen = true"
+@keydown.escape.window="if (searchOpen) { searchOpen = false }"
+x-cloak
 class="relative z-50">
 
     <!-- Modal Backdrop -->

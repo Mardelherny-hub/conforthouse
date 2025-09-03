@@ -1,57 +1,66 @@
 <x-public-layout>
    
 
-    <!-- Category Navigation -->
-    <section class="james-categories">
-        <div class="max-w-7xl mx-auto">
-            <div class="james-categories-grid">
-                
-                <!-- Real Estate -->
-                <div class="james-category-item active">
-                    <a href="{{ route('properties.index', ['locale' => app()->getLocale()]) }}" 
-                       class="james-category-link">
-                        <span class="james-category-name font-body">{{ __('messages.propiedades') }}</span>
-                        <span class="james-category-count font-body">152 listings</span>
-                    </a>
-                </div>
-                
-                <!-- Homes -->
-                <div class="james-category-item">
-                    <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'type_id' => 1]) }}" 
-                       class="james-category-link">
-                        <span class="james-category-name font-body">{{ __('messages.Residencias') }}</span>
-                        <span class="james-category-count font-body">87 listings</span>
-                    </a>
-                </div>
-                
-                <!-- Apartments -->
-                <div class="james-category-item">
-                    <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'type_id' => 2]) }}" 
-                       class="james-category-link">
-                        <span class="james-category-name font-body">{{ __('messages.Apartamentos') }}</span>
-                        <span class="james-category-count font-body">234 listings</span>
-                    </a>
-                </div>
-                
-                <!-- Villas -->
-                <div class="james-category-item">
-                    <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'type_id' => 3]) }}" 
-                       class="james-category-link">
-                        <span class="james-category-name font-body">{{ __('messages.Villas') }}</span>
-                        <span class="james-category-count font-body">65 listings</span>
-                    </a>
-                </div>
-                
-                <!-- Services -->
-                <div class="james-category-item">
-                    <a href="#servicios" class="james-category-link">
-                        <span class="james-category-name font-body">{{ __('messages.servicios') }}</span>
-                    </a>
-                </div>
-                
+   <!-- Category Section -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="james-section-header">
+                <h2 class="james-section-title font-luxury mr-4">Nuestras Categorías Premium</h2>
+                <a href="{{ route('properties.index', ['locale' => app()->getLocale()]) }}"
+                   class="james-view-all font-body">Explora nuestra selección de propiedades exclusivas para encontrar tu próximo hogar ideal</a>
             </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- Residencias -->
+      <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'type_id' => 1]) }}" class="category-card">
+        <img src="{{ asset('assets/images/home/cat_homes.jpg') }}" alt="Residencias" class="category-card__img">
+        <div class="category-card__overlay"></div>
+        
+        <div class="category-card__content">
+          <h3 class="category-card__title font-luxury">Residencias</h3>
+          <span class="category-card__cta font-body">
+            Ver propiedades
+            <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </span>
         </div>
-    </section>
+      </a>
+
+      <!-- Apartamentos -->
+      <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'type_id' => 2]) }}" class="category-card">
+        <img src="{{ asset('assets/images/home/cat_apartments.jpg') }}" alt="Apartamentos" class="category-card__img">
+        <div class="category-card__overlay"></div>
+        
+        <div class="category-card__content">
+          <h3 class="category-card__title font-luxury">Apartamentos</h3>
+          <span class="category-card__cta font-body">
+            Ver propiedades
+            <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Villas -->
+      <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'type_id' => 3]) }}" class="category-card">
+        <img src="{{ asset('assets/images/home/cat_villas.png') }}" alt="Villas" class="category-card__img">
+        <div class="category-card__overlay"></div>
+        <div class="category-card__content">
+          <h3 class="category-card__title font-luxury">Villas</h3>
+          <span class="category-card__cta font-body">
+            Ver propiedades
+            <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
 
     <!-- Featured Property -->
     @if ($featuredProperty)
@@ -123,7 +132,7 @@
         <div class="max-w-7xl mx-auto px-6">
             
             <div class="james-section-header">
-                <h2 class="james-section-title font-luxury">Recent Listings</h2>
+                <h2 class="james-section-title font-luxury mr-4">Recent Listings</h2>
                 <a href="{{ route('properties.index', ['locale' => app()->getLocale()]) }}"
                    class="james-view-all font-body">View All Properties</a>
             </div>

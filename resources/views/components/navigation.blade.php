@@ -18,7 +18,11 @@
             <div class="flex-shrink-0">
                 <a href="{{ route('home', ['locale' => app()->getLocale()]) }}" 
                    class="james-logo flex items-center group transition-all duration-300">
-                   <img src="{{ asset('assets/images/logo/conforthouse-logo-0-40.webp') }}" 
+                   <img x-show="!scrolled" src="{{ asset('assets/images/logo/conforthouse-logo-0-40.webp') }}" 
+                        :style="scrolled ? 'height: 28px;' : 'height: 32px;'"
+                        class="transition-all duration-500 ease-out brightness-110 group-hover:brightness-125"
+                        alt="Conforthouse Living">
+                   <img x-show="scrolled" src="{{ asset('assets/images/logo/conforthouse-logo-1-40.webp') }}" 
                         :style="scrolled ? 'height: 28px;' : 'height: 32px;'"
                         class="transition-all duration-500 ease-out brightness-110 group-hover:brightness-125"
                         alt="Conforthouse Living">
@@ -36,7 +40,7 @@
 
                 <!-- Properties Dropdown -->
                 <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                    <button class="james-nav-link flex items-center space-x-1 group">
+                    <button class="james-nav-link flex items-center space-x-1 group {{ request()->routeIs('properties.*') ? 'active' : '' }}">
                         <span>{{ __('messages.propiedades') }}</span>
                         <svg class="w-3 h-3 transition-transform duration-200" 
                              :class="{ 'rotate-180': open }" 
@@ -86,17 +90,25 @@
                 </div>
 
                 <!-- Other Navigation Links -->
-                <a href="#servicios" class="james-nav-link">{{ __('messages.servicios') }}</a>
-                <a href="#nosotros" class="james-nav-link">{{ __('messages.about_us') }}</a>
-                <a href="#contacto" class="james-nav-link">{{ __('messages.contacto') }}</a>
+                <a href="{{ route('services', ['locale' => app()->getLocale()]) }}" 
+                   class="james-nav-link {{ request()->routeIs('services') ? 'active' : '' }}">
+                    {{ __('messages.servicios') }}
+                </a>
+                <a href="#nosotros" 
+                    class="james-nav-link">
+                    {{ __('messages.about_us') }}
+                </a>
+                <a href="#contacto" 
+                    class="james-nav-link">
+                    {{ __('messages.contacto') }}
+                </a>
             </div>
 
             <!-- Right Side Actions -->
-            <div class="hidden lg:flex items-center space-x-6">
-                
+            <div class="hidden lg:flex items-center space-x-6">                
                 <!-- Language Selector -->
                 <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                    <button class="james-lang-btn flex items-center space-x-2">
+                    <button class="james-nav-link flex items-center space-x-2">
                         <img src="{{ asset('assets/images/flags/4x3/' . app()->getLocale() . '.svg') }}"
                              alt="{{ app()->getLocale() }}" 
                              class="w-4 h-3 rounded-sm">
@@ -127,7 +139,7 @@
                             ] as $locale => $lang)
                                 <a href="{{ route(Route::currentRouteName(), ['locale' => $locale] + Route::current()->parameters()) }}"
                                    class="flex items-center px-4 py-2 text-sm hover:bg-gray-50
-                                          {{ app()->getLocale() == $locale ? 'text-gray-900 bg-gray-50' : 'text-gray-700' }}
+                                          {{ app()->getLocale() == $locale ? 'text-white bg-gray-50' : 'text-gray-500' }}
                                           transition-colors duration-150">
                                     <img src="{{ asset('assets/images/flags/4x3/' . $lang['flag'] . '.svg') }}" 
                                          alt="{{ $lang['alt'] }}" class="w-4 h-3 mr-3 rounded-sm">
@@ -140,7 +152,7 @@
                 
                 <!-- Search Button -->
                 <!-- En navigation.blade.php, dentro del menú desktop -->
-                <button @click="$dispatch('open-search')" class="james-search-btn font-body">
+                <button @click.prevent="$dispatch('open-search')" class="james-search-btn font-body">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
@@ -153,13 +165,13 @@
                 </a>-->
 
                 <!-- Login Button -->
-                <a href="#" class="james-login-btn">
+               {{--  <a href="#" class="james-login-btn">
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" 
                               d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                     </svg>
                     Log in
-                </a>
+                </a> --}}
             </div>
 
             <!-- Mobile Menu Button -->
@@ -235,8 +247,8 @@
 
                 <!-- Mobile Actions -->
                  <div class="pt-4 mt-6 border-t border-gray-100 space-y-3">
-                    <button x-data x-on:click="$dispatch('open-search')" 
-                            class="james-mobile-search-btn">
+                    <button x-data @click.prevent="$dispatch('open-search')" 
+                            class="james-mobile-search-btn"><button x-data @click.prevent="$dispatch('open-search')" 
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" 
                                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>

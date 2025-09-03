@@ -29,7 +29,7 @@
 
     <!-- Importación de fuentes y estilos base de lujo -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400&display=swap'"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400&display=swap"
         rel="stylesheet">
 
 
@@ -50,14 +50,66 @@
                 <x-navigation />
             </div>
 
-            <!-- Contenido del hero -->
-                <div
-                class="absolute inset-0 bg-cover bg-center"
-                style="background-image: url('{{ asset('assets/images/home/hero.webp') }}')"
-            ></div>
+            <!-- Carrusel de imágenes -->
+        <!-- Carrusel de imágenes -->
+       
+        <div x-data="carousel()" x-init="init()" class="relative w-full h-full" @keydown.arrow-right="currentSlide = (currentSlide + 1) % slides.length" @keydown.arrow-left="currentSlide = (currentSlide - 1 + slides.length) % slides.length" tabindex="0" aria-roledescription="carousel">
 
-            <!-- Overlay oscuro -->
-            <div class="absolute inset-0 bg-black/50"></div>
+            
+            <!-- Slide 1 -->
+            <div x-show="currentSlide === 0" 
+                :aria-hidden="currentSlide !== 0"
+                x-transition:enter="transition-opacity duration-1000"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity duration-1000"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="absolute inset-0 bg-cover bg-center brightness-110 contrast-105"
+                style="background-image: url('{{ asset('assets/images/home/hero.webp') }}')">
+            </div>
+            
+            <!-- Slide 2 -->
+            <div x-show="currentSlide === 1" 
+                x-transition:enter="transition-opacity duration-1000"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity duration-1000"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="absolute inset-0 bg-cover bg-center brightness-110 contrast-105"
+                style="background-image: url('{{ asset('assets/images/home/hero-2.webp') }}')">
+            </div>
+            
+            <!-- Slide 3 -->
+            <div x-show="currentSlide === 2" 
+                x-transition:enter="transition-opacity duration-1000"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity duration-1000"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="absolute inset-0 bg-cover bg-center brightness-110 contrast-105"
+                style="background-image: url('{{ asset('assets/images/home/hero-3.webp') }}')">
+            </div>
+            
+            <!-- Overlay mínimo para legibilidad -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+            
+            <!-- Indicadores del carrusel -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-40">
+                <template x-for="(slide, index) in slides" :key="index">
+                    <button
+                    @click="currentSlide = index"
+                    :aria-current="currentSlide === index"
+                    :aria-label="`Ir al slide ${index + 1}`"
+                    :class="currentSlide === index ? 'bg-white' : 'bg-white/40'"
+                    class="w-2 h-2 rounded-full transition-all duration-300 hover:bg-white/70">
+                    </button>
+
+                </template>
+            </div>
+        </div>
 
     </header>
 
@@ -71,14 +123,25 @@
 
         <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
     </main>
-    </section>
-    </div>
-    </div>
+    
 
     <!-- Antes de </body> -->
     <x-search-modal :operations="$operations ?? collect()" :property-types="$propertyTypes ?? collect()" />
 
     <!-- JavaScript Links -->
+      <script>
+    function carousel() {
+        return {
+            currentSlide: 0,
+            slides: [0, 1, 2],
+            init() {
+                setInterval(() => {
+                    this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+                }, 6000);
+            }
+        }
+    }
+    </script>
 </body>
 
 </html>
