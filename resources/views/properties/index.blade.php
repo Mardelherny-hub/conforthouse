@@ -1,116 +1,5 @@
 <x-properties-layout>
-    <!-- Search Filters Section -->
-    <section class="bg-white border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-6 py-8">
-            <!-- Page Header -->
-            <div class="mb-8">
-                <h1 class="james-section-title font-luxury text-center mb-4">
-                    {{ __('messages.exclusive_properties') }}
-                </h1>
-                <p class="text-center text-gray-600 font-body max-w-2xl mx-auto">
-                    Discover exceptional properties in the world's most desirable locations
-                </p>
-            </div>
-
-            <!-- Advanced Filters -->
-            <form action="{{ route('properties.index', ['locale' => app()->getLocale()]) }}" method="GET"
-                class="james-search-form">
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-                    <!-- Property Type -->
-                    <div class="james-filter-group">
-                        <label class="james-filter-label font-body">Property Type</label>
-                        <select id="type_id" name="type_id" class="james-filter-select font-body">
-                            <option value="">All Types</option>
-                            @foreach ($propertyTypes as $type)
-                                <option value="{{ $type->id }}" {{ $typeId == $type->id ? 'selected' : '' }}>
-                                    {{ $type->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <!-- Operation -->
-                    <div class="james-filter-group">
-                        <label class="james-filter-label font-body">Operation</label>
-                        <select id="operation_id" name="operation_id" class="james-filter-select font-body">
-                            <option value="">All Operations</option>
-                            @foreach ($operations as $operation)
-                                <option value="{{ $operation->id }}" {{ $operationId == $operation->id ? 'selected' : '' }}>
-                                    {{ $operation->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <!-- Min Price -->
-                    <div class="james-filter-group">
-                        <label class="james-filter-label font-body">Min Price</label>
-                        <input type="number" id="min_price" name="min_price" value="{{ $min_price }}"
-                            placeholder="€0"
-                            class="james-filter-input font-body">
-                    </div>
-
-                    <!-- Max Price -->
-                    <div class="james-filter-group">
-                        <label class="james-filter-label font-body">Max Price</label>
-                        <input type="number" id="max_price" name="max_price" value="{{ $max_price }}"
-                            placeholder="€∞"
-                            class="james-filter-input font-body">
-                    </div>
-
-                    <!-- Search Button -->
-                    <div class="james-filter-group flex items-end">
-                        <button type="submit" class="james-btn-primary w-full font-body">
-                            Search Properties
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Clear Filters -->
-                @if ($min_price || $max_price || $operationId || $typeId || $search)
-                    <div class="flex justify-center">
-                        <a href="{{ route('properties.index', ['locale' => app()->getLocale()]) }}"
-                            class="james-btn-outline font-body">
-                            Clear All Filters
-                        </a>
-                    </div>
-                @endif
-            </form>
-
-            <!-- Active Filters Display -->
-            @if ($min_price || $max_price || $operationId || $typeId || $search)
-                <div class="james-active-filters">
-                    <span class="james-active-filters-label font-body">Active Filters:</span>
-                    <div class="james-active-filters-list">
-                        @if ($search)
-                            <span class="james-filter-tag font-body">
-                                Search: {{ $search }}
-                            </span>
-                        @endif
-                        @if ($min_price || $max_price)
-                            <span class="james-filter-tag font-body">
-                                Price: 
-                                @if ($min_price)€{{ number_format($min_price) }}@endif
-                                @if ($min_price && $max_price) - @endif
-                                @if ($max_price)€{{ number_format($max_price) }}@endif
-                            </span>
-                        @endif
-                        @if ($operationId)
-                            <span class="james-filter-tag font-body">
-                                {{ $operations->where('id', $operationId)->first()->name ?? '' }}
-                            </span>
-                        @endif
-                        @if ($typeId)
-                            <span class="james-filter-tag font-body">
-                                {{ $propertyTypes->where('id', $typeId)->first()->name ?? '' }}
-                            </span>
-                        @endif
-                    </div>
-                </div>
-            @endif
-        </div>
-    </section>
+   
 
     <!-- Properties Grid Section -->
     <section class="james-properties">
@@ -123,14 +12,14 @@
                 </div>
                 
                 <!-- Sort Options (future implementation) -->
-                <div class="james-sort-options">
+                {{-- <div class="james-sort-options">
                     <select class="james-sort-select font-body">
                         <option>Price: Low to High</option>
                         <option>Price: High to Low</option>
                         <option>Newest First</option>
                         <option>Size: Large to Small</option>
                     </select>
-                </div>
+                </div> --}}
             </div>
 
             @if ($properties->isEmpty())

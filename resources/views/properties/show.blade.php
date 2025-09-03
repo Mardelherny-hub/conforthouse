@@ -1,4 +1,4 @@
-<x-public-layout>
+<x-properties-layout>
     <!-- James Edition Property Detail Hero -->
     <div class="james-property-hero" 
          x-data="{

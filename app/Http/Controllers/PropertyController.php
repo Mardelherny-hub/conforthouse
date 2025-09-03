@@ -120,9 +120,10 @@ class PropertyController extends Controller
         // Aplicar traducciones a las propiedades relacionadas
         foreach ($rel_properties as $rel_property) {
             $this->applyTranslations($rel_property, $locale);
+            // Traducir tipo, estado y operación
+            $this->translateRelations($rel_property, $locale);
         }
-        // Traducir tipo, estado y operación
-        $this->translateRelations($rel_property, $locale);
+        
 
         //dd($rel_properties);
 
