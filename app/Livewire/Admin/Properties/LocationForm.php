@@ -36,7 +36,7 @@ class LocationForm extends Component
         'city' => 'required|string|max:255',
         'province' => 'nullable|string|max:255',
         'autonomous_community' => 'nullable|string|max:255',
-        'google_map' => 'nullable|string|max:255',
+        'google_map' => 'nullable|string',
     ];
 
     protected $messages = [

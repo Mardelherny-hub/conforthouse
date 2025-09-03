@@ -50,11 +50,9 @@
                 <x-navigation />
             </div>
 
-            <!-- Carrusel de imágenes -->
         <!-- Carrusel de imágenes -->
        
         <div x-data="carousel()" x-init="init()" class="relative w-full h-full" @keydown.arrow-right="currentSlide = (currentSlide + 1) % slides.length" @keydown.arrow-left="currentSlide = (currentSlide - 1 + slides.length) % slides.length" tabindex="0" aria-roledescription="carousel">
-
             
             <!-- Slide 1 -->
             <div x-show="currentSlide === 0" 
@@ -93,22 +91,57 @@
                 style="background-image: url('{{ asset('assets/images/home/hero-3.webp') }}')">
             </div>
             
+            <!-- Slide 4 -->
+            <div x-show="currentSlide === 3" 
+                x-transition:enter="transition-opacity duration-1000"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity duration-1000"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="absolute inset-0 bg-cover bg-center brightness-110 contrast-105"
+                style="background-image: url('{{ asset('assets/images/home/hero-4.webp') }}')">
+            </div>
+
+            <!-- Slide 5 -->
+            <div x-show="currentSlide === 4" 
+                x-transition:enter="transition-opacity duration-1000"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity duration-1000"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="absolute inset-0 bg-cover bg-center brightness-110 contrast-105"
+                style="background-image: url('{{ asset('assets/images/home/hero-5.webp') }}')">
+            </div>
+
+            <!-- Slide 6 -->
+            <div x-show="currentSlide === 5" 
+                x-transition:enter="transition-opacity duration-1000"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity duration-1000"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="absolute inset-0 bg-cover bg-center brightness-110 contrast-105"
+                style="background-image: url('{{ asset('assets/images/home/hero-6.webp') }}')">
+            </div>
+            
             <!-- Overlay mínimo para legibilidad -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
             
             <!-- Indicadores del carrusel -->
-            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-40">
-                <template x-for="(slide, index) in slides" :key="index">
-                    <button
-                    @click="currentSlide = index"
-                    :aria-current="currentSlide === index"
-                    :aria-label="`Ir al slide ${index + 1}`"
-                    :class="currentSlide === index ? 'bg-white' : 'bg-white/40'"
-                    class="w-2 h-2 rounded-full transition-all duration-300 hover:bg-white/70">
-                    </button>
-
-                </template>
-            </div>
+<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-40">
+    <template x-for="(slide, index) in slides" :key="index">
+        <button
+            @click="goToSlide(index)"
+            :aria-current="currentSlide === index"
+            :aria-label="`Ir al slide ${index + 1}`"
+            :class="currentSlide === index ? 'bg-white w-8' : 'bg-white/40 w-6'"
+            class="h-1 rounded-full transition-all duration-300 hover:bg-white/70">
+        </button>
+    </template>
+</div>
         </div>
 
     </header>
@@ -130,17 +163,58 @@
 
     <!-- JavaScript Links -->
       <script>
-    function carousel() {
-        return {
-            currentSlide: 0,
-            slides: [0, 1, 2],
-            init() {
-                setInterval(() => {
-                    this.currentSlide = (this.currentSlide + 1) % this.slides.length;
-                }, 6000);
+   function carousel() {
+    return {
+        currentSlide: 0,
+        slides: [0, 1, 2, 3, 4, 5],
+        intervalId: null,
+        isTransitioning: false,
+        
+        init() {
+            this.startAutoSlide();
+        },
+        
+        startAutoSlide() {
+            this.intervalId = setInterval(() => {
+                if (!this.isTransitioning) {
+                    this.nextSlide();
+                }
+            }, 6000);
+        },
+        
+        stopAutoSlide() {
+            if (this.intervalId) {
+                clearInterval(this.intervalId);
+                this.intervalId = null;
+            }
+        },
+        
+        nextSlide() {
+            this.isTransitioning = true;
+            this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+            
+            // Resetear el flag después de que termine la transición
+            setTimeout(() => {
+                this.isTransitioning = false;
+            }, 1000); // Duración de la transición
+        },
+        
+        goToSlide(index) {
+            if (!this.isTransitioning && index !== this.currentSlide) {
+                this.isTransitioning = true;
+                this.currentSlide = index;
+                
+                // Reiniciar el temporizador automático
+                this.stopAutoSlide();
+                
+                setTimeout(() => {
+                    this.isTransitioning = false;
+                    this.startAutoSlide();
+                }, 1000);
             }
         }
     }
+}
     </script>
 </body>
 

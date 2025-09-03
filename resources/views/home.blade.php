@@ -13,11 +13,11 @@
 
       <!-- Residencias -->
       <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'type_id' => 1]) }}" class="category-card">
-        <img src="{{ asset('assets/images/home/cat_homes.jpg') }}" alt="Residencias" class="category-card__img">
+        <img src="{{ asset('assets/images/home/residentials.webp') }}" alt="Residencias" class="category-card__img">
         <div class="category-card__overlay"></div>
         
         <div class="category-card__content">
-          <h3 class="category-card__title font-luxury">Residencias</h3>
+          <h3 class="category-card__title font-luxury">Residenciales</h3>
           <span class="category-card__cta font-body">
             Ver propiedades
             <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

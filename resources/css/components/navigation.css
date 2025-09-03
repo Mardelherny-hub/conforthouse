@@ -1,0 +1,386 @@
+/* ==========================================================================
+   JAMES EDITION NAVIGATION STYLES
+   Clean, minimal, sophisticated aesthetic
+   ========================================================================== */
+
+/* Main Navigation Container */
+.james-nav {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.5s ease-out;
+    z-index: 50;
+}
+
+/* Scrolled State - White Background */
+.james-nav-scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Logo Styles */
+.james-logo img {
+    filter: brightness(1.2);
+    transition: all 0.3s ease;
+}
+
+.james-logo:hover img {
+    filter: brightness(1.4);
+    transform: scale(1.02);
+}
+
+/* Navigation Links - James Edition Style */
+.james-nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    padding: 8px 0;
+    position: relative;
+}
+
+.james-nav-link:hover,
+.james-nav-link.active {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Estado active para enlaces principales - punto pequeño */
+.james-nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: currentColor;
+    border-radius: 50%;
+}
+
+/* Scrolled state colors */
+.james-nav-scrolled .james-nav-link {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.james-nav-scrolled .james-nav-link:hover,
+.james-nav-scrolled .james-nav-link.active {
+    color: #000000;
+}
+
+/* Dropdown Styles - Clean Background */
+.james-dropdown-item {
+    display: block;
+    padding: 10px 16px;    
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    border: none;
+    background: transparent;
+}
+
+.james-dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Dropdown en estado scrolled */
+.james-nav-scrolled .james-dropdown-item {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.james-nav-scrolled .james-dropdown-item:hover {
+    color: #000000;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Dropdown Shadow */
+.james-nav .relative > div[x-show] {
+    background: rgba(0, 0, 0, 0.85) !important;
+    backdrop-filter: blur(20px) !important;
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.2);
+}
+
+.james-nav-scrolled .relative > div[x-show] {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Language Button */
+.james-lang-btn {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    font-weight: 400;
+    padding: 6px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.james-lang-btn:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.james-nav-scrolled .james-lang-btn {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.james-nav-scrolled .james-lang-btn:hover {
+    color: #000000;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Search Button */
+.james-search-btn {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    font-weight: 400;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    background: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.james-search-btn:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.james-nav-scrolled .james-search-btn {
+    color: rgba(0, 0, 0, 0.7);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.james-nav-scrolled .james-search-btn:hover {
+    color: #000000;
+    border-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Call-to-Action Button (Sell With Us) */
+.james-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: #1f2937;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.james-cta-btn:hover {
+    background-color: #374151;
+    color: #ffffff;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+/* Login Button */
+.james-login-btn {
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    font-weight: 400;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    background: none;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.james-login-btn:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}
+
+.james-nav-scrolled .james-login-btn {
+    color: rgba(0, 0, 0, 0.7);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.james-nav-scrolled .james-login-btn:hover {
+    color: #000000;
+    border-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Mobile Menu Button */
+.james-mobile-btn {
+    color: rgba(255, 255, 255, 0.9);
+    padding: 8px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.james-mobile-btn:hover {
+    color: #ffffff;
+}
+
+.james-nav-scrolled .james-mobile-btn {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.james-nav-scrolled .james-mobile-btn:hover {
+    color: #000000;
+}
+
+/* Mobile Menu Styles */
+.james-mobile-link {
+    display: block;
+    color: #374151;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 12px 0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.james-mobile-link:hover {
+    color: #111827;
+    text-decoration: none;
+}
+
+.james-mobile-sublink {
+    display: block;
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 8px 0;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.james-mobile-sublink:hover {
+    color: #374151;
+    text-decoration: none;
+}
+
+/* Mobile Search Button */
+.james-mobile-search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    background: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    gap: 8px;
+}
+
+.james-mobile-search-btn:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+}
+
+/* Mobile CTA Button */
+.james-mobile-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #1f2937;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.james-mobile-cta-btn:hover {
+    background-color: #374151;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Focus States for Accessibility */
+.james-nav-link:focus,
+.james-search-btn:focus,
+.james-cta-btn:focus,
+.james-login-btn:focus,
+.james-lang-btn:focus,
+.james-mobile-btn:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Clean up any conflicting styles */
+.james-nav button,
+.james-nav a {
+    border: none;
+    background: none;
+    text-decoration: none;
+}
+
+.james-nav button:focus,
+.james-nav a:focus {
+    outline: none;
+}
+
+/* Ensure proper z-index layering */
+.james-nav {
+    z-index: 50;
+}
+
+.james-nav .relative > div {
+    z-index: 60;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .james-nav-link {
+        font-size: 13px;
+    }
+    
+    .james-search-btn {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+    
+    .james-cta-btn,
+    .james-login-btn {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .james-nav {
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+}

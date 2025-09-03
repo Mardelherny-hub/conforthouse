@@ -15,15 +15,15 @@
         <div class="flex items-center justify-between" :class="scrolled ? 'h-16' : 'h-20'">
             
             <!-- Logo -->
-            <div class="flex-shrink-0">
+            <div x-cloak class="flex-shrink-0">
                 <a href="{{ route('home', ['locale' => app()->getLocale()]) }}" 
                    class="james-logo flex items-center group transition-all duration-300">
                    <img x-show="!scrolled" src="{{ asset('assets/images/logo/conforthouse-logo-0-40.webp') }}" 
-                        :style="scrolled ? 'height: 28px;' : 'height: 32px;'"
+                        :style="scrolled ? 'height: 30px;' : 'height: 40px;'"
                         class="transition-all duration-500 ease-out brightness-110 group-hover:brightness-125"
                         alt="Conforthouse Living">
                    <img x-show="scrolled" src="{{ asset('assets/images/logo/conforthouse-logo-1-40.webp') }}" 
-                        :style="scrolled ? 'height: 28px;' : 'height: 32px;'"
+                        :style="scrolled ? 'height: 30px;' : 'height: 40px;'"
                         class="transition-all duration-500 ease-out brightness-110 group-hover:brightness-125"
                         alt="Conforthouse Living">
                 </a>
@@ -57,6 +57,7 @@
                          x-transition:leave="transition ease-in duration-150"
                          x-transition:leave-start="opacity-100 translate-y-0"
                          x-transition:leave-end="opacity-0 translate-y-1"
+                         x-cloak
                          class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-64
                                 bg-white shadow-xl rounded-none border-0
                                 overflow-hidden">
@@ -127,6 +128,7 @@
                          x-transition:leave="transition ease-in duration-150"
                          x-transition:leave-start="opacity-100 translate-y-0"
                          x-transition:leave-end="opacity-0 translate-y-1"
+                         x-cloak
                          class="absolute right-0 top-full mt-2 w-40
                                 bg-white shadow-xl rounded-none border-0">
                         
@@ -258,7 +260,7 @@
                     
                 {{--    <a href="#" class="james-mobile-cta-btn">
                         Sell With Ussss
-                    </a>{{-- --}} --}}
+                    </a> --}} 
                 </div> 
             </div>
         </div>

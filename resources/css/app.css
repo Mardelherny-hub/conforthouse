@@ -2288,13 +2288,13 @@ Paginacion
         /* Contact Sidebar */
         .james-contact-sidebar {
             position: relative;
-    z-index: 10;
+        z-index: 10;
         }
         
         .james-contact-card {
             background: white;
             border: 1px solid #e5e7eb;
-            border-radius: 8px;
+            border-radius: 0px;
             padding: 2rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
@@ -2309,7 +2309,11 @@ Paginacion
         
         .james-contact-subtitle {
             font-family: 'Inter', sans-serif;
-            font-size: 0.875rem;
+            font-size: 0.625rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #6b7280;
+            margin-bottom: 1.85rem;
             color: #6b7280;
             line-height: 1.5;
             margin-bottom: 1.5rem;
@@ -2336,7 +2340,7 @@ Paginacion
         .james-form-textarea {
             width: 100%;
             padding: 0.75rem;
-            border: 1px solid #d1d5db;
+            border: 1px solid var(--champagne-900);
             border-radius: 6px;
             font-family: 'Inter', sans-serif;
             font-size: 0.875rem;
@@ -2346,7 +2350,7 @@ Paginacion
         .james-form-input:focus,
         .james-form-textarea:focus {
             outline: none;
-            border-color: #111827;
+            border-color: var(--champagne-600);
             box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.1);
         }
         

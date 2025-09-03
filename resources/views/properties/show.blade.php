@@ -1,7 +1,8 @@
 <x-properties-layout>
+<div class="container mx-auto px-4">
+
     <!-- James Edition Property Detail Hero -->
-    <div class="james-property-hero" 
-         x-data="{
+    <div x-data="{
              activeTab: 'images',
              images: @js($property->images),
              currentImageIndex: 0,
@@ -24,7 +25,7 @@
                  return this.images[this.currentImageIndex];
              }
          }">
-        
+        <div class="max-w-7xl mx-auto px-4">
         <!-- Navigation Tabs - James Edition Style -->
         <div class="james-detail-nav">
             <div class="max-w-7xl mx-auto px-4">
@@ -58,52 +59,139 @@
         </div>
 
         <!-- Image Gallery - James Edition Style -->
-        <div x-show="activeTab === 'images'" class="james-media-container">
-            @if($property->images->isNotEmpty())
-                <div class="james-main-image" @click="openImageModal(0)">
-                    <img src="/storage/{{ $property->images->first()->image_path }}" 
-                         alt="{{ $property->title }}"
-                         class="w-full h-full object-cover cursor-pointer">
-                </div>
-                @if($property->images->count() > 1)
-                    <div class="james-thumbnail-grid">
-                        @foreach($property->images->slice(1, 4) as $index => $image)
-                            <div class="james-thumbnail" @click="openImageModal({{ $index + 1 }})">
-                                <img src="/storage/{{ $image->image_path }}" 
-                                     alt="{{ $property->title }}"
-                                     class="w-full h-full object-cover cursor-pointer">
+        <div x-show="activeTab === 'images'" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+                {{-- Galería de Imágenes con Alpine --}}
+                <div x-data="{
+                    images: @js($property->images),
+                    currentIndex: 0,
+                    showModal: false,
+                    openModal(index) {
+                        this.currentIndex = index;
+                        this.showModal = true;
+                    },
+                    closeModal() {
+                        this.showModal = false;
+                    },
+                    nextImage() {
+                        this.currentIndex = (this.currentIndex + 1) % this.images.length;
+                    },
+                    prevImage() {
+                        this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+                    },
+                    get currentImage() {
+                        return this.images[this.currentIndex];
+                    }
+                }" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                    {{-- Imagen Principal --}}
+                    <div class="relative group overflow-hidden">
+                        @if($property->images->isNotEmpty())
+                            <img src="/storage/{{ $property->images->first()->image_path }}"
+                                alt="{{ $property->title }}"
+                                @click="openModal(0)"
+                                class="w-full h-[500px] object-cover shadow-xl transform transition-all duration-700 group-hover:scale-105 cursor-pointer">
+                        @else
+                            <img src="/images/placeholder-property.jpg"
+                                alt="{{ $property->title }}"
+                                class="w-full h-[500px] object-cover shadow-xl">
+                        @endif
+                        {{-- Overlay con gradiente --}}
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-70">
+                        </div>
+
+                        {{-- Etiquetas --}}
+                        <div class="absolute top-4 left-4 flex space-x-2">
+                            <span class="bg-neutral-400 text-white px-3 py-1 rounded-none text-sm">
+                                {{ $property->propertyType->name }}
+                            </span>
+                            <span class="bg-gold-800 text-white px-3 py-1 rounded-none text-sm">
+                                {{ $property->operation->name }}
+                            </span>
+                        </div>
+                    </div>
+
+                    {{-- Miniaturas de Imágenes --}}
+                    <div class="grid grid-cols-2 gap-4">
+                        @foreach ($property->images->slice(1, 4) as $index => $image)
+                            <div class="relative group overflow-hidden">
+                                <img src="/storage/{{ $image->image_path }}" alt="{{ $property->title }}"
+                                    @click="openModal({{ $index }})"
+                                    class="w-full h-60 object-cover transform transition-all duration-700 group-hover:scale-110 cursor-pointer">
                             </div>
                         @endforeach
-                        @if($property->images->count() > 5)
-                            <div class="james-thumbnail-overlay" @click="openImageModal(0)">
-                                <span class="text-white font-medium">+{{ $property->images->count() - 5 }} more</span>
-                            </div>
-                        @endif
                     </div>
-                @endif
-            @else
-                <div class="james-main-image">
-                    <img src="/images/placeholder-property.jpg" 
-                         alt="{{ $property->title }}"
-                         class="w-full h-full object-cover">
-                </div>
-            @endif
-        </div>
 
-        <!-- Video Content -->
-        @if($property->video)
-        <div x-show="activeTab === 'video'" class="james-media-container">
-            <div class="james-video-wrapper">
-                <iframe :src="'https://www.youtube.com/embed/' + youtubeVideoId + '?rel=0&showinfo=0'"
-                        class="w-full h-full"
-                        title="Property Video"
+                    {{-- Modal de Imágenes --}}
+                    <template x-teleport="body">
+                        <div x-show="showModal" x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                            x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100"
+                            x-transition:leave-end="opacity-0" @keydown.escape.window="closeModal()"
+                            @keydown.arrow-right.window="nextImage()" @keydown.arrow-left.window="prevImage()"
+                            class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
+                            @click.self="closeModal()">
+                            <div class="relative max-w-4xl w-full max-h-[90vh] flex flex-col">
+                                {{-- Botón de Cierre --}}
+                                <button @click="closeModal()"
+                                    class="absolute -top-10 right-0 text-white text-4xl hover:text-amber-500 transition-colors z-10">
+                                    &times;
+                                </button>
+
+                                {{-- Navegación --}}
+                                <button @click="prevImage()"
+                                    class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-amber-500 text-white w-12 h-12 rounded-full flex items-center justify-center z-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                                <button @click="nextImage()"
+                                    class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-amber-500 text-white w-12 h-12 rounded-full flex items-center justify-center z-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+
+                                {{-- Imagen en Modal --}}
+                                <div class="w-full h-full flex items-center justify-center">
+                                    <img :src="'/storage/' + currentImage.image_path" alt="{{ $property->title }}"
+                                        class="max-w-full max-h-[80vh] object-contain"
+                                        x-transition:enter="transition ease-out duration-300 transform"
+                                        x-transition:enter-start="opacity-0 scale-95"
+                                        x-transition:enter-end="opacity-100 scale-100">
+                                </div>
+
+                                {{-- Contador de imágenes --}}
+                                <div class="text-white text-center mt-4">
+                                    <span x-text="currentIndex + 1"></span> / <span x-text="images.length"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+            </div>
+
+            <!-- Contenido de la pestaña de video -->
+            <div x-show="activeTab === 'video'" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                class="grid grid-cols-1 gap-6">
+                <!-- Contenedor del video con las mismas dimensiones que la imagen principal -->
+                <div class="relative h-[500px] group">
+                    <iframe :src="'https://www.youtube.com/embed/' + youtubeVideoId + '?rel=0&showinfo=0'"
+                        class="w-full h-full object-cover shadow-xl" title="Video de la propiedad"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
-                </iframe>
+                    </iframe>
+                </div>
+                <!-- Espacio en blanco para mantener la cuadrícula -->
+                <div class="hidden md:block"></div>
             </div>
-        </div>
-        @endif
 
         <!-- Image Modal - James Edition Style -->
         <template x-teleport="body">
@@ -148,12 +236,14 @@
                 </div>
             </div>
         </template>
+        </div>
     </div>
+
 
     <!-- Property Content - James Edition Layout -->
     <div class="james-property-content">
-        <div class="max-w-7xl mx-auto px-4 py-8">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="max-w-7xl mx-auto px-4 md:col-span-2">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-8">
                 
                 <!-- Main Content -->
                 <div class="lg:col-span-2">
@@ -191,7 +281,7 @@
                         </div>
                         <div class="james-stat-item">
                             <div class="james-stat-value">{{ $property->bathrooms }}</div>
-                            <div class="james-stat-label">{{ __('messages.BaÃ±os') }}</div>
+                            <div class="james-stat-label">{{ __('messages.Banios') }}</div>
                         </div>
                         <div class="james-stat-item">
                             <div class="james-stat-value">{{ $property->floor }}</div>
@@ -326,12 +416,12 @@
                 </div>
 
                 <!-- Sidebar - Contact -->
-                <div class="lg:col-span-1">
-                    <div class="james-contact-sidebar sticky top-8">
+                <div class="my-2">
+                    <div class="sticky top-8">
                         <div class="james-contact-card">
-                            <h3 class="james-contact-title">Contact Us</h3>
+                            <h3 class="james-contact-title">{{ __('messages.Contacta con nosotros') }}</h3>
                             <p class="james-contact-subtitle">
-                                Request more information about this property. We'll respond as soon as possible.
+                                 {{ __('messages.Solicita más información sobre esta propiedad. Te responderemos a la mayor brevedad posible') }}.
                             </p>
                             
                             <form class="james-contact-form" method="POST" action="#">
@@ -462,7 +552,7 @@
     </div>
     @endif
     
-
+</div>
 </x-public-layout>
 
 
