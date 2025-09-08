@@ -40,63 +40,116 @@ class InmovillaPropertyMapper
             ]);
 
             $mappedData = [
-                // Campos básicos de identificación
-                'reference' => $this->getValue($inmovillaData, 'ref'),
-                'inmovilla_code' => $this->getValue($inmovillaData, 'cod_ofer'),
-                'agency_code' => $this->getValue($inmovillaData, 'numagencia'),
+                // === IDENTIFICACIÓN INMOVILLA (campos de la migración) ===
+                'reference' => $this->getValue($inmovillaData, 'ref') ?: 'REF-' . $this->getValue($inmovillaData, 'cod_ofer'),
+                'cod_ofer' => $this->getValue($inmovillaData, 'cod_ofer'),
+                'inmovilla_numagencia' => $this->getValue($inmovillaData, 'numagencia'),
+                'inmovilla_ref' => $this->getValue($inmovillaData, 'ref'),
+                'inmovilla_fechaact' => $this->getValue($inmovillaData, 'fechaact'),
                 
-                // Relaciones (IDs que se resolverán después)
+                // === TIPO Y OPERACIÓN ===
+                'inmovilla_keyacci' => $this->getValue($inmovillaData, 'keyacci'),
+                'inmovilla_key_tipo' => $this->getValue($inmovillaData, 'key_tipo'),
+                
+                // === PRECIOS ===
+                'price' => $this->mapPrice($inmovillaData),
+                'price_sale' => $this->getValue($inmovillaData, 'precioinmo', 0),
+                'price_rent' => $this->getValue($inmovillaData, 'precioalq', 0),
+                'price_outlet' => $this->getValue($inmovillaData, 'outlet', 0),
+                'rent_period' => $this->getValue($inmovillaData, 'tipomensual'),
+                
+                // === MEDIDAS ===
+                'built_area' => $this->getValue($inmovillaData, 'm_cons', 0),
+                'plot_area_m2' => $this->getValue($inmovillaData, 'm_parcela', 0),
+                'useful_area_m2' => $this->getValue($inmovillaData, 'm_uties', 0),
+                'built_area_m2' => $this->getValue($inmovillaData, 'm_cons', 0),
+                'terrace_area_m2' => $this->getValue($inmovillaData, 'm_terraza', 0),
+                
+                // === HABITACIONES Y BAÑOS ===
+                'rooms' => $this->getValue($inmovillaData, 'habitaciones', 0),
+                'double_rooms' => $this->getValue($inmovillaData, 'habdobles', 0),
+                'single_rooms' => $this->getValue($inmovillaData, 'habitaciones', 0),
+                'total_rooms' => $this->getValue($inmovillaData, 'total_hab', 0),
+                'bathrooms' => $this->getValue($inmovillaData, 'banyos', 0),
+                'toilets' => $this->getValue($inmovillaData, 'aseos', 0),
+                
+                // === CARACTERÍSTICAS BÁSICAS ===
+                'has_elevator' => (bool) $this->getValue($inmovillaData, 'ascensor', 0),
+                'has_air_conditioning' => (bool) $this->getValue($inmovillaData, 'aire_con', 0),
+                'has_heating' => (bool) $this->getValue($inmovillaData, 'calefaccion', 0),
+                'parking_type' => $this->getValue($inmovillaData, 'parking', 0),
+                'parking_spaces' => $this->getValue($inmovillaData, 'garajes', 0),
+                'has_community_pool' => (bool) $this->getValue($inmovillaData, 'piscina_com', 0),
+                'has_private_pool' => (bool) $this->getValue($inmovillaData, 'piscina_prop', 0),
+                'is_diaphanous' => (bool) $this->getValue($inmovillaData, 'diafano', 0),
+                'is_all_exterior' => (bool) $this->getValue($inmovillaData, 'todoext', 0),
+                'distance_to_sea' => $this->getValue($inmovillaData, 'distmar', 0),
+                
+                // === CERTIFICACIÓN ENERGÉTICA ===
+                'energy_certificate_letter' => $this->getValue($inmovillaData, 'energialetra'),
+                'energy_consumption_value' => $this->getValue($inmovillaData, 'energiavalor'),
+                'emissions_certificate_letter' => $this->getValue($inmovillaData, 'emisionesletra'),
+                'emissions_value' => $this->getValue($inmovillaData, 'emisionesvalor'),
+                
+                // === CAMPOS ENUM DE INMOVILLA ===
+                'inmovilla_conservacion' => $this->getValue($inmovillaData, 'conservacion'),
+                'inmovilla_cocina_inde' => $this->getValue($inmovillaData, 'cocina_inde'),
+                'inmovilla_keyori' => $this->getValue($inmovillaData, 'keyori'),
+                'inmovilla_keyvista' => $this->getValue($inmovillaData, 'keyvista'),
+                'inmovilla_keyagua' => $this->getValue($inmovillaData, 'keyagua'),
+                'inmovilla_keycalefa' => $this->getValue($inmovillaData, 'keycalefa'),
+                'inmovilla_keycarpin' => $this->getValue($inmovillaData, 'keycarpin'),
+                'inmovilla_keycarpinext' => $this->getValue($inmovillaData, 'keycarpinext'),
+                'inmovilla_keysuelo' => $this->getValue($inmovillaData, 'keysuelo'),
+                'inmovilla_keytecho' => $this->getValue($inmovillaData, 'keytecho'),
+                'inmovilla_keyfachada' => $this->getValue($inmovillaData, 'keyfachada'),
+                'inmovilla_keyelectricidad' => $this->getValue($inmovillaData, 'keyelectricidad'),
+                'inmovilla_x_entorno' => $this->getValue($inmovillaData, 'x_entorno'),
+                
+                // === OTROS CAMPOS INMOVILLA ===
+                'inmovilla_tipovpo' => $this->getValue($inmovillaData, 'tipovpo'),
+                'inmovilla_electro' => $this->getValue($inmovillaData, 'electro'),
+                'inmovilla_destacado' => $this->getValue($inmovillaData, 'destacado'),
+                'inmovilla_estadoficha' => $this->getValue($inmovillaData, 'estadoficha'),
+                'inmovilla_eninternet' => $this->getValue($inmovillaData, 'eninternet'),
+                'inmovilla_tgascom' => $this->getValue($inmovillaData, 'tgascom'),
+                
+                // === MULTIMEDIA ===
+                'photo_count' => $this->getValue($inmovillaData, 'numfotos', 0),
+                'main_photo_url' => $this->getValue($inmovillaData, 'foto'),
+                'has_virtual_tour' => (bool) $this->getValue($inmovillaData, 'tourvirtual', 0),
+                'has_360_photos' => (bool) $this->getValue($inmovillaData, 'fotos360', 0),
+                'has_video_content' => (bool) $this->getValue($inmovillaData, 'video', 0),
+                'has_before_after_photos' => (bool) $this->getValue($inmovillaData, 'antesydespues', 0),
+                'photo_letter_id' => $this->getValue($inmovillaData, 'fotoletra'),
+                
+                // === INFORMACIÓN DE AGENCIA ===
+                'agency_name' => $this->getValue($inmovillaData, 'agencia'),
+                'agency_website' => $this->getValue($inmovillaData, 'web'),
+                'agency_email' => $this->getValue($inmovillaData, 'emailagencia'),
+                'agency_phone' => $this->getValue($inmovillaData, 'telefono'),
+                
+                // === UBICACIÓN DE INMOVILLA ===
+                'inmovilla_ciudad' => $this->getValue($inmovillaData, 'ciudad'),
+                'inmovilla_zona' => $this->getValue($inmovillaData, 'zona'),
+                'inmovilla_key_loca' => $this->getValue($inmovillaData, 'key_loca'),
+                'inmovilla_key_zona' => $this->getValue($inmovillaData, 'key_zona'),
+                'inmovilla_keypromo' => $this->getValue($inmovillaData, 'keypromo'),
+                
+                // === CAMPOS EXISTENTES MANTENIDOS ===
+                'floors' => $this->getValue($inmovillaData, 'plantas', 0),
+                'floor' => $this->getValue($inmovillaData, 'planta'),
+                'year_built' => $this->getValue($inmovillaData, 'anio_const'),
+                'community_expenses' => $this->getValue($inmovillaData, 'gastos_com'),
+                
+                // === CAMPOS OBLIGATORIOS ===
                 'operation_id' => $this->mapOperation($inmovillaData),
                 'property_type_id' => $this->mapPropertyType($inmovillaData),
                 'status_id' => $this->getDefaultStatusId(),
-                
-                // Precios
-                'price' => $this->mapPrice($inmovillaData),
-                'rental_price' => $this->getValue($inmovillaData, 'precioalq', 0),
-                
-                // Características básicas
-                'rooms' => $this->getValue($inmovillaData, 'habitaciones', 0),
-                'bathrooms' => $this->getValue($inmovillaData, 'banyos', 0),
-                'built_area' => $this->getValue($inmovillaData, 'm_cons', 0),
-                'usable_area' => $this->getValue($inmovillaData, 'm_uties', 0),
-                'plot_area' => $this->getValue($inmovillaData, 'm_parcela', 0),
-                'year_built' => $this->getValue($inmovillaData, 'anoconstr', null),
-                'terrace_area' => $this->getValue($inmovillaData, 'm_terraza', 0),
-                'floors' => $this->getValue($inmovillaData, 'plantas', 0),
-                'floor' => $this->getValue($inmovillaData, 'planta', null), // Asumiendo que 'planta' es el campo
-                'parking_spaces' => $this->getValue($inmovillaData, 'garajes', 0), // Asumiendo 'garajes'
-                
-                // Estado/condición
-                'condition' => $this->mapCondition($inmovillaData),
-                
-                // Título y descripción (si están disponibles)
                 'title' => $this->generateTitle($inmovillaData),
-                'description' => $this->getValue($inmovillaData, 'descrip', null),
                 'meta_description' => $this->generateMetaDescription($inmovillaData),
-                
-                // Campos adicionales de Inmovilla
-                'community_expenses' => $this->getValue($inmovillaData, 'gastos_com', null), // Asumiendo 'gastos_com'
-                'orientation' => $this->getValue($inmovillaData, 'orientacion', null),
-                'exterior_type' => $this->getValue($inmovillaData, 'exterior', null),
-                'kitchen_type' => $this->getValue($inmovillaData, 'cocina', null),
-                'heating_type' => $this->getValue($inmovillaData, 'calefaccion', null),
-                'interior_carpentry' => $this->getValue($inmovillaData, 'carp_interior', null),
-                'exterior_carpentry' => $this->getValue($inmovillaData, 'carp_exterior', null),
-                'flooring_type' => $this->getValue($inmovillaData, 'suelos', null),
-                'views' => $this->getValue($inmovillaData, 'vistas', null),
-                'regime' => $this->getValue($inmovillaData, 'regimen', null),
-                'google_map' => $this->getValue($inmovillaData, 'google_map', null),
-                'inmovilla_updated_at' => $this->getValue($inmovillaData, 'fechaact'),
-                'photos_count' => $this->getValue($inmovillaData, 'numfotos', 0),
-                'distance_to_sea' => $this->getValue($inmovillaData, 'distmar', 0),
-                'elevator' => $this->getValue($inmovillaData, 'ascensor', 0),
-                'air_conditioning' => $this->getValue($inmovillaData, 'aire_con', 0),
-                'parking_included' => $this->mapParking($inmovillaData),
-                'community_pool' => $this->getValue($inmovillaData, 'piscina_com', 0),
-                'private_pool' => $this->getValue($inmovillaData, 'piscina_prop', 0),
-                
-                // Campos calculados
-                'is_featured' => false, // Se actualizará según destacados
+                'condition' => $this->mapCondition($inmovillaData),
+                'is_featured' => false,
                 'slug' => $this->generateSlug($inmovillaData),
             ];
 

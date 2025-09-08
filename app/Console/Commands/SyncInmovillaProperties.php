@@ -4,9 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Property;
 use App\Models\Address;
-use App\Models\PropertyImage;
 use App\Services\InmovillaApiService;
-use App\Services\InmovillaPropertyMapper;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -16,9 +14,6 @@ use Carbon\Carbon;
 
 class SyncInmovillaProperties extends Command
 {
-    /**
-     * The name and signature of the console command.
-     */
     protected $signature = 'inmovilla:sync 
                             {--type=full : Tipo de sincronización (full|delta|featured)}
                             {--batch-size=50 : Número de propiedades por lote}
@@ -26,18 +21,11 @@ class SyncInmovillaProperties extends Command
                             {--force : Forzar sincronización ignorando caché}
                             {--dry-run : Simular sin guardar cambios}';
 
-    /**
-     * The console command description.
-     */
     protected $description = 'Sincroniza propiedades desde la API de Inmovilla';
 
     private $apiService;
-    private $mapper;
     private $stats;
 
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
         $startTime = microtime(true);
@@ -47,15 +35,13 @@ class SyncInmovillaProperties extends Command
             $this->initializeStats();
             
             $syncType = $this->option('type');
-            $this->info("🚀 Iniciando sincronización Inmovilla - Tipo: {$syncType}");
+            $this->info("Iniciando sincronización Inmovilla - Tipo: {$syncType}");
             
-            // Verificar si ya hay una sincronización en progreso
             if (!$this->option('force') && $this->isSyncInProgress()) {
-                $this->error('❌ Sincronización ya en progreso. Use --force para omitir.');
+                $this->error('Sincronización ya en progreso. Use --force para omitir.');
                 return Command::FAILURE;
             }
             
-            // Marcar sincronización como en progreso
             $this->setSyncStatus('in_progress');
             
             switch ($syncType) {
@@ -69,7 +55,7 @@ class SyncInmovillaProperties extends Command
                     $result = $this->performFeaturedSync();
                     break;
                 default:
-                    $this->error("❌ Tipo de sincronización no válido: {$syncType}");
+                    $this->error("Tipo de sincronización no válido: {$syncType}");
                     return Command::FAILURE;
             }
             
@@ -80,7 +66,7 @@ class SyncInmovillaProperties extends Command
             
         } catch (Exception $e) {
             $this->setSyncStatus('failed');
-            $this->error("❌ Error durante la sincronización: {$e->getMessage()}");
+            $this->error("Error durante la sincronización: {$e->getMessage()}");
             Log::error('Error en sincronización Inmovilla', [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
@@ -89,20 +75,12 @@ class SyncInmovillaProperties extends Command
         }
     }
 
-    /**
-     * Inicializa los servicios necesarios
-     */
     private function initializeServices()
     {
         $this->apiService = new InmovillaApiService();
-        $this->mapper = new InmovillaPropertyMapper();
-        
-        $this->info('✅ Servicios inicializados');
+        $this->info('Servicios inicializados');
     }
 
-    /**
-     * Inicializa las estadísticas de sincronización
-     */
     private function initializeStats()
     {
         $this->stats = [
@@ -115,31 +93,24 @@ class SyncInmovillaProperties extends Command
         ];
     }
 
-    /**
-     * Realiza sincronización completa
-     */
     private function performFullSync(): bool
     {
-        $this->info('📊 Iniciando sincronización completa...');
+        $this->info('Iniciando sincronización completa...');
         
         try {
-            // Primero sincronizar tipos de propiedad
             $this->syncPropertyTypes();
             
-            // Obtener códigos de propiedades disponibles
             $availableCodes = $this->apiService->getAvailablePropertyCodes();
             $this->stats['api_calls']++;
             
-            // Aplicar el límite si se ha especificado
             $limit = (int) $this->option('limit');
             if ($limit > 0) {
-                $this->warn("⚠️  Aplicando límite de {$limit} propiedades.");
+                $this->warn("Aplicando límite de {$limit} propiedades.");
                 $availableCodes = array_slice($availableCodes, 0, $limit);
             }
 
-            $this->info("📋 Propiedades disponibles en Inmovilla: " . count($availableCodes));
+            $this->info("Propiedades disponibles en Inmovilla: " . count($availableCodes));
             
-            // Procesar en lotes
             $batchSize = $this->option('batch-size');
             $totalPages = ceil(count($availableCodes) / $batchSize);
             
@@ -148,81 +119,66 @@ class SyncInmovillaProperties extends Command
             });
             
             $this->newLine(2);
-            
-            // Sincronizar propiedades destacadas
             $this->syncFeaturedProperties();
             
             return true;
             
         } catch (Exception $e) {
-            $this->error("❌ Error en sincronización completa: {$e->getMessage()}");
+            $this->error("Error en sincronización completa: {$e->getMessage()}");
             return false;
         }
     }
 
-    /**
-     * Realiza sincronización delta (solo propiedades actualizadas)
-     */
     private function performDeltaSync(): bool
     {
-        $this->info('⚡ Iniciando sincronización delta...');
+        $this->info('Iniciando sincronización delta...');
         
         try {
-            // Obtener fecha de última sincronización
             $lastSync = Cache::get('inmovilla_last_sync', Carbon::now()->subHours(24));
             $since = $lastSync->format('Y-m-d H:i:s');
             
-            $this->info("📅 Sincronizando cambios desde: {$since}");
+            $this->info("Sincronizando cambios desde: {$since}");
             
-            // Obtener propiedades actualizadas
             $response = $this->apiService->getUpdatedPropertiesSince($since);
             $this->stats['api_calls']++;
             
             $properties = $response['properties'] ?? [];
-            $this->info("🔄 Propiedades actualizadas: " . count($properties));
+            $this->info("Propiedades actualizadas: " . count($properties));
             
             if (empty($properties)) {
-                $this->info('✅ No hay propiedades para actualizar');
+                $this->info('No hay propiedades para actualizar');
                 return true;
             }
             
-            // Procesar propiedades actualizadas
             $this->withProgressBar($properties, function ($property) {
                 $this->processProperty($property);
             });
             
             $this->newLine(2);
-            
-            // Actualizar timestamp de última sincronización
             Cache::put('inmovilla_last_sync', Carbon::now(), 86400);
             
             return true;
             
         } catch (Exception $e) {
-            $this->error("❌ Error en sincronización delta: {$e->getMessage()}");
+            $this->error("Error en sincronización delta: {$e->getMessage()}");
             return false;
         }
     }
 
-    /**
-     * Sincroniza solo propiedades destacadas
-     */
     private function performFeaturedSync(): bool
     {
-        $this->info('⭐ Iniciando sincronización de destacadas...');
+        $this->info('Iniciando sincronización de destacadas...');
         
         try {
             $featuredProperties = $this->apiService->getFeaturedProperties();
             $this->stats['api_calls']++;
             
-            $this->info("⭐ Propiedades destacadas: " . count($featuredProperties));
+            $this->info("Propiedades destacadas: " . count($featuredProperties));
             
-            // Primero, quitar el destacado de todas las propiedades
             if (!$this->option('dry-run')) {
                 Property::where('is_featured', true)->update(['is_featured' => false]);
             }
             
-            // Procesar propiedades destacadas
             $this->withProgressBar($featuredProperties, function ($property) {
                 $this->processProperty($property, true);
             });
@@ -232,36 +188,27 @@ class SyncInmovillaProperties extends Command
             return true;
             
         } catch (Exception $e) {
-            $this->error("❌ Error sincronizando destacadas: {$e->getMessage()}");
+            $this->error("Error sincronizando destacadas: {$e->getMessage()}");
             return false;
         }
     }
 
-    /**
-     * Sincroniza tipos de propiedad
-     */
     private function syncPropertyTypes()
     {
-        $this->info('🏠 Sincronizando tipos de propiedad...');
+        $this->info('Sincronizando tipos de propiedad...');
         
         try {
             $types = $this->apiService->getPropertyTypes();
             $this->stats['api_calls']++;
             
-            $this->info("📋 Tipos de propiedad: " . count($types));
-            
-            // Los tipos se crean automáticamente en el mapper
-            // Aquí solo registramos el evento
+            $this->info("Tipos de propiedad: " . count($types));
             Log::info('Tipos de propiedad sincronizados', ['count' => count($types)]);
             
         } catch (Exception $e) {
-            $this->warn("⚠️ Error sincronizando tipos: {$e->getMessage()}");
+            $this->warn("Error sincronizando tipos: {$e->getMessage()}");
         }
     }
 
-    /**
-     * Procesa un lote de propiedades
-     */
     private function processBatch(int $page, int $batchSize)
     {
         try {
@@ -275,45 +222,35 @@ class SyncInmovillaProperties extends Command
             }
             
         } catch (Exception $e) {
-            $this->error("❌ Error procesando lote {$page}: {$e->getMessage()}");
+            $this->error("Error procesando lote {$page}: {$e->getMessage()}");
             $this->stats['errors']++;
         }
     }
 
-    /**
-     * Procesa una propiedad individual
-     */
     private function processProperty(array $inmovillaProperty, bool $isFeatured = false)
     {
         $this->stats['total_processed']++;
         
         try {
-            // Mapear datos de Inmovilla a Laravel
-            $mappedData = $this->mapper->mapProperty($inmovillaProperty);
-            $addressData = $this->mapper->mapAddress($inmovillaProperty);
+            // Preparar datos básicos necesarios para Laravel
+            $propertyData = $this->preparePropertyData($inmovillaProperty, $isFeatured);
+            $addressData = $this->prepareAddressData($inmovillaProperty);
             
-            if ($isFeatured) {
-                $mappedData['is_featured'] = true;
-            }
-            
-            // Verificar si es dry-run
             if ($this->option('dry-run')) {
-                $this->line("  [DRY-RUN] Procesaría: {$mappedData['reference']}");
+                $this->line("  [DRY-RUN] Procesaría: {$propertyData['reference']}");
                 return;
             }
             
-            // Buscar propiedad existente
-            $property = Property::where('reference', $mappedData['reference'])
-                              ->orWhere('inmovilla_code', $mappedData['inmovilla_code'])
+            // Buscar propiedad existente por cod_ofer
+            $property = Property::where('cod_ofer', $inmovillaProperty['cod_ofer'])
+                              ->orWhere('reference', $propertyData['reference'])
                               ->first();
             
             DB::beginTransaction();
             
             if ($property) {
-                // Actualizar propiedad existente
-                $property->update($mappedData);
+                $property->update($propertyData);
                 
-                // Actualizar dirección
                 if ($property->address) {
                     $property->address->update($addressData);
                 } else {
@@ -322,18 +259,16 @@ class SyncInmovillaProperties extends Command
                 }
                 
                 $this->stats['updated']++;
-                Log::info('Propiedad actualizada', ['reference' => $property->reference]);
+                Log::info('Propiedad actualizada', ['cod_ofer' => $property->cod_ofer]);
                 
             } else {
-                // Crear nueva propiedad
-                $property = Property::create($mappedData);
+                $property = Property::create($propertyData);
                 
-                // Crear dirección
                 $addressData['property_id'] = $property->id;
                 Address::create($addressData);
                 
                 $this->stats['created']++;
-                Log::info('Propiedad creada', ['reference' => $property->reference]);
+                Log::info('Propiedad creada', ['cod_ofer' => $property->cod_ofer]);
             }
             
             DB::commit();
@@ -349,75 +284,135 @@ class SyncInmovillaProperties extends Command
         }
     }
 
-    /**
-     * Sincroniza propiedades destacadas
-     */
+    private function preparePropertyData(array $inmovillaData, bool $isFeatured = false): array
+    {
+        // Tomar todos los datos de Inmovilla tal como vienen
+        $propertyData = $inmovillaData;
+        
+        // Solo agregar los campos obligatorios mínimos que Laravel requiere
+        $propertyData['reference'] = $inmovillaData['ref'] ?? 'REF-' . ($inmovillaData['cod_ofer'] ?? rand(1000, 9999));
+        $propertyData['title'] = $inmovillaData['titulo'] ?? $this->generateTitle($inmovillaData);
+        $propertyData['meta_description'] = $this->generateMetaDescription($inmovillaData);
+        $propertyData['price'] = $inmovillaData['precioinmo'] ?? $inmovillaData['precioalq'] ?? 100000;
+        $propertyData['is_featured'] = $isFeatured;
+        
+        // IDs obligatorios - usar valores por defecto temporales
+        $propertyData['operation_id'] = 1; // Por defecto, se puede mejorar después
+        $propertyData['property_type_id'] = 1; // Por defecto, se puede mejorar después  
+        $propertyData['status_id'] = 1; // Por defecto, se puede mejorar después
+        
+        // Limpiar campos que no existen en la migración
+        unset($propertyData['nbtipo'], $propertyData['tipo']);
+        
+        return $propertyData;
+    }
+
+    private function prepareAddressData(array $inmovillaData): array
+    {
+        return [
+            'street' => $inmovillaData['direccion'] ?? 'Sin dirección',
+            'city' => $inmovillaData['ciudad'] ?? 'Sin ciudad',
+            'district' => $inmovillaData['zona'] ?? null,
+            'province' => $inmovillaData['provincia'] ?? null,
+            'postal_code' => $inmovillaData['cp'] ?? null,
+            'autonomous_community' => null,
+        ];
+    }
+
+    private function generateTitle(array $inmovillaData): string
+    {
+        $tipo = $inmovillaData['nbtipo'] ?? 'Propiedad';
+        $ciudad = $inmovillaData['ciudad'] ?? '';
+        $zona = $inmovillaData['zona'] ?? '';
+        
+        $title = $tipo;
+        if ($zona) {
+            $title .= " en $zona";
+        } elseif ($ciudad) {
+            $title .= " en $ciudad";
+        }
+        
+        return $title;
+    }
+
+    private function generateMetaDescription(array $inmovillaData): string
+    {
+        $tipo = $inmovillaData['nbtipo'] ?? 'Propiedad';
+        $ciudad = $inmovillaData['ciudad'] ?? '';
+        $habitaciones = $inmovillaData['total_hab'] ?? $inmovillaData['habitaciones'] ?? 0;
+        $metros = $inmovillaData['m_cons'] ?? 0;
+        $precio = $inmovillaData['precioinmo'] ?? $inmovillaData['precioalq'] ?? 0;
+        
+        $meta = $tipo;
+        if ($habitaciones > 0) {
+            $meta .= " de $habitaciones habitaciones";
+        }
+        if ($metros > 0) {
+            $meta .= " y {$metros}m²";
+        }
+        if ($ciudad) {
+            $meta .= " en $ciudad";
+        }
+        if ($precio > 0) {
+            $meta .= ". Precio: €" . number_format($precio, 0, ',', '.');
+        }
+        
+        return $meta;
+    }
+
     private function syncFeaturedProperties()
     {
-        $this->info('⭐ Sincronizando propiedades destacadas...');
+        $this->info('Sincronizando propiedades destacadas...');
         
         try {
-            // Quitar destacado de todas las propiedades actuales
             if (!$this->option('dry-run')) {
                 Property::where('is_featured', true)->update(['is_featured' => false]);
             }
             
-            // Obtener y procesar destacadas
             $featuredProperties = $this->apiService->getFeaturedProperties();
             $this->stats['api_calls']++;
             
             foreach ($featuredProperties as $featured) {
-                // Buscar la propiedad y marcarla como destacada
-                $property = Property::where('inmovilla_code', $featured['cod_ofer'])->first();
+                $property = Property::where('cod_ofer', $featured['cod_ofer'])->first();
                 
                 if ($property && !$this->option('dry-run')) {
                     $property->update(['is_featured' => true]);
                 }
             }
             
-            $this->info("⭐ Propiedades destacadas procesadas: " . count($featuredProperties));
+            $this->info("Propiedades destacadas procesadas: " . count($featuredProperties));
             
         } catch (Exception $e) {
-            $this->warn("⚠️ Error sincronizando destacadas: {$e->getMessage()}");
+            $this->warn("Error sincronizando destacadas: {$e->getMessage()}");
         }
     }
 
-    /**
-     * Verifica si hay una sincronización en progreso
-     */
     private function isSyncInProgress(): bool
     {
         return Cache::get('inmovilla_sync_status') === 'in_progress';
     }
 
-    /**
-     * Establece el estado de sincronización
-     */
     private function setSyncStatus(string $status)
     {
         Cache::put('inmovilla_sync_status', $status, 3600);
         Cache::put('inmovilla_sync_last_run', Carbon::now(), 86400);
     }
 
-    /**
-     * Muestra los resultados de la sincronización
-     */
     private function displayResults(float $startTime)
     {
         $duration = round(microtime(true) - $startTime, 2);
         
         $this->newLine();
-        $this->info('📊 RESULTADOS DE SINCRONIZACIÓN');
+        $this->info('RESULTADOS DE SINCRONIZACIÓN');
         $this->info('================================');
-        $this->info("⏱️  Tiempo total: {$duration} segundos");
-        $this->info("📊 Total procesadas: {$this->stats['total_processed']}");
-        $this->info("✅ Creadas: {$this->stats['created']}");
-        $this->info("🔄 Actualizadas: {$this->stats['updated']}");
-        $this->info("⏭️  Omitidas: {$this->stats['skipped']}");
-        $this->info("❌ Errores: {$this->stats['errors']}");
-        $this->info("🌐 Llamadas API: {$this->stats['api_calls']}");
+        $this->info("Tiempo total: {$duration} segundos");
+        $this->info("Total procesadas: {$this->stats['total_processed']}");
+        $this->info("Creadas: {$this->stats['created']}");
+        $this->info("Actualizadas: {$this->stats['updated']}");
+        $this->info("Omitidas: {$this->stats['skipped']}");
+        $this->info("Errores: {$this->stats['errors']}");
+        $this->info("Llamadas API: {$this->stats['api_calls']}");
         
-        // Guardar estadísticas en cache
         Cache::put('inmovilla_last_sync_stats', $this->stats, 86400);
         
         Log::info('Sincronización Inmovilla completada', [
