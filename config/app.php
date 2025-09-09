@@ -86,7 +86,7 @@ return [
 
     'locale' => 'es',
     'fallback_locale' => 'en',
-    'supported_locales' => ['es', 'en', 'fr', 'de'],
+    'supported_locales' => ['es', 'en', 'fr', 'de', 'nl'],
 
     /*
     |--------------------------------------------------------------------------

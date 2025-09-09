@@ -1,10 +1,37 @@
 <?php
 
 return [
-    'lang_fr' => 'Frans',
-    'lang_en' => 'Engels',
-    'lang_es' => 'Spaans',
-    'lang_de' => 'Duits',
+    // Idiomas
+    'lang_fr' => 'Français',
+    'lang_en' => 'English',
+    'lang_es' => 'Español',
+    'lang_de' => 'Deutsch',
+    'lang_nl' => 'Nederlands',
+    'sel_lang' => 'Taal',
+
+    // Menú principal
+    'propiedades' => 'Eigendommen',
+    'servicios' => 'Diensten',
+    'about_us' => 'Over Ons',
+    'contacto' => 'Contact',
+    'atencion_exclusiva' => 'Exclusieve Service',
+    'coleccion_privada' => 'Privé Collectie',
+
+    // Login
+    'bienvenido' => 'Welkom',
+    'portal_exclusivo' => 'Exclusief Portaal',
+    'login' => 'Inloggen',
+    'remember_me' => 'Onthoud mij',
+    'forgot_password' => 'Wachtwoord vergeten?',
+
+    // Buttons
+    'explore_properties' => 'Eigendommen verkennen',
+    'contact_now' => 'Nu contact opnemen',
+
+    // Footer
+    'footer_about_title' => 'Over Conforthouse Living',
+    'footer_about_description' => 'Conforthouse Living is een makelaarskantoor gespecialiseerd in hoogwaardige eigendommen. Wij bieden een zorgvuldig geselecteerde collectie van exclusieve woningen in toplocaties.',
+
     'sel_lang' => 'Taal',
     'propiedades' => 'Woningen',
     'servicios' => 'Diensten',
@@ -22,7 +49,7 @@ return [
     'Mansiones, penthouses y residencias exclusivas' => 'Luxe residenties',
     'Apartamentos' => 'Appartementen',
     'Apartamentos de Lujo' => 'Luxe appartementen',
-    'Villas' => 'Villa\',
+    'Villas' => 'Villas',
     'Villas exclusivas con amplios jardines y piscina privada' => 'Exclusieve villa\'s',
     'Fincas' => 'Landgoederen',
     'Haciendas y fincas de lujo con amplios terrenos' => 'Luxe landgoederen',
@@ -299,7 +326,7 @@ return [
     'cta_about_desc' => 'Get in touch with our team and discover how we can help you find your ideal place in .',
     'contact_us_button' => 'Contact',
     'contact_us' => 'Contact',
-    'contact_description' => 'We are here to help you find the perfect property or answer any questions you may have. Don\',
+    'contact_description' => 'We are here to help you find the perfect property or answer any questions you may have. Don',
     'contact_info' => 'Contactgegevens',
     'address' => 'Adres',
     'phone' => 'Telefoon',
@@ -340,7 +367,7 @@ return [
     'faq_q3' => 'Do I need to be a resident in Spain to buy a property?',
     'faq_a3' => 'It is not necessary to be a resident in Spain to buy a property. However, you will need to obtain a Foreigner Identification Number (NIE). We can help you with this procedure.',
     'faq_q4' => 'What documentation do I need to sell my property?',
-    'faq_a4' => 'The usual documentation includes the property deed, owner\',
+    'faq_a4' => 'The usual documentation includes the property deed, owner',
     'faq_q5' => 'How can I find out how much my property in  is worth?',
     'faq_a5' => 'We can carry out a professional valuation of your property based on the analysis of the current market, property characteristics, and location. Contact us to request a valuation.',
     'faq_q6' => 'What services do you offer for property rentals?',
@@ -354,7 +381,7 @@ return [
     'faq_q10' => 'What should I consider when renting a property in ?',
     'faq_a10' => 'When renting, it is important to consider the location, price, contract conditions, community fees and utilities, and the condition of the property. We advise you to find the best option for you.',
     'cta_title' => 'Ready to Find Your Ideal Property?',
-    'cta_description' => 'Our team of experts is ready to help you take the next step. Contact us today and let\',
+    'cta_description' => 'Our team of experts is ready to help you take the next step. Contact us today and let',
     'floating_button_tooltip' => 'Questions?',
     'floating_button_modal_title' => 'Have questions?',
     'floating_button_modal_subtitle' => 'We are here to help you. Send us your inquiry and we will respond soon.',

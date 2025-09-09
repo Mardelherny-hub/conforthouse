@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/inmovilla-proxy', [App\Http\Controllers\Api\InmovillaProxyController::class, 'proxy']);
+Route::get('/inmovilla-proxy-test', function() {
+    return response()->json(['message' => 'Proxy endpoint disponible']);
+});

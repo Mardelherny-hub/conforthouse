@@ -21,7 +21,7 @@ use App\Http\Controllers\Admin\AdminPropertyController;
 */
 
 // Define los idiomas permitidos
-$languages = ['en', 'es', 'fr', 'de'];
+$languages = ['en', 'es', 'fr', 'de', 'nl'];
 
 // Redirige la ruta raíz al idioma por defecto
 Route::get('/', function () {
@@ -32,7 +32,7 @@ Route::get('/', function () {
 Route::group([
     'prefix' => '{locale}',
     'middleware' => ['web', 'setLocale'],
-    'where' => ['locale' => 'en|es|fr|de']
+    'where' => ['locale' => 'en|es|fr|de|nl']
     ], function () {
 
 
@@ -100,6 +100,19 @@ Route::get('/symlink', function () {
     return 'The storage link has been created!';
 });
 
+Route::post('/inmovilla-proxy', [App\Http\Controllers\Api\InmovillaProxyController::class, 'proxy']);
+Route::get('/inmovilla-proxy-test', function() {
+    return response()->json(['message' => 'Proxy endpoint disponible']);
+});
+Route::get('/debug-inmovilla', function() {
+    return response()->json([
+        'status' => 'ok',
+        'server' => $_SERVER['SERVER_NAME'] ?? 'unknown',
+        'laravel_version' => app()->version(),
+        'api_file_exists' => file_exists(storage_path('app/inmovilla/apiinmovilla.php')),
+        'api_file_path' => storage_path('app/inmovilla/apiinmovilla.php')
+    ]);
+});
 
 // Incluye las rutas de autenticación
 require __DIR__.'/auth.php';

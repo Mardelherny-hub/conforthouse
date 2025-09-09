@@ -14,7 +14,7 @@ class SetLocale
     {
         $locale = $request->segment(1);
         
-        if ($locale && in_array($locale, ['en', 'es', 'fr', 'de'])) {
+        if ($locale && in_array($locale, ['en', 'es', 'fr', 'de', 'nl'])) {
             app()->setLocale($locale);
         }
         

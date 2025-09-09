@@ -7,6 +7,7 @@ return [
     'lang_es' => 'Español',
     'lang_de' => 'Deutsch',
     'sel_lang' => 'Language',
+    'lang_nl' => 'Nederlands',
 
     // Menú principal
     'propiedades' => 'Properties',

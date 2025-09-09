@@ -13,23 +13,73 @@ use Exception;
 
 class InmovillaPropertyMapper
 {
-    private $fieldMapping;
-    private $operationsMapping;
-    private $propertyTypesMapping;
-    private $conditionsMapping;
+    // === MAPEO OPERACIONES INMOVILLA → LARAVEL ===
+    private $operationsMapping = [
+        1 => 'Venta',        // keyacci 1 = Venta
+        2 => 'Alquiler',     // keyacci 2 = Alquiler  
+        3 => 'Traspaso',     // keyacci 3 = Traspaso
+        4 => 'Leasing',      // keyacci 4 = Leasing (si existe)
+    ];
+
+    // === MAPEO TIPOS INMOVILLA → LARAVEL ===
+    private $propertyTypesMapping = [
+        // Apartamentos y pisos
+        2799 => 'Departamento',    // Apartamento
+        2899 => 'Ático',           // Ático
+        2999 => 'Departamento',    // Duplex → Departamento
+        3099 => 'Departamento',    // Estudio → Departamento
+        3199 => 'Departamento',    // Habitación → Departamento
+        3299 => 'Departamento',    // Loft → Departamento
+        3399 => 'Departamento',    // Piso → Departamento
+        3499 => 'Departamento',    // Planta baja → Departamento
+        3599 => 'Departamento',    // Triplex → Departamento
+        
+        // Casas
+        399  => 'Casa',            // Casa
+        499  => 'Casa',            // Chalet → Casa
+        199  => 'Adosado',         // Adosado
+        299  => 'Casa',            // Bungalow → Casa
+        999  => 'Casa',            // Pareado → Casa
+        4999 => 'Casa',            // Villa → Casa
+        599  => 'Casa',            // Cortijo → Casa
+        899  => 'Casa',            // Masía → Casa
+        
+        // Comerciales (mapear a Casa por defecto si no existe tipo comercial)
+        1299 => 'Casa',            // Local comercial → Casa
+        1399 => 'Casa',            // Oficina → Casa
+        2399 => 'Casa',            // Garaje → Casa
+        2599 => 'Casa',            // Parking → Casa
+        2699 => 'Casa',            // Trastero → Casa
+        
+        // Terrenos
+        3699 => 'Casa',            // Finca rústica → Casa
+        3899 => 'Casa',            // Solar → Casa
+        4199 => 'Casa',            // Terreno urbano → Casa
+    ];
+
+    // === MAPEO ESTADOS CONSERVACIÓN INMOVILLA → LARAVEL ===
+    private $statusMapping = [
+        5   => 'Disponible',    // Para reformar → Disponible
+        10  => 'Disponible',    // De origen → Disponible
+        15  => 'Disponible',    // Reformar parcialmente → Disponible
+        20  => 'Disponible',    // Entrar a vivir → Disponible
+        30  => 'Disponible',    // Buen estado → Disponible
+        40  => 'Disponible',    // Semireformado → Disponible
+        50  => 'Disponible',    // Reformado → Disponible
+        60  => 'Disponible',    // Seminuevo → Disponible
+        70  => 'Disponible',    // Nuevo → Disponible
+        80  => 'Disponible',    // Obra nueva → Disponible
+        90  => 'Reservado',     // En construcción → Reservado
+        100 => 'Reservado',     // En proyecto → Reservado
+    ];
 
     public function __construct()
     {
-        $this->fieldMapping = config('inmovilla.field_mapping');
-        $this->operationsMapping = $this->fieldMapping['keyacci']['mapping'] ?? [];
-        $this->propertyTypesMapping = $this->fieldMapping['key_tipo']['mapping'] ?? [];
-        $this->conditionsMapping = $this->fieldMapping['conservacion']['mapping'] ?? [];
-        
         Log::info('InmovillaPropertyMapper inicializado');
     }
 
     /**
-     * Mapea una propiedad de Inmovilla al formato de Laravel
+     * Mapea una propiedad de Inmovilla al formato híbrido Laravel + Inmovilla
      */
     public function mapProperty(array $inmovillaData): array
     {
@@ -40,130 +90,113 @@ class InmovillaPropertyMapper
             ]);
 
             $mappedData = [
-                // === IDENTIFICACIÓN INMOVILLA (campos de la migración) ===
-                'reference' => $this->getValue($inmovillaData, 'ref') ?: 'REF-' . $this->getValue($inmovillaData, 'cod_ofer'),
-                'cod_ofer' => $this->getValue($inmovillaData, 'cod_ofer'),
-                'inmovilla_numagencia' => $this->getValue($inmovillaData, 'numagencia'),
-                'inmovilla_ref' => $this->getValue($inmovillaData, 'ref'),
-                'inmovilla_fechaact' => $this->getValue($inmovillaData, 'fechaact'),
-                
-                // === TIPO Y OPERACIÓN ===
-                'inmovilla_keyacci' => $this->getValue($inmovillaData, 'keyacci'),
-                'inmovilla_key_tipo' => $this->getValue($inmovillaData, 'key_tipo'),
-                
-                // === PRECIOS ===
-                'price' => $this->mapPrice($inmovillaData),
-                'price_sale' => $this->getValue($inmovillaData, 'precioinmo', 0),
-                'price_rent' => $this->getValue($inmovillaData, 'precioalq', 0),
-                'price_outlet' => $this->getValue($inmovillaData, 'outlet', 0),
-                'rent_period' => $this->getValue($inmovillaData, 'tipomensual'),
-                
-                // === MEDIDAS ===
-                'built_area' => $this->getValue($inmovillaData, 'm_cons', 0),
-                'plot_area_m2' => $this->getValue($inmovillaData, 'm_parcela', 0),
-                'useful_area_m2' => $this->getValue($inmovillaData, 'm_uties', 0),
-                'built_area_m2' => $this->getValue($inmovillaData, 'm_cons', 0),
-                'terrace_area_m2' => $this->getValue($inmovillaData, 'm_terraza', 0),
-                
-                // === HABITACIONES Y BAÑOS ===
-                'rooms' => $this->getValue($inmovillaData, 'habitaciones', 0),
-                'double_rooms' => $this->getValue($inmovillaData, 'habdobles', 0),
-                'single_rooms' => $this->getValue($inmovillaData, 'habitaciones', 0),
-                'total_rooms' => $this->getValue($inmovillaData, 'total_hab', 0),
-                'bathrooms' => $this->getValue($inmovillaData, 'banyos', 0),
-                'toilets' => $this->getValue($inmovillaData, 'aseos', 0),
-                
-                // === CARACTERÍSTICAS BÁSICAS ===
-                'has_elevator' => (bool) $this->getValue($inmovillaData, 'ascensor', 0),
-                'has_air_conditioning' => (bool) $this->getValue($inmovillaData, 'aire_con', 0),
-                'has_heating' => (bool) $this->getValue($inmovillaData, 'calefaccion', 0),
-                'parking_type' => $this->getValue($inmovillaData, 'parking', 0),
-                'parking_spaces' => $this->getValue($inmovillaData, 'garajes', 0),
-                'has_community_pool' => (bool) $this->getValue($inmovillaData, 'piscina_com', 0),
-                'has_private_pool' => (bool) $this->getValue($inmovillaData, 'piscina_prop', 0),
-                'is_diaphanous' => (bool) $this->getValue($inmovillaData, 'diafano', 0),
-                'is_all_exterior' => (bool) $this->getValue($inmovillaData, 'todoext', 0),
-                'distance_to_sea' => $this->getValue($inmovillaData, 'distmar', 0),
-                
-                // === CERTIFICACIÓN ENERGÉTICA ===
-                'energy_certificate_letter' => $this->getValue($inmovillaData, 'energialetra'),
-                'energy_consumption_value' => $this->getValue($inmovillaData, 'energiavalor'),
-                'emissions_certificate_letter' => $this->getValue($inmovillaData, 'emisionesletra'),
-                'emissions_value' => $this->getValue($inmovillaData, 'emisionesvalor'),
-                
-                // === CAMPOS ENUM DE INMOVILLA ===
-                'inmovilla_conservacion' => $this->getValue($inmovillaData, 'conservacion'),
-                'inmovilla_cocina_inde' => $this->getValue($inmovillaData, 'cocina_inde'),
-                'inmovilla_keyori' => $this->getValue($inmovillaData, 'keyori'),
-                'inmovilla_keyvista' => $this->getValue($inmovillaData, 'keyvista'),
-                'inmovilla_keyagua' => $this->getValue($inmovillaData, 'keyagua'),
-                'inmovilla_keycalefa' => $this->getValue($inmovillaData, 'keycalefa'),
-                'inmovilla_keycarpin' => $this->getValue($inmovillaData, 'keycarpin'),
-                'inmovilla_keycarpinext' => $this->getValue($inmovillaData, 'keycarpinext'),
-                'inmovilla_keysuelo' => $this->getValue($inmovillaData, 'keysuelo'),
-                'inmovilla_keytecho' => $this->getValue($inmovillaData, 'keytecho'),
-                'inmovilla_keyfachada' => $this->getValue($inmovillaData, 'keyfachada'),
-                'inmovilla_keyelectricidad' => $this->getValue($inmovillaData, 'keyelectricidad'),
-                'inmovilla_x_entorno' => $this->getValue($inmovillaData, 'x_entorno'),
-                
-                // === OTROS CAMPOS INMOVILLA ===
-                'inmovilla_tipovpo' => $this->getValue($inmovillaData, 'tipovpo'),
-                'inmovilla_electro' => $this->getValue($inmovillaData, 'electro'),
-                'inmovilla_destacado' => $this->getValue($inmovillaData, 'destacado'),
-                'inmovilla_estadoficha' => $this->getValue($inmovillaData, 'estadoficha'),
-                'inmovilla_eninternet' => $this->getValue($inmovillaData, 'eninternet'),
-                'inmovilla_tgascom' => $this->getValue($inmovillaData, 'tgascom'),
-                
-                // === MULTIMEDIA ===
-                'photo_count' => $this->getValue($inmovillaData, 'numfotos', 0),
-                'main_photo_url' => $this->getValue($inmovillaData, 'foto'),
-                'has_virtual_tour' => (bool) $this->getValue($inmovillaData, 'tourvirtual', 0),
-                'has_360_photos' => (bool) $this->getValue($inmovillaData, 'fotos360', 0),
-                'has_video_content' => (bool) $this->getValue($inmovillaData, 'video', 0),
-                'has_before_after_photos' => (bool) $this->getValue($inmovillaData, 'antesydespues', 0),
-                'photo_letter_id' => $this->getValue($inmovillaData, 'fotoletra'),
-                
-                // === INFORMACIÓN DE AGENCIA ===
-                'agency_name' => $this->getValue($inmovillaData, 'agencia'),
-                'agency_website' => $this->getValue($inmovillaData, 'web'),
-                'agency_email' => $this->getValue($inmovillaData, 'emailagencia'),
-                'agency_phone' => $this->getValue($inmovillaData, 'telefono'),
-                
-                // === UBICACIÓN DE INMOVILLA ===
-                'inmovilla_ciudad' => $this->getValue($inmovillaData, 'ciudad'),
-                'inmovilla_zona' => $this->getValue($inmovillaData, 'zona'),
-                'inmovilla_key_loca' => $this->getValue($inmovillaData, 'key_loca'),
-                'inmovilla_key_zona' => $this->getValue($inmovillaData, 'key_zona'),
-                'inmovilla_keypromo' => $this->getValue($inmovillaData, 'keypromo'),
-                
-                // === CAMPOS EXISTENTES MANTENIDOS ===
-                'floors' => $this->getValue($inmovillaData, 'plantas', 0),
-                'floor' => $this->getValue($inmovillaData, 'planta'),
-                'year_built' => $this->getValue($inmovillaData, 'anio_const'),
-                'community_expenses' => $this->getValue($inmovillaData, 'gastos_com'),
-                
-                // === CAMPOS OBLIGATORIOS ===
-                'operation_id' => $this->mapOperation($inmovillaData),
-                'property_type_id' => $this->mapPropertyType($inmovillaData),
-                'status_id' => $this->getDefaultStatusId(),
+                // === CAMPOS LARAVEL OBLIGATORIOS ===
+                'reference' => $this->getValue($inmovillaData, 'ref') ?: 'REF-' . ($inmovillaData['cod_ofer'] ?? rand(1000, 9999)),
+                'operation_id' => $this->mapOperation($inmovillaData['keyacci'] ?? 1),
+                'property_type_id' => $this->mapPropertyType($inmovillaData['key_tipo'] ?? 399),
+                'status_id' => $this->mapStatus($inmovillaData['conservacion'] ?? 30),
+                'is_featured' => (bool)($inmovillaData['destacado'] ?? false),
                 'title' => $this->generateTitle($inmovillaData),
                 'meta_description' => $this->generateMetaDescription($inmovillaData),
-                'condition' => $this->mapCondition($inmovillaData),
-                'is_featured' => false,
+                'price' => $this->calculateMainPrice($inmovillaData),
                 'slug' => $this->generateSlug($inmovillaData),
+                
+                // === CAMPOS MAPEO INTELIGENTE (evitar duplicidad) ===
+                'built_area' => (int)($inmovillaData['m_cons'] ?? 0),
+                'rooms' => $this->calculateTotalRooms($inmovillaData),
+                'bathrooms' => (int)($inmovillaData['banyos'] ?? 0),
+                'year_built' => (int)($inmovillaData['anoconstr'] ?? null),
+                'floors' => (int)($inmovillaData['plantas'] ?? 1),
+                'floor' => (int)($inmovillaData['planta'] ?? null),
+                'distance_to_sea' => (int)($inmovillaData['distmar'] ?? null),
+                'community_expenses' => $this->getValue($inmovillaData, 'gastos_com'),
+                'parking_spaces' => (int)($inmovillaData['garajes'] ?? 0),
+                'condition' => $this->mapCondition($inmovillaData['conservacion'] ?? 30),
+                'orientation' => $this->mapOrientation($inmovillaData['keyori'] ?? null),
+                'views' => $this->mapViews($inmovillaData['keyvista'] ?? null),
+                'kitchen_type' => $this->mapKitchenType($inmovillaData['cocina_inde'] ?? null),
+                'heating_type' => $this->mapHeatingType($inmovillaData['keycalefa'] ?? null),
+                'interior_carpentry' => $this->mapCarpentry($inmovillaData['keycarpin'] ?? null),
+                'exterior_carpentry' => $this->mapCarpentry($inmovillaData['keycarpinext'] ?? null),
+                'flooring_type' => $this->mapFlooring($inmovillaData['keysuelo'] ?? null),
+                'exterior_type' => $this->mapExteriorType($inmovillaData),
+                'regime' => 'Freehold', // Valor por defecto
+                'google_map' => null,
+                'description' => $inmovillaData['descrip'] ?? '',
+                'video' => null,
+                
+                // === TODOS LOS CAMPOS INMOVILLA (conservar datos originales) ===
+                'cod_ofer' => (int)($inmovillaData['cod_ofer'] ?? 0),
+                'inmovilla_ref' => $this->getValue($inmovillaData, 'ref'),
+                'numagencia' => $this->getValue($inmovillaData, 'numagencia'),
+                'fechaact' => $this->parseDate($inmovillaData['fechaact'] ?? null),
+                'keyacci' => (int)($inmovillaData['keyacci'] ?? 1),
+                'key_tipo' => (int)($inmovillaData['key_tipo'] ?? null),
+                'nbtipo' => $this->getValue($inmovillaData, 'nbtipo'),
+                'precioinmo' => $this->getValue($inmovillaData, 'precioinmo'),
+                'precioalq' => $this->getValue($inmovillaData, 'precioalq'),
+                'outlet' => $this->getValue($inmovillaData, 'outlet'),
+                'tipomensual' => $this->getValue($inmovillaData, 'tipomensual'),
+                'm_parcela' => (int)($inmovillaData['m_parcela'] ?? null),
+                'm_uties' => (int)($inmovillaData['m_uties'] ?? null),
+                'm_terraza' => (int)($inmovillaData['m_terraza'] ?? null),
+                'habdobles' => (int)($inmovillaData['habdobles'] ?? null),
+                'habitaciones_simples' => (int)($inmovillaData['habitaciones'] ?? null),
+                'total_hab' => (int)($inmovillaData['total_hab'] ?? null),
+                'aseos' => (int)($inmovillaData['aseos'] ?? null),
+                'ascensor' => (bool)($inmovillaData['ascensor'] ?? false),
+                'aire_con' => (bool)($inmovillaData['aire_con'] ?? false),
+                'calefaccion' => (bool)($inmovillaData['calefaccion'] ?? false),
+                'parking' => (int)($inmovillaData['parking'] ?? null),
+                'piscina_com' => (bool)($inmovillaData['piscina_com'] ?? false),
+                'piscina_prop' => (bool)($inmovillaData['piscina_prop'] ?? false),
+                'diafano' => (bool)($inmovillaData['diafano'] ?? false),
+                'todoext' => (bool)($inmovillaData['todoext'] ?? false),
+                'anoconstr' => (int)($inmovillaData['anoconstr'] ?? null),
+                'garajes' => (int)($inmovillaData['garajes'] ?? null),
+                'energialetra' => $this->getValue($inmovillaData, 'energialetra'),
+                'energiavalor' => (float)($inmovillaData['energiavalor'] ?? null),
+                'emisionesletra' => $this->getValue($inmovillaData, 'emisionesletra'),
+                'emisionesvalor' => (float)($inmovillaData['emisionesvalor'] ?? null),
+                'conservacion' => (int)($inmovillaData['conservacion'] ?? null),
+                'cocina_inde' => (int)($inmovillaData['cocina_inde'] ?? null),
+                'keyori' => (int)($inmovillaData['keyori'] ?? null),
+                'keyvista' => (int)($inmovillaData['keyvista'] ?? null),
+                'keyagua' => (int)($inmovillaData['keyagua'] ?? null),
+                'keycalefa' => (int)($inmovillaData['keycalefa'] ?? null),
+                'keycarpin' => (int)($inmovillaData['keycarpin'] ?? null),
+                'keycarpinext' => (int)($inmovillaData['keycarpinext'] ?? null),
+                'keysuelo' => (int)($inmovillaData['keysuelo'] ?? null),
+                'keytecho' => (int)($inmovillaData['keytecho'] ?? null),
+                'keyfachada' => (int)($inmovillaData['keyfachada'] ?? null),
+                'keyelectricidad' => (int)($inmovillaData['keyelectricidad'] ?? null),
+                'x_entorno' => (int)($inmovillaData['x_entorno'] ?? null),
+                'tipovpo' => (int)($inmovillaData['tipovpo'] ?? null),
+                'electro' => (int)($inmovillaData['electro'] ?? null),
+                'destacado' => (int)($inmovillaData['destacado'] ?? null),
+                'estadoficha' => (int)($inmovillaData['estadoficha'] ?? null),
+                'eninternet' => (int)($inmovillaData['eninternet'] ?? null),
+                'tgascom' => (int)($inmovillaData['tgascom'] ?? null),
+                'numfotos' => (int)($inmovillaData['numfotos'] ?? 0),
+                'foto' => $this->getValue($inmovillaData, 'foto'),
+                'tourvirtual' => (bool)($inmovillaData['tourvirtual'] ?? false),
+                'fotos360' => (bool)($inmovillaData['fotos360'] ?? false),
+                'video_inmovilla' => (bool)($inmovillaData['video'] ?? false),
+                'antesydespues' => (bool)($inmovillaData['antesydespues'] ?? false),
+                'fotoletra' => $this->getValue($inmovillaData, 'fotoletra'),
+                'agencia' => $this->getValue($inmovillaData, 'agencia'),
+                'web' => $this->getValue($inmovillaData, 'web'),
+                'emailagencia' => $this->getValue($inmovillaData, 'emailagencia'),
+                'telefono' => $this->getValue($inmovillaData, 'telefono'),
+                'ciudad_inmovilla' => $this->getValue($inmovillaData, 'ciudad'),
+                'zona_inmovilla' => $this->getValue($inmovillaData, 'zona'),
+                'key_loca' => (int)($inmovillaData['key_loca'] ?? null),
+                'key_zona' => (int)($inmovillaData['key_zona'] ?? null),
+                'keypromo' => (int)($inmovillaData['keypromo'] ?? null),
             ];
 
-            // Limpiar campos nulos o vacíos
-            $mappedData = $this->cleanMappedData($mappedData);
-            
-            Log::info('Propiedad mapeada exitosamente', [
-                'reference' => $mappedData['reference'],
-                'operation_id' => $mappedData['operation_id'],
-                'property_type_id' => $mappedData['property_type_id']
-            ]);
-
             return $mappedData;
-
+            
         } catch (Exception $e) {
             Log::error('Error mapeando propiedad de Inmovilla', [
                 'cod_ofer' => $inmovillaData['cod_ofer'] ?? 'N/A',
@@ -175,169 +208,72 @@ class InmovillaPropertyMapper
     }
 
     /**
-     * Mapea los datos de dirección de una propiedad de Inmovilla
-     */
-    /**
-     * Mapea los datos de dirección de una propiedad de Inmovilla
+     * Mapea direcciones de Inmovilla
      */
     public function mapAddress(array $inmovillaData): array
     {
         return [
-            'street'                => $this->nullableStr($this->getValue($inmovillaData, 'direccion', '')),
-            'city'                  => $this->nullableStr($this->getValue($inmovillaData, 'ciudad', '')),
-            'district'              => $this->nullableStr($this->getValue($inmovillaData, 'zona', '')),
-            'zone'                  => $this->nullableStr($this->getValue($inmovillaData, 'zona', '')), // persistimos también en addresses.zone
-            'province'              => $this->nullableStr($this->getValue($inmovillaData, 'provincia', '')),
-            'postal_code'           => $this->nullableStr($this->getValue($inmovillaData, 'cp', '')),
-            'autonomous_community'  => null, // No viene en Inmovilla; lo derivaremos en otro paso
+            'street' => $this->getValue($inmovillaData, 'direccion') ?: 'Sin dirección',
+            'city' => $this->getValue($inmovillaData, 'ciudad') ?: 'Sin ciudad',
+            'district' => $this->getValue($inmovillaData, 'zona'),
+            'province' => $this->getValue($inmovillaData, 'provincia'),
+            'postal_code' => $this->getValue($inmovillaData, 'cp'),
+            'autonomous_community' => null,
+            
+            // Campos adicionales Inmovilla
+            'inmovilla_direccion' => $this->getValue($inmovillaData, 'direccion'),
+            'inmovilla_cp' => $this->getValue($inmovillaData, 'cp'),
+            'inmovilla_provincia' => $this->getValue($inmovillaData, 'provincia'),
         ];
     }
 
-    /**
-     * Normaliza strings: trim; si queda vacío => null
-     */
-    private function nullableStr(?string $value): ?string
+    // === MÉTODOS DE MAPEO ===
+
+    private function mapOperation(int $keyacci): int
     {
-        if ($value === null) {
-            return null;
-        }
-        $v = trim($value);
-        return $v === '' ? null : $v;
-    }
-
-
-
-    /**
-     * Obtiene un valor del array de Inmovilla de forma segura
-     */
-    private function getValue(array $data, string $key, $default = null)
-    {
-        return $data[$key] ?? $default;
-    }
-
-    /**
-     * Mapea la operación (keyacci) de Inmovilla a operation_id de Laravel
-     */
-    private function mapOperation(array $inmovillaData): ?int
-    {
-        $keyacci = $this->getValue($inmovillaData, 'keyacci');
-        
-        if (!$keyacci) {
-            Log::warning('keyacci no encontrado en datos de Inmovilla');
-            return null;
-        }
-
-        $operationName = $this->operationsMapping[$keyacci] ?? null;
-        
-        if (!$operationName) {
-            Log::warning('Operación no mapeada', ['keyacci' => $keyacci]);
-            return null;
-        }
-
-        // Buscar o crear la operación en Laravel
+        $operationName = $this->operationsMapping[$keyacci] ?? 'Venta';
         $operation = Operation::where('name', $operationName)->first();
-        
-        if (!$operation) {
-            Log::info('Creando nueva operación', ['name' => $operationName]);
-            $operation = Operation::create(['name' => $operationName]);
-        }
-
-        return $operation->id;
+        return $operation ? $operation->id : 1; // Default: Venta
     }
 
-    /**
-     * Mapea el tipo de propiedad (key_tipo) de Inmovilla a property_type_id de Laravel
-     */
-    private function mapPropertyType(array $inmovillaData): ?int
+    private function mapPropertyType(int $keyTipo): int
     {
-        // Primero intentar con key_tipo
-        $keyTipo = $this->getValue($inmovillaData, 'key_tipo');
-        
-        if ($keyTipo && isset($this->propertyTypesMapping[$keyTipo])) {
-            $typeName = $this->propertyTypesMapping[$keyTipo];
-        } else {
-            // Si no existe key_tipo, usar nbtipo (nombre del tipo)
-            $typeName = $this->getValue($inmovillaData, 'nbtipo');
-        }
-
-        if (!$typeName) {
-            Log::warning('Tipo de propiedad no encontrado en datos de Inmovilla');
-            return null;
-        }
-
-        // Buscar o crear el tipo de propiedad en Laravel
+        $typeName = $this->propertyTypesMapping[$keyTipo] ?? 'Casa';
         $propertyType = PropertyType::where('name', $typeName)->first();
-        
-        if (!$propertyType) {
-            Log::info('Creando nuevo tipo de propiedad', ['name' => $typeName]);
-            $propertyType = PropertyType::create(['name' => $typeName]);
-        }
-
-        return $propertyType->id;
+        return $propertyType ? $propertyType->id : 1; // Default: Casa
     }
 
-    /**
-     * Mapea el precio según el tipo de operación
-     */
-    private function mapPrice(array $inmovillaData): float
+    private function mapStatus(int $conservacion): int
     {
-        $keyacci = $this->getValue($inmovillaData, 'keyacci');
-        
-        // Si es venta (1) o venta/alquiler (4), usar precioinmo
-        if (in_array($keyacci, [1, 4, 5, 7, 13, 14])) {
-            return (float) $this->getValue($inmovillaData, 'precioinmo', 0);
-        }
-        
-        // Si es solo alquiler (2), usar precioalq
-        if (in_array($keyacci, [2, 6, 9, 15])) {
-            return (float) $this->getValue($inmovillaData, 'precioalq', 0);
-        }
-        
-        // Por defecto, usar precioinmo
-        return (float) $this->getValue($inmovillaData, 'precioinmo', 0);
+        $statusName = $this->statusMapping[$conservacion] ?? 'Disponible';
+        $status = Status::where('name', $statusName)->first();
+        return $status ? $status->id : 1; // Default: Disponible
     }
 
-    /**
-     * Mapea la condición/conservación de la propiedad
-     */
-    private function mapCondition(array $inmovillaData): string
+    private function calculateMainPrice(array $data): float
     {
-        $conservacion = $this->getValue($inmovillaData, 'conservacion');
+        $precioinmo = (float)($data['precioinmo'] ?? 0);
+        $precioalq = (float)($data['precioalq'] ?? 0);
         
-        if ($conservacion && isset($this->conditionsMapping[$conservacion])) {
-            return $this->conditionsMapping[$conservacion];
-        }
-        
-        return 'Buen estado'; // Valor por defecto
+        // Priorizar precio venta, luego alquiler
+        return $precioinmo > 0 ? $precioinmo : $precioalq;
     }
 
-    /**
-     * Mapea el parking según los valores de Inmovilla
-     */
-    private function mapParking(array $inmovillaData): int
+    private function calculateTotalRooms(array $data): int
     {
-        $parking = $this->getValue($inmovillaData, 'parking', 0);
+        $habdobles = (int)($data['habdobles'] ?? 0);
+        $habitaciones = (int)($data['habitaciones'] ?? 0);
+        $totalHab = (int)($data['total_hab'] ?? 0);
         
-        // Inmovilla: 0=No tiene, 1=Opcional, 2=Incluido
-        // Laravel: 0=No, 1=Sí
-        return $parking > 0 ? 1 : 0;
+        // Usar total_hab si está disponible, sino sumar dobles + simples
+        return $totalHab > 0 ? $totalHab : ($habdobles + $habitaciones);
     }
 
-    /**
-     * Genera un título para la propiedad si no viene de Inmovilla
-     */
-    private function generateTitle(array $inmovillaData): string
+    private function generateTitle(array $data): string
     {
-        $titulo = $this->getValue($inmovillaData, 'titulo');
-        
-        if ($titulo) {
-            return $titulo;
-        }
-
-        // Generar título automático
-        $tipo = $this->getValue($inmovillaData, 'nbtipo', 'Propiedad');
-        $ciudad = $this->getValue($inmovillaData, 'ciudad', '');
-        $zona = $this->getValue($inmovillaData, 'zona', '');
+        $tipo = $data['nbtipo'] ?? 'Propiedad';
+        $ciudad = $data['ciudad'] ?? '';
+        $zona = $data['zona'] ?? '';
         
         $title = $tipo;
         if ($zona) {
@@ -349,16 +285,13 @@ class InmovillaPropertyMapper
         return $title;
     }
 
-    /**
-     * Genera meta descripción para SEO
-     */
-    private function generateMetaDescription(array $inmovillaData): string
+    private function generateMetaDescription(array $data): string
     {
-        $tipo = $this->getValue($inmovillaData, 'nbtipo', 'Propiedad');
-        $ciudad = $this->getValue($inmovillaData, 'ciudad', '');
-        $habitaciones = $this->getValue($inmovillaData, 'habitaciones', 0);
-        $metros = $this->getValue($inmovillaData, 'm_cons', 0);
-        $precio = $this->getValue($inmovillaData, 'precioinmo', 0);
+        $tipo = $data['nbtipo'] ?? 'Propiedad';
+        $ciudad = $data['ciudad'] ?? '';
+        $habitaciones = $this->calculateTotalRooms($data);
+        $metros = (int)($data['m_cons'] ?? 0);
+        $precio = $this->calculateMainPrice($data);
         
         $meta = $tipo;
         if ($habitaciones > 0) {
@@ -377,95 +310,141 @@ class InmovillaPropertyMapper
         return $meta;
     }
 
-    /**
-     * Genera slug único para la propiedad
-     */
-    private function generateSlug(array $inmovillaData): string
+    private function generateSlug(array $data): string
     {
-        $title = $this->generateTitle($inmovillaData);
-        $baseSlug = Str::slug($title);
-        $ref = $this->getValue($inmovillaData, 'ref', '');
-        
-        // Agregar referencia para unicidad
-        if ($ref) {
-            $baseSlug .= '-' . Str::slug($ref);
-        }
-        
-        return $baseSlug;
+        $title = $this->generateTitle($data);
+        return Str::slug($title) . '-' . ($data['cod_ofer'] ?? rand(1000, 9999));
     }
 
-    /**
-     * Obtiene el ID del estado por defecto (Disponible)
-     */
-    private function getDefaultStatusId(): int
+    private function mapCondition(int $conservacion): string
     {
-        $status = Status::where('name', 'Disponible')->first();
+        $conditions = [
+            5 => 'Needs Renovation',
+            10 => 'Original',
+            15 => 'Partial Renovation',
+            20 => 'Move-in Ready',
+            30 => 'Good',
+            40 => 'Semi-renovated',
+            50 => 'Renovated',
+            60 => 'Semi-new',
+            70 => 'New',
+            80 => 'New Build',
+            90 => 'Under Construction',
+            100 => 'In Project',
+        ];
         
-        if (!$status) {
-            Log::info('Creando estado Disponible por defecto');
-            $status = Status::create(['name' => 'Disponible']);
-        }
-        
-        return $status->id;
+        return $conditions[$conservacion] ?? 'Good';
     }
 
-    /**
-     * Limpia los datos mapeados eliminando valores nulos o vacíos no deseados
-     */
-    private function cleanMappedData(array $data): array
+    private function mapOrientation(int $keyori = null): string
     {
-        // Campos que pueden ser nulos
-        $nullableFields = ['rental_price', 'plot_area', 'terrace_area', 'usable_area'];
+        if (!$keyori) return 'South';
         
-        foreach ($data as $key => $value) {
-            // Mantener campos nullable aunque sean 0
-            if (in_array($key, $nullableFields)) {
-                continue;
-            }
-            
-            // Limpiar strings vacíos
-            if (is_string($value) && trim($value) === '') {
-                $data[$key] = null;
-            }
-            
-            // Convertir 0 a null para campos que no deberían ser 0
-            if (in_array($key, ['operation_id', 'property_type_id', 'status_id']) && $value === 0) {
-                $data[$key] = null;
-            }
-        }
+        $orientations = [
+            1 => 'North',
+            2 => 'South', 
+            3 => 'East',
+            4 => 'West',
+            5 => 'Northwest',
+            6 => 'Southwest',
+            7 => 'East-West',
+            8 => 'Southeast',
+            9 => 'North-South',
+            10 => 'Northeast',
+        ];
         
-        return $data;
+        return $orientations[$keyori] ?? 'South';
     }
 
-    /**
-     * Mapea un lote de propiedades de Inmovilla
-     */
-    public function mapPropertiesBatch(array $inmovillaProperties): array
+    private function mapViews(int $keyvista = null): string
     {
-        $mappedProperties = [];
+        if (!$keyvista) return 'City';
         
-        Log::info('Mapeando lote de propiedades', ['count' => count($inmovillaProperties)]);
+        // Simplificado - se puede expandir según API
+        return $keyvista === 1 ? 'Sea' : 'City';
+    }
+
+    private function mapKitchenType(int $cocinaInde = null): string
+    {
+        if (!$cocinaInde) return 'Independent';
         
-        foreach ($inmovillaProperties as $inmovillaProperty) {
-            try {
-                $mappedProperty = $this->mapProperty($inmovillaProperty);
-                $mappedProperties[] = $mappedProperty;
-            } catch (Exception $e) {
-                Log::error('Error mapeando propiedad en lote', [
-                    'cod_ofer' => $inmovillaProperty['cod_ofer'] ?? 'N/A',
-                    'error' => $e->getMessage()
-                ]);
-                // Continuar con la siguiente propiedad
-                continue;
-            }
+        $kitchens = [
+            1 => 'Independent',
+            2 => 'American',
+            3 => 'Open Concept',
+        ];
+        
+        return $kitchens[$cocinaInde] ?? 'Independent';
+    }
+
+    private function mapHeatingType(int $keycalefa = null): string
+    {
+        if (!$keycalefa) return 'Gas';
+        
+        $heating = [
+            1 => 'Gas',
+            2 => 'Electric',
+            3 => 'Solar',
+        ];
+        
+        return $heating[$keycalefa] ?? 'Gas';
+    }
+
+    private function mapCarpentry(int $keycarp = null): string
+    {
+        if (!$keycarp) return 'Wood';
+        
+        $carpentry = [
+            1 => 'Wood',
+            2 => 'PVC',
+            3 => 'Aluminum',
+        ];
+        
+        return $carpentry[$keycarp] ?? 'Wood';
+    }
+
+    private function mapFlooring(int $keysuelo = null): string
+    {
+        if (!$keysuelo) return 'Tile';
+        
+        $flooring = [
+            1 => 'Marble',
+            2 => 'Parquet',
+            3 => 'Parquet',
+            4 => 'Marble',
+            5 => 'Tile',
+            6 => 'Tile',
+            7 => 'Tile',
+            8 => 'Tile',
+            9 => 'Parquet',
+            10 => 'Tile',
+            11 => 'Tile',
+            12 => 'Tile',
+        ];
+        
+        return $flooring[$keysuelo] ?? 'Tile';
+    }
+
+    private function mapExteriorType(array $data): string
+    {
+        return ($data['todoext'] ?? false) ? 'Open' : 'Closed';
+    }
+
+    private function parseDate($date): ?string
+    {
+        if (!$date) return null;
+        
+        try {
+            return \Carbon\Carbon::parse($date)->format('Y-m-d H:i:s');
+        } catch (Exception $e) {
+            Log::warning('Error parsing date', ['date' => $date, 'error' => $e->getMessage()]);
+            return null;
         }
-        
-        Log::info('Lote de propiedades mapeado', [
-            'total_input' => count($inmovillaProperties),
-            'total_mapped' => count($mappedProperties),
-            'errors' => count($inmovillaProperties) - count($mappedProperties)
-        ]);
-        
-        return $mappedProperties;
+    }
+
+    private function getValue(array $data, string $key)
+    {
+        $value = $data[$key] ?? null;
+        return (!empty($value) && $value !== 'NULL' && $value !== '') ? $value : null;
     }
 }

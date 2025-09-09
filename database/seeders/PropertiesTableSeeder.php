@@ -22,7 +22,7 @@ class PropertiesTableSeeder extends Seeder
         $propertyTypes = PropertyType::all()->pluck('id')->toArray();
         $statuses = Status::all()->pluck('id')->toArray();
         $addresses = Address::all()->pluck('id')->toArray();
-        $languages = ['en', 'fr', 'de'];
+        $languages = ['en', 'fr', 'de', 'nl'];
 
         for ($i = 1; $i <= 50; $i++) {
             $property = Property::create([

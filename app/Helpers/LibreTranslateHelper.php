@@ -94,7 +94,20 @@ class LibreTranslateHelper
      */
     public static function translateToMultiple($text, $sourceLang = 'es', $timeout = 20)
     {
-        return self::translate($text, $sourceLang, ['en', 'fr', 'de'], $timeout);
+        return self::translate($text, $sourceLang, ['en', 'fr', 'de', 'nl'], $timeout);
+    }
+
+    /**
+     * Traduce solo al neerlandés
+     *
+     * @param string $text Texto a traducir
+     * @param string $sourceLang Idioma origen
+     * @param int $timeout Tiempo máximo de espera en segundos
+     * @return string Texto traducido a neerlandés
+     */
+    public static function translateToDutch($text, $sourceLang = 'es', $timeout = 20)
+    {
+        return self::translate($text, $sourceLang, 'nl', $timeout);
     }
 
     /**

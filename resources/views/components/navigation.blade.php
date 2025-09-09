@@ -137,7 +137,8 @@
                                 'es' => ['flag' => 'es', 'name' => 'lang_es', 'alt' => 'Español'],
                                 'en' => ['flag' => 'en', 'name' => 'lang_en', 'alt' => 'English'], 
                                 'fr' => ['flag' => 'fr', 'name' => 'lang_fr', 'alt' => 'Français'],
-                                'de' => ['flag' => 'de', 'name' => 'lang_de', 'alt' => 'Deutsch']
+                                'de' => ['flag' => 'de', 'name' => 'lang_de', 'alt' => 'Deutsch'],
+                                'nl' => ['flag' => 'nl', 'name' => 'lang_nl', 'alt' => 'Nederlands'],
                             ] as $locale => $lang)
                                 <a href="{{ route(Route::currentRouteName(), ['locale' => $locale] + Route::current()->parameters()) }}"
                                    class="flex items-center px-4 py-2 text-sm hover:bg-gray-50

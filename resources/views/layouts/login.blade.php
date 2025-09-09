@@ -1,4 +1,3 @@
-<!-- views/layouts/login.blade.php -->
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -10,6 +9,7 @@
     <link rel="alternate" hreflang="en" href="https://localhost:8000/en/" />
     <link rel="alternate" hreflang="fr" href="https://localhost:8000/fr/" />
     <link rel="alternate" hreflang="de" href="https://localhost:8000/de/" />
+    <link rel="alternate" hreflang="nl" href="https://localhost:8000/nl/" />
     <!-- Favicons -->
     <link rel="icon" type="image/png"sizes="57x57" href="assets/images/favicons/favicon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicons/favicon.png">

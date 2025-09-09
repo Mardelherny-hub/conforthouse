@@ -23,45 +23,43 @@ class DashboardController extends Controller
         $reservedStatusId = Status::where('name', 'Reservado')->value('id');
 
         // Actividad reciente combinada
-        $recentActivity = collect();
+        $recentActivity = new Collection();
 
         // Propiedades recientes
-        $recentProperties = Property::latest()->take(5)->get()->map(function ($property) {
-            return [
+        Property::latest()->take(5)->get()->each(function ($property) use ($recentActivity) {
+            $recentActivity->push([
                 'type' => 'property',
                 'message' => 'Nueva propiedad añadida: ' . $property->title,
                 'icon' => 'plus',
                 'color' => 'blue',
                 'created_at' => $property->created_at,
-            ];
+            ]);
         });
 
         // Clientes recientes
-        $recentClients = Client::latest()->take(5)->get()->map(function ($client) {
-            return [
+        Client::latest()->take(5)->get()->each(function ($client) use ($recentActivity) {
+            $recentActivity->push([
                 'type' => 'client',
                 'message' => 'Nuevo cliente registrado: ' . $client->name,
                 'icon' => 'user',
                 'color' => 'green',
                 'created_at' => $client->created_at,
-            ];
+            ]);
         });
 
         // Usuarios recientes
-        $recentUsers = User::latest()->take(5)->get()->map(function ($user) {
-            return [
+        User::latest()->take(5)->get()->each(function ($user) use ($recentActivity) {
+            $recentActivity->push([
                 'type' => 'user',
                 'message' => 'Nuevo usuario creado: ' . $user->name,
                 'icon' => 'shield',
                 'color' => 'yellow',
                 'created_at' => $user->created_at,
-            ];
+            ]);
         });
 
         // Mezcla y ordena por fecha
-        $recentActivity = $recentProperties
-            ->merge($recentClients)
-            ->merge($recentUsers)
+        $recentActivity = $recentActivity
             ->sortByDesc('created_at')
             ->take(10)
             ->values();

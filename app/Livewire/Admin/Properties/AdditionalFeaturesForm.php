@@ -205,7 +205,7 @@ class AdditionalFeaturesForm extends Component
         ];
 
         // Idiomas a traducir
-        $languages = ['en', 'fr', 'de'];
+        $languages = ['en', 'fr', 'de', 'nl'];
 
         foreach ($languages as $lang) {
             // Buscar si ya existe una traducción para este idioma

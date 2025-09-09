@@ -190,7 +190,7 @@ class Operations extends Component
     private function createTranslations($operation)
     {
         // Idiomas a traducir
-        $languages = ['en', 'fr', 'de'];
+        $languages = ['en', 'fr', 'de', 'nl'];
 
         try {
             foreach ($languages as $lang) {
@@ -232,7 +232,7 @@ class Operations extends Component
     private function updateTranslations($operation)
     {
         // Idiomas a traducir
-        $languages = ['en', 'fr', 'de'];
+        $languages = ['en', 'fr', 'de', 'nl'];
 
         try {
             foreach ($languages as $lang) {

@@ -8,45 +8,38 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // ELIMINAR TABLA PROPERTIES EXISTENTE Y RECREAR DESDE CERO
-        Schema::dropIfExists('property_translations');
-        Schema::dropIfExists('property_images');
-        Schema::dropIfExists('properties');
-        Schema::dropIfExists('addresses');
-
-        // CREAR TABLA PROPERTIES CON CAMPOS DE INMOVILLA
-        Schema::create('properties', function (Blueprint $table) {
-            $table->id();
+        // === AGREGAR CAMPOS INMOVILLA A LA TABLA PROPERTIES EXISTENTE ===
+        Schema::table('properties', function (Blueprint $table) {
             
             // === IDENTIFICACIÓN INMOVILLA ===
-            $table->integer('cod_ofer')->unique(); // Código único Inmovilla
-            $table->string('ref'); // Referencia
-            $table->string('numagencia')->nullable(); // Número agencia como string
-            $table->timestamp('fechaact')->nullable(); // Fecha actualización
+            $table->integer('cod_ofer')->unique()->nullable(); // Código único Inmovilla
+            $table->string('inmovilla_ref')->nullable(); // Referencia Inmovilla (diferente de Laravel reference)
+            $table->string('numagencia')->nullable(); // Número agencia
+            $table->timestamp('fechaact')->nullable(); // Fecha actualización Inmovilla
             
-            // === OPERACIÓN Y TIPO ===
-            $table->integer('keyacci'); // 1=Venta, 2=Alquiler, 3=Traspaso
-            $table->integer('key_tipo')->nullable(); // Código tipo propiedad
-            $table->string('nbtipo')->nullable(); // Nombre tipo propiedad
+            // === OPERACIÓN Y TIPO INMOVILLA ===
+            $table->integer('keyacci')->nullable(); // 1=Venta, 2=Alquiler, 3=Traspaso
+            $table->integer('key_tipo')->nullable(); // Código tipo propiedad Inmovilla
+            $table->string('nbtipo')->nullable(); // Nombre tipo propiedad Inmovilla
             
-            // === PRECIOS ===
-            $table->decimal('precioinmo', 12, 2)->nullable(); // Precio venta
-            $table->decimal('precioalq', 12, 2)->nullable(); // Precio alquiler
+            // === PRECIOS INMOVILLA ===
+            $table->decimal('precioinmo', 12, 2)->nullable(); // Precio venta Inmovilla
+            $table->decimal('precioalq', 12, 2)->nullable(); // Precio alquiler Inmovilla
             $table->decimal('outlet', 12, 2)->nullable(); // Precio anterior
             $table->string('tipomensual')->nullable(); // Periodo: MES, QUI, SEM, DIA, FIN
             
-            // === MEDIDAS ===
+            // === MEDIDAS INMOVILLA (complementarias a built_area Laravel) ===
             $table->integer('m_parcela')->nullable(); // Metros parcela
             $table->integer('m_uties')->nullable(); // Metros útiles
-            $table->integer('m_cons')->nullable(); // Metros construidos
             $table->integer('m_terraza')->nullable(); // Metros terraza
+            // NOTA: m_cons se mapea a built_area existente
             
-            // === HABITACIONES Y BAÑOS ===
+            // === HABITACIONES INMOVILLA (complementarias a rooms Laravel) ===
             $table->integer('habdobles')->nullable(); // Habitaciones dobles
-            $table->integer('habitaciones')->nullable(); // Habitaciones simples
-            $table->integer('total_hab')->nullable(); // Total habitaciones
-            $table->integer('banyos')->nullable(); // Baños
-            $table->integer('aseos')->nullable(); // Aseos
+            $table->integer('habitaciones_simples')->nullable(); // Habitaciones simples
+            $table->integer('total_hab')->nullable(); // Total habitaciones Inmovilla
+            $table->integer('aseos')->nullable(); // Aseos (diferente de bathrooms)
+            // NOTA: banyos se mapea a bathrooms existente
             
             // === CARACTERÍSTICAS BÁSICAS ===
             $table->boolean('ascensor')->default(false); // Ascensor
@@ -57,13 +50,13 @@ return new class extends Migration
             $table->boolean('piscina_prop')->default(false); // Piscina privada
             $table->boolean('diafano')->default(false); // Diáfano
             $table->boolean('todoext')->default(false); // Todo exterior
-            $table->integer('distmar')->nullable(); // Distancia mar en metros
+            // NOTA: distmar se mapea a distance_to_sea existente
             
             // === CONSTRUCCIÓN ===
-            $table->integer('anoconstr')->nullable(); // Año construcción
-            $table->integer('plantas')->nullable(); // Número plantas
-            $table->integer('planta')->nullable(); // Planta donde está
+            $table->integer('anoconstr')->nullable(); // Año construcción Inmovilla
             $table->integer('garajes')->nullable(); // Plazas garaje
+            // NOTA: plantas se mapea a floors existente
+            // NOTA: planta se mapea a floor existente
             
             // === CERTIFICACIÓN ENERGÉTICA ===
             $table->string('energialetra', 10)->nullable(); // A,B,C,D,E,F,G
@@ -89,18 +82,18 @@ return new class extends Migration
             // === OTROS INMOVILLA ===
             $table->integer('tipovpo')->nullable(); // Tipo VPO
             $table->integer('electro')->nullable(); // Electrodomésticos
-            $table->integer('destacado')->nullable(); // Destacado
+            $table->integer('destacado')->nullable(); // Destacado Inmovilla
             $table->integer('estadoficha')->nullable(); // Estado ficha
             $table->integer('eninternet')->nullable(); // Publicación web
             $table->integer('tgascom')->nullable(); // Tipo gastos comunidad
-            $table->decimal('gastos_com', 10, 2)->nullable(); // Gastos comunidad
+            // NOTA: gastos_com se mapea a community_expenses existente
             
             // === MULTIMEDIA ===
             $table->integer('numfotos')->nullable(); // Número fotos
             $table->string('foto')->nullable(); // URL foto principal
             $table->boolean('tourvirtual')->default(false); // Tour virtual
             $table->boolean('fotos360')->default(false); // Fotos 360
-            $table->boolean('video')->default(false); // Vídeos
+            $table->boolean('video_inmovilla')->default(false); // Vídeos Inmovilla
             $table->boolean('antesydespues')->default(false); // Fotos antes/después
             $table->string('fotoletra')->nullable(); // ID fotos
             
@@ -110,78 +103,54 @@ return new class extends Migration
             $table->string('emailagencia')->nullable(); // Email agencia
             $table->string('telefono')->nullable(); // Teléfono agencia
             
-            // === UBICACIÓN ===
-            $table->string('ciudad')->nullable(); // Ciudad
-            $table->string('zona')->nullable(); // Zona
+            // === UBICACIÓN INMOVILLA ===
+            $table->string('ciudad_inmovilla')->nullable(); // Ciudad Inmovilla
+            $table->string('zona_inmovilla')->nullable(); // Zona Inmovilla
             $table->integer('key_loca')->nullable(); // Código localización
             $table->integer('key_zona')->nullable(); // Código zona
             $table->integer('keypromo')->nullable(); // Código promoción
             
-            // === CAMPOS LARAVEL OBLIGATORIOS ===
-            $table->string('reference')->unique(); // Referencia única Laravel
-            $table->foreignId('operation_id')->constrained()->onDelete('cascade');
-            $table->foreignId('property_type_id')->constrained()->onDelete('cascade');
-            $table->foreignId('status_id')->constrained()->onDelete('cascade');
-            $table->boolean('is_featured')->default(false);
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->text('meta_description');
-            $table->decimal('price', 12, 2); // Precio principal para Laravel
             
-            // === ÍNDICES OPTIMIZACIÓN ===
+            
+            // === ÍNDICES PARA OPTIMIZACIÓN ===
             $table->index('cod_ofer');
             $table->index('keyacci');
             $table->index('key_tipo');
             $table->index('fechaact');
             $table->index('estadoficha');
-            $table->index(['ciudad', 'zona']);
+            $table->index(['ciudad_inmovilla', 'zona_inmovilla']);
             $table->index('precioinmo');
             $table->index('precioalq');
-            
-            $table->timestamps();
+            $table->index(['destacado', 'is_featured']); // Índice combinado
         });
 
-        // TABLA ADDRESSES SIMPLIFICADA
-        Schema::create('addresses', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('property_id')->constrained()->onDelete('cascade');
-            $table->string('street')->nullable();
-            $table->string('number')->nullable();
-            $table->string('floor')->nullable();
-            $table->string('door')->nullable();
-            $table->string('postal_code')->nullable();
-            $table->string('district')->nullable(); // Zona/distrito
-            $table->string('city')->nullable();
-            $table->string('province')->nullable();
-            $table->string('autonomous_community')->nullable();
-            $table->timestamps();
+        // === AGREGAR CAMPOS INMOVILLA A ADDRESSES ===
+        Schema::table('addresses', function (Blueprint $table) {
+            $table->string('inmovilla_direccion')->nullable(); // Dirección completa Inmovilla
+            $table->string('inmovilla_cp')->nullable(); // Código postal Inmovilla
+            $table->string('inmovilla_provincia')->nullable(); // Provincia Inmovilla
         });
 
-        // TABLA PROPERTY_IMAGES
-        Schema::create('property_images', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('property_id')->constrained()->onDelete('cascade');
-            $table->string('image_path');
-            $table->string('thumbnail_path')->nullable();
-            $table->integer('order')->default(0);
-            $table->boolean('is_featured')->default(false);
-            $table->string('alt_text')->nullable();
+        // === AGREGAR CAMPOS INMOVILLA A PROPERTY_IMAGES ===
+        Schema::table('property_images', function (Blueprint $table) {
             $table->string('inmovilla_photo_id')->nullable(); // ID foto de Inmovilla
             $table->boolean('is_before_after')->default(false); // Foto antes/después
-            $table->timestamps();
+            $table->string('inmovilla_url')->nullable(); // URL original Inmovilla
         });
 
-        // TABLA PROPERTY_VIDEOS
+        // === CREAR TABLA PROPERTY_VIDEOS PARA INMOVILLA ===
         Schema::create('property_videos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('property_id')->constrained()->onDelete('cascade');
-            $table->string('youtube_code'); // Código YouTube
+            $table->string('video_url')->nullable(); // URL del video
+            $table->string('youtube_code')->nullable(); // Código YouTube
             $table->string('title')->nullable();
             $table->integer('order')->default(0);
+            $table->boolean('is_inmovilla')->default(false); // Origen Inmovilla
             $table->timestamps();
         });
 
-        // TABLA PROPERTY_DESCRIPTIONS (para múltiples idiomas desde Inmovilla)
+        // === CREAR TABLA PROPERTY_DESCRIPTIONS PARA MÚLTIPLES IDIOMAS INMOVILLA ===
         Schema::create('property_descriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('property_id')->constrained()->onDelete('cascade');
@@ -193,39 +162,113 @@ return new class extends Migration
             
             $table->unique(['property_id', 'inmovilla_language_id']);
         });
-
-        // TABLA PROPERTY_TRANSLATIONS (traducciones Laravel)
-        Schema::create('property_translations', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('property_id')->constrained()->onDelete('cascade');
-            $table->string('locale')->index();
-            $table->string('title')->nullable();
-            $table->string('slug')->nullable();
-            $table->text('description')->nullable();
-            $table->text('meta_description')->nullable();
-            $table->string('condition')->nullable();
-            $table->string('orientation')->nullable();
-            $table->string('exterior_type')->nullable();
-            $table->string('kitchen_type')->nullable();
-            $table->string('heating_type')->nullable();
-            $table->string('interior_carpentry')->nullable();
-            $table->string('exterior_carpentry')->nullable();
-            $table->string('flooring_type')->nullable();
-            $table->string('views')->nullable();
-            $table->string('regime')->nullable();
-            $table->timestamps();
-            
-            $table->unique(['property_id', 'locale']);
-        });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('property_translations');
+        // === ELIMINAR TABLAS NUEVAS ===
         Schema::dropIfExists('property_descriptions');
         Schema::dropIfExists('property_videos');
-        Schema::dropIfExists('property_images');
-        Schema::dropIfExists('addresses');
-        Schema::dropIfExists('properties');
+        
+        // === ELIMINAR CAMPOS AGREGADOS A PROPERTY_IMAGES ===
+        Schema::table('property_images', function (Blueprint $table) {
+            $table->dropColumn([
+                'inmovilla_photo_id',
+                'is_before_after',
+                'inmovilla_url'
+            ]);
+        });
+        
+        // === ELIMINAR CAMPOS AGREGADOS A ADDRESSES ===
+        Schema::table('addresses', function (Blueprint $table) {
+            $table->dropColumn([
+                'inmovilla_direccion',
+                'inmovilla_cp',
+                'inmovilla_provincia'
+            ]);
+        });
+        
+        // === ELIMINAR CAMPOS AGREGADOS A PROPERTIES ===
+        Schema::table('properties', function (Blueprint $table) {
+            $table->dropIndex(['cod_ofer']);
+            $table->dropIndex(['keyacci']);
+            $table->dropIndex(['key_tipo']);
+            $table->dropIndex(['fechaact']);
+            $table->dropIndex(['estadoficha']);
+            $table->dropIndex(['ciudad_inmovilla', 'zona_inmovilla']);
+            $table->dropIndex(['precioinmo']);
+            $table->dropIndex(['precioalq']);
+            $table->dropIndex(['destacado', 'is_featured']);
+            
+            $table->dropColumn([
+                'cod_ofer',
+                'inmovilla_ref',
+                'numagencia',
+                'fechaact',
+                'keyacci',
+                'key_tipo',
+                'nbtipo',
+                'precioinmo',
+                'precioalq',
+                'outlet',
+                'tipomensual',
+                'm_parcela',
+                'm_uties',
+                'm_terraza',
+                'habdobles',
+                'habitaciones_simples',
+                'total_hab',
+                'aseos',
+                'ascensor',
+                'aire_con',
+                'calefaccion',
+                'parking',
+                'piscina_com',
+                'piscina_prop',
+                'diafano',
+                'todoext',
+                'anoconstr',
+                'garajes',
+                'energialetra',
+                'energiavalor',
+                'emisionesletra',
+                'emisionesvalor',
+                'conservacion',
+                'cocina_inde',
+                'keyori',
+                'keyvista',
+                'keyagua',
+                'keycalefa',
+                'keycarpin',
+                'keycarpinext',
+                'keysuelo',
+                'keytecho',
+                'keyfachada',
+                'keyelectricidad',
+                'x_entorno',
+                'tipovpo',
+                'electro',
+                'destacado',
+                'estadoficha',
+                'eninternet',
+                'tgascom',
+                'numfotos',
+                'foto',
+                'tourvirtual',
+                'fotos360',
+                'video_inmovilla',
+                'antesydespues',
+                'fotoletra',
+                'agencia',
+                'web',
+                'emailagencia',
+                'telefono',
+                'ciudad_inmovilla',
+                'zona_inmovilla',
+                'key_loca',
+                'key_zona',
+                'keypromo',
+            ]);
+        });
     }
 };

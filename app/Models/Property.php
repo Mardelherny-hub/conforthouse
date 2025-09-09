@@ -11,12 +11,12 @@ class Property extends Model
     use HasFactory;
 
     protected $fillable = [
-        // Campos originales
+        // === CAMPOS LARAVEL ORIGINALES ===
         'reference',
         'operation_id',
         'property_type_id',
         'status_id',
-        'address_id',
+        'is_featured',
         'title',
         'slug',
         'meta_description',
@@ -41,146 +41,104 @@ class Property extends Model
         'distance_to_sea',
         'regime',
         'google_map',
-        'video',
         'description',
-        'is_featured',
+        'video',
 
-        // === CAMPOS DE IDENTIFICACIÓN INMOVILLA ===
+        // === CAMPOS INMOVILLA AGREGADOS ===
         'cod_ofer',
-        'inmovilla_numagencia',
         'inmovilla_ref',
-        'inmovilla_fechaact',
-
-        // === CAMPOS DE TIPO Y OPERACIÓN ===
-        'inmovilla_keyacci',
-        'inmovilla_key_tipo',
-
-        // === PRECIOS Y VALORES ===
-        'price_sale',
-        'price_rent',
-        'price_outlet',
-        'rent_period',
-
-        // === MEDIDAS ===
-        'plot_area_m2',
-        'useful_area_m2',
-        'built_area_m2',
-        'terrace_area_m2',
-
-        // === HABITACIONES Y BAÑOS ===
-        'double_rooms',
-        'single_rooms',
-        'total_rooms',
-        'toilets',
-
-        // === CARACTERÍSTICAS BÁSICAS ===
-        'has_elevator',
-        'has_air_conditioning',
-        'has_heating',
-        'parking_type',
-        'has_community_pool',
-        'has_private_pool',
-        'is_diaphanous',
-        'is_all_exterior',
-
-        // === CERTIFICACIÓN ENERGÉTICA ===
-        'energy_certificate_letter',
-        'energy_consumption_value',
-        'emissions_certificate_letter',
-        'emissions_value',
-
-        // === CAMPOS ENUM DE INMOVILLA ===
-        'inmovilla_conservacion',
-        'inmovilla_cocina_inde',
-        'inmovilla_keyori',
-        'inmovilla_keyvista',
-        'inmovilla_keyagua',
-        'inmovilla_keycalefa',
-        'inmovilla_keycarpin',
-        'inmovilla_keycarpinext',
-        'inmovilla_keysuelo',
-        'inmovilla_keytecho',
-        'inmovilla_keyfachada',
-        'inmovilla_keyelectricidad',
-        'inmovilla_x_entorno',
-
-        // === OTROS CAMPOS INMOVILLA ===
-        'inmovilla_tipovpo',
-        'inmovilla_electro',
-        'inmovilla_destacado',
-        'inmovilla_estadoficha',
-        'inmovilla_eninternet',
-        'inmovilla_tgascom',
-
-        // === MULTIMEDIA ===
-        'photo_count',
-        'main_photo_url',
-        'has_virtual_tour',
-        'has_360_photos',
-        'has_video_content',
-        'has_before_after_photos',
-        'photo_letter_id',
-
-        // === INFORMACIÓN DE AGENCIA ===
-        'agency_name',
-        'agency_website',
-        'agency_email',
-        'agency_phone',
-
-        // === UBICACIÓN DE INMOVILLA ===
-        'inmovilla_ciudad',
-        'inmovilla_zona',
-        'inmovilla_key_loca',
-        'inmovilla_key_zona',
-        'inmovilla_keypromo',
+        'numagencia',
+        'fechaact',
+        'keyacci',
+        'key_tipo',
+        'nbtipo',
+        'precioinmo',
+        'precioalq',
+        'outlet',
+        'tipomensual',
+        'm_parcela',
+        'm_uties',
+        'm_terraza',
+        'habdobles',
+        'habitaciones_simples',
+        'total_hab',
+        'aseos',
+        'ascensor',
+        'aire_con',
+        'calefaccion',
+        'parking',
+        'piscina_com',
+        'piscina_prop',
+        'diafano',
+        'todoext',
+        'anoconstr',
+        'garajes',
+        'energialetra',
+        'energiavalor',
+        'emisionesletra',
+        'emisionesvalor',
+        'conservacion',
+        'cocina_inde',
+        'keyori',
+        'keyvista',
+        'keyagua',
+        'keycalefa',
+        'keycarpin',
+        'keycarpinext',
+        'keysuelo',
+        'keytecho',
+        'keyfachada',
+        'keyelectricidad',
+        'x_entorno',
+        'tipovpo',
+        'electro',
+        'destacado',
+        'estadoficha',
+        'eninternet',
+        'tgascom',
+        'numfotos',
+        'foto',
+        'tourvirtual',
+        'fotos360',
+        'video_inmovilla',
+        'antesydespues',
+        'fotoletra',
+        'agencia',
+        'web',
+        'emailagencia',
+        'telefono',
+        'ciudad_inmovilla',
+        'zona_inmovilla',
+        'key_loca',
+        'key_zona',
+        'keypromo',
     ];
 
     protected $casts = [
         'is_featured' => 'boolean',
-        'has_elevator' => 'boolean',
-        'has_air_conditioning' => 'boolean',
-        'has_heating' => 'boolean',
-        'has_community_pool' => 'boolean',
-        'has_private_pool' => 'boolean',
-        'is_diaphanous' => 'boolean',
-        'is_all_exterior' => 'boolean',
-        'has_virtual_tour' => 'boolean',
-        'has_360_photos' => 'boolean',
-        'has_video_content' => 'boolean',
-        'has_before_after_photos' => 'boolean',
         'price' => 'decimal:2',
-        'price_sale' => 'decimal:2',
-        'price_rent' => 'decimal:2',
-        'price_outlet' => 'decimal:2',
         'community_expenses' => 'decimal:2',
-        'energy_consumption_value' => 'float',
-        'emissions_value' => 'float',
-        'inmovilla_fechaact' => 'datetime',
+        'precioinmo' => 'decimal:2',
+        'precioalq' => 'decimal:2',
+        'outlet' => 'decimal:2',
+        'energiavalor' => 'float',
+        'emisionesvalor' => 'float',
+        'ascensor' => 'boolean',
+        'aire_con' => 'boolean',
+        'calefaccion' => 'boolean',
+        'piscina_com' => 'boolean',
+        'piscina_prop' => 'boolean',
+        'diafano' => 'boolean',
+        'todoext' => 'boolean',
+        'tourvirtual' => 'boolean',
+        'fotos360' => 'boolean',
+        'video_inmovilla' => 'boolean',
+        'antesydespues' => 'boolean',
+        'fechaact' => 'datetime',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($property) {
-            $property->slug = static::generateUniqueSlug($property->title);
-        });
-    }
-
-    protected static function generateUniqueSlug($title)
-    {
-        $slug = Str::slug($title);
-        $originalSlug = $slug;
-        $counter = 1;
-
-        while (static::where('slug', $slug)->exists()) {
-            $slug = $originalSlug . '-' . $counter++;
-        }
-
-        return $slug;
-    }
-
-    // === RELACIONES EXISTENTES ===
+    // === RELACIONES LARAVEL EXISTENTES ===
+    
     public function operation()
     {
         return $this->belongsTo(Operation::class);
@@ -203,12 +161,12 @@ class Property extends Model
 
     public function images()
     {
-        return $this->hasMany(PropertyImage::class);
+        return $this->hasMany(PropertyImage::class)->orderBy('order');
     }
 
     public function firstImage()
     {
-        return $this->hasOne(PropertyImage::class)->oldestOfMany();
+        return $this->hasOne(PropertyImage::class)->where('is_featured', true)->latest();
     }
 
     public function translations()
@@ -216,29 +174,160 @@ class Property extends Model
         return $this->hasMany(PropertyTranslation::class);
     }
 
-    // === MÉTODOS DE UBICACIÓN ===
-    public function city()
+    // === NUEVAS RELACIONES INMOVILLA ===
+    
+    public function videos()
     {
-        return $this->address ? $this->address->city() : null;
+        return $this->hasMany(PropertyVideo::class)->orderBy('order');
     }
 
-    public function province()
+    public function descriptions()
     {
-        return $this->address ? $this->address->province() : null;
+        return $this->hasMany(PropertyDescription::class);
     }
 
-    public function commune()
+    // === SCOPES ÚTILES ===
+    
+    public function scopeFeatured($query)
     {
-        return $this->address ? $this->address->commune() : null;
+        return $query->where('is_featured', true);
     }
 
-    public function district()
+    public function scopeAvailable($query)
     {
-        return $this->hasOneThrough(District::class, Address::class, 'id', 'id', 'address_id', 'district_id');
+        return $query->whereHas('status', function($q) {
+            $q->where('name', 'Disponible');
+        });
     }
 
-    // === MÉTODOS ESPECÍFICOS DE INMOVILLA ===
+    public function scopeByOperation($query, $operationId)
+    {
+        return $query->where('operation_id', $operationId);
+    }
 
+    public function scopeByType($query, $typeId)
+    {
+        return $query->where('property_type_id', $typeId);
+    }
+
+    public function scopePriceRange($query, $min = null, $max = null)
+    {
+        if ($min) {
+            $query->where('price', '>=', $min);
+        }
+        if ($max) {
+            $query->where('price', '<=', $max);
+        }
+        return $query;
+    }
+
+    public function scopeInmovilla($query)
+    {
+        return $query->whereNotNull('cod_ofer');
+    }
+
+    // === ACCESSORS INTELIGENTES (COMPATIBILIDAD) ===
+    
+    /**
+     * Precio principal inteligente - prioriza venta sobre alquiler
+     */
+    public function getMainPriceAttribute()
+    {
+        return $this->precioinmo ?? $this->precioalq ?? $this->price;
+    }
+
+    /**
+     * Referencia unificada - usa Inmovilla si existe, sino Laravel
+     */
+    public function getMainReferenceAttribute()
+    {
+        return $this->inmovilla_ref ?? $this->reference;
+    }
+
+    /**
+     * Superficie construida unificada
+     */
+    public function getMainBuiltAreaAttribute()
+    {
+        return $this->built_area ?? 0;
+    }
+
+    /**
+     * Total habitaciones calculado
+     */
+    public function getTotalRoomsAttribute()
+    {
+        return $this->total_hab ?? $this->rooms ?? 0;
+    }
+
+    /**
+     * Ciudad unificada
+     */
+    public function getMainCityAttribute()
+    {
+        return $this->ciudad_inmovilla ?? $this->address?->city ?? 'Sin ciudad';
+    }
+
+    /**
+     * Zona unificada
+     */
+    public function getMainZoneAttribute()
+    {
+        return $this->zona_inmovilla ?? $this->address?->district ?? null;
+    }
+
+    /**
+     * URL foto principal
+     */
+    public function getMainPhotoAttribute()
+    {
+        return $this->foto ?? $this->firstImage?->image_path ?? null;
+    }
+
+    /**
+     * Es propiedad destacada (combina ambos sistemas)
+     */
+    public function getIsHighlightedAttribute()
+    {
+        return $this->is_featured || $this->destacado;
+    }
+
+    /**
+     * Operación en texto (para compatibilidad)
+     */
+    public function getOperationNameAttribute()
+    {
+        $operations = [
+            1 => 'Venta',
+            2 => 'Alquiler', 
+            3 => 'Traspaso',
+            4 => 'Leasing'
+        ];
+        
+        return $operations[$this->keyacci] ?? $this->operation?->name ?? 'Venta';
+    }
+
+    /**
+     * Tipo de propiedad en texto (para compatibilidad)
+     */
+    public function getPropertyTypeNameAttribute()
+    {
+        return $this->nbtipo ?? $this->propertyType?->name ?? 'Casa';
+    }
+
+    // === MUTATORS PARA AUTOMATIZACIÓN ===
+    
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = $value;
+        // Auto-generar slug si no existe
+        if (empty($this->attributes['slug'])) {
+            $this->attributes['slug'] = Str::slug($value) . '-' . ($this->cod_ofer ?? rand(1000, 9999));
+        }
+    }
+
+    // === MÉTODOS HELPER ===
+    
     /**
      * Verifica si la propiedad viene de Inmovilla
      */
@@ -248,147 +337,88 @@ class Property extends Model
     }
 
     /**
-     * Obtiene el precio principal según el tipo de operación
+     * Obtiene el precio formateado principal
      */
-    public function getMainPrice(): ?float
+    public function getFormattedMainPrice(): string
     {
-        // Si viene de Inmovilla, usar lógica específica
-        if ($this->isFromInmovilla()) {
-            return match ($this->inmovilla_keyacci) {
-                2 => $this->price_rent,    // Alquiler
-                1, 3 => $this->price_sale, // Venta o Traspaso
-                default => $this->price    // Fallback al precio original
-            };
+        $price = $this->getMainPriceAttribute();
+        return $price ? '€' . number_format($price, 0, ',', '.') : 'Consultar';
+    }
+
+    /**
+     * Obtiene la descripción de conservación
+     */
+    public function getConservationDescription(): string
+    {
+        $states = [
+            5 => 'Para reformar',
+            10 => 'De origen',
+            15 => 'Reformar parcialmente', 
+            20 => 'Entrar a vivir',
+            30 => 'Buen estado',
+            40 => 'Semireformado',
+            50 => 'Reformado',
+            60 => 'Seminuevo',
+            70 => 'Nuevo',
+            80 => 'Obra nueva',
+            90 => 'En construcción',
+            100 => 'En proyecto'
+        ];
+        
+        return $states[$this->conservacion] ?? $this->condition ?? 'Buen estado';
+    }
+
+    /**
+     * Verifica si tiene características premium
+     */
+    public function hasPremiumFeatures(): bool
+    {
+        return $this->piscina_prop || $this->piscina_com || $this->ascensor || 
+               $this->aire_con || $this->garajes > 0 || $this->distance_to_sea < 1000;
+    }
+
+    /**
+     * Obtiene resumen de características
+     */
+    public function getFeaturesSummary(): array
+    {
+        $features = [];
+        
+        if ($this->getTotalRoomsAttribute() > 0) {
+            $features[] = $this->getTotalRoomsAttribute() . ' hab.';
         }
         
-        return $this->price;
-    }
-
-    /**
-     * Obtiene la URL del tour virtual
-     */
-    public function getVirtualTourUrl(): ?string
-    {
-        if ($this->has_virtual_tour && $this->cod_ofer && $this->inmovilla_numagencia) {
-            return "http://ap.apinmo.com/fotosvr/tour.php?cod={$this->cod_ofer}.{$this->inmovilla_numagencia}";
+        if ($this->bathrooms > 0) {
+            $features[] = $this->bathrooms . ' baños';
         }
-        return null;
-    }
-
-    /**
-     * Obtiene la URL del visor de fotos 360
-     */
-    public function get360PhotosUrl(): ?string
-    {
-        if ($this->has_360_photos && $this->cod_ofer && $this->inmovilla_numagencia) {
-            return "http://ap.apinmo.com/fotosvr/?codigo={$this->cod_ofer}.{$this->inmovilla_numagencia}";
+        
+        if ($this->getMainBuiltAreaAttribute() > 0) {
+            $features[] = $this->getMainBuiltAreaAttribute() . 'm²';
         }
-        return null;
-    }
-
-    /**
-     * Decodifica las características del entorno desde el campo binario
-     */
-    public function getEnvironmentFeatures(): array
-    {
-        if (empty($this->inmovilla_x_entorno)) {
-            return [];
+        
+        if ($this->garajes > 0) {
+            $features[] = $this->garajes . ' garaje';
         }
-
-        $features = [];
-        $entorno = (int) $this->inmovilla_x_entorno;
-
-        // Mapeo según la documentación de Inmovilla
-        $environmentMapping = [
-            0 => 'Árboles',
-            1 => 'Hospitales',
-            2 => 'Tren',
-            3 => 'Metro',
-            4 => 'Golf',
-            5 => 'Montaña',
-            6 => 'Rural',
-            7 => 'Costa',
-            8 => 'Vallado',
-            9 => 'Autobuses',
-            10 => 'Centros comerciales',
-            11 => 'Tranvía',
-            12 => 'Zonas infantiles',
-            13 => 'Colegios',
-            14 => 'Céntrico',
-            15 => 'Centros médicos',
-            16 => 'Zona de paso',
-            17 => 'Parques',
-            18 => 'Cerca de Universidad',
-            19 => 'Supermercados',
-            20 => 'Vigilancia 24H'
-        ];
-
-        foreach ($environmentMapping as $bit => $feature) {
-            $bitValue = pow(2, $bit);
-            if (($entorno & $bitValue) == $bitValue) {
-                $features[] = $feature;
-            }
-        }
-
+        
         return $features;
     }
 
-    /**
-     * Verifica si tiene una característica específica del entorno
-     */
-    public function hasEnvironmentFeature(int $featureId): bool
+    // === EVENTOS DEL MODELO ===
+    
+    protected static function boot()
     {
-        if (empty($this->inmovilla_x_entorno)) {
-            return false;
-        }
-
-        $bitValue = pow(2, $featureId);
-        return (((int) $this->inmovilla_x_entorno) & $bitValue) == $bitValue;
-    }
-
-    /**
-     * Obtiene el estado de la ficha en texto legible
-     */
-    public function getStatusText(): string
-    {
-        $statusMapping = [
-            1 => 'Libre',
-            2 => 'Alquilada',
-            3 => 'Vendida',
-            4 => 'Señalizada',
-            5 => 'No Libre',
-            6 => 'Traspaso',
-            7 => 'Reservado',
-            8 => 'En Trámites',
-            9 => 'Sólo Seguimiento',
-            // ... más estados según necesidad
-        ];
-
-        return $statusMapping[$this->inmovilla_estadoficha] ?? 'Desconocido';
-    }
-
-    /**
-     * Scope para filtrar propiedades de Inmovilla
-     */
-    public function scopeFromInmovilla($query)
-    {
-        return $query->whereNotNull('cod_ofer');
-    }
-
-    /**
-     * Scope para filtrar por tipo de operación de Inmovilla
-     */
-    public function scopeInmovillaOperation($query, $operationType)
-    {
-        return $query->where('inmovilla_keyacci', $operationType);
-    }
-
-    /**
-     * Scope para filtrar propiedades actualizadas recientemente en Inmovilla
-     */
-    public function scopeRecentlyUpdatedInInmovilla($query, $since = null)
-    {
-        $since = $since ?? now()->subDay();
-        return $query->where('inmovilla_fechaact', '>=', $since);
+        parent::boot();
+        
+        static::creating(function ($property) {
+            // Auto-generar reference si no existe
+            if (empty($property->reference)) {
+                $property->reference = 'PROP-' . strtoupper(Str::random(8));
+            }
+            
+            // Auto-generar slug si no existe
+            if (empty($property->slug) && !empty($property->title)) {
+                $property->slug = Str::slug($property->title) . '-' . ($property->cod_ofer ?? rand(1000, 9999));
+            }
+        });
     }
 }

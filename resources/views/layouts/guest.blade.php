@@ -122,6 +122,12 @@
                                      alt="Deutsch" class="w-5 h-3 mr-3">
                                 {{ __('messages.lang_de') }}
                             </a>
+                            <a href="{{ route(Route::currentRouteName(), ['locale' => 'nl'] + Route::current()->parameters()) }}"
+                               class="flex items-center px-4 py-3 text-sm text-white hover:text-gold-400 hover:bg-gold-600 hover:bg-opacity-10 transition-colors duration-200 rounded-b-lg">
+                                <img src="{{ asset('assets/images/flags/4x3/nl.svg') }}" 
+                                     alt="Nederlands" class="w-5 h-3 mr-3">
+                                {{ __('messages.lang_nl') }}
+                            </a>
                         </div>
                     </div>
                 </div>

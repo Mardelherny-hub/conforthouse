@@ -382,7 +382,7 @@ class AdminPropertyCreate extends Component
     private function createTranslations($property)
     {
         // Idiomas a traducir
-        $languages = ['en', 'fr', 'de'];
+        $languages = ['en', 'fr', 'de', 'nl'];
 
         // Campos que necesitan traducción
         $fieldsToTranslate = [
