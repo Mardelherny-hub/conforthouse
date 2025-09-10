@@ -37,6 +37,11 @@
                     </x-dropdown>
                     {{-- Fin Propiedades --}}
 
+                    <!-- Sincronización Inmovilla -->
+                    <x-nav-link :href="route('admin.inmovilla.sync.index')" :active="request()->routeIs('admin.inmovilla.sync.*')">
+                        🏠 {{ __('Sync Inmovilla') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('admin.clients.index')" :active="request()->routeIs('clients.index')">
                         {{ __('Clientes') }}
                     </x-nav-link>

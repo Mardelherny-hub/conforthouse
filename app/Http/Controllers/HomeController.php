@@ -7,114 +7,139 @@ use App\Models\Property;
 use App\Helpers\LibreTranslateHelper;
 use Illuminate\Support\Facades\Log;
 
-
 class HomeController extends Controller
 {
-    public function index(Request $request) {
-
+    public function index(Request $request) 
+    {
         $locale = app()->getLocale();
-        $properties = Property::with(['images', 'propertyType', 'operation', 'status'])->latest()->take(4)->get();
+        
+        // Cargar propiedades con eager loading optimizado
+        $properties = Property::with([
+            'images', 
+            'propertyType',
+            'propertyType.translations' => function($q) use ($locale) {
+                $q->where('locale', $locale);
+            },
+            'operation',
+            'operation.translations' => function($q) use ($locale) {
+                $q->where('locale', $locale);
+            },
+            'status',
+            'status.translations' => function($q) use ($locale) {
+                $q->where('locale', $locale);
+            },
+            'translations' => function($q) use ($locale) {
+                $q->where('locale', $locale)->select('property_id', 'locale', 'title', 'description', 'meta_description', 'slug');
+            }
+        ])
+        ->latest()
+        ->take(4)
+        ->get();
 
-        //obtengo la primera propiedad destacada
-        $featuredProperty = Property::with(['images', 'propertyType', 'operation', 'status'])->where('is_featured', true)->first();
-        //dd($featuredProperty);
+        // Cargar propiedad destacada con eager loading
+        $featuredProperty = Property::with([
+            'images', 
+            'address',
+            'propertyType',
+            'propertyType.translations' => function($q) use ($locale) {
+                $q->where('locale', $locale);
+            },
+            'operation',
+            'operation.translations' => function($q) use ($locale) {
+                $q->where('locale', $locale);
+            },
+            'status',
+            'status.translations' => function($q) use ($locale) {
+                $q->where('locale', $locale);
+            },
+            'translations' => function($q) use ($locale) {
+                $q->where('locale', $locale)->select('property_id', 'locale', 'title', 'description', 'meta_description', 'slug');
+            }
+        ])
+        ->where('is_featured', true)
+        ->first();
 
-        // Aplicar traducciones a cada propiedad
-        foreach ($properties as $property) {
-            $this->applyTranslations($property, $locale);
-            $this->translateRelations($property, $locale);
-        }
-
-        // Aplicar traducciones a la propiedad destacada solo si existe
-        if ($featuredProperty) {
-            $this->applyTranslations($featuredProperty, $locale);
-        }
-        // Si no hay propiedad destacada, tomamos la última propiedad creada
+        // Si no hay propiedad destacada, tomar la última
         if (!$featuredProperty) {
-            $featuredProperty = Property::with(['images', 'address'])->latest()->first();
+            $featuredProperty = Property::with([
+                'images', 
+                'address',
+                'translations' => function($q) use ($locale) {
+                    $q->where('locale', $locale)->select('property_id', 'locale', 'title', 'description', 'meta_description', 'slug');
+                }
+            ])
+            ->latest()
+            ->first();
         }
 
-        //dd($properties);
-
+        // Aplicar traducciones usando datos ya cargados
+        $this->applyTranslationsToCollection($properties, $locale);
+        
+        if ($featuredProperty) {
+            $this->applyTranslationsToSingle($featuredProperty, $locale);
+        }
 
         return view('home', compact('properties', 'featuredProperty'));
     }
 
-    private function applyTranslations($property, $locale)
+    /**
+     * Aplica traducciones a una sola entidad usando datos ya cargados
+     */
+    private function applyTranslationsToSingle($entity, $locale)
     {
-        // Buscar traducción en el idioma solicitado
-        $translation = $property->translations()->where('locale', $locale)->first();
+        if ($locale === 'es') {
+            return; // No necesita traducción
+        }
 
-        if ($translation) {
-            // Aplicar traducción si existe
-            $property->title = $translation->title ?? $property->title;
-            $property->slug = $translation->slug ?? $property->slug;
-            $property->description = $translation->description ?? $property->description;
-            $property->meta_description = $translation->meta_description ?? $property->meta_description;
-            $property->condition = $translation->condition ?? $property->condition;
-            $property->orientation = $translation->orientation ?? $property->orientation;
-            $property->exterior_type = $translation->exterior_type ?? $property->exterior_type;
-            $property->kitchen_type = $translation->kitchen_type ?? $property->kitchen_type;
-            $property->heating_type = $translation->heating_type ?? $property->heating_type;
-            $property->interior_carpentry = $translation->interior_carpentry ?? $property->interior_carpentry;
-            $property->exterior_carpentry = $translation->exterior_carpentry ?? $property->exterior_carpentry;
-            $property->flooring_type = $translation->flooring_type ?? $property->flooring_type;
-            $property->views = $translation->views ?? $property->views;
-            $property->regime = $translation->regime ?? $property->regime;
+        // Para propiedades
+        if ($entity instanceof Property) {
+            $translation = $entity->translations->first();
+            if ($translation) {
+                $entity->title = $translation->title ?? $entity->title;
+                $entity->description = $translation->description ?? $entity->description;
+                $entity->meta_description = $translation->meta_description ?? $entity->meta_description;
+                $entity->slug = $translation->slug ?? $entity->slug;
+            }
+        }
+
+        // Para relaciones (tipo, operación, estado)
+        if ($entity->relationLoaded('propertyType') && $entity->propertyType) {
+            $this->translateRelationFromLoaded($entity->propertyType, $locale, 'name');
+        }
+        if ($entity->relationLoaded('operation') && $entity->operation) {
+            $this->translateRelationFromLoaded($entity->operation, $locale, 'name');
+        }
+        if ($entity->relationLoaded('status') && $entity->status) {
+            $this->translateRelationFromLoaded($entity->status, $locale, 'name');
         }
     }
 
     /**
-     * Traduce las relaciones de una propiedad (tipo, estado, operación)
-     *
-     * @param Property $property Propiedad cuyas relaciones se traducirán
-     * @param string $locale Idioma
+     * Aplica traducciones a una colección usando datos ya cargados
      */
-    private function translateRelations($property, $locale)
+    private function applyTranslationsToCollection($collection, $locale)
     {
-        // Traducir tipo de propiedad
-        if ($property->propertyType) {
-            $this->translateRelation($property->propertyType, 'name', $locale);
+        if ($locale === 'es') {
+            return; // No necesita traducción
         }
 
-        // Traducir estado
-        if ($property->status) {
-            $this->translateRelation($property->status, 'name', $locale);
-        }
-
-        // Traducir operación
-        if ($property->operation) {
-            $this->translateRelation($property->operation, 'name', $locale);
+        foreach ($collection as $item) {
+            $this->applyTranslationsToSingle($item, $locale);
         }
     }
 
-    private function translateRelation($model, $attribute, $locale)
+    /**
+     * Traduce una relación usando traducciones ya cargadas
+     */
+    private function translateRelationFromLoaded($model, $locale, $attribute)
     {
-        if ($locale == 'es') {
-            return; // Si es español, no necesita traducción
-        }
-
-        $originalText = $model->$attribute;
-
-        if (empty($originalText)) {
+        if ($locale === 'es' || !$model->relationLoaded('translations')) {
             return;
         }
 
-        try {
-            // Usar el helper para traducir
-            $translatedText = LibreTranslateHelper::translate($originalText, 'es', $locale);
-
-            // Aplicar traducción
-            $model->$attribute = $translatedText;
-        } catch (\Exception $e) {
-            // Si falla la traducción, mantener el texto original
-            Log::error('Error al traducir relación', [
-                'model' => get_class($model),
-                'id' => $model->id,
-                'attribute' => $attribute,
-                'error' => $e->getMessage()
-            ]);
+        $translation = $model->translations->first();
+        if ($translation && isset($translation->$attribute)) {
+            $model->$attribute = $translation->$attribute;
         }
     }
-
 }

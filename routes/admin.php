@@ -79,5 +79,23 @@ Route::middleware(['auth', 'verified', 'role:admin|agente'])->group(function () 
     Route::delete('users/{id}/force-delete', [UserController::class, 'forceDelete'])
     ->name('users.forceDelete')
     ->middleware('permission:gestionar usuarios');
+
+    // Sincronización Inmovilla (solo para admins)
+    Route::middleware('permission:gestionar usuarios')->group(function () {
+        Route::get('inmovilla/sync', [App\Http\Controllers\Admin\InmovillaSyncController::class, 'index'])
+            ->name('inmovilla.sync.index');
+        
+        Route::post('inmovilla/check-services', [App\Http\Controllers\Admin\InmovillaSyncController::class, 'checkServices'])
+            ->name('inmovilla.sync.check-services');
+        
+        Route::post('inmovilla/sync', [App\Http\Controllers\Admin\InmovillaSyncController::class, 'sync'])
+            ->name('inmovilla.sync.execute');
+        
+        Route::get('inmovilla/progress', [App\Http\Controllers\Admin\InmovillaSyncController::class, 'progress'])
+            ->name('inmovilla.sync.progress');
+        
+        Route::post('inmovilla/translate', [App\Http\Controllers\Admin\InmovillaSyncController::class, 'translate'])
+            ->name('inmovilla.sync.translate');
+    });
 });
 
