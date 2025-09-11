@@ -15,26 +15,31 @@ class HomeController extends Controller
         
         // Cargar propiedades con eager loading optimizado
         $properties = Property::with([
-            'images', 
-            'propertyType',
-            'propertyType.translations' => function($q) use ($locale) {
-                $q->where('locale', $locale);
-            },
-            'operation',
-            'operation.translations' => function($q) use ($locale) {
-                $q->where('locale', $locale);
-            },
-            'status',
-            'status.translations' => function($q) use ($locale) {
-                $q->where('locale', $locale);
-            },
-            'translations' => function($q) use ($locale) {
-                $q->where('locale', $locale)->select('property_id', 'locale', 'title', 'description', 'meta_description', 'slug');
-            }
-        ])
-        ->latest()
-        ->take(4)
-        ->get();
+    'images', 
+    'propertyType',
+    'propertyType.translations' => function($q) use ($locale) {
+        $q->where('locale', $locale);
+    },
+    'operation',
+    'operation.translations' => function($q) use ($locale) {
+        $q->where('locale', $locale);
+    },
+    'status',
+    'status.translations' => function($q) use ($locale) {
+        $q->where('locale', $locale);
+    },
+    'descriptions' => function($q) use ($locale) {
+        // Priorizar idioma solicitado, fallback a español
+        $q->where(function($subQ) use ($locale) {
+            $subQ->where('locale', $locale)
+                 ->orWhere('locale', 'es');
+        })->orderByRaw("CASE WHEN locale = ? THEN 1 ELSE 2 END", [$locale]);
+    }
+])
+->where('destacado', false)
+->latest()
+->take(9)
+->get();
 
         // Cargar propiedad destacada con eager loading
         $featuredProperty = Property::with([
@@ -52,11 +57,11 @@ class HomeController extends Controller
             'status.translations' => function($q) use ($locale) {
                 $q->where('locale', $locale);
             },
-            'translations' => function($q) use ($locale) {
-                $q->where('locale', $locale)->select('property_id', 'locale', 'title', 'description', 'meta_description', 'slug');
+            'descriptions' => function($q) use ($locale) {
+                $q->where('locale', $locale)->limit(1);
             }
         ])
-        ->where('is_featured', true)
+        ->where('destacado', true)
         ->first();
 
         // Si no hay propiedad destacada, tomar la última
@@ -64,8 +69,8 @@ class HomeController extends Controller
             $featuredProperty = Property::with([
                 'images', 
                 'address',
-                'translations' => function($q) use ($locale) {
-                    $q->where('locale', $locale)->select('property_id', 'locale', 'title', 'description', 'meta_description', 'slug');
+                'descriptions' => function($q) use ($locale) {
+                    $q->where('locale', $locale)->limit(1);
                 }
             ])
             ->latest()
@@ -93,12 +98,12 @@ class HomeController extends Controller
 
         // Para propiedades
         if ($entity instanceof Property) {
-            $translation = $entity->translations->first();
+            $translation = $entity->descriptions->first();
             if ($translation) {
                 $entity->title = $translation->title ?? $entity->title;
                 $entity->description = $translation->description ?? $entity->description;
-                $entity->meta_description = $translation->meta_description ?? $entity->meta_description;
-                $entity->slug = $translation->slug ?? $entity->slug;
+                //$entity->meta_description = $translation->meta_description ?? $entity->meta_description;
+                //$entity->slug = $translation->slug ?? $entity->slug;
             }
         }
 

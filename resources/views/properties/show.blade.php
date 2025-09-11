@@ -86,7 +86,13 @@
                     {{-- Imagen Principal --}}
                     <div class="relative group overflow-hidden">
                         @if($property->images->isNotEmpty())
-                            <img src="/storage/{{ $property->images->first()->image_path }}"
+                            @php
+                                $mainImage = $property->images->first();
+                                $mainImageSrc = str_starts_with($mainImage->image_path, 'http') 
+                                    ? $mainImage->image_path 
+                                    : '/storage/' . $mainImage->image_path;
+                            @endphp
+                            <img src="{{ $mainImageSrc }}"
                                 alt="{{ $property->title }}"
                                 @click="openModal(0)"
                                 class="w-full h-[500px] object-cover shadow-xl transform transition-all duration-700 group-hover:scale-105 cursor-pointer">
@@ -115,7 +121,12 @@
                     <div class="grid grid-cols-2 gap-4">
                         @foreach ($property->images->slice(1, 4) as $index => $image)
                             <div class="relative group overflow-hidden">
-                                <img src="/storage/{{ $image->image_path }}" alt="{{ $property->title }}"
+                                @php
+                                    $thumbSrc = str_starts_with($image->image_path, 'http') 
+                                        ? $image->image_path 
+                                        : '/storage/' . $image->image_path;
+                                @endphp
+                                <img src="{{ $thumbSrc }}" alt="{{ $property->title }}"
                                     @click="openModal({{ $index }})"
                                     class="w-full h-60 object-cover transform transition-all duration-700 group-hover:scale-110 cursor-pointer">
                             </div>
@@ -158,7 +169,7 @@
 
                                 {{-- Imagen en Modal --}}
                                 <div class="w-full h-full flex items-center justify-center">
-                                    <img :src="'/storage/' + currentImage.image_path" alt="{{ $property->title }}"
+                                    <img :src="currentImage.image_path.startsWith('http') ? currentImage.image_path : '/storage/' + currentImage.image_path" alt="{{ $property->title }}"
                                         class="max-w-full max-h-[80vh] object-contain"
                                         x-transition:enter="transition ease-out duration-300 transform"
                                         x-transition:enter-start="opacity-0 scale-95"
@@ -253,6 +264,7 @@
                             <span class="james-property-badge">{{ $property->propertyType->name }}</span>
                             <span class="james-property-badge james-badge-secondary">{{ $property->operation->name }}</span>
                         </div>
+                        
                         
                         <h1 class="james-property-title">{{ $property->title }}</h1>
                         
@@ -521,16 +533,21 @@
                 @foreach($rel_properties as $relProperty)
                     <div class="james-property-card">
                         <div class="james-property-image">
-                            <img src="/storage/{{ $relProperty->firstImage->thumbnail_path }}" 
-                                 alt="{{ $relProperty->title }}"
-                                 class="w-full h-full object-cover">
+                            @php
+                                $relImageSrc = $relProperty->firstImage 
+                                    ? (str_starts_with($relProperty->firstImage->image_path, 'http') 
+                                        ? $relProperty->firstImage->image_path 
+                                        : '/storage/' . $relProperty->firstImage->image_path)
+                                    : asset('assets/images/properties/placeholder.webp');
+                            @endphp
+                            <img src="{{ $relImageSrc }}" 
+                                alt="{{ $relProperty->title }}"
+                                class="w-full h-full object-cover">
                             <div class="james-property-overlay">
                                 <a href="{{ route('prop.show', ['locale' => app()->getLocale(), 'slug' => $relProperty->slug]) }}" 
                                    class="james-property-link">
                                     View Details
-                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                    </svg>
+                                    
                                 </a>
                             </div>
                         </div>

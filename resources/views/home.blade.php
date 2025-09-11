@@ -70,14 +70,20 @@
                     
                     <!-- Property Image -->
                     <div class="james-featured-image">
-                        @if(!$featuredProperty->images && $featuredProperty->images->first())
-                            <img src="/storage/{{ $featuredProperty->images->first()->image_path }}"
-                                 alt="{{ $featuredProperty->title }}"
-                                 class="w-full h-full object-cover">
+                        @if($featuredProperty->images && $featuredProperty->images->first())
+                            @php
+                                $image = $featuredProperty->images->first();
+                                $imageSrc = str_starts_with($image->image_path, 'http') 
+                                    ? $image->image_path 
+                                    : '/storage/' . $image->image_path;
+                            @endphp
+                            <img src="{{ $imageSrc }}" 
+                                alt="{{ $featuredProperty->title }}"
+                                class="w-full h-full object-cover">
                         @else
-                            <img src="{{ asset('assets/images/home/trend-2.png') }}"
-                                 alt="{{ $featuredProperty->title }}"
-                                 class="w-full h-full object-cover">
+                            <img src="{{ asset('assets/images/home/trend-2.png') }}" 
+                                alt="{{ $featuredProperty->title }}"
+                                class="w-full h-full object-cover">
                         @endif
                         
                         <div class="james-featured-badge font-body">Featured</div>
@@ -141,12 +147,17 @@
                 @forelse ($properties as $property)
                     <div class="james-property-card">
                         <div class="james-property-image">
-                            @if(!$property->images && $property->images->first())
-                                <img src="/storage/{{ $property->images->first()->image_path }}" 
-                                     alt="{{ $property->title }}">
+                            @if($property->images && $property->images->first())
+                                @php
+                                    $image = $property->images->first();
+                                    $imageSrc = str_starts_with($image->image_path, 'http') 
+                                        ? $image->image_path 
+                                        : '/storage/' . $image->image_path;
+                                @endphp
+                                <img src="{{ $imageSrc }}" alt="{{ $property->title }}">
                             @else
-                                <img src="{{ asset('assets/images/home/trend-1.jpg') }}" 
-                                     alt="{{ $property->title }}">
+                                <img src="{{ asset('assets/images/properties/placeholder.webp') }}" 
+                                    alt="{{ $property->title }}">
                             @endif
                             
                             @if ($property->is_featured == 1)

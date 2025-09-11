@@ -23,7 +23,16 @@ class PropertyController extends Controller
         $search = $request->query('search'); // Añadido para manejar búsquedas por texto
 
         // Consulta base con relaciones necesarias
-        $query = Property::with(['images', 'propertyType', 'operation', 'status']);
+        $query = Property::with([
+            'images', 
+            'propertyType', 
+            'operation', 
+            'status',
+            'descriptions' => function($q) use ($locale) {
+                $q->whereIn('locale', [$locale, 'es'])
+                ->orderByRaw("locale = ? DESC", [$locale]);
+            }
+        ]);
 
         // Aplicar filtros si existen
         if ($operationId) {
@@ -56,7 +65,7 @@ class PropertyController extends Controller
         // Aplicar traducciones a cada propiedad
         foreach ($properties as $property) {
             $this->applyTranslations($property, $locale);
-            $this->translateRelations($property, $locale);
+            //$this->translateRelations($property, $locale);
         }
 
         // Obtener operaciones y tipos para los filtros del formulario
@@ -64,13 +73,13 @@ class PropertyController extends Controller
         $propertyTypes = PropertyType::all();
 
         // Traducir las operaciones y tipos para mostrar en los filtros
-        foreach ($operations as $operation) {
-            $this->translateRelation($operation, 'name', $locale);
-        }
+        //foreach ($operations as $operation) {
+        //    $this->translateRelation($operation, 'name', $locale);
+        //}
 
-        foreach ($propertyTypes as $type) {
-            $this->translateRelation($type, 'name', $locale);
-        }
+        //foreach ($propertyTypes as $type) {
+        //    $this->translateRelation($type, 'name', $locale);
+        //}
 
         return view('properties.index', compact(
             'properties',
@@ -88,7 +97,16 @@ class PropertyController extends Controller
     {
 
         // Primero intentar buscar por slug en la tabla principal
-        $propertyQuery = Property::with(['images', 'propertyType', 'operation', 'status']);
+        $propertyQuery = Property::with([
+            'images', 
+            'propertyType', 
+            'operation', 
+            'status',
+            'descriptions' => function($q) use ($locale) {
+                $q->whereIn('locale', [$locale, 'es'])
+                ->orderByRaw("locale = ? DESC", [$locale]);
+            }
+        ]);
 
         // Buscar la propiedad primero por el slug en la tabla principal
         $property = $propertyQuery->where('slug', $slug)->first();
@@ -107,10 +125,16 @@ class PropertyController extends Controller
         $this->applyTranslations($property, $locale);
 
         // Traducir tipo, estado y operación
-        $this->translateRelations($property, $locale);
+        //$this->translateRelations($property, $locale);
 
         // Obtener 4 propiedades relacionadas con el mismo tipo
-        $rel_properties = Property::with('firstImage')
+        $rel_properties = Property::with([
+                'firstImage',
+                'descriptions' => function($q) use ($locale) {
+                    $q->whereIn('locale', [$locale, 'es'])
+                    ->orderByRaw("locale = ? DESC", [$locale]);
+                }
+            ])
             ->where('property_type_id', $property->property_type_id)
             ->where('id', '!=', $property->id)
             ->orderBy('id', 'desc')
@@ -121,7 +145,8 @@ class PropertyController extends Controller
         foreach ($rel_properties as $rel_property) {
             $this->applyTranslations($rel_property, $locale);
             // Traducir tipo, estado y operación
-            $this->translateRelations($rel_property, $locale);
+            //$this->translateRelations($rel_property, $locale);
+           
         }
         
 
@@ -138,24 +163,17 @@ class PropertyController extends Controller
      */
     private function applyTranslations($property, $locale)
     {
-        // Buscar traducción en el idioma solicitado
-        $translation = $property->translations()->where('locale', $locale)->first();
-
+        // DEBUG: Ver el resultado del where()
+    $filtered = $property->descriptions->where('locale', $locale);
+    $translation = $filtered->first();
+       
         if ($translation) {
-            // Aplicar traducción si existe
-            $property->title = $translation->title ?? $property->title;
+            // Solo aplicar título si existe en la traducción
+            if (!empty($translation->title)) {
+                $property->title = $translation->title;
+            }
+            // Descripción sí se aplica siempre
             $property->description = $translation->description ?? $property->description;
-            $property->meta_description = $translation->meta_description ?? $property->meta_description;
-            $property->condition = $translation->condition ?? $property->condition;
-            $property->orientation = $translation->orientation ?? $property->orientation;
-            $property->exterior_type = $translation->exterior_type ?? $property->exterior_type;
-            $property->kitchen_type = $translation->kitchen_type ?? $property->kitchen_type;
-            $property->heating_type = $translation->heating_type ?? $property->heating_type;
-            $property->interior_carpentry = $translation->interior_carpentry ?? $property->interior_carpentry;
-            $property->exterior_carpentry = $translation->exterior_carpentry ?? $property->exterior_carpentry;
-            $property->flooring_type = $translation->flooring_type ?? $property->flooring_type;
-            $property->views = $translation->views ?? $property->views;
-            $property->regime = $translation->regime ?? $property->regime;
         }
     }
 
