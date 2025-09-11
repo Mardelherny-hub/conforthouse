@@ -32,7 +32,7 @@
                             <div>
                                 <h4 class="font-luxury-sans font-medium text-gray-900 mb-1">{{ __('messages.address') }}
                                 </h4>
-                                <p class="text-gray-600 font-luxury-sans">Av. Principal 123, Ciudad</p>
+                                <p class="text-gray-600 font-luxury-sans">{{ __('messages.office_address') }}</p>
                             </div>
                         </div>
 
@@ -48,7 +48,7 @@
                             <div>
                                 <h4 class="font-luxury-sans font-medium text-gray-900 mb-1">{{ __('messages.phone') }}
                                 </h4>
-                                <p class="text-gray-600 font-luxury-sans">+34 123 456 789</p>
+                                <p class="text-gray-600 font-luxury-sans">{{ __('messages.office_phone') }}</p>
                             </div>
                         </div>
 
@@ -64,7 +64,7 @@
                             <div>
                                 <h4 class="font-luxury-sans font-medium text-gray-900 mb-1">{{ __('messages.email') }}
                                 </h4>
-                                <p class="text-gray-600 font-luxury-sans">info@conforthouse.com</p>
+                                <p class="text-gray-600 font-luxury-sans">{{ __('messages.office_email') }}</p>
                             </div>
                         </div>
 
@@ -80,9 +80,9 @@
                             <div>
                                 <h4 class="font-luxury-sans font-medium text-gray-900 mb-1">{{ __('messages.hours') }}
                                 </h4>
-                                <p class="text-gray-600 font-luxury-sans">{{ __('messages.weekdays') }}: 9:00 - 18:00
+                                <p class="text-gray-600 font-luxury-sans">{{ __('messages.weekdays') }}: {{ __('messages.business_hours') }}</p>
                                 </p>
-                                <p class="text-gray-600 font-luxury-sans">{{ __('messages.weekends') }}: 10:00 - 14:00
+                                <p class="text-gray-600 font-luxury-sans">{{ __('messages.weekends') }}: {{ __('messages.weekend_hours') }}</p>
                                 </p>
                             </div>
                         </div>
@@ -287,7 +287,7 @@
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-luxury font-medium text-gray-900 mb-1">María González</h3>
+                        <h3 class="text-xl font-luxury font-medium text-gray-900 mb-1">{{ __('messages.agent_1_name') }}</h3>
                         <p class="text-amber-500 font-luxury-sans text-sm mb-4">{{ __('messages.luxury_specialist') }}
                         </p>
                         <div class="flex items-center text-gray-600 mb-4">
@@ -296,7 +296,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                             </svg>
-                            <span class="font-luxury-sans">+34 623 456 789</span>
+                            <span class="font-luxury-sans">{{ __('messages.agent_1_phone') }}</span>
                         </div>
                         <div class="flex items-center text-gray-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2"
@@ -304,7 +304,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
-                            <span class="font-luxury-sans">maria@conforthouse.com</span>
+                            <span class="font-luxury-sans">{{ __('messages.agent_1_email') }}</span>
                         </div>
                     </div>
                 </div>
@@ -345,7 +345,7 @@
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-luxury font-medium text-gray-900 mb-1">Carlos Rodríguez</h3>
+                        <h3 class="text-xl font-luxury font-medium text-gray-900 mb-1">{{ __('messages.agent_2_name') }}</h3>
                         <p class="text-amber-500 font-luxury-sans text-sm mb-4">{{ __('messages.sales_director') }}
                         </p>
                         <div class="flex items-center text-gray-600 mb-4">
@@ -354,7 +354,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                             </svg>
-                            <span class="font-luxury-sans">+34 655 789 123</span>
+                            <span class="font-luxury-sans">{{ __('messages.agent_2_phone') }}</span>
                         </div>
                         <div class="flex items-center text-gray-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2"
@@ -362,7 +362,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
-                            <span class="font-luxury-sans">carlos@conforthouse.com</span>
+                            <span class="font-luxury-sans">{{ __('messages.agent_2_email') }}</span>
                         </div>
                     </div>
                 </div>
@@ -403,7 +403,7 @@
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-luxury font-medium text-gray-900 mb-1">Lucía Martínez</h3>
+                        <h3 class="text-xl font-luxury font-medium text-gray-900 mb-1">{{ __('messages.agent_3_name') }}</h3>
                         <p class="text-amber-500 font-luxury-sans text-sm mb-4">
                             {{ __('messages.international_consultant') }}</p>
                         <div class="flex items-center text-gray-600 mb-4">
@@ -412,7 +412,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                             </svg>
-                            <span class="font-luxury-sans">+34 678 123 456</span>
+                            <span class="font-luxury-sans">{{ __('messages.agent_3_phone') }}</span>
                         </div>
                         <div class="flex items-center text-gray-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 mr-2"
@@ -420,7 +420,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
-                            <span class="font-luxury-sans">lucia@conforthouse.com</span>
+                            <span class="font-luxury-sans">{{ __('messages.agent_3_email') }}</span>
                         </div>
                     </div>
                 </div>

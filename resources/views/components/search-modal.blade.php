@@ -44,7 +44,7 @@ class="relative z-50">
             <div class="px-8 py-6 border-b border-gray-100">
                 <div class="flex items-center justify-between">
                     <h3 class="text-xl font-body font-medium text-gray-900">
-                        Search Properties
+                        {{ __('messages.search_properties') }}
                     </h3>
                     <button @click="searchOpen = false"
                             class="text-gray-400 hover:text-gray-600 transition-colors duration-200 p-1">
@@ -79,7 +79,7 @@ class="relative z-50">
                         <!-- Operation Type -->
                         <div class="space-y-2">
                             <label class="block text-sm font-body font-medium text-gray-700">
-                                {{ __('messages.Operación') }}
+                                {{ __('messages.operation') }}
                             </label>
                             <select name="operation_id" 
                                     x-model="selectedOperation"
@@ -172,7 +172,7 @@ class="relative z-50">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                             </svg>
-                            <span>{{ __('messages.search_button') }}</span>
+                            <span>{{ __('messages.search_properties') }}</span>
                         </button>
                         
                         <button type="button" 
@@ -181,7 +181,7 @@ class="relative z-50">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                             </svg>
-                            <span>{{ __('messages.clear_button') }}</span>
+                            <span>{{ __('messages.clear_all_filters') }}</span>
                         </button>
                     </div>
 

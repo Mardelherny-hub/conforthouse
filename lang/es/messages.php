@@ -1,15 +1,16 @@
 <?php
 
 return [
-    // Idiomas
+    // ===== IDIOMAS =====
     'lang_fr' => 'Français',
     'lang_en' => 'English',
     'lang_es' => 'Español',
     'lang_de' => 'Deutsch',
-    'sel_lang' => 'Idioma',
     'lang_nl' => 'Nederlands',
+    'sel_lang' => 'Idioma',
 
-    // Menú principal
+    // ===== MENÚ PRINCIPAL =====
+    'inicio' => 'Inicio',
     'propiedades' => 'Propiedades',
     'servicios' => 'Servicios',
     'about_us' => 'Sobre Nosotros',
@@ -17,16 +18,82 @@ return [
     'atencion_exclusiva' => 'Atención Exclusiva',
     'coleccion_privada' => 'Colección Privada',
 
-    // Login
+    // ===== NAVEGACIÓN PROPIEDADES =====
+    'todas_propiedades' => 'Todas las Propiedades',
+    'alquiler' => 'Alquiler',
+    'venta' => 'Venta',
+    'obra_nueva' => 'Obra Nueva',
+    'viviendas_de_lujo' => 'Viviendas de Lujo',
+
+    // ===== LOGIN / AUTH =====
     'bienvenido' => 'Bienvenido',
     'portal_exclusivo' => 'Portal Exclusivo',
     'login' => 'Iniciar Sesión',
     'remember_me' => 'Recordarme',
     'forgot_password' => '¿Olvidaste tu contraseña?',
 
-    // Subcategorías de Propiedades
+    // ===== BOTONES GENERALES =====
+    'explore_properties' => 'Explorar Propiedades',
+    'contact_now' => 'Contactar Ahora',
+    'contact_us_button' => 'Contáctanos',
+    'learn_more' => 'Conocer Más',
+    'discover' => 'Descubrir',
+    'descubrir' => 'Descubrir',
+    'buscar' => 'Buscar',
+    'Ver Detalles' => 'Ver Detalles',
+    'Contactar' => 'Contactar',
+    'clear_all_filters' => 'Limpiar Todos los Filtros',
+
+    // ===== HERO / SLIDES HOME =====
+    'slide_title_1' => 'Propiedades Exclusivas',
+    'slide_subtitle_1' => 'Descubre residencias únicas en las mejores ubicaciones',
+    'slide_title_2' => 'Villas de Ensueño',
+    'slide_subtitle_2' => 'Espacios diseñados para experiencias extraordinarias',
+    'slide_title_3' => 'Inversiones Premium',
+    'slide_subtitle_3' => 'Oportunidades inmobiliarias de alto potencial',
+    'hero_title_1' => 'Conforthouse',
+    'hero_highlight_1' => 'Living',
+    'hero_title_2' => 'Propiedades',
+    'hero_highlight_2' => 'Exclusivas',
+    'hero_title_3' => 'El arte de vivir con',
+    'hero_highlight_3' => 'Elegancia',
+
+    // ====== HOME =====
+    'nuestras_categorias_premium' => 'Nuestras Categorías Premium',
+    'explora_seleccion_propiedades' => 'Explora nuestra selección de propiedades exclusivas para encontrar tu próximo hogar ideal',
+    'residencias' => 'Residencias',
+    'apartamentos' => 'Apartamentos', 
+    'villas' => 'Villas',
+    'ver_propiedades' => 'Ver propiedades',
+    'recent_listings' => 'Últimas Propiedades',
+    'view_all_properties' => 'Ver Todas las Propiedades',
+    'featured' => 'Destacada',
+    'new' => 'Nueva',
+    'bed' => 'hab',
+    'bath' => 'baños',
+    'view_details' => 'Ver Detalles',
+    'premium_services' => 'Servicios Premium',
+    'services_description' => 'Servicios inmobiliarios profesionales adaptados a propiedades de lujo. Nuestro equipo experto ofrece soluciones integrales para compradores, vendedores e inversores.',
+    'property_valuation' => 'Tasación de Propiedades',
+    'property_valuation_desc' => 'Análisis de mercado experto y tasación precisa de propiedades',
+    'investment_consulting' => 'Consultoría de Inversión',
+    'investment_consulting_desc' => 'Asesoramiento estratégico para inversiones inmobiliarias de lujo',
+    'property_management' => 'Gestión de Propiedades',
+    'property_management_desc' => 'Gestión completa de propiedades para fincas de lujo',
+    'learn_more' => 'Conocer Más',
+    'ready_find_dream_property' => '¿Listo para Encontrar tu Propiedad Ideal?',
+    'connect_luxury_experts' => 'Conéctate con nuestros expertos en bienes raíces de lujo y descubre oportunidades exclusivas en las ubicaciones más deseadas del mundo.',
+    'browse_properties' => 'Explorar Propiedades',
+    'contact_us' => 'Contáctanos',
+
+    // ===== ESTADÍSTICAS =====
+    'exclusive_properties' => 'Propiedades Exclusivas',
+    'countries' => 'Países',
+    'satisfied_clients' => 'Clientes Satisfechos',
+
+    // ===== CATEGORÍAS DE PROPIEDADES =====
     'Residenciales' => 'Residenciales',
-    'Explore' => 'Explora',
+    'Explore' => 'Explorar',
     'Mansiones, penthouses y residencias exclusivas' => 'Mansiones, penthouses y residencias exclusivas',
     'Apartamentos' => 'Apartamentos',
     'Apartamentos de Lujo' => 'Apartamentos de Lujo',
@@ -34,224 +101,126 @@ return [
     'Villas exclusivas con amplios jardines y piscina privada' => 'Villas exclusivas con amplios jardines y piscina privada',
     'Fincas' => 'Fincas',
     'Haciendas y fincas de lujo con amplios terrenos' => 'Haciendas y fincas de lujo con amplios terrenos',
-    'alquiler' => 'Alquiler',
-    'venta' => 'Venta',
-    'obra_nueva' => 'Obra Nueva',
-    'viviendas_de_lujo' => 'Viviendas de Lujo',
 
-    // Subcategorías de Servicios
+
+    // =====  PROPIEDADES =====
+    'properties_found' => 'Propiedades Encontradas',
+    'no_properties_found' => 'No se Encontraron Propiedades',
+    'try_adjusting_search' => 'Intenta ajustar tus criterios de búsqueda o navega por todas las propiedades disponibles',
+    'view_all_properties' => 'Ver Todas las Propiedades',
+    'featured' => 'Destacada',
+    'location_available' => 'Ubicación Disponible',
+    'bed' => 'hab',
+    'bath' => 'baños',
+    'view_details' => 'Ver Detalles',
+
+    //======== PROPIEDADES SHOW =====
+    'gallery' => 'Galería',
+    'video' => 'Video',
+    'm2_built' => 'm² Construidos',
+    'floor' => 'Planta',
+    'description' => 'Descripción',
+    'property_details' => 'Detalles de la Propiedad',
+    'basic_information' => 'Información Básica',
+    'reference' => 'Referencia',
+    'type' => 'Tipo',
+    'operation' => 'Operación',
+    'condition' => 'Estado',
+    'year_built' => 'Año Construcción',
+    'space_layout' => 'Espacio y Distribución',
+    'built_area' => 'Superficie Construida',
+    'bedrooms' => 'Dormitorios',
+    'bathrooms' => 'Baños',
+    'parking' => 'Aparcamiento',
+    'spaces' => 'plazas',
+    'location' => 'Ubicación',
+    'share_property' => 'Compartir esta Propiedad',
+    'facebook' => 'Facebook',
+    'twitter' => 'Twitter',
+    'whatsapp' => 'WhatsApp',
+    'email' => 'Email',
+    'full_name' => 'Nombre Completo',
+    'email_address' => 'Dirección de Email',
+    'phone_optional' => 'Teléfono (Opcional)',
+    'message' => 'Mensaje',
+    'enter_name' => 'Introduce tu nombre',
+    'enter_email' => 'Introduce tu email',
+    'phone_placeholder' => '+34 600 000 000',
+    'interested_property' => 'Estoy interesado en esta propiedad...',
+    'more-info' => 'Solicita más información sobre esta propiedad. Te responderemos a la mayor brevedad posible',
+    'accept_privacy_terms' => 'Acepto la política de privacidad y términos de servicio',
+    'send_message' => 'Enviar Mensaje',
+    'similar_properties' => 'Propiedades Similares',
+    'discover_properties' => 'Descubre otras propiedades excepcionales que podrían interesarte',
+    'view_details' => 'Ver Detalles',
+    'bed' => 'hab',
+    'bath' => 'baños',
+
+    // ===== SERVICIOS =====
     'serv_tasacion' => 'Tasación',
     'serv_consultoria' => 'Consultoría',
     'serv_inversion' => 'Inversión',
+    'consultoria_inmobiliaria' => 'Consultoría Inmobiliaria',
+    'asesoramiento_personalizado_desc' => 'Asesoramiento inmobiliario personalizado para tomar las mejores decisiones',
+    'gestion_integral' => 'Gestión Integral',
+    'gestion_integral_desc' => 'Gestión completa de propiedades con atención a cada detalle',
+    'investment_consulting' => 'Consultoría de Inversión',
+    'investment_consulting_desc' => 'Análisis de mercado y oportunidades de inversión inmobiliaria',
+    'real_estate_consulting' => 'Consultoría Inmobiliaria',
+    'real_estate_consulting_desc' => 'Asesoramiento experto en transacciones inmobiliarias complejas',
+    'property_valuation' => 'Tasación de Propiedades',
+    'property_valuation_desc' => 'Valoraciones precisas realizadas por tasadores certificados',
+    'interior_design' => 'Diseño de Interiores',
+    'interior_design_desc' => 'Diseño y decoración de espacios con estilo y funcionalidad',
+    'cta_services_title' => '¿Necesitas Asesoramiento Inmobiliario?',
+    'cta_services_desc' => 'Nuestro equipo de expertos está listo para ayudarte con cualquier consulta inmobiliaria',
+    'testimonials_title' => 'Lo que Dicen Nuestros Clientes',
+    'testimonials_subtitle' => 'Experiencias reales de clientes satisfechos con nuestros servicios',
 
-    //Hero
-    // Slides
-    'slide_title_1' => 'Propiedades Exclusivas',
-    'slide_subtitle_1' => 'Descubre residencias únicas en las mejores ubicaciones',
-    'slide_title_2' => 'Villas de Ensueño',
-    'slide_subtitle_2' => 'Espacios diseñados para experiencias extraordinarias',
-    'slide_title_3' => 'Inversiones Premium',
-    'slide_subtitle_3' => 'Oportunidades inmobiliarias con alto potencial',
-
-    // Hero Titles
-    'hero_title_1' => 'Conforthouse',
-    'hero_highlight_1' => 'Living',
-    'hero_title_2' => 'Propiedades',
-    'hero_highlight_2' => 'Exclusivas',
-    'hero_title_3' => 'El Arte de Vivir con',
-    'hero_highlight_3' => 'Elegancia',
-
-    // Buttons
-    'explore_properties' => 'Explorar propiedades',
-    'contact_now' => 'Contactar ahora',
-
-    // Stats
-    'exclusive_properties' => 'Propiedades Exclusivas',
-    'countries' => 'Países',
-    'satisfied_clients' => 'Clientes Satisfechos',
-
-    // Other
-    'discover' => 'Descubrir',
-
-    // Footer
-    'footer_about_title' => 'Sobre Conforthouse Living',
-    'footer_about_description' => 'Conforthouse Living es una agencia inmobiliaria especializada en propiedades de alto nivel. Nos dedicamos a ofrecer una cuidada selección de viviendas exclusivas —como casas, apartamentos y fincas— en ubicaciones privilegiadas. Trabajamos de forma personalizada para conectar a cada cliente con la propiedad ideal.',
-    'footer_inicio' => 'Inicio',
-    'footer_contacto' => 'Contacto',
-    'footer_enlaces' => 'Enlaces',
-    'footer_newsletter' =>  'Boletín',
-    'footer_newsletter_title' => 'Suscríbase a nuestro boletín',
-    'su correo electrónico' => 'Su correo Electrónico',
-    'suscribirse' => 'Suscribirse',
-    'derechos' => 'Todos los derechos reservados',
-
-    // Otros
-    'copyright' => '© 2024 Conforthouse Living, Todos los Derechos Reservados',
-
-    'property_list' => 'Listado de Propiedades',
-    'contact_us' => 'Contáctanos',
-    'Ver todas las categorías' => 'Ver todas las categorías',
-    /*
-    *HOME
-    */
-    //Category Section Encabezado de sección con elemento decorativo
-    'descubre' => 'Descubre',
-    'nuestras' => 'Nuestras',
-    'Categorías' => 'Categorías',
-    'Explora' => 'Explora nuestra selección de propiedades exclusivas para encontrar tu próximo hogar ideal',
-
-    //Sección de Propiedad Destacada
-    'Propiedad Destacada' => 'Propiedad Destacada',
-    'Contactar' => 'Contactar',
-    'Ver Detalles' => 'Ver Detalles',
-    'habitaciones' => 'habitaciones',
-    'banios' => 'baños',
-
-    //Trending Properties Section
-    'Propiedades' => 'Propiedades',
-    'Trending' => 'Tendencias',
-
-    // Sección servicios exclusivos
-    'servicios_exclusivos' => 'Servicios <span class="text-amber-400">Exclusivos</span>',    'Ver Todos los Servicios' => 'Ver Todos los Servicios',
-    'Destacado' => 'Destacado',
-    'Property Valuation' => 'Tasación de Propiedades',
-    'We accurately value each property, offering a detailed and objective analysis of the luxury real estate market.' => 'Valoramos con precisión cada propiedad, ofreciendo un análisis detallado y objetivo del mercado inmobiliario de lujo.',
-    'Servicio Premium' => 'Servicio Premium',
-    'Consulta disponibilidad' => 'Consulta disponibilidad',
-    'Legales' => 'Legales',
-    ' Servicio Jurídico Gratuito' => ' Servicio Jurídico Gratuito',
-    'Especializado en derecho inmobiliario' => 'Especializado en derecho inmobiliario',
-    'Estrategia' => 'Estrategia',
-    'Personalized Consulting' => 'Consultoría Personalizada',
-    'Adaptada a las necesidades de cada cliente en el mercado inmobiliario' => 'Adaptada a las necesidades de cada cliente en el mercado inmobiliario',
-    'Tecnología' => 'Tecnología',
-    'Property Management' => 'Gestión de Propiedades',
-    'Comprehensive administration and management services for properties' => 'Servicios integrales de administración y gestión para propiedades',
-
-    // CTA
-    'cta_descripcion' => 'Nuestros Servicios Exclusivos para clientes que buscan soluciones personalizadas y de alta calidad en gestión patrimonial y asesoramiento financiero',
-    'Solicitar Información' => 'Solicitar Información',
-    'Ver Servicios' => 'Ver Servicios',
-
-    //Sección Contacto
-    'titulo_contacto' => 'Contáctese con <span class="text-amber-600">Nosotros</span>',
-    'Envíenos un mensaje' => 'Envíenos un mensaje',
-    'Nombre completo' => 'Nombre completo',
-    'Su nombre' => 'Su nombre',
-    'Correo electrónico' => 'Correo electrónico',
-    'Su email' => 'Su correo electrónico',
-    'telefono' => 'Teléfono',
-    'Su teléfono' => 'Su teléfono',
-    'Asunto' => 'Asunto',
-    'Su asunto' => 'Su asunto',
-    'Mensaje' => 'Mensaje',
-    'Su mensaje' => 'Su mensaje',
-    'Enviar Mensaje' => 'Enviar Mensaje',
-
-    // Información de contacto
-    'Información de contacto' => 'Información de contacto',
-    'Dirección' => 'Dirección',
-
-    // Callout
-    'home_callout_title' => '¿Buscas asesoría inmobiliaria de primera clase?',
-    'home_callout_subtitle' => 'Estamos aquí para ayudarte',
-    'home_callout_button' => 'Pide una Cotización',
-    // Buscador
-    'search_property_placeholder' => 'Busca tu propiedad de lujo...',
-    'search_button' => 'Buscar',
-    'clear_button' => 'Limpiar',
-
-
-    //resultados filtros y buscador
-    'filtered_results' => 'Resultados de la búsqueda',
-    'operation' => 'Operación',
-    'type' => 'Tipo',
-    'no_properties_found' => 'No se encontraron propiedades',
-    'try_different_filters' => 'Intenta diferentes filtros',
-    'price_range' => 'Rango de precio',
-    'to' => 'a',
-    'currency' => 'Euros',
-    'searching' => 'Buscando',
-
-    // Servicios Home
-    'services_card1_title' => 'Asesoría Personalizada',
-    'services_card1_description' => 'Nuestros expertos ofrecen un asesoramiento a medida para ayudarte a encontrar la propiedad de tus sueños.',
-    'services_card1_alt' => 'Asesoría Personalizada',
-
-    'services_card2_title' => 'Estrategia a Medida',
-    'services_card2_description' => 'Desarrollamos una estrategia personalizada para ayudarte a alcanzar tus objetivos inmobiliarios.',
-    'services_card2_alt' => 'Estrategia a Medida',
-
-    'services_card3_title' => 'Crecimiento de Inversiones',
-    'services_card3_description' => 'Te asesoramos para maximizar el rendimiento de tus inversiones inmobiliarias.',
-    'services_card3_alt' => 'Crecimiento de Inversiones',
-    // Estadísticas
-    'stats_successful_projects' => 'Proyectos Exitosos',
-    'stats_analysis_reports' => 'Informes de Análisis',
-    'stats_awards_won' => 'Premios Ganados',
-    'stats_happy_clients' => 'Clientes Satisfechos',
-    // Servicios Exclusivos
-    'exclusive_services_title' => 'Servicios Exclusivos',
-    'service_valuation_title' => 'Tasación de Propiedades',
-    'service_valuation_description' => 'Valoramos con precisión cada propiedad, ofreciendo un análisis detallado y objetivo del mercado inmobiliario de lujo.',
-    'service_consulting_title' => 'Consultoría Personalizada',
-    'service_consulting_description' => 'Asesoramiento integral adaptado a las necesidades específicas de cada cliente en el mercado inmobiliario de alto nivel.',
-    'service_tax_title' => 'Asesoría Fiscal Inmobiliaria',
-    'service_tax_description' => 'Orientación experta en aspectos fiscales y legales relacionados con inversiones inmobiliarias de lujo.',
-    'service_investment_title' => 'Planificación de Inversiones',
-    'service_investment_description' => 'Estrategias de inversión personalizadas en el mercado inmobiliario de alto standing.',
-    'service_management_title' => 'Gestión de Propiedades',
-    'service_management_description' => 'Servicios integrales de administración y gestión para propiedades de lujo.',
-    'service_market_title' => 'Análisis de Mercado',
-    'service_market_description' => 'Información detallada y proyecciones sobre tendencias del mercado inmobiliario de lujo.',
-    // Propiedades Destacadas
-    'featured_properties_title' => 'Propiedades Destacadas',
-    'featured_properties_see' => 'Ver Todas las Propiedades',
-
-    // Formulario de Solicitud
-    'request_form_title' => 'Solicitar Información sobre Propiedades',
-    'request_form_description' => '¿Estás buscando la casa de tus sueños o oportunidades de inversión exclusivas? Completa tus datos y uno de nuestros especialistas en propiedades de lujo se pondrá en contacto contigo pronto.',
-    // Campos del Formulario
-    'request_form_name' => 'Nombre Completo',
-    'request_form_phone' => 'Número de Teléfono',
-    'request_form_submit' => 'Enviar Solicitud',
-    // Formulario de Contacto
-    'contact_form_title' => 'Ponte en contacto',
-    // Campos del Formulario
-    'contact_form_name' => 'Nombre',
-    'contact_form_name_placeholder' => 'Tu Nombre*',
-    'contact_form_name_error' => 'Por favor ingresa tu nombre.',
-    'contact_form_email' => 'Correo Electrónico',
-    'contact_form_email_placeholder' => 'Tu Correo Electrónico*',
-    'contact_form_email_error' => 'Por favor ingresa tu correo electrónico.',
-    'contact_form_message_placeholder' => 'Tu Mensaje*',
-    'contact_form_message_error' => 'Por favor ingresa tu mensaje.',
-    'contact_form_submit' => 'Enviar',
-
-
-    // PROPIEDADES
-    'properties_title' => 'Propiedades de Lujo',
-    'properties_subtitle' => 'Encuentra tu hogar ideal entre nuestras opciones disponibles.',
-    // buscador
+    // ===== BUSCADOR DE PROPIEDADES =====
+    'search_properties' => 'Buscar Propiedades',
+    'find_your_dream_property' => 'Encuentra la propiedad de tus sueños',
     'que_esta_bunscando' => '¿Qué estás buscando?',
-    'ordenar_por' => 'Ordenar por',
-    'mas_recientes' => 'Más Recientes',
-    'menor_precio' => 'Menor Precio',
-    'mayor_precio' => 'Mayor Precio',
+    'all_operations' => 'Todas las operaciones',
+    'property_type' => 'Tipo de propiedad',
     'tipo_de_propiedad' => 'Tipo de Propiedad',
-    'casa' => 'Casa',
-    'apartamento' => 'Apartamento',
-    'finca' => 'Finca',
+    'all_types' => 'Todos los tipos',
+    'bedrooms' => 'Habitaciones',
+    'Banios' => 'Baños',
+    'any' => 'Cualquiera',
+    'min_price' => 'Precio mínimo',
+    'max_price' => 'Precio máximo',
     'ubicacion' => 'Ubicación',
     'todas' => 'Todas',
     'lugar_a' => 'Playa',
     'lugar_b' => 'Montaña',
     'lugar_c' => 'Ciudad',
+
+    // ===== FILTROS Y ORDENAMIENTO =====
+    'ordenar_por' => 'Ordenar por',
+    'mas_recientes' => 'Más Recientes',
+    'menor_precio' => 'Menor Precio',
+    'mayor_precio' => 'Mayor Precio',
+
+    // ===== BÚSQUEDAS POPULARES =====
+    'popular_searches' => 'Búsquedas populares',
+    'luxury_villas' => 'Villas de lujo',
+    'luxury_apartments' => 'Apartamentos de lujo',
+    'penthouses' => 'Penthouses',
+    'premium_properties' => 'Propiedades premium',
+
+    // ===== TIPOS DE PROPIEDAD =====
+    'casa' => 'Casa',
+    'apartamento' => 'Apartamento',
+    'finca' => 'Finca',
+
+    // ===== PÁGINA PROPIEDADES =====
+    'properties_title' => 'Propiedades de Lujo',
+    'properties_subtitle' => 'Encuentra tu hogar ideal entre nuestras opciones disponibles',
     'titulo_propiedades' => 'Nuestras <span class="text-amber-400">Propiedades</span> Premium',
     'subtitulo_propiedades' => 'Explora nuestra selección de propiedades exclusivas',
 
-    //Propiedades fichas
-    'descubrir' => 'Descubrir',
+    // ===== DETALLES DE PROPIEDAD =====
     'Estado' => 'Estado',
     'Descripción Detallada' => 'Descripción Detallada',
     'Características de la Propiedad' => 'Características de la Propiedad',
@@ -285,47 +254,202 @@ return [
     'Gastos comunidad' => 'Gastos comunidad',
     'Precio/m²' => 'Precio/m²',
     'Ubicación' => 'Ubicación',
-    //Formulario de contacto
+
+    // ===== FORMULARIOS DE CONTACTO =====
     'Contacta con nosotros' => 'Contacta con nosotros',
     'Solicita más información sobre esta propiedad. Te responderemos a la mayor brevedad posible' => 'Solicita más información sobre esta propiedad. Te responderemos a la mayor brevedad posible',
-    'Teléfono (opcional)' => 'Teléfono (opcional)',
     'Me interesa esta propiedad. Quisiera recibir más información' => 'Me interesa esta propiedad. Quisiera recibir más información',
-    'acepto_politica' => 'Acepto la <a href="#" class="text-amber-600 hover:underline">política de privacidad</a>',
 
+    // ===== CAMPOS DE FORMULARIO =====
+    'nombre' => 'Nombre',
+    'email' => 'Email',
+    'telefono' => 'Teléfono',
+    'Teléfono (opcional)' => 'Teléfono (opcional)',
+    'mensaje' => 'Mensaje',
+    'asunto' => 'Asunto',
+    'selecciona_asunto' => 'Selecciona un asunto',
+    'quiero_comprar' => 'Quiero comprar',
+    'quiero_vender' => 'Quiero vender',
+    'quiero_alquilar' => 'Quiero alquilar',
+    'valoracion_propiedad' => 'Valoración de propiedad',
+    'otro' => 'Otro',
+    'cuentanos_necesidades' => 'Cuéntanos tus necesidades...',
+    'acepto' => 'Acepto la',
+    'politica_privacidad' => 'política de privacidad',
+    'y_tratamiento_datos' => 'y el tratamiento de datos',
 
-    //sección propiedades relacionadas
-    'Propiedades Similares' => 'Propiedades Similares',
+    // ===== PLACEHOLDERS DE FORMULARIO =====
+    'contact_form_name_placeholder' => 'Tu nombre completo*',
+    'contact_form_email' => 'Correo Electrónico',
+    'contact_form_email_placeholder' => 'Tu Correo Electrónico*',
+    'contact_form_message_placeholder' => 'Tu Mensaje*',
+    'contact_form_submit' => 'Enviar',
 
-    // Página servicios
-    'services_title' => 'Nuestros Servicios Exclusivos',
-    'services_subtitle' => 'Encuentra en nuestros especialistas soluciones a tu medida',
+    // ===== ERRORES DE FORMULARIO =====
+    'contact_form_name_error' => 'Por favor ingresa tu nombre.',
+    'contact_form_email_error' => 'Por favor ingresa tu correo electrónico.',
+    'contact_form_message_error' => 'Por favor ingresa tu mensaje.',
+
+    // ===== MODAL DE CONSULTAS FLOTANTE =====
+    'floating_button_tooltip' => '¿Dudas?',
+    'floating_button_modal_title' => '¿Tienes dudas?',
+    'floating_button_modal_subtitle' => 'Estamos aquí para ayudarte. Envíanos tu consulta y te responderemos pronto.',
+    'consultation_form_name' => 'Nombre completo',
+    'consultation_form_name_placeholder' => 'Tu nombre completo',
+    'consultation_form_email' => 'Correo electrónico',
+    'consultation_form_email_placeholder' => 'tu@email.com',
+    'consultation_form_phone' => 'Teléfono (opcional)',
+    'consultation_form_phone_placeholder' => '696 649 243',
+    'consultation_form_type' => 'Tipo de consulta',
+    'consultation_form_type_placeholder' => 'Selecciona una opción',
+    'consultation_form_message' => 'Tu consulta',
+    'consultation_form_message_placeholder' => 'Escribe tu consulta aquí...',
+    'consultation_form_privacy' => 'Acepto la',
+    'consultation_form_privacy_link' => 'política de privacidad',
+    'consultation_form_cancel' => 'Cancelar',
+    'consultation_form_submit' => 'Enviar consulta',
+    'required_field' => '*',
+
+    // ===== OPCIONES DE CONSULTA =====
+    'consultation_type_buy' => 'Compra de propiedad',
+    'consultation_type_sell' => 'Venta de propiedad',
+    'consultation_type_rent' => 'Alquiler',
+    'consultation_type_investment' => 'Inversión inmobiliaria',
+    'consultation_type_valuation' => 'Tasación',
+    'consultation_type_legal' => 'Consulta legal',
+    'consultation_type_other' => 'Otro',
+
+    // ===== FOOTER =====
+    'footer_about_title' => 'Sobre Conforthouse Living',
+    'footer_about_description' => 'Conforthouse Living es una agencia inmobiliaria especializada en propiedades de alta gama. Ofrecemos una colección cuidadosamente seleccionada de viviendas exclusivas en ubicaciones premium.',
+    'footer_quick_links' => 'Enlaces Rápidos',
+    'footer_description' => 'Especialistas en bienes raíces de lujo en propiedades premium...',
+
+    // ===== CTA SECCIONES =====
+    'cta_title' => '¿Listo para Encontrar tu Propiedad Ideal?',
+    'cta_description' => 'Nuestro equipo de expertos está listo para ayudarte a dar el siguiente paso. ¡Contáctanos hoy mismo y comencemos a hacer realidad tus sueños inmobiliarios!',
+    'cta_home_title' => 'Tu Hogar Perfecto Te Está Esperando',
+    'cta_home_description' => 'Descubre propiedades exclusivas seleccionadas especialmente para ti. Te asesoramos para encontrar la mejor opción para ti.',
+
+    // ===== CONOCER MÁS =====
+    'conocer_mas' => 'Conocer Más',
+
+    // ===== HELPERS ESPECÍFICOS HOME.BLADE.PHP =====
+    // Category Section
+    'Ver propiedades' => 'Ver propiedades',
+    'Nuestras Categorías Premium' => 'Nuestras Categorías Premium',
+    'Explora nuestra selección de propiedades exclusivas para encontrar tu próximo hogar ideal' => 'Explora nuestra selección de propiedades exclusivas para encontrar tu próximo hogar ideal',
+
+    // Recent Listings / Properties Grid
+    'Recent Listings' => 'Últimas Propiedades',
+    'View All Properties' => 'Ver Todas las Propiedades',
+    'Featured' => 'Destacada',
+    'New' => 'Nueva',
+
+    // Services Section (Partials/home-services)
+    'nuestros' => 'Nuestros',
+    'exclusivos' => 'Exclusivos',
+    'ofrecemos_servicios_personalizados' => 'Ofrecemos servicios inmobiliarios personalizados para cada cliente',
+    'marketing_premium' => 'Marketing Premium',
+    'marketing_premium_desc' => 'Estrategias de marketing innovadoras para propiedades de lujo',
+
+    // Contact Section (Partials/home-contact)  
+    'contactanos' => 'Contáctanos',
+    'hablemos_de' => 'Hablemos de',
+    'tu_propiedad' => 'Tu Propiedad',
+    'ideal' => 'Ideal',
+    'nuestro_equipo_experto_contacto' => 'Nuestro equipo de expertos está aquí para ayudarte con todas tus necesidades inmobiliarias',
+    'envianos_mensaje' => 'Envíanos un mensaje',
+
+    // CTA Section (Partials/home-cta)
+    'propiedad' => 'Propiedad',
+    'de_tus_suenos' => 'de tus Sueños',
+    'cta_subtitle' => 'Descubre nuestra exclusiva selección de propiedades premium cuidadosamente seleccionadas',
+    'propiedades_exclusivas' => 'Propiedades Exclusivas',
+    'satisfaccion_cliente' => 'Satisfacción del Cliente',
+    'anos_experiencia' => 'Años de Experiencia',
+    'sin_comisiones_ocultas' => 'Sin comisiones ocultas',
+    'asesoramiento_gratuito' => 'Asesoramiento gratuito',
+    'atencion_24_7' => 'Atención 24/7',
+
+    // =====  SERVICES =====
+    'services_title' => 'Nuestros Servicios',
+    'services_subtitle' => 'Ofrecemos servicios inmobiliarios profesionales adaptados a propiedades de lujo',
     'buying_properties' => 'Compra de Propiedades',
-    'buying_properties_desc' => 'Te acompañamos en la búsqueda de tu hogar ideal. Exploramos juntos las mejores opciones y te asesoramos en cada paso del proceso de compra.',
+    'buying_properties_desc' => 'Te ayudamos a encontrar y adquirir la propiedad perfecta que se adapte a tus necesidades y presupuesto',
     'renting_properties' => 'Alquiler de Propiedades',
-    'renting_properties_desc' => 'Descubre nuestra selección de propiedades en alquiler . Encontramos el espacio perfecto para ti, ya sea a corto o largo plazo, gestionando todos los detalles para tu comodidad.',
-    'real_estate_consulting' => 'Consultoría Inmobiliaria',
-    'real_estate_consulting_desc' => 'Nuestros expertos te ofrecen asesoramiento personalizado para tomar decisiones informadas en el mercado inmobiliario. Maximiza tus oportunidades con nuestra experiencia.',
-    'property_valuation' => 'Tasación de Propiedades',
-    'property_valuation_desc' => 'Obtén una valoración precisa y profesional de tu propiedad . Conoce el valor real de tu inmueble para comprar, vender o invertir con confianza.',
+    'renting_properties_desc' => 'Servicios completos de alquiler tanto para propietarios como para inquilinos',
     'legal_advice' => 'Asesoría Legal',
-    'legal_advice_desc' => 'Nuestro equipo legal especializado en derecho inmobiliario te brinda la tranquilidad que necesitas. Te asesoramos en contratos, trámites y cualquier aspecto legal relacionado con tu propiedad .',
-    'interior_design' => 'Diseño de Interiores',
-    'interior_design_desc' => 'Transforma tu espacio  con nuestros servicios de diseño de interiores. Creamos ambientes únicos y funcionales que reflejan tu estilo y personalidad.',
-    'cta_services_title' => '¿Listo para encontrar tu propiedad ideal ?',
-    'cta_services_desc' => 'Contacta con nosotros hoy mismo y descubre cómo nuestro equipo de expertos puede ayudarte a alcanzar tus objetivos inmobiliarios.',
-    'contact_us_button' => 'Contactar',
-    'testimonials_title' => 'Lo que dicen nuestros clientes',
-    'testimonials_subtitle' => 'Descubre las experiencias de quienes confiaron en nosotros para encontrar su hogar o realizar sus inversiones .',
-    'testimonial_1' => 'El equipo de Conforthouse Living fue increíble. Me ayudaron a encontrar el apartamento perfecto en el centro en tiempo récord. ¡Muy profesionales y atentos!',
-    'client_name_1' => 'Ana Martínez',
-    'client_title_1' => 'Compradora',
-    'testimonial_2' => 'Como inversor extranjero, aprecié mucho la ayuda legal que me brindaron. Hicieron que el proceso de compra fuera sencillo y sin complicaciones. ¡Recomendables al 100%!',
-    'client_name_2' => 'John Smith',
+    'legal_advice_desc' => 'Consultoría legal especializada en transacciones inmobiliarias y documentación',
+    'testimonial_1' => 'Excelente servicio, encontraron exactamente lo que buscábamos. Muy profesionales.',
+    'client_name_1' => 'María González',
+    'client_title_1' => 'Empresaria',
+    'testimonial_2' => 'La tasación fue muy precisa y el proceso de venta fue muy fluido gracias a su equipo.',
+    'client_name_2' => 'Carlos Rodríguez',
     'client_title_2' => 'Inversor',
-    'testimonial_3' => 'Vender mi propiedad  con Conforthouse Living fue una experiencia muy positiva. Su conocimiento del mercado local y su estrategia de marketing fueron claves para una venta rápida y al mejor precio.',
-    'client_name_3' => 'Isabelle Dubois',
-    'client_title_3' => 'Vendedora',
-    'learn_more' => 'Saber más',
+    'testimonial_3' => 'Su asesoramiento legal nos ayudó a evitar problemas. Altamente recomendados.',
+    'client_name_3' => 'Ana Martínez',
+    'client_title_3' => 'Propietaria',
+
+    // =====  CONTACT =====
+    'contact_description' => 'Estamos aquí para ayudarte con todas tus necesidades inmobiliarias. Contáctanos y te responderemos a la brevedad.',
+    'contact_info' => 'Información de Contacto',
+    'address' => 'Dirección',
+    'office_address' => 'Av. Principal 123, Ciudad',
+    'phone' => 'Teléfono',
+    'office_phone' => '+34 123 456 789',
+    'email' => 'Email',
+    'office_email' => 'info@conforthouse.com',
+    'hours' => 'Horario',
+    'weekdays' => 'Lunes a Viernes',
+    'weekends' => 'Sábados',
+    'business_hours' => '9:00 - 18:00',
+    'weekend_hours' => '10:00 - 14:00',
+    'follow_us' => 'Síguenos',
+    'send_message' => 'Enviar Mensaje',
+    'name' => 'Nombre',
+    'your_name' => 'Tu nombre',
+    'your_email' => 'Tu email',
+    'your_phone' => 'Tu teléfono',
+    'subject' => 'Asunto',
+    'your_subject' => 'Tu asunto',
+    'interested_in' => 'Interesado en',
+    'select_interest' => 'Selecciona una opción',
+    'buying_property' => 'Comprar propiedad',
+    'selling_property' => 'Vender propiedad',
+    'renting_property' => 'Alquilar propiedad',
+    'investment' => 'Inversión',
+    'other' => 'Otro',
+    'your_message' => 'Tu mensaje',
+    'privacy_agreement' => 'Acepto la',
+    'privacy_policy' => 'política de privacidad',
+    'our_agents' => 'Nuestros Agentes',
+    'agents_description' => 'Conoce a nuestro equipo de profesionales especializados en propiedades de lujo',
+    'luxury_specialist' => 'Especialista en Lujo',
+    'sales_director' => 'Director de Ventas',
+    'international_consultant' => 'Consultora Internacional',
+    'agent_1_name' => 'María González',
+    'agent_1_phone' => '+34 623 456 789',
+    'agent_1_email' => 'maria@conforthouse.com',
+    'agent_2_name' => 'Carlos Rodríguez',
+    'agent_2_phone' => '+34 655 789 123',
+    'agent_2_email' => 'carlos@conforthouse.com',
+    'agent_3_name' => 'Lucía Martínez',
+    'agent_3_phone' => '+34 678 123 456',
+    'agent_3_email' => 'lucia@conforthouse.com',
+    'view_all_agents' => 'Ver Todos los Agentes',
+    'faq' => 'Preguntas Frecuentes',
+    'faq_description' => 'Encuentra respuestas a las preguntas más comunes sobre nuestros servicios',
+    'faq_q1' => '¿Cuáles son sus comisiones?',
+    'faq_a1' => 'Nuestras comisiones son competitivas y transparentes. Contacta con nosotros para obtener información detallada.',
+    'faq_q2' => '¿Ofrecen financiación?',
+    'faq_a2' => 'Trabajamos con las mejores entidades financieras para ofertar las mejores condiciones de financiación.',
+    'faq_q3' => '¿Cuánto tiempo toma vender una propiedad?',
+    'faq_a3' => 'El tiempo varía según el mercado y la propiedad, pero nuestro equipo trabaja para optimizar los tiempos de venta.',
+    'faq_q4' => '¿Realizan tasaciones gratuitas?',
+    'faq_a4' => 'Sí, ofrecemos tasaciones gratuitas realizadas por profesionales certificados.',
+    'faq_q5' => '¿Atienden a clientes internacionales?',
+    'faq_a5' => 'Por supuesto, tenemos experiencia atendiendo clientes de todo el mundo con servicios especializados.',
 
     //Página About us
     'about_subtitle' => 'Conoce Nuestra Historia',
@@ -371,137 +495,16 @@ return [
     'cta_about_desc' => 'Ponte en contacto con nuestro equipo y descubre cómo podemos ayudarte a encontrar tu lugar ideal .',
     'contact_us_button' => 'Contactar',
 
-    //Página contacto
-    'contact_us' => 'Contáctanos',
-    'contact_description' => 'Estamos aquí para ayudarte a encontrar la propiedad perfecta o responder cualquier pregunta que tengas. ¡No dudes en ponerte en contacto!',
-    'contact_info' => 'Información de Contacto',
-    'address' => 'Dirección',
-    'phone' => 'Teléfono',
-    'email' => 'Email',
-    'hours' => 'Horario de Atención',
-    'weekdays' => 'Lunes a Viernes',
-    'weekends' => 'Sábados',
-    'follow_us' => 'Síguenos en Redes Sociales',
-    'send_message' => 'Envíanos un Mensaje',
-    'name' => 'Nombre',
-    'your_name' => 'Tu nombre',
-    'your_email' => 'Tu email',
-    'your_phone' => 'Tu teléfono',
-    'subject' => 'Asunto',
-    'your_subject' => 'Asunto del mensaje',
-    'interested_in' => 'Estoy interesado en',
-    'select_interest' => 'Selecciona una opción',
-    'buying_property' => 'Comprar propiedad',
-    'selling_property' => 'Vender propiedad',
-    'renting_property' => 'Alquilar propiedad',
-    'investment' => 'Inversión',
-    'other' => 'Otro',
-    'message' => 'Mensaje',
-    'your_message' => 'Escribe tu mensaje aquí',
-    'privacy_agreement' => 'Acepto la',
-    'privacy_policy' => 'Política de Privacidad',
-    'our_agents' => 'Nuestros Agentes Inmobiliarios',
-    'agents_description' => 'Conoce a nuestro equipo de expertos dedicados a brindarte el mejor servicio inmobiliario.',
-    'luxury_specialist' => 'Especialista en Propiedades de Lujo',
-    'sales_director' => 'Director de Ventas',
-    'rental_specialist' => 'Especialista en Alquileres',
-    'faq' => 'Preguntas Frecuentes',
-    'faq_description' => 'Respondemos tus dudas más comunes sobre el proceso inmobiliario.',
-
-    'faq_q1' => '¿Cuál es el proceso para comprar una propiedad ?',
-    'faq_a1' => 'El proceso generalmente incluye la búsqueda de propiedades, visitas, presentación de una oferta, negociación, firma del contrato de arras, obtención de financiación (si es necesario) y finalmente, la firma de la escritura pública ante notario.',
-
-    'faq_q2' => '¿Qué gastos debo considerar además del precio de la propiedad?',
-    'faq_a2' => 'Además del precio de la propiedad, debes considerar gastos como impuestos (ITP o IVA), notaría, registro de la propiedad, gestoría y posibles gastos de financiación (tasación, comisiones bancarias).',
-
-    'faq_q3' => '¿Necesito ser residente en España para comprar una propiedad?',
-    'faq_a3' => 'No es necesario ser residente en España para comprar una propiedad. Sin embargo, necesitarás obtener un Número de Identificación de Extranjero (NIE). Nosotros podemos ayudarte con este trámite.',
-
-    'faq_q4' => '¿Qué documentación necesito para vender mi propiedad?',
-    'faq_a4' => 'La documentación habitual incluye la escritura de propiedad, DNI/NIE del propietario, certificado energético, cédula de habitabilidad, justificante del pago del IBI, y si aplica, información sobre cargas o hipotecas.',
-
-    'faq_q5' => '¿Cómo puedo saber cuánto vale mi propiedad ?',
-    'faq_a5' => 'Podemos realizar una tasación profesional de tu propiedad basada en el análisis del mercado actual, características del inmueble y ubicación. Contáctanos para solicitar una valoración.',
-
-    'faq_q6' => '¿Qué servicios ofrecen para el alquiler de propiedades?',
-    'faq_a6' => 'Ofrecemos servicios integrales para el alquiler, incluyendo la búsqueda de inquilinos, gestión de contratos, cobro de rentas, mantenimiento de la propiedad y resolución de incidencias.',
-
-    'faq_q7' => '¿Trabajan con propiedades fuera?',
-    'faq_a7' => 'Nuestro enfoque principal es la ciudad y sus alrededores cercanos. Sin embargo, podemos considerar propiedades en otras áreas bajo consulta.',
-
-    'faq_q8' => '¿Cuál es su comisión por la venta de una propiedad?',
-    'faq_a8' => 'Nuestras comisiones por la venta de propiedades varían dependiendo del tipo de propiedad y los servicios requeridos. Te proporcionaremos información detallada y transparente al contactarnos.',
-
-    'faq_q9' => '¿Cómo puedo contactar con un agente?',
-    'faq_a9' => 'Puedes contactar con nuestros agentes a través de la página de contacto, por teléfono o enviándonos un correo electrónico. También puedes visitar nuestra oficina .',
-
-    'faq_q10' => '¿Qué debo tener en cuenta al alquilar una propiedad en ?',
-    'faq_a10' => 'Al alquilar, es importante considerar la ubicación, el precio, las condiciones del contrato, los gastos de comunidad y suministros, y el estado de la propiedad. Te asesoramos para encontrar la mejor opción para ti.',
-
-    'cta_title' => '¿Listo para Encontrar tu Propiedad Ideal?',
-    'cta_description' => 'Nuestro equipo de expertos está listo para ayudarte a dar el siguiente paso. ¡Contáctanos hoy mismo y comencemos a hacer realidad tus sueños inmobiliarios!',
-
-    // Añadir estas líneas al archivo lang/es/messages.php
-
-// Modal de dudas - Botón flotante
-'floating_button_tooltip' => '¿Dudas?',
-'floating_button_modal_title' => '¿Tienes dudas?',
-'floating_button_modal_subtitle' => 'Estamos aquí para ayudarte. Envíanos tu consulta y te responderemos pronto.',
-
-// Formulario de consultas
-'consultation_form_name' => 'Nombre completo',
-'consultation_form_name_placeholder' => 'Tu nombre completo',
-'consultation_form_email' => 'Correo electrónico',
-'consultation_form_email_placeholder' => 'tu@email.com',
-'consultation_form_phone' => 'Teléfono (opcional)',
-'consultation_form_phone_placeholder' => '696 649 243',
-'consultation_form_type' => 'Tipo de consulta',
-'consultation_form_type_placeholder' => 'Selecciona una opción',
-'consultation_form_message' => 'Tu consulta',
-'consultation_form_message_placeholder' => 'Escribe tu consulta aquí...',
-
-// Opciones del formulario
-'consultation_type_buy' => 'Compra de propiedad',
-'consultation_type_sell' => 'Venta de propiedad',
-'consultation_type_rent' => 'Alquiler',
-'consultation_type_investment' => 'Inversión inmobiliaria',
-'consultation_type_valuation' => 'Tasación',
-'consultation_type_legal' => 'Consulta legal',
-'consultation_type_other' => 'Otro',
-
-// Botones y acciones
-'consultation_form_privacy' => 'Acepto la',
-'consultation_form_privacy_link' => 'política de privacidad',
-'consultation_form_cancel' => 'Cancelar',
-'consultation_form_submit' => 'Enviar consulta',
-
-// Campos requeridos
-'required_field' => '*',
-
-// Nuevos helpers rediseño
-'search_properties' => 'Buscar Propiedades',
-'find_your_dream_property' => 'Encuentra la propiedad de tus sueños',
-'all_operations' => 'Todas las operaciones',
-'property_type' => 'Tipo de propiedad',
-'all_types' => 'Todos los tipos',
-'bedrooms' => 'Habitaciones',
-'bathrooms' => 'Baños',
-'any' => 'Cualquiera',
-'min_price' => 'Precio mínimo',
-'max_price' => 'Precio máximo',
-'popular_searches' => 'Búsquedas populares',
-'luxury_villas' => 'Villas de lujo',
-'luxury_apartments' => 'Apartamentos de lujo',
-'penthouses' => 'Penthouses',
-'premium_properties' => 'Propiedades premium',
-
-'buscar' => 'Buscar',
-
-'inicio' => 'Inicio',
-'todas_propiedades' => 'Propiedades',
-
-'footer_description' => 'Luxury real estate specialists in premium properties...',
-'footer_quick_links' => 'Quick Links',
-
+    
+     // Footer
+    'footer_about_title' => 'Sobre Conforthouse Living',
+    'footer_about_description' => 'Conforthouse Living es una agencia inmobiliaria especializada en propiedades de alto nivel. Nos dedicamos a ofrecer una cuidada selección de viviendas exclusivas —como casas, apartamentos y fincas— en ubicaciones privilegiadas. Trabajamos de forma personalizada para conectar a cada cliente con la propiedad ideal.',
+    'footer_inicio' => 'Inicio',
+    'footer_contacto' => 'Contacto',
+    'footer_enlaces' => 'Enlaces',
+    'footer_newsletter' =>  'Boletín',
+    'footer_newsletter_title' => 'Suscríbase a nuestro boletín',
+    'su correo electrónico' => 'Su correo Electrónico',
+    'suscribirse' => 'Suscribirse',
+    'derechos' => 'Todos los derechos reservados',
 ];
-

@@ -8,7 +8,7 @@
             <!-- Results Header -->
             <div class="james-results-header">
                 <div class="james-results-count font-body">
-                    {{ $properties->total() }} Properties Found
+                    {{ $properties->total() }} {{ __('messages.properties_found') }}
                 </div>
                 
                 <!-- Sort Options (future implementation) -->
@@ -31,13 +31,13 @@
                             <polyline points="9,22 9,12 15,12 15,22"/>
                         </svg>
                     </div>
-                    <h3 class="james-no-results-title font-luxury">No Properties Found</h3>
+                    <h3 class="james-no-results-title font-luxury">{{ __('messages.no_properties_found') }}</h3>
                     <p class="james-no-results-text font-body">
-                        Try adjusting your search criteria or browse all available properties
+                        {{ __('messages.try_adjusting_search') }}
                     </p>
                     <a href="{{ route('properties.index', ['locale' => app()->getLocale()]) }}"
                         class="james-btn-outline font-body mt-4">
-                        View All Properties
+                        {{ __('messages.view_all_properties') }}
                     </a>
                 </div>
             @else
@@ -56,13 +56,13 @@
                                 
                                 <!-- Property Badges -->
                                 @if ($property->is_featured == 1)
-                                    <div class="james-property-badge featured font-body">Featured</div>
+                                    <div class="james-property-badge featured font-body">{{ __('messages.featured') }}</div>
                                 @endif
                                 
                                 <!-- Property Type Badge -->
-                                <div class="absolute top-4 right-4 bg-black/70 text-white px-2 py-1 text-xs font-body rounded">
+                                {{-- <div class="absolute top-4 right-4 bg-black/70 text-white px-2 py-1 text-xs font-body rounded">
                                     {{ $property->operation->name }}
-                                </div>
+                                </div> --}}
                             </div>
 
                             <div class="james-property-content">
@@ -70,7 +70,7 @@
                                     @if($property->address)
                                         {{ $property->address->city }}, {{ $property->address->province }}
                                     @else
-                                        Location Available
+                                        {{ __('messages.location_available') }}
                                     @endif
                                 </div>
                                 
@@ -84,11 +84,11 @@
                                         <span class="james-spec-separator">•</span>
                                     @endif
                                     @if($property->rooms)
-                                        <span>{{ $property->rooms }} bed</span>
+                                        <span>{{ $property->rooms }} {{ __('messages.bed') }}</span>
                                         <span class="james-spec-separator">•</span>
                                     @endif
                                     @if($property->bathrooms)
-                                        <span>{{ $property->bathrooms }} bath</span>
+                                        <span>{{ $property->bathrooms }} {{ __('messages.bath') }}</span>
                                     @endif
                                 </div>
                                 
@@ -105,7 +105,7 @@
                                 
                                 <a href="{{ route('prop.show', ['locale' => app()->getLocale(), 'slug' => $property->slug ?? '']) }}"
                                    class="james-property-link font-body">
-                                    View Details
+                                    {{ __('messages.view_details') }}
                                 </a>
                             </div>
                         </div>

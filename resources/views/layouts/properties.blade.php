@@ -69,7 +69,7 @@
                             <!-- Property Type -->
                             <div class="space-y-1">
                                 <select id="type_id" name="type_id" class="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-amber-500 focus:border-amber-500 bg-white">
-                                    <option value="">All Types</option>
+                                    <option value="">{{ __('messages.all_types') }}</option>
                                     @foreach ($propertyTypes as $type)
                                         <option value="{{ $type->id }}" {{ $typeId == $type->id ? 'selected' : '' }}>
                                             {{ $type->name }}
@@ -81,7 +81,7 @@
                             <!-- Operation -->
                             <div class="space-y-1">
                                 <select id="operation_id" name="operation_id" class="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-amber-500 focus:border-amber-500 bg-white">
-                                    <option value="">All Operations</option>
+                                    <option value="">{{ __('messages.all_operations') }}</option>
                                     @foreach ($operations as $operation)
                                         <option value="{{ $operation->id }}" {{ $operationId == $operation->id ? 'selected' : '' }}>
                                             {{ $operation->name }}
@@ -93,21 +93,21 @@
                             <!-- Min Price -->
                             <div class="space-y-1">
                                 <input type="number" id="min_price" name="min_price" value="{{ $min_price }}"
-                                    placeholder="Min €"
+                                    placeholder="{{ __('messages.min_price') }}"
                                     class="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-amber-500 focus:border-amber-500">
                             </div>
 
                             <!-- Max Price -->
                             <div class="space-y-1">
                                 <input type="number" id="max_price" name="max_price" value="{{ $max_price }}"
-                                    placeholder="Max €"
+                                    placeholder="{{ __('messages.max_price') }}"
                                     class="w-full px-2 py-1.5 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-amber-500 focus:border-amber-500">
                             </div>
 
                             <!-- Search Button -->
                             <div class="col-span-2 lg:col-span-1">
                                 <button type="submit" class="w-full px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white text-xs font-medium rounded transition-colors duration-200">
-                                    Search
+                                    {{ __('messages.buscar') }}
                                 </button>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                             <div class="mt-2 text-center">
                                 <a href="{{ route('properties.index', ['locale' => app()->getLocale()]) }}"
                                     class="text-xs text-gray-600 hover:text-amber-600 underline transition-colors">
-                                    Clear All Filters
+                                    {{ __('messages.clear_all_filters') }}
                                 </a>
                             </div>
                         @endif
