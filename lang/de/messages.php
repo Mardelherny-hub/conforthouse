@@ -61,7 +61,7 @@ return [
     // ====== STARTSEITE =====
     'nuestras_categorias_premium' => 'Unsere Premium-Kategorien',
     'explora_seleccion_propiedades' => 'Entdecken Sie unsere Auswahl exklusiver Immobilien, um Ihr nächstes ideales Zuhause zu finden',
-    'residencias' => 'Residenzen',
+    'residencias' => 'Wohnanlagen',
     'apartamentos' => 'Apartments', 
     'villas' => 'Villen',
     'ver_propiedades' => 'Immobilien ansehen',

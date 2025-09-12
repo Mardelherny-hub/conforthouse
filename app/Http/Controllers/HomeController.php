@@ -15,31 +15,33 @@ class HomeController extends Controller
         
         // Cargar propiedades con eager loading optimizado
         $properties = Property::with([
-    'images', 
-    'propertyType',
-    'propertyType.translations' => function($q) use ($locale) {
-        $q->where('locale', $locale);
-    },
-    'operation',
-    'operation.translations' => function($q) use ($locale) {
-        $q->where('locale', $locale);
-    },
-    'status',
-    'status.translations' => function($q) use ($locale) {
-        $q->where('locale', $locale);
-    },
-    'descriptions' => function($q) use ($locale) {
-        // Priorizar idioma solicitado, fallback a español
-        $q->where(function($subQ) use ($locale) {
-            $subQ->where('locale', $locale)
-                 ->orWhere('locale', 'es');
-        })->orderByRaw("CASE WHEN locale = ? THEN 1 ELSE 2 END", [$locale]);
-    }
-])
-->where('destacado', false)
-->latest()
-->take(9)
-->get();
+                'images', 
+                'propertyType',
+                'propertyType.translations' => function($q) use ($locale) {
+                    $q->where('locale', $locale);
+                },
+                'operation',
+                'operation.translations' => function($q) use ($locale) {
+                    $q->where('locale', $locale);
+                },
+                'status',
+                'status.translations' => function($q) use ($locale) {
+                    $q->where('locale', $locale);
+                },
+                'descriptions' => function($q) use ($locale) {
+                    // Priorizar idioma solicitado, fallback a español
+                    $q->where(function($subQ) use ($locale) {
+                        $subQ->where('locale', $locale)
+                            ->orWhere('locale', 'es');
+                    })->orderByRaw("CASE WHEN locale = ? THEN 1 ELSE 2 END", [$locale]);
+                }
+            ])
+            ->where('destacado', false)
+            ->orderBy('id', 'desc')
+            ->take(9)
+            ->get();
+
+            
 
         // Cargar propiedad destacada con eager loading
         $featuredProperty = Property::with([
@@ -62,6 +64,7 @@ class HomeController extends Controller
             }
         ])
         ->where('destacado', true)
+        ->orderBy('id', 'desc')
         ->first();
 
         // Si no hay propiedad destacada, tomar la última
@@ -73,7 +76,7 @@ class HomeController extends Controller
                     $q->where('locale', $locale)->limit(1);
                 }
             ])
-            ->latest()
+            ->orderBy('id', 'desc')
             ->first();
         }
 
@@ -83,6 +86,7 @@ class HomeController extends Controller
         if ($featuredProperty) {
             $this->applyTranslationsToSingle($featuredProperty, $locale);
         }
+        //dd($featuredProperty);
 
         return view('home', compact('properties', 'featuredProperty'));
     }

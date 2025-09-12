@@ -126,22 +126,34 @@
                 class="absolute inset-0 bg-cover bg-center brightness-110 contrast-105"
                 style="background-image: url('{{ asset('assets/images/home/hero-6.webp') }}')">
             </div>
+
+            <!-- Slide 7 -->
+            <div x-show="currentSlide === 6" 
+                x-transition:enter="transition-opacity duration-1000"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="transition-opacity duration-1000"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="absolute inset-0 bg-cover bg-center brightness-110 contrast-105"
+                style="background-image: url('{{ asset('assets/images/home/hero-7.webp') }}')">
+            </div>
             
             <!-- Overlay mínimo para legibilidad -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
             
             <!-- Indicadores del carrusel -->
-<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-40">
-    <template x-for="(slide, index) in slides" :key="index">
-        <button
-            @click="goToSlide(index)"
-            :aria-current="currentSlide === index"
-            :aria-label="`Ir al slide ${index + 1}`"
-            :class="currentSlide === index ? 'bg-white w-8' : 'bg-white/40 w-6'"
-            class="h-1 rounded-full transition-all duration-300 hover:bg-white/70">
-        </button>
-    </template>
-</div>
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-40">
+                <template x-for="(slide, index) in slides" :key="index">
+                    <button
+                        @click="goToSlide(index)"
+                        :aria-current="currentSlide === index"
+                        :aria-label="`Ir al slide ${index + 1}`"
+                        :class="currentSlide === index ? 'bg-white w-8' : 'bg-white/40 w-6'"
+                        class="h-1 rounded-full transition-all duration-300 hover:bg-white/70">
+                    </button>
+                </template>
+            </div>
         </div>
 
     </header>
@@ -166,7 +178,7 @@
    function carousel() {
     return {
         currentSlide: 0,
-        slides: [0, 1, 2, 3, 4, 5],
+        slides: [0, 1, 2, 3, 4, 5, 6,],
         intervalId: null,
         isTransitioning: false,
         

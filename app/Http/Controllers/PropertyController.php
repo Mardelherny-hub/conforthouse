@@ -80,6 +80,7 @@ class PropertyController extends Controller
         //foreach ($propertyTypes as $type) {
         //    $this->translateRelation($type, 'name', $locale);
         //}
+        //dd($properties);
 
         return view('properties.index', compact(
             'properties',

@@ -61,7 +61,7 @@ return [
     // ====== HOME =====
     'nuestras_categorias_premium' => 'Onze Premium Categorieën',
     'explora_seleccion_propiedades' => 'Ontdek onze selectie van exclusieve woningen om uw volgende ideale thuis te vinden',
-    'residencias' => 'Woningen',
+    'residencias' => 'Residentiële Complexen',
     'apartamentos' => 'Appartementen', 
     'villas' => 'Villa\'s',
     'ver_propiedades' => 'Woningen bekijken',

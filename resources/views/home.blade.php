@@ -13,7 +13,7 @@
 
       <!-- Residencias -->
       <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'type_id' => 1]) }}" class="category-card">
-        <img src="{{ asset('assets/images/home/cat_homes.jpg') }}" alt="Residencias" class="category-card__img">
+        <img src="{{ asset('assets/images/home/cat_homes.webp') }}" alt="Residencias" class="category-card__img">
         <div class="category-card__overlay"></div>
         
         <div class="category-card__content">
@@ -35,7 +35,7 @@
         <div class="category-card__content">
           <h3 class="category-card__title font-luxury">{{ __('messages.apartamentos') }}</h3>
           <span class="category-card__cta font-body">
-            Ver propiedades
+             {{ __('messages.ver_propiedades') }}
             <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
             </svg>
@@ -147,6 +147,7 @@
                 @forelse ($properties as $property)
                     <div class="james-property-card">
                         <div class="james-property-image">
+                            
                             @if($property->images && $property->images->first())
                                 @php
                                     $image = $property->images->first();
@@ -172,7 +173,7 @@
                                 {{ $property->address->city ?? '' }}, {{ $property->address->province ?? '' }}
                             </div>
                             
-                            <h3 class="james-property-title font-luxury">{{ $property->title }}</h3>
+                            <h3 class="james-property-title font-luxury">{{ $property->title }} </h3>
                             
                             <div class="james-property-specs font-body">
                                 <span class="james-spec">{{ $property->built_area }}m²</span>

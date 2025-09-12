@@ -61,7 +61,7 @@ return [
     // ====== HOME =====
     'nuestras_categorias_premium' => 'Our Premium Categories',
     'explora_seleccion_propiedades' => 'Explore our selection of exclusive properties to find your next ideal home',
-    'residencias' => 'Residences',
+    'residencias' => 'Residential Complexes',
     'apartamentos' => 'Apartments', 
     'villas' => 'Villas',
     'ver_propiedades' => 'View properties',

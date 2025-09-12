@@ -61,7 +61,7 @@ return [
     // ====== HOME =====
     'nuestras_categorias_premium' => 'Nuestras Categorías Premium',
     'explora_seleccion_propiedades' => 'Explora nuestra selección de propiedades exclusivas para encontrar tu próximo hogar ideal',
-    'residencias' => 'Residencias',
+    'residencias' => 'Complejos Residenciales',
     'apartamentos' => 'Apartamentos', 
     'villas' => 'Villas',
     'ver_propiedades' => 'Ver propiedades',
