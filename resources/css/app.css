@@ -1712,6 +1712,132 @@
 }
 
 /* ==========================================================================
+   PROPIEDADES VISTA PRINCIPAL
+   ========================================================================== */
+/* ==========================================================================
+   PROPERTIES INDEX - 3 COLUMNAS (JAMES EDITION STYLE)
+   ========================================================================== */
+
+/* Grid específico para properties index - 3 columnas */
+.james-properties-index-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Cards más amplias para el layout de 3 columnas */
+.james-properties-index-grid .james-property-card {
+    background: white;
+    border-radius: 0 !important;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.james-properties-index-grid .james-property-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #e5e7eb;
+}
+
+/* Imagen más alta para cards de 3 columnas */
+.james-properties-index-grid .james-property-image {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+}
+
+.james-properties-index-grid .james-property-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.james-properties-index-grid .james-property-card:hover .james-property-image img {
+    transform: scale(1.05);
+}
+
+/* Contenido con más padding para cards más amplias */
+.james-properties-index-grid .james-property-content {
+    padding: 0.75rem;
+}
+
+/* Typography más grande para cards de 3 columnas */
+.james-properties-index-grid .james-property-title {
+    font-size: 1.125rem !important;
+    font-weight: 400;
+    color: #111827;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.james-properties-index-grid .james-property-price {
+    font-size: 1rem !important;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.75rem;
+}
+
+.james-properties-index-grid .james-property-specs {
+    font-size: 0.75rem !important;
+    color: #6b7280;
+}
+
+/* Responsive para 3 columnas */
+@media (max-width: 1024px) {
+    .james-properties-index-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .james-properties-index-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .james-properties-index-grid .james-property-image {
+        height: 280px;
+    }
+    
+    .james-properties-index-grid .james-property-content {
+        padding: 1rem;
+    }
+}
+
+/* Grid específico para propiedades similares - 4 columnas */
+.james-properties-similar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+/* Responsive para similar properties */
+@media (max-width: 1024px) {
+    .james-properties-similar-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .james-properties-similar-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .james-properties-similar-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
    JAMES EDITION PAGINATION STYLES
    ========================================================================== */
 

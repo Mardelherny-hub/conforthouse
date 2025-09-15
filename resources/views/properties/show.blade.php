@@ -1,5 +1,5 @@
 <x-properties-layout>
-<div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
+<div>
 
     <!-- James Edition Property Detail Hero -->
     <div x-data="{
@@ -82,7 +82,7 @@
                     get currentImage() {
                         return this.images[this.currentIndex];
                     }
-                }" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                }" class="grid grid-cols-1 md:grid-cols-2 gap-0.5 mb-12">
                     {{-- Imagen Principal --}}
                     <div class="relative group overflow-hidden">
                         @if($property->images->isNotEmpty()) 
@@ -102,9 +102,9 @@
                                 class="w-full h-[500px] object-cover shadow-xl">
                         @endif
                         {{-- Overlay con gradiente --}}
-                        <div
+                        {{-- <div
                             class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-70">
-                        </div>
+                        </div> --}}
 
                         {{-- Etiquetas 
                         <div class="absolute top-4 left-4 flex space-x-2">
@@ -118,7 +118,7 @@
                     </div>
 
                     {{-- Miniaturas de Imágenes --}}
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-2 gap-0.5 h-[500px]">
                         @foreach ($property->images->slice(1, 4) as $index => $image)
                             <div class="relative group overflow-hidden">
                                 @php
@@ -126,9 +126,11 @@
                                         ? $image->image_path 
                                         : '/storage/' . $image->image_path;
                                 @endphp
-                                <img src="{{ $thumbSrc }}" alt="{{ $property->title }}"
-                                    @click="openModal({{ $index }})"
-                                    class="w-full h-60 object-cover transform transition-all duration-700 group-hover:scale-110 cursor-pointer">
+                                <div class="relative group overflow-hidden aspect-square">
+                                    <img src="{{ $thumbSrc }}" alt="{{ $property->title }}"
+                                        @click="openModal({{ $index }})"
+                                        class="w-full h-full object-cover transform transition-all duration-700 group-hover:scale-110 cursor-pointer">
+                                </div>
                             </div>
                         @endforeach
                     </div>
@@ -170,7 +172,7 @@
                                 {{-- Imagen en Modal --}}
                                 <div class="w-full h-full flex items-center justify-center">
                                     <img :src="currentImage.image_path.startsWith('http') ? currentImage.image_path : '/storage/' + currentImage.image_path" alt="{{ $property->title }}"
-                                        class="max-w-full max-h-[80vh] object-contain"
+                                        class="max-w-full max-h-[100vh] object-contain"
                                         x-transition:enter="transition ease-out duration-300 transform"
                                         x-transition:enter-start="opacity-0 scale-95"
                                         x-transition:enter-end="opacity-100 scale-100">
@@ -302,33 +304,33 @@
                     </div>
 
                     <!-- Description -->
-<div class="james-property-description">
-    <h2 class="james-section-title">{{ __('messages.description') }}</h2>
-    <div class="james-description-content">
-        @php
-            // Dividir por ~ para crear párrafos
-            $paragraphs = explode('~', $property->description);
-        @endphp
-        
-        @foreach($paragraphs as $index => $paragraph)
-            @if(trim($paragraph))
-                @php
-                    $cleanParagraph = trim($paragraph);
-                @endphp
-                
-                @if($index === 1) {{-- El primer párrafo después del ~ es el destacado --}}
-                    <p class="mb-4 leading-relaxed text-amber-800 font-semibold bg-amber-50 p-3 rounded border-l-2 border-amber-400">
-                        {{ $cleanParagraph }}
-                    </p>
-                @else
-                    <p class="mb-4 leading-relaxed text-gray-700">
-                        {{ $cleanParagraph }}
-                    </p>
-                @endif
-            @endif
-        @endforeach
-    </div>
-</div>
+                    <div class="james-property-description">
+                        <h2 class="james-section-title">{{ __('messages.description') }}</h2>
+                        <div class="james-description-content">
+                            @php
+                                // Dividir por ~ para crear párrafos
+                                $paragraphs = explode('~', $property->description);
+                            @endphp
+                            
+                            @foreach($paragraphs as $index => $paragraph)
+                                @if(trim($paragraph))
+                                    @php
+                                        $cleanParagraph = trim($paragraph);
+                                    @endphp
+                                    
+                                    @if($index === 1) {{-- El primer párrafo después del ~ es el destacado --}}
+                                        <p class="mb-4 leading-relaxed text-amber-800 font-semibold bg-amber-50 p-3 rounded border-l-2 border-amber-400">
+                                            {{ $cleanParagraph }}
+                                        </p>
+                                    @else
+                                        <p class="mb-4 leading-relaxed text-gray-700">
+                                            {{ $cleanParagraph }}
+                                        </p>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
 
                     <!-- Property Details -->
                     <div class="james-property-details">
@@ -569,10 +571,10 @@
         <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12 py-16">
             <div class="james-section-header">
                 <h2 class="james-section-title">{{ __('messages.similar_properties') }}</h2>
-                <p class="james-section-subtitle">{{ __('messages.discover_properties') }}</p>
+                <p class="james-section-subtitle ml-4">{{ __('messages.discover_properties') }}</p>
             </div>
             
-            <div class="james-properties-grid">
+            <div class="james-properties-similar-grid">
                 @foreach($rel_properties as $relProperty)
                     <div class="james-property-card">
                         <div class="james-property-image">
