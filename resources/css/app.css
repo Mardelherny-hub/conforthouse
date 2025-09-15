@@ -983,8 +983,10 @@
 .james-featured-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    gap: 4rem;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .james-featured-image {
@@ -1107,8 +1109,8 @@
 /* Grid de propiedades */
 .james-properties-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 0.75rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.25rem;
     margin-top: 2rem;
 }
 
@@ -1223,7 +1225,7 @@
     transition: color 0.2s ease;
     display: inline-flex;
     align-items: right;
-    gap: 0.5rem;
+    gap: 0.2rem;
 }
 
 .james-property-link:hover {
@@ -1242,10 +1244,15 @@
 }
 
 /* Responsive para cards */
+@media (max-width: 1024px) {
+    .james-properties-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .james-properties-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .james-property-image {
@@ -1268,6 +1275,42 @@
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
+}
+
+.james-services-intro {
+    max-width: 100%;
+}
+
+.james-services-list {
+    margin-bottom: 0;
+}
+
+.james-service-item {
+    margin-bottom: 1.5rem;
+}
+
+.james-service-item:last-child {
+    margin-bottom: 0;
+}
+
+.james-service-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #111827;
+    margin-bottom: 0.5rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-service-description {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.5;
+    font-family: 'Inter', sans-serif;
+}
+
+.james-services-image {
+    aspect-ratio: 4/3;
+    overflow: hidden;
 }
 
 .james-services-title {
@@ -2112,7 +2155,7 @@ Paginacion
             font-weight: 600;
             color: #111827;
             font-family: 'Inter', sans-serif;
-            margin-bottom: 2rem;
+            margin-bottom: .75rem;
         }
         
         .james-property-stats {
@@ -2502,7 +2545,7 @@ Paginacion
         }
         
         .james-property-content {
-            padding: 1.5rem;
+            padding: 1.1rem;
         }
         
         .james-property-card-title {
@@ -2510,7 +2553,7 @@ Paginacion
             font-size: 1.25rem;
             font-weight: 400;
             color: #111827;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             line-height: 1.3;
         }
         
@@ -2738,14 +2781,17 @@ Paginacion
 .james-nav-scrolled .james-nav-link,
 .james-nav-scrolled .james-search-btn,
 .james-nav-scrolled .james-login-btn,
-.james-nav-scrolled .james-lang-btn {
+.james-nav-scrolled .james-cta-btn {
     color: rgba(0, 0, 0, 0.7);
+}
+
+.james-nav-scrolled .james-cta-btn:hover {
+    color: #fff;
 }
 
 .james-nav-scrolled .james-nav-link:hover,
 .james-nav-scrolled .james-search-btn:hover,
-.james-nav-scrolled .james-login-btn:hover,
-.james-nav-scrolled .james-lang-btn:hover {
+.james-nav-scrolled .james-login-btn:hover {
     color: #000000;
 }
 
@@ -2769,5 +2815,70 @@ Paginacion
 
 .james-nav-scrolled .james-dropdown-item:hover {
     color: #000000;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   BOTÓN PROPIEDADES DE LUJO DESTACADO
+   ========================================================================== */
+
+.james-luxury-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #B8731A 0%, #D4C4A8 50%, #B8731A 100%);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 16px;
+    border: 1px solid rgba(184, 115, 26, 0.3);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(184, 115, 26, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.james-luxury-cta-btn:hover {
+    background: linear-gradient(135deg, #D4C4A8 0%, #B8731A 50%, #D4C4A8 100%);
+    color: #ffffff;
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(184, 115, 26, 0.35);
+}
+
+/* Estados del botón en scroll */
+.james-nav-scrolled .james-luxury-cta-btn {
+    background: linear-gradient(135deg, #B8731A 0%, #D4C4A8 50%, #B8731A 100%);
+    border-color: rgba(184, 115, 26, 0.4);
+}
+
+.james-nav-scrolled .james-luxury-cta-btn:hover {
+    background: linear-gradient(135deg, #D4C4A8 0%, #B8731A 50%, #D4C4A8 100%);
+}
+
+/* ==========================================================================
+   LOGIN ADMIN DISCRETO
+   ========================================================================== */
+
+.james-admin-login {
+    color: rgba(255, 255, 255, 0.6);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.james-admin-login:hover {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+}
+
+/* Estado scrolled */
+.james-nav-scrolled .james-admin-login {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.james-nav-scrolled .james-admin-login:hover {
+    color: rgba(0, 0, 0, 0.7);
     background-color: rgba(0, 0, 0, 0.05);
 }

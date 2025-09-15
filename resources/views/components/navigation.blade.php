@@ -11,7 +11,7 @@
      }"
      :class="scrolled ? 'bg-white/98 backdrop-blur-xl shadow-lg james-nav-scrolled' : 'bg-gradient-to-b from-black/60 to-transparent'">
     
-    <div class="max-w-7xl mx-auto px-4 lg:px-8">
+    <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
         <div class="flex items-center justify-between" :class="scrolled ? 'h-16' : 'h-20'">
             
             <!-- Logo -->
@@ -19,11 +19,11 @@
                 <a href="{{ route('home', ['locale' => app()->getLocale()]) }}" 
                    class="james-logo flex items-center group transition-all duration-300">
                    <img x-show="!scrolled" src="{{ asset('assets/images/logo/conforthouse-logo-0-40.webp') }}" 
-                        :style="scrolled ? 'height: 30px;' : 'height: 40px;'"
+                        :style="scrolled ? 'height: 50px;' : 'height: 55px;'"
                         class="transition-all duration-500 ease-out brightness-110 group-hover:brightness-125"
                         alt="Conforthouse Living">
                    <img x-show="scrolled" src="{{ asset('assets/images/logo/conforthouse-logo-1-40.webp') }}" 
-                        :style="scrolled ? 'height: 30px;' : 'height: 40px;'"
+                        :style="scrolled ? 'height: 50px;' : 'height: 55px;'"
                         class="transition-all duration-500 ease-out brightness-110 group-hover:brightness-125"
                         alt="Conforthouse Living">
                 </a>
@@ -161,6 +161,26 @@
                     </svg>
                     {{ __('messages.buscar') }}
                 </button>
+
+                {{-- boton a propiedades de lujo --}}
+                <button class="james-luxury-cta-btn font-body group relative overflow-hidden">
+                    <span class="relative z-10 flex items-center">
+                        <svg class="w-4 h-4 mr-2 text-gold-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        Propiedades de Lujo
+                    </span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-gold-400 to-gold-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                </button>
+
+                <!-- Login discreto para admin -->
+                <a href="{{ route('login') }}" class="james-admin-login opacity-60 hover:opacity-100 transition-opacity duration-200 p-2 rounded-full hover:bg-white/10" title="Admin Login">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                        <circle cx="12" cy="16" r="1"/>
+                        <path d="m7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                </a>
 
                 <!-- Sell With Us Button (James Edition Style) 
                 <a href="#" class="james-cta-btn">

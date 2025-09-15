@@ -4,7 +4,7 @@
 
     <!-- Sección Historia y Misión -->
     <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div>
                     <h5 class="text-amber-500 font-luxury-sans uppercase tracking-wider mb-3">
@@ -165,7 +165,7 @@
 
     <!-- Sección Equipo -->
     <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-luxury font-bold text-gray-900 mb-4">{{ __('messages.team_title') }}</h2>
                 <div class="w-20 h-px mx-auto bg-amber-400 mb-6"></div>
@@ -301,7 +301,7 @@
 
     <!-- Sección Historia de la empresa -->
     <section class="py-20 bg-white">
-        <div class="container mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-luxury font-bold text-gray-900 mb-4">{{ __('messages.history_title') }}</h2>
                 <div class="w-20 h-px mx-auto bg-amber-400 mb-6"></div>

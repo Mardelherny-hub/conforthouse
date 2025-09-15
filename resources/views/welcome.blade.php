@@ -392,7 +392,7 @@
     <main>
         <!-- Category Section -->
         <section class="py-16 bg-light mt-20">
-            <div class="container mx-auto px-6">
+            <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
                 <h2 class="text-3xl font-bold mb-12 text-center dark-text">Premium <span
                         class="cream-text">Categories</span></h2>
 
@@ -446,7 +446,7 @@
 
         <!-- Sección de Propiedad Destacada -->
         <section class="py-16 bg-medium">
-            <div class="container mx-auto px-6">
+            <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
                 <div class="flex flex-col md:flex-row items-center bg-white rounded-sm overflow-hidden shadow-lg">
                     <div class="md:w-1/2">
                         <img src="../app/public/assets/images/gallery/thumbnail/full_2/29.jpg" alt="Propiedad Destacada"
@@ -486,7 +486,7 @@
         </section>
         <!-- Trending Products Section -->
         <section class="py-16 bg-light">
-            <div class="container mx-auto px-6">
+            <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
                 <div class="flex justify-between items-center mb-12">
                     <h2 class="text-3xl font-bold dark-text">Trending <span class="cream-text">Properties</span></h2>
                     <a href="#" class="text-sm cream-text hover:underline">View All Properties</a>
@@ -572,7 +572,7 @@
 
         <!--  Servicios Exclusivos -->
         <section class="py-16 bg-medium">
-            <div class="container mx-auto px-6">
+            <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
                 <div class="flex justify-between items-center mb-12">
                     <h2 class="text-3xl font-bold dark-text">Servicios <span class="cream-text">Exclusivos</span></h2>
                     <a href="#" class="text-sm cream-text hover:underline">Ver Todos los Servicios</a>
@@ -651,7 +651,7 @@
 
         <!-- CTA Section -->
         <section class="py-16 podcast-banner">
-            <div class="container mx-auto px-6">
+            <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
                 <div class="max-w-2xl">
                     <h2 class="text-3xl font-bold mb-4 text-white">Servicios <span class="cream-text">Exclusivos</span>
                     </h2>
@@ -669,7 +669,7 @@
 
         <!-- Sección de Contacto -->
         <section class="py-16 bg-light">
-            <div class="container mx-auto px-6">
+            <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
                 <h2 class="text-3xl font-bold mb-12 text-center dark-text">Contáctese con <span
                         class="cream-text">Nosotros</span></h2>
 
@@ -806,7 +806,7 @@
 
     <!-- Footer -->
     <footer class="bg-dark pt-16 pb-8 text-white">
-        <div class="container mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <!-- Footer Main Content -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <!-- Company Info -->

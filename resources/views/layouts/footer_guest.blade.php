@@ -1,6 +1,6 @@
 <!-- resources/views/layouts/footer_guest.blade.php -->
 <footer class="bg-neutral-900 text-neutral-300">
-    <div class="max-w-7xl mx-auto px-6 py-12">
+    <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12 py-12">
         
         <!-- Main Footer Content -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">

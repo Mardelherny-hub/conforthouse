@@ -1,6 +1,6 @@
 <x-public-layout>
     <div class="bg-gray-100 py-16">
-        <div class="container mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <!-- Encabezado de la página -->
             <div class="mb-12 text-center">
                 <h1 class="text-4xl font-luxury font-semibold text-gray-900 mb-3">{{ __('messages.privacy_policy') }}</h1>

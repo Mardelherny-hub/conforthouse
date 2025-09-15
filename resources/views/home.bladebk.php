@@ -206,7 +206,7 @@
 
     <!-- Sección de Propiedad Destacada -->
     <section class="py-16 bg-dark">
-        <div class="container mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <div
                 class="group relative overflow-hidden rounded-sm shadow-xl transform transition-all duration-500 hover:shadow-2xl">
                 <div class="flex flex-col md:flex-row">
@@ -283,7 +283,7 @@
 
     <!-- Trending Properties Section -->
     <section class="py-20 bg-gray-50 dark:bg-gray-900">
-        <div class="container mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <!-- Encabezado con estilo de lujo -->
             <div class="flex justify-between items-center mb-16 relative">
                 <h2 class="text-3xl md:text-4xl font-luxury font-light dark-text dark:text-white">
@@ -590,7 +590,7 @@
             class="absolute -top-16 -right-16 w-64 h-64 bg-gradient-to-br from-amber-300/20 to-transparent rounded-full blur-3xl">
         </div>
 
-        <div class="container mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <div class="flex justify-between items-center mb-16">
                 <div class="relative">
                     <h2 class="font-luxury text-4xl font-light dark-text">Servicios <span

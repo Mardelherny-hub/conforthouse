@@ -40,7 +40,7 @@
 <body class="font-sans text-gray-900 antialiased bg-gray-100">
 
     <!-- Header Navigation -->
-    <header class="relative w-full h-[400px] sm:h-[500px] lg:h-[750px] bg-cover bg-center flex items-end pb-10">
+    <header class="relative w-full h-[400px] sm:h-[500px] lg:h-[800px] bg-cover bg-center flex items-end ">
 
         <!-- Estructura principal del header con menú y contenido hero -->
         <div class="relative w-full h-full flex flex-col z-30">

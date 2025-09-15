@@ -11,7 +11,7 @@
      }"
      :class="{ 'luxury-nav-scrolled': scrolled }">
     
-    <div class="container mx-auto px-4">
+    <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
         <div class="flex items-center justify-between h-20">
             
             <!-- Logo -->

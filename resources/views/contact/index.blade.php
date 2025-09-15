@@ -4,7 +4,7 @@
 
     <!-- Sección de contacto -->
     <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <!-- Encabezado de la sección -->
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-luxury font-semibold text-gray-900 mb-4">{{ __('messages.contact_us') }}</h2>
@@ -226,7 +226,7 @@
 
     <!-- Sección de mapa -->
     <section class="py-16 bg-gray-100">
-        <div class="container mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <div class="bg-white shadow-xl p-4 border border-amber-200/20">
                 <div class="aspect-w-16 aspect-h-9">
                     <iframe
@@ -240,7 +240,7 @@
 
     <!-- Sección de agentes inmobiliarios destacados -->
     <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <!-- Encabezado de la sección -->
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-luxury font-semibold text-gray-900 mb-4">{{ __('messages.our_agents') }}</h2>
@@ -443,7 +443,7 @@
 
     <!-- Sección de preguntas frecuentes -->
     <section class="py-16 bg-gray-100">
-        <div class="container mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <!-- Encabezado de la sección -->
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-luxury font-semibold text-gray-900 mb-4">{{ __('messages.faq') }}</h2>

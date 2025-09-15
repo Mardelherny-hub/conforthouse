@@ -38,7 +38,7 @@ class HomeController extends Controller
             ])
             ->where('destacado', false)
             ->orderBy('id', 'desc')
-            ->take(9)
+            ->take(10)
             ->get();
 
             

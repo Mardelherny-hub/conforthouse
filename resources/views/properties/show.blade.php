@@ -1,5 +1,5 @@
 <x-properties-layout>
-<div class="container mx-auto px-4">
+<div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
 
     <!-- James Edition Property Detail Hero -->
     <div x-data="{
@@ -25,10 +25,10 @@
                  return this.images[this.currentImageIndex];
              }
          }">
-        <div class="max-w-7xl mx-auto px-4">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
         <!-- Navigation Tabs - James Edition Style -->
         <div class="james-detail-nav">
-            <div class="max-w-7xl mx-auto px-4">
+            <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
                 <nav class="flex items-center justify-center py-4">
                     <div class="flex space-x-8">
                         <button @click="activeTab = 'images'"
@@ -85,7 +85,7 @@
                 }" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
                     {{-- Imagen Principal --}}
                     <div class="relative group overflow-hidden">
-                        @if($property->images->isNotEmpty())
+                        @if($property->images->isNotEmpty()) 
                             @php
                                 $mainImage = $property->images->first();
                                 $mainImageSrc = str_starts_with($mainImage->image_path, 'http') 
@@ -253,7 +253,7 @@
 
     <!-- Property Content - James Edition Layout -->
     <div class="james-property-content">
-        <div class="max-w-7xl mx-auto px-4 md:col-span-2">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12 md:col-span-2">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-8">
                 
                 <!-- Main Content -->
@@ -566,7 +566,7 @@
     <!-- Similar Properties - James Edition Style -->
     @if($rel_properties && $rel_properties->count() > 0)
     <div class="james-similar-properties">
-        <div class="max-w-7xl mx-auto px-4 py-16">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12 py-16">
             <div class="james-section-header">
                 <h2 class="james-section-title">{{ __('messages.similar_properties') }}</h2>
                 <p class="james-section-subtitle">{{ __('messages.discover_properties') }}</p>

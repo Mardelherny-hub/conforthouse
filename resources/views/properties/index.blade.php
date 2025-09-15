@@ -3,7 +3,7 @@
 
     <!-- Properties Grid Section -->
     <section class="james-properties">
-        <div class="max-w-7xl mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             
             <!-- Results Header -->
             <div class="james-results-header">

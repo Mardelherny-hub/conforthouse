@@ -1,5 +1,5 @@
 <div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12 sm:px-6 lg:px-8">
         <div class="bg-white shadow-md rounded-lg p-6">
             <h2 class="text-2xl font-bold mb-6 text-gray-800">Crear Nuevo Cliente</h2>
 

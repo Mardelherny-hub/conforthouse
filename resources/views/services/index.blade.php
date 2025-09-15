@@ -4,7 +4,7 @@
 
     <!-- Sección de Servicios -->
     <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <!-- Encabezado de sección -->
             <div class="text-center mb-16">
                 <h1 class="text-4xl font-luxury font-bold text-gray-900 mb-4">{{ __('messages.services_title') }}</h1>
@@ -133,7 +133,7 @@
 
     <!-- Sección de Testimonios -->
     <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-luxury font-bold text-gray-900 mb-4">{{ __('messages.testimonials_title') }}</h2>
                 <div class="w-20 h-px mx-auto bg-amber-400 mb-6"></div>

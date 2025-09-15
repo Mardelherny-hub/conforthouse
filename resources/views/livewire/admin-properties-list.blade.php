@@ -1,7 +1,7 @@
 <div>
     <div class="py-2">
         <!-- Encabezado y acciones rápidas -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12 sm:px-6 lg:px-8 mb-6">
             <div class="md:flex md:items-center md:justify-between">
                 <div class="flex-1 min-w-0">
                     <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9 sm:truncate">
@@ -23,7 +23,7 @@
         </div>
 
         <!-- Filtros y búsqueda -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 bg-white rounded-lg shadow p-4">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12 sm:px-6 lg:px-8 mb-6 bg-white rounded-lg shadow p-4">
             <div class="md:flex md:items-center md:justify-between mb-4">
                 <div class="flex-1 min-w-0">
                     <label for="search" class="sr-only">Buscar</label>
@@ -109,7 +109,7 @@
 
         <!-- Mensaje de notificación -->
         @if (session()->has('message'))
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+            <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12 sm:px-6 lg:px-8 mb-6">
                 <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded" role="alert">
                     <p class="font-medium">{{ session('message') }}</p>
                 </div>
@@ -117,7 +117,7 @@
         @endif
 
         <!-- Tabla de propiedades -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12 sm:px-6 lg:px-8">
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
