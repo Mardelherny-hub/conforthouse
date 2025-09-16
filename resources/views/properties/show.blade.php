@@ -41,7 +41,7 @@
                                 <span>{{ __('messages.gallery') }}</span>
                             </span>
                         </button>
-                        @if($property->video)
+                        @if($property->videos->isNotEmpty())
                         <button @click="activeTab = 'video'"
                                 :class="activeTab === 'video' ? 'james-tab-active' : 'james-tab-inactive'"
                                 class="james-detail-tab">
@@ -190,21 +190,30 @@
             </div>
 
             <!-- Contenido de la pestaña de video -->
-            <div x-show="activeTab === 'video'" x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-                class="grid grid-cols-1 gap-6">
-                <!-- Contenedor del video con las mismas dimensiones que la imagen principal -->
-                <div class="relative h-[500px] group">
-                    <iframe :src="'https://www.youtube.com/embed/' + youtubeVideoId + '?rel=0&showinfo=0'"
-                        class="w-full h-full object-cover shadow-xl" title="Video de la propiedad"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
+<div x-show="activeTab === 'video'" x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+    class="grid grid-cols-1 gap-6">
+    
+    @if($property->videos->isNotEmpty())
+        @foreach($property->videos as $video)
+            <div class="relative h-[500px] group mb-4">
+                @if($video->embed_url)
+                    <iframe src="{{ $video->embed_url }}"
+                        class="w-full h-full object-cover shadow-lg"
+                        frameborder="0" allowfullscreen>
                     </iframe>
-                </div>
-                <!-- Espacio en blanco para mantener la cuadrícula -->
-                <div class="hidden md:block"></div>
+                    @if($video->title)
+                        <p class="mt-2 text-gray-600">{{ $video->title }}</p>
+                    @endif
+                @endif
             </div>
+        @endforeach
+    @else
+        <div class="h-[500px] bg-gray-100 flex items-center justify-center">
+            <p class="text-gray-500">No hay videos disponibles para esta propiedad</p>
+        </div>
+    @endif
+</div>
 
         <!-- Image Modal - James Edition Style -->
         <template x-teleport="body">

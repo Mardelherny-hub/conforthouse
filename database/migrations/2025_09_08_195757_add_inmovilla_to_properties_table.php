@@ -49,7 +49,57 @@ return new class extends Migration
             $table->boolean('piscina_com')->default(false); // Piscina comunitaria
             $table->boolean('piscina_prop')->default(false); // Piscina privada
             $table->boolean('diafano')->default(false); // Diáfano
-            $table->boolean('todoext')->default(false); // Todo exterior
+            $table->integer('todoext')->nullable(); // Todo exterior: 0=Interior, 1=Parcial, 2=Completo
+            // === CARACTERÍSTICAS ADICIONALES BOOLEANAS ===
+            $table->boolean('balcon')->default(false); // Balcón
+            $table->boolean('bar')->default(false); // Bar
+            $table->boolean('jardin')->default(false); // Jardín
+            $table->boolean('barbacoa')->default(false); // Barbacoa
+            $table->boolean('cajafuerte')->default(false); // Caja fuerte
+            $table->boolean('calefacentral')->default(false); // Calefacción central
+            $table->boolean('chimenea')->default(false); // Chimenea
+            $table->boolean('depoagua')->default(false); // Depósito agua
+            $table->boolean('descalcificador')->default(false); // Descalcificador
+            $table->boolean('despensa')->default(false); // Despensa
+            $table->boolean('esquina')->default(false); // Esquina
+            $table->boolean('galeria')->default(false); // Galería
+            $table->boolean('garajedoble')->default(false); // Garaje doble
+            $table->boolean('gasciudad')->default(false); // Gas ciudad
+            $table->boolean('gimnasio')->default(false); // Gimnasio
+            $table->boolean('habjuegos')->default(false); // Habitación juegos
+            $table->boolean('hidromasaje')->default(false); // Hidromasaje
+            $table->boolean('jacuzzi')->default(false); // Jacuzzi
+            $table->boolean('lavanderia')->default(false); // Lavandería
+            $table->boolean('linea_tlf')->default(false); // Línea teléfono
+            $table->boolean('luminoso')->default(false); // Luminoso
+            $table->boolean('luz')->default(false); // Luz
+            $table->boolean('muebles')->default(false); // Muebles
+            $table->boolean('ojobuey')->default(false); // Ojo de buey
+            $table->boolean('patio')->default(false); // Patio
+            $table->boolean('preinstaacc')->default(false); // Preinstalación A/C
+            $table->boolean('primera_line')->default(false); // Primera línea
+            $table->boolean('puerta_blin')->default(false); // Puerta blindada
+            $table->boolean('satelite')->default(false); // Satélite
+            $table->boolean('sauna')->default(false); // Sauna
+            $table->boolean('solarium')->default(false); // Solarium
+            $table->boolean('sotano')->default(false); // Sótano
+            $table->boolean('mirador')->default(false); // Mirador
+            $table->boolean('apartseparado')->default(false); // Apartamento separado
+            $table->boolean('bombafriocalor')->default(false); // Bomba frío/calor
+            $table->boolean('buhardilla')->default(false); // Buhardilla
+            $table->boolean('pergola')->default(false); // Pérgola
+            $table->boolean('tv')->default(false); // TV
+            $table->boolean('terraza')->default(false); // Terraza
+            $table->boolean('terrazaacris')->default(false); // Terraza acristalada
+            $table->boolean('trastero')->default(false); // Trastero
+            $table->boolean('urbanizacion')->default(false); // Urbanización
+            $table->boolean('vestuarios')->default(false); // Vestuarios
+            $table->boolean('vistasalmar')->default(false); // Vistas al mar
+
+            // === CAMPOS NUMÉRICOS ADICIONALES ===
+            $table->integer('plaza_gara')->nullable(); // Número plazas garaje
+            $table->integer('nplazasparking')->nullable(); // Número plazas parking
+            $table->decimal('ibi', 8, 2)->nullable(); // IBI anual
             // NOTA: distmar se mapea a distance_to_sea existente
             
             // === CONSTRUCCIÓN ===

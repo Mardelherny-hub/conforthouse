@@ -10,7 +10,21 @@ class Address extends Model
     use HasFactory;
 
     protected $fillable = [
-        'property_id', 'street', 'number', 'floor', 'door', 'postal_code', 'district', 'city', 'province', 'autonomous_community',
+        'property_id', 
+        'street', 
+        'number', 
+        'floor', 
+        'door', 
+        'postal_code', 
+        'district', 
+        'city', 
+        'province', 
+        'autonomous_community',
+        
+        // === CAMPOS INMOVILLA ===
+        'inmovilla_direccion',
+        'inmovilla_cp',
+        'inmovilla_provincia',
     ];
     /*
     desestimamos los registros de ciudades provincias y comunidades autónomas

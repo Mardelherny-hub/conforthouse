@@ -103,7 +103,9 @@ class InmovillaImportCommand extends Command
                     'm_terraza' => (int)$xmlProperty->m_terraza,
                     
                     // === HABITACIONES ===
-                    'rooms' => (int)$xmlProperty->habitaciones,
+                    'rooms' => (int)$xmlProperty->habdobles + (int)$xmlProperty->habitaciones,
+                    'habitaciones_simples' => (int)$xmlProperty->habitaciones,
+                    'total_hab' => (int)$xmlProperty->habdobles + (int)$xmlProperty->habitaciones,
                     'bathrooms' => (int)$xmlProperty->banyos,
                     'habdobles' => (int)$xmlProperty->habdobles,
                     'aseos' => (int)$xmlProperty->aseos,
@@ -117,6 +119,58 @@ class InmovillaImportCommand extends Command
                     'piscina_prop' => (bool)$xmlProperty->piscina_prop,
                     'diafano' => (bool)$xmlProperty->diafano,
                     'todoext' => (int)$xmlProperty->todoext,
+                    'google_map' => $this->buildGoogleMapUrl($xmlProperty),
+
+                    // === CARACTERÍSTICAS ADICIONALES BOOLEANAS ===
+                    'balcon' => (bool)$xmlProperty->balcon,
+                    'bar' => (bool)$xmlProperty->bar,
+                    'jardin' => (bool)$xmlProperty->jardin,
+                    'barbacoa' => (bool)$xmlProperty->barbacoa,
+                    'cajafuerte' => (bool)$xmlProperty->cajafuerte,
+                    'calefacentral' => (bool)$xmlProperty->calefacentral,
+                    'chimenea' => (bool)$xmlProperty->chimenea,
+                    'depoagua' => (bool)$xmlProperty->depoagua,
+                    'descalcificador' => (bool)$xmlProperty->descalcificador,
+                    'despensa' => (bool)$xmlProperty->despensa,
+                    'esquina' => (bool)$xmlProperty->esquina,
+                    'galeria' => (bool)$xmlProperty->galeria,
+                    'garajedoble' => (bool)$xmlProperty->garajedoble,
+                    'gasciudad' => (bool)$xmlProperty->gasciudad,
+                    'gimnasio' => (bool)$xmlProperty->gimnasio,
+                    'habjuegos' => (bool)$xmlProperty->habjuegos,
+                    'hidromasaje' => (bool)$xmlProperty->hidromasaje,
+                    'jacuzzi' => (bool)$xmlProperty->jacuzzi,
+                    'lavanderia' => (bool)$xmlProperty->lavanderia,
+                    'linea_tlf' => (bool)$xmlProperty->linea_tlf,
+                    'luminoso' => (bool)$xmlProperty->luminoso,
+                    'luz' => (bool)$xmlProperty->luz,
+                    'muebles' => (bool)$xmlProperty->muebles,
+                    'ojobuey' => (bool)$xmlProperty->ojobuey,
+                    'patio' => (bool)$xmlProperty->patio,
+                    'preinstaacc' => (bool)$xmlProperty->preinstaacc,
+                    'primera_line' => (bool)$xmlProperty->primera_line,
+                    'puerta_blin' => (bool)$xmlProperty->puerta_blin,
+                    'satelite' => (bool)$xmlProperty->satelite,
+                    'sauna' => (bool)$xmlProperty->sauna,
+                    'solarium' => (bool)$xmlProperty->solarium,
+                    'sotano' => (bool)$xmlProperty->sotano,
+                    'mirador' => (bool)$xmlProperty->mirador,
+                    'apartseparado' => (bool)$xmlProperty->apartseparado,
+                    'bombafriocalor' => (bool)$xmlProperty->bombafriocalor,
+                    'buhardilla' => (bool)$xmlProperty->buhardilla,
+                    'pergola' => (bool)$xmlProperty->pergola,
+                    'tv' => (bool)$xmlProperty->tv,
+                    'terraza' => (bool)$xmlProperty->terraza,
+                    'terrazaacris' => (bool)$xmlProperty->terrazaacris,
+                    'trastero' => (bool)$xmlProperty->trastero,
+                    'urbanizacion' => (bool)$xmlProperty->urbanizacion,
+                    'vestuarios' => (bool)$xmlProperty->vestuarios,
+                    'vistasalmar' => (bool)$xmlProperty->vistasalmar,
+
+                    // === CAMPOS NUMÉRICOS ADICIONALES ===
+                    'plaza_gara' => (int)$xmlProperty->plaza_gara,
+                    'nplazasparking' => (int)$xmlProperty->nplazasparking,
+                    'ibi' => (float)$xmlProperty->ibi,
                     
                     // === CONSTRUCCIÓN ===
                     'year_built' => (int)$xmlProperty->antiguedad,
@@ -139,14 +193,14 @@ class InmovillaImportCommand extends Command
                     
                     // === CAMPOS ENUM INMOVILLA ===
                     // === CAMPOS COMO TEXTO DIRECTO ===
-                    'conservacion' => (string)$xmlProperty->conservacion,
+                    'conservacion' => $this->mapConservacionToCode((string)$xmlProperty->conservacion),
                     'cocina_inde' => (int)$xmlProperty->cocina_inde,
-                    'keyori' => (string)$xmlProperty->orientacion,
+                    'keyori' => $this->parseIntOrNull($xmlProperty->orientacion),
                     'keyvista' => (int)$xmlProperty->keyvista,
                     'keyagua' => (int)$xmlProperty->keyagua,
                     'keycalefa' => (int)$xmlProperty->keycalefa,
-                    'keycarpin' => (string)$xmlProperty->carpint,
-                    'keycarpinext' => (string)$xmlProperty->carpext,
+                    'keycarpin' => $this->parseIntOrNull($xmlProperty->carpint),
+                    'keycarpinext' => $this->parseIntOrNull($xmlProperty->carpext),
                     'keysuelo' => (int)$xmlProperty->keysuelo,
                     'keytecho' => (int)$xmlProperty->keytecho,
                     'keyfachada' => (int)$xmlProperty->keyfachada,
@@ -379,5 +433,42 @@ class InmovillaImportCommand extends Command
         $text = strip_tags($text);
         $text = preg_replace('/[^\p{L}\p{N}\s\.,;:!?\-()]/u', '', $text);
         return trim($text);
+    }
+
+    private function mapConservacionToCode($texto)
+    {
+        $textToCode = [
+            'Para reformar' => 5,
+            'De origen' => 10,
+            'Reformar Parcialmente' => 15,
+            'Entrar a vivir' => 20,
+            'Buen estado' => 30,
+            'Semireformado' => 40,
+            'Reformado' => 50,
+            'Seminuevo' => 60,
+            'Nuevo' => 70,
+            'Obra Nueva' => 80,  // ← El que está fallando
+            'En construcción' => 90,
+            'En proyecto' => 100,
+        ];
+        
+        return $textToCode[$texto] ?? 30; // Default: Buen estado
+    }
+
+    private function parseIntOrNull($value)
+    {
+        $str = (string)$value;
+        return !empty($str) && is_numeric($str) ? (int)$str : null;
+    }
+
+    private function buildGoogleMapUrl($xmlProperty)
+    {
+        $lat = (string)$xmlProperty->latitud;
+        $lng = (string)$xmlProperty->altitud;
+        
+        if (!empty($lat) && !empty($lng) && $lat !== '0' && $lng !== '0') {
+            return "https://maps.google.com/?q={$lat},{$lng}";
+        }
+        return null;
     }
 }

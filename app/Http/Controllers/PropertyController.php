@@ -103,6 +103,7 @@ class PropertyController extends Controller
             'propertyType', 
             'operation', 
             'status',
+            'videos',
             'descriptions' => function($q) use ($locale) {
                 $q->whereIn('locale', [$locale, 'es'])
                 ->orderByRaw("locale = ? DESC", [$locale]);
@@ -148,12 +149,13 @@ class PropertyController extends Controller
             // Traducir tipo, estado y operación
             //$this->translateRelations($rel_property, $locale);
            
-        }
+        }      
+
+        //dd($property);
         
 
-        //dd($rel_properties);
-
         return view('properties.show', compact('property', 'rel_properties'));
+
     }
 
     /**
