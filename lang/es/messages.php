@@ -82,7 +82,7 @@ return [
     'property_management_desc' => 'Gestión completa de propiedades para fincas de lujo',
     'learn_more' => 'Conocer Más',
     'ready_find_dream_property' => '¿Listo para Encontrar tu Propiedad Ideal?',
-    'connect_luxury_experts' => 'Conéctate con nuestros expertos en bienes raíces de lujo y descubre oportunidades exclusivas en las ubicaciones más deseadas del mundo.',
+    'connect_luxury_experts' => 'Conéctate con nuestros expertos en Patrimonio Inmobiliario de lujo y descubre oportunidades exclusivas en las ubicaciones más deseadas del mundo.',
     'browse_properties' => 'Explorar Propiedades',
     'contact_us' => 'Contáctanos',
 
@@ -323,7 +323,7 @@ return [
     'footer_about_title' => 'Sobre Conforthouse Living',
     'footer_about_description' => 'Conforthouse Living es una agencia inmobiliaria especializada en propiedades de alta gama. Ofrecemos una colección cuidadosamente seleccionada de viviendas exclusivas en ubicaciones premium.',
     'footer_quick_links' => 'Enlaces Rápidos',
-    'footer_description' => 'Especialistas en bienes raíces de lujo en propiedades premium...',
+    'footer_description' => 'Especialistas en Patrimonio Inmobiliario de lujo en propiedades premium...',
 
     // ===== CTA SECCIONES =====
     'cta_title' => '¿Listo para Encontrar tu Propiedad Ideal?',

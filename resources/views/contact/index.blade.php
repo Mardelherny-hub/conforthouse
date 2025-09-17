@@ -32,7 +32,8 @@
                             <div>
                                 <h4 class="font-luxury-sans font-medium text-gray-900 mb-1">{{ __('messages.address') }}
                                 </h4>
-                                <p class="text-gray-600 font-luxury-sans">{{ __('messages.office_address') }}</p>
+                                <div class="text-gray-600 font-luxury-sans">Plaza del Ayuntamiento Nº19 3° A <br>
+                                    Valencia 46002, Spain</div>
                             </div>
                         </div>
 
@@ -48,7 +49,7 @@
                             <div>
                                 <h4 class="font-luxury-sans font-medium text-gray-900 mb-1">{{ __('messages.phone') }}
                                 </h4>
-                                <p class="text-gray-600 font-luxury-sans">{{ __('messages.office_phone') }}</p>
+                                <p class="text-gray-600 font-luxury-sans">696 649 243 <br> 693 805 030</p>
                             </div>
                         </div>
 
@@ -64,7 +65,7 @@
                             <div>
                                 <h4 class="font-luxury-sans font-medium text-gray-900 mb-1">{{ __('messages.email') }}
                                 </h4>
-                                <p class="text-gray-600 font-luxury-sans">{{ __('messages.office_email') }}</p>
+                                <p class="text-gray-600 font-luxury-sans">conforthoauseliving@conforthouse.com</p>
                             </div>
                         </div>
 
@@ -239,7 +240,7 @@
     </section>
 
     <!-- Sección de agentes inmobiliarios destacados -->
-    <section class="py-16 bg-gray-50">
+    {{-- <section class="py-16 bg-gray-50">
         <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <!-- Encabezado de la sección -->
             <div class="text-center mb-16">
@@ -439,7 +440,7 @@
                 </a>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Sección de preguntas frecuentes -->
     <section class="py-16 bg-gray-100">

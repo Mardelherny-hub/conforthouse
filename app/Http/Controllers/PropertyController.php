@@ -23,6 +23,7 @@ class PropertyController extends Controller
         $search = $request->query('search'); // Añadido para manejar búsquedas por texto
 
         // Consulta base con relaciones necesarias
+        // Consulta base con relaciones necesarias
         $query = Property::with([
             'images', 
             'propertyType', 
@@ -32,10 +33,15 @@ class PropertyController extends Controller
                 $q->whereIn('locale', [$locale, 'es'])
                 ->orderByRaw("locale = ? DESC", [$locale]);
             }
-        ]);
+        ])->select('properties.*'); // Asegurar que se seleccionen todos los campos
 
         // Aplicar filtros si existen
-        if ($operationId) {
+        // Aplicar filtros si existen - Manejo especial para Viviendas de Lujo (ID=5)
+        if ($operationId == 3) {
+            // Si es "Viviendas de Lujo", filtrar por precio > 1M€
+            $query->where('precioinmo', '>=', 1000000);
+        } elseif ($operationId) {
+            // Para otras operaciones, filtrar normalmente
             $query->where('operation_id', $operationId);
         }
 
@@ -59,8 +65,30 @@ class PropertyController extends Controller
             });
         }
 
+        $showComplexes = $request->query('complexes');
+
+        // Si se solicita vista de complejos, cambiar la consulta
+        if ($showComplexes === 'true') {
+            // Solo propiedades que pertenecen a complejos
+            $query->whereNotNull('keypromo')->where('keypromo', '!=', 0);
+        }
+
         // Obtener resultados paginados
         $properties = $query->latest()->paginate(9);
+
+        // Agrupar por complejos si se solicita
+        $groupedComplexes = null;
+        if ($showComplexes === 'true') {
+            $groupedComplexes = $properties->groupBy('keypromo')->map(function($group) {
+                $first = $group->first();
+                return [
+                    'name' => $first->zona_inmovilla,
+                    'city' => $first->ciudad_inmovilla, 
+                    'count' => $group->count(),
+                    'properties' => $group
+                ];
+            });
+        }
 
         // Aplicar traducciones a cada propiedad
         foreach ($properties as $property) {
@@ -80,10 +108,11 @@ class PropertyController extends Controller
         //foreach ($propertyTypes as $type) {
         //    $this->translateRelation($type, 'name', $locale);
         //}
-        //dd($properties);
-
+        
         return view('properties.index', compact(
             'properties',
+            'groupedComplexes', 
+            'showComplexes',
             'operationId',
             'typeId',
             'max_price',

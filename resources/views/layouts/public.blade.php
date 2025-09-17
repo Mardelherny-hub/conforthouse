@@ -167,6 +167,10 @@
         @include('layouts.footer_guest')
 
         <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+        {{-- flotaing button partials--}}
+        @include('partials.floating-button')
+        
+        
     </main>
     
 

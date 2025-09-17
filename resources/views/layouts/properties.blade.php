@@ -43,7 +43,8 @@
        
 
         <!-- Estructura principal del header con solo navegación -->
-        <div class="relative w-full h-full flex items-center z-30">
+        <div class="relative w-full h-full flex items-center z-40">
+        <div class="relative w-full h-full flex items-center z-50">
             <!-- Solo navegación -->
             <div class="w-full">
                 <x-navigation />

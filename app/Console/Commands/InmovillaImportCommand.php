@@ -207,6 +207,7 @@ class InmovillaImportCommand extends Command
                     'keyelectricidad' => (int)$xmlProperty->keyelectricidad,
                     
                     // === OTROS ===
+                    'keypromo' => (int)$xmlProperty->keypromo,  // ← ESTA LÍNEA FALTA
                     'destacado' => (int)$xmlProperty->destacado,
                     'estadoficha' => (int)$xmlProperty->estadoficha,
                     'electro' => (int)$xmlProperty->electro,

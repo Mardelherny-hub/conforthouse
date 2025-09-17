@@ -281,6 +281,60 @@ class Property extends Model
     }
 
     // === SCOPES ÚTILES ===
+
+    /**
+ * Obtiene el nombre corto del complejo
+ */
+public function getComplexNameAttribute()
+{
+    if (!$this->keypromo) {
+        return null;
+    }
+    
+    // Obtener el primer título del grupo por keypromo
+    $complexTitle = Property::where('keypromo', $this->keypromo)
+        ->orderBy('reference')
+        ->value('title');
+        
+    if (!$complexTitle) {
+        return null;
+    }
+    
+    // Extraer nombre corto del título
+    return $this->extractComplexName($complexTitle);
+}
+
+/**
+ * Extrae nombre corto del título completo
+ */
+private function extractComplexName($title)
+{
+    // Casos específicos basados en tu data
+    if (str_contains($title, 'La Isla')) return 'La Isla';
+    if (str_contains($title, 'Talasa Terra')) return 'Talasa Terra';
+    if (str_contains($title, 'Talasa Caelus')) return 'Talasa Caelus';
+    if (str_contains($title, 'Sunset Sailors')) return 'Sunset Sailors';
+    if (str_contains($title, 'SaliSol Golf')) return 'SaliSol Golf';
+    if (str_contains($title, 'Villa Altair')) return 'Villa Altair';
+    if (str_contains($title, 'Golden Leaves')) return 'Golden Leaves';
+    if (str_contains($title, 'Apple Bay')) return 'Apple Bay';
+    if (str_contains($title, 'Sunrise Bay')) return 'Sunrise Bay';
+    if (str_contains($title, 'Isea Views')) return 'Isea Views';
+    if (str_contains($title, 'Benidorm Beach')) return 'Benidorm Beach';
+    
+    // Para títulos genéricos como "Ático Dúplex en X", usar la ciudad
+    if (preg_match('/en ([A-Z][a-z\s]+)/', $title, $matches)) {
+        return trim($matches[1]);
+    }
+    
+    // Fallback: primeras 3 palabras del título
+    return implode(' ', array_slice(explode(' ', $title), 0, 3));
+}
+
+    public function scopeLuxury($query)
+    {
+        return $query->where('precioinmo', '>=', 1000000);
+    }
     
     public function scopeFeatured($query)
     {

@@ -74,10 +74,19 @@
                             <!-- Operations -->
                             @if($operations->count() > 0)
                                 @foreach($operations as $operation)
-                                    <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'operation_id' => $operation->id]) }}" 
-                                       class="james-dropdown-item">
-                                        {{ $operation->name }}
-                                    </a>
+                                    @if($operation->id <= 3)
+                                        @if($operation->name == 'Viviendas de Lujo')
+                                            <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'min_price' => 1000000]) }}"
+                                            class="james-dropdown-item">
+                                                {{ $operation->name }}
+                                            </a>
+                                        @else
+                                            <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'operation_id' => $operation->id]) }}"
+                                            class="james-dropdown-item">
+                                                {{ $operation->name }}
+                                            </a>
+                                        @endif
+                                    @endif
                                 @endforeach
                             @else
                                 @foreach(['alquiler', 'venta', 'obra_nueva', 'viviendas_de_lujo'] as $type)
@@ -162,16 +171,17 @@
                     {{ __('messages.buscar') }}
                 </button>
 
-                {{-- boton a propiedades de lujo --}}
-                <button class="james-luxury-cta-btn font-body group relative overflow-hidden">
+                {{-- enlace a propiedades de lujo --}}
+                <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'operation_id' => 3]) }}" 
+                class="james-luxury-cta-btn font-body group relative overflow-hidden inline-block text-decoration-none">
                     <span class="relative z-10 flex items-center">
                         <svg class="w-4 h-4 mr-2 text-gold-400" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                         </svg>
-                        Propiedades de Lujo
+                        {{ __('messages.viviendas_de_lujo') }}
                     </span>
                     <div class="absolute inset-0 bg-gradient-to-r from-gold-400 to-gold-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                </button>
+                </a>
 
                 <!-- Login discreto para admin -->
                 <a href="{{ route('login') }}" class="james-admin-login opacity-60 hover:opacity-100 transition-opacity duration-200 p-2 rounded-full hover:bg-white/10" title="Admin Login">

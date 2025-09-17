@@ -19,15 +19,29 @@ class ViewServiceProvider extends ServiceProvider
     {
         // Compartir datos globalmente con todas las vistas
         View::composer('layouts.properties', function ($view) {
-            $propertyTypes = Cache::remember('property_types_all', now()->addHours(24), function () {
-                return PropertyType::orderBy('name')->get();
-            });
-            $operations = Cache::remember('operations_all', now()->addHours(24), function () {
-                return Operation::orderBy('name')->get();
-            });
+            $locale = app()->getLocale();
+            
+            $propertyTypes = PropertyType::with(['translations' => function($query) use ($locale) {
+                $query->where('locale', $locale);
+            }])->orderBy('name')->get();
+            
+            $operations = Operation::with(['translations' => function($query) use ($locale) {
+                $query->where('locale', $locale);
+            }])->orderBy('name')->get();
+            
+            // Aplicar traducciones
+            foreach ($operations as $operation) {
+                if ($locale !== 'es' && $operation->translations->isNotEmpty()) {
+                    $operation->name = $operation->translations->first()->name ?? $operation->name;
+                }
+            }
+            
+            foreach ($propertyTypes as $type) {
+                if ($locale !== 'es' && $type->translations->isNotEmpty()) {
+                    $type->name = $type->translations->first()->name ?? $type->name;
+                }
+            }
 
-            // Obtenemos los valores de los filtros de la petición actual,
-            // con valores por defecto si no existen.
             $view->with([
                 'propertyTypes' => $propertyTypes,
                 'operations' => $operations,
