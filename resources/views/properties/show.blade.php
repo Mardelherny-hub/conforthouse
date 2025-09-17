@@ -134,53 +134,78 @@
                             </div>
                         @endforeach
                     </div>
-
-                    {{-- Modal de Imágenes --}}
+                    <!-- Modal de Imágenes Mejorado -->
                     <template x-teleport="body">
                         <div x-show="showModal" x-transition:enter="transition ease-out duration-300"
                             x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                             x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100"
                             x-transition:leave-end="opacity-0" @keydown.escape.window="closeModal()"
                             @keydown.arrow-right.window="nextImage()" @keydown.arrow-left.window="prevImage()"
-                            class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
+                            class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-95"
                             @click.self="closeModal()">
-                            <div class="relative max-w-4xl w-full max-h-[90vh] flex flex-col">
-                                {{-- Botón de Cierre --}}
+                            
+                            <!-- Contenedor principal del modal -->
+                            <div class="relative w-full h-full flex flex-col p-4 md:p-6 lg:p-8">
+                                
+                                <!-- Botón de cierre -->
                                 <button @click="closeModal()"
-                                    class="absolute -top-10 right-0 text-white text-4xl hover:text-amber-500 transition-colors z-10">
-                                    &times;
+                                    class="absolute top-4 right-4 z-20 text-white text-3xl md:text-4xl hover:text-amber-500 transition-colors duration-200 bg-black/30 hover:bg-black/50 rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center backdrop-blur-sm">
+                                    <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
                                 </button>
 
-                                {{-- Navegación --}}
+                                <!-- Navegación izquierda -->
                                 <button @click="prevImage()"
-                                    class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-amber-500 text-white w-12 h-12 rounded-full flex items-center justify-center z-10">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    class="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/40 hover:bg-amber-500/80 text-white w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-200 hover:scale-105">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M15 19l-7-7 7-7" />
                                     </svg>
                                 </button>
+                                
+                                <!-- Navegación derecha -->
                                 <button @click="nextImage()"
-                                    class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-amber-500 text-white w-12 h-12 rounded-full flex items-center justify-center z-10">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    class="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-black/40 hover:bg-amber-500/80 text-white w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center backdrop-blur-sm transition-all duration-200 hover:scale-105">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 md:h-8 md:w-8" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 5l7 7-7 7" />
                                     </svg>
                                 </button>
 
-                                {{-- Imagen en Modal --}}
-                                <div class="w-full h-full flex items-center justify-center">
-                                    <img :src="currentImage.image_path.startsWith('http') ? currentImage.image_path : '/storage/' + currentImage.image_path" alt="{{ $property->title }}"
-                                        class="max-w-full max-h-[100vh] object-contain"
+                                <!-- Contenedor de la imagen - Ocupa todo el espacio disponible -->
+                                <div class="flex-1 flex items-center justify-center min-h-0 pt-16 pb-16">
+                                    <img :src="currentImage.image_path.startsWith('http') ? currentImage.image_path : '/storage/' + currentImage.image_path" 
+                                        alt="{{ $property->title }}"
+                                        class="max-w-full max-h-full object-contain shadow-2xl"
+                                        style="max-height: calc(100vh - 8rem);"
                                         x-transition:enter="transition ease-out duration-300 transform"
                                         x-transition:enter-start="opacity-0 scale-95"
                                         x-transition:enter-end="opacity-100 scale-100">
                                 </div>
 
-                                {{-- Contador de imágenes --}}
-                                <div class="text-white text-center mt-4">
-                                    <span x-text="currentIndex + 1"></span> / <span x-text="images.length"></span>
+                                <!-- Contador de imágenes -->
+                                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-center bg-black/40 backdrop-blur-sm rounded-full px-4 py-2">
+                                    <span class="text-lg font-medium">
+                                        <span x-text="currentIndex + 1"></span> / <span x-text="images.length"></span>
+                                    </span>
+                                </div>
+
+                                <!-- Thumbnails opcionales (para pantallas grandes) -->
+                                <div class="hidden lg:block absolute bottom-20 left-1/2 transform -translate-x-1/2 w-full max-w-4xl">
+                                    <div class="flex justify-center space-x-2 px-4">
+                                        <template x-for="(image, index) in images.slice(Math.max(0, currentIndex - 2), currentIndex + 3)" :key="index">
+                                            <button @click="currentIndex = images.indexOf(image)"
+                                                    :class="images.indexOf(image) === currentIndex ? 'ring-2 ring-amber-500' : 'ring-1 ring-white/30'"
+                                                    class="w-16 h-16 rounded overflow-hidden transition-all duration-200 hover:ring-2 hover:ring-amber-400 opacity-70 hover:opacity-100">
+                                                <img :src="image.image_path.startsWith('http') ? image.image_path : '/storage/' + image.image_path"
+                                                    :alt="'Thumbnail ' + (images.indexOf(image) + 1)"
+                                                    class="w-full h-full object-cover">
+                                            </button>
+                                        </template>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -273,7 +298,6 @@
                     <div class="james-property-header">
                         <div class="flex flex-wrap items-center gap-2 mb-4">
                             <span class="james-property-badge">{{ $property->propertyType->name }}</span>
-                            <span class="james-property-badge james-badge-secondary">{{ $property->operation->name }}</span>
                         </div>
                         
                         

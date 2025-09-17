@@ -84,7 +84,7 @@ class="relative z-50">
                             <select name="operation_id" 
                                     x-model="selectedOperation"
                                     class="w-full px-4 py-3 border border-gray-200 hover:border-gray-300 focus:border-gray-900 focus:ring-0 transition-colors duration-200 font-body bg-white">
-                                <option value="">All Operations</option>
+                                <option value="">{{ __('messages.todas_operaciones') }}</option>
                                 @foreach($operations as $operation)
                                     <option value="{{ $operation->id }}">{{ $operation->name }}</option>
                                 @endforeach
@@ -99,8 +99,8 @@ class="relative z-50">
                             <select name="type_id" 
                                     x-model="selectedType"
                                     class="w-full px-4 py-3 border border-gray-200 hover:border-gray-300 focus:border-gray-900 focus:ring-0 transition-colors duration-200 font-body bg-white">
-                                <option value="">All Types</option>
-                                @foreach($types as $type)
+                                <option value="">{{ __('messages.todos_tipos') }}</option>
+                                @foreach($propertyTypes as $type)
                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
                                 @endforeach
                             </select>
@@ -109,12 +109,12 @@ class="relative z-50">
                         <!-- Bedrooms -->
                         <div class="space-y-2">
                             <label class="block text-sm font-body font-medium text-gray-700">
-                                Bedrooms
+                                {{ __('messages.habitaciones') }}
                             </label>
                             <select name="rooms" 
                                     x-model="rooms"
                                     class="w-full px-4 py-3 border border-gray-200 hover:border-gray-300 focus:border-gray-900 focus:ring-0 transition-colors duration-200 font-body bg-white">
-                                <option value="">Any</option>
+                                <option value="">{{ __('messages.cualquier_cantidad') }}</option>
                                 <option value="1">1+</option>
                                 <option value="2">2+</option>
                                 <option value="3">3+</option>
@@ -126,12 +126,12 @@ class="relative z-50">
                         <!-- Bathrooms -->
                         <div class="space-y-2">
                             <label class="block text-sm font-body font-medium text-gray-700">
-                                Bathrooms
+                                {{ __('messages.banos') }}
                             </label>
                             <select name="bathrooms" 
                                     x-model="bathrooms"
                                     class="w-full px-4 py-3 border border-gray-200 hover:border-gray-300 focus:border-gray-900 focus:ring-0 transition-colors duration-200 font-body bg-white">
-                                <option value="">Any</option>
+                                <option value="">{{ __('messages.cualquier_cantidad') }}</option>
                                 <option value="1">1+</option>
                                 <option value="2">2+</option>
                                 <option value="3">3+</option>
@@ -143,7 +143,7 @@ class="relative z-50">
                     <!-- Price Range -->
                     <div class="space-y-4">
                         <label class="block text-sm font-body font-medium text-gray-700">
-                            Price Range
+                            {{ __('messages.price_range') }}
                         </label>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div class="relative">
@@ -152,7 +152,7 @@ class="relative z-50">
                                        name="min_price" 
                                        x-model="minPrice"
                                        class="w-full pl-8 pr-4 py-3 border border-gray-200 hover:border-gray-300 focus:border-gray-900 focus:ring-0 transition-colors duration-200 font-body"
-                                       placeholder="Min price">
+                                       placeholder="{{ __('messages.sin_minimo') }}">
                             </div>
                             <div class="relative">
                                 <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">€</span>
@@ -160,7 +160,7 @@ class="relative z-50">
                                        name="max_price" 
                                        x-model="maxPrice"
                                        class="w-full pl-8 pr-4 py-3 border border-gray-200 hover:border-gray-300 focus:border-gray-900 focus:ring-0 transition-colors duration-200 font-body"
-                                       placeholder="Max price">
+                                       placeholder="{{ __('messages.sin_maximo') }}">
                             </div>
                         </div>
                     </div>
@@ -202,9 +202,9 @@ class="relative z-50">
                                 Premium Apartments
                             </button>
                             <button type="button" 
-                                    @click="searchQuery = 'penthouse'"
+                                    @click="searchQuery = 'villa'"
                                     class="px-4 py-2 text-sm bg-gray-50 text-gray-700 hover:bg-gray-100 transition-colors duration-200 font-body border border-gray-200">
-                                Penthouses
+                                Villas
                             </button>
                             <button type="button" 
                                     @click="minPrice = '1000000'"

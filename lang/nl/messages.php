@@ -556,5 +556,97 @@ return [
     'aire_acondicionado' => 'Airconditioning',
     'ascensor' => 'Lift',
     'buscar_con_filtros' => 'Zoeken met filters',
-    'limpiar_filtros' => 'Filters wissen'
+    'limpiar_filtros' => 'Filters wissen',
+
+    // ===== GEAVANCEERD ZOEKEN =====
+    'busqueda_avanzada' => 'Geavanceerd Zoeken',
+    'buscar_con_filtros' => 'Zoeken met Filters',
+    'limpiar_filtros' => 'Filters Wissen',
+    
+    // Velden van het basisformulier
+    'tipo_propiedad' => 'Type Eigendom',
+    'todos_tipos' => 'Alle Types',
+    'operacion' => 'Transactie',
+    'todas_operaciones' => 'Alle Transacties',
+    'precio_minimo' => 'Minimumprijs',
+    'sin_minimo' => 'Geen Minimum',
+    'precio_maximo' => 'Maximumprijs',
+    'sin_maximo' => 'Geen Maximum',
+    'price_range' => 'Prijsbereik',
+    
+    // Geavanceerde velden
+    'habitaciones' => 'Slaapkamers',
+    'banos' => 'Badkamers',
+    'cualquier_cantidad' => 'Elke Aantal',
+    'tipo_vista' => 'Type Uitzicht',
+    'cualquier_vista' => 'Elk Uitzicht',
+    'vista_mar' => 'Zeezicht',
+    'vista_montaña' => 'Bergzicht',
+    'vista_golf' => 'Golfzicht',
+    'vista_ciudad' => 'Stadszicht',
+    'vista_piscina' => 'Zwembadzicht',
+    'area_minima' => 'Minimumoppervlakte',
+    'cualquier_area' => 'Elke Oppervlakte',
+    'busqueda_texto' => 'Zoeken op Tekst',
+    
+    // Buitenkenmerken
+    'caracteristicas_exteriores' => 'Buitenkenmerken',
+    'piscina' => 'Zwembad',
+    'terraza' => 'Terras',
+    'jardin' => 'Tuin',
+    'balcon' => 'Balkon',
+    'parking' => 'Parkeerplaats',
+    'aire_acondicionado' => 'Airconditioning',
+    
+    // Algemene opties
+    'cualquier' => 'Elke',
+    'indiferente' => 'Onverschillig',
+    'si' => 'Ja',
+    'no' => 'Nee',
+    'plaza' => 'Plaats',
+    'plazas' => 'Plaatsen',
+    
+    // Labels voor bestaande helpers (ontbrekend)
+    'all_types' => 'Alle Types',
+    'all_operations' => 'Alle Transacties',
+    'min_price' => 'Minimumprijs',
+    'max_price' => 'Maximumprijs',
+    'no_minimum' => 'Geen Minimum',
+    'no_maximum' => 'Geen Maximum',
+    'any' => 'Elke',
+    'any_view' => 'Elk Uitzicht',
+    'sea_view' => 'Zeezicht',
+    'mountain_view' => 'Bergzicht',
+    'golf_view' => 'Golfzicht',
+    'city_view' => 'Stadszicht',
+    'pool_view' => 'Zwembadzicht',
+    'search_text' => 'Zoektekst',
+    'search_property_placeholder' => 'Zoeken op locatie, referentie...',
+    'search_button' => 'Zoeken',
+    'clear_button' => 'Wissen',
+    'yes' => 'Ja',
+    'bedrooms' => 'Slaapkamers',
+    'bathrooms' => 'Badkamers',
+    'view_type' => 'Type Uitzicht',
+    'terrace' => 'Terras',
+    'pool' => 'Zwembad',
+    'garden' => 'Tuin',
+    'balcony' => 'Balkon',
+    'air_conditioning' => 'Airconditioning',
+    
+    // Zoekresultaten
+    'properties_available' => 'Beschikbare Woningen',
+    'residential_complexes' => 'Residentiële Complexen',
+    'available_homes' => 'beschikbare woningen',
+    'search_filters_applied' => 'Filters toegepast',
+    'from' => 'Vanaf',
+    'up_to' => 'Tot',
+    'clear_filters' => 'Filters wissen',
+    'search_results_for' => 'Zoekresultaten voor',
+    
+    // Contextuele berichten
+    'no_properties_found' => 'Geen woningen gevonden',
+    'try_adjusting_search' => 'Probeer de zoekfilters aan te passen of bekijk al onze woningen',
+    'view_all_properties' => 'Bekijk Alle Woningen',
+
 ];

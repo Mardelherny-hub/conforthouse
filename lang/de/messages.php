@@ -556,5 +556,97 @@ return [
     'aire_acondicionado' => 'Klimaanlage',
     'ascensor' => 'Aufzug',
     'buscar_con_filtros' => 'Mit Filtern suchen',
-    'limpiar_filtros' => 'Filter löschen'
+    'limpiar_filtros' => 'Filter löschen',
+
+    // ===== ERWEITERTE SUCHE =====
+    'busqueda_avanzada' => 'Erweiterte Suche',
+    'buscar_con_filtros' => 'Mit Filtern Suchen',
+    'limpiar_filtros' => 'Filter Löschen',
+    
+    // Grundlegende Formularfelder
+    'tipo_propiedad' => 'Immobilientyp',
+    'todos_tipos' => 'Alle Typen',
+    'operacion' => 'Operation',
+    'todas_operaciones' => 'Alle Operationen',
+    'precio_minimo' => 'Mindestpreis',
+    'sin_minimo' => 'Kein Minimum',
+    'precio_maximo' => 'Höchstpreis',
+    'sin_maximo' => 'Kein Maximum',
+    'price_range' => 'Preisbereich',
+    
+    // Erweiterte Felder
+    'habitaciones' => 'Schlafzimmer',
+    'banos' => 'Badezimmer',
+    'cualquier_cantidad' => 'Beliebige Anzahl',
+    'tipo_vista' => 'Blicktyp',
+    'cualquier_vista' => 'Beliebiger Blick',
+    'vista_mar' => 'Meerblick',
+    'vista_montaña' => 'Bergblick',
+    'vista_golf' => 'Golfblick',
+    'vista_ciudad' => 'Stadtblick',
+    'vista_piscina' => 'Poolblick',
+    'area_minima' => 'Mindestfläche',
+    'cualquier_area' => 'Beliebige Fläche',
+    'busqueda_texto' => 'Textsuche',
+    
+    // Außenmerkmale
+    'caracteristicas_exteriores' => 'Außenmerkmale',
+    'piscina' => 'Pool',
+    'terraza' => 'Terrasse',
+    'jardin' => 'Garten',
+    'balcon' => 'Balkon',
+    'parking' => 'Parkplatz',
+    'aire_acondicionado' => 'Klimaanlage',
+    
+    // Allgemeine Optionen
+    'cualquier' => 'Beliebig',
+    'indiferente' => 'Gleichgültig',
+    'si' => 'Ja',
+    'no' => 'Nein',
+    'plaza' => 'Platz',
+    'plazas' => 'Plätze',
+    
+    // Hilfslabels
+    'all_types' => 'Alle Typen',
+    'all_operations' => 'Alle Operationen',
+    'min_price' => 'Mindestpreis',
+    'max_price' => 'Höchstpreis',
+    'no_minimum' => 'Kein Minimum',
+    'no_maximum' => 'Kein Maximum',
+    'any' => 'Beliebig',
+    'any_view' => 'Beliebiger Blick',
+    'sea_view' => 'Meerblick',
+    'mountain_view' => 'Bergblick',
+    'golf_view' => 'Golfblick',
+    'city_view' => 'Stadtblick',
+    'pool_view' => 'Poolblick',
+    'search_text' => 'Suchtext',
+    'search_property_placeholder' => 'Nach Standort, Referenz suchen...',
+    'search_button' => 'Suchen',
+    'clear_button' => 'Löschen',
+    'yes' => 'Ja',
+    'bedrooms' => 'Schlafzimmer',
+    'bathrooms' => 'Badezimmer',
+    'view_type' => 'Blicktyp',
+    'terrace' => 'Terrasse',
+    'pool' => 'Pool',
+    'garden' => 'Garten',
+    'balcony' => 'Balkon',
+    'air_conditioning' => 'Klimaanlage',
+    
+    // Suchergebnisse
+    'properties_available' => 'Verfügbare Immobilien',
+    'residential_complexes' => 'Wohnkomplexe',
+    'available_homes' => 'verfügbare Wohnungen',
+    'search_filters_applied' => 'Filter angewendet',
+    'from' => 'Ab',
+    'up_to' => 'Bis zu',
+    'clear_filters' => 'Filter löschen',
+    'search_results_for' => 'Suchergebnisse für',
+    
+    // Kontextuelle Nachrichten
+    'no_properties_found' => 'Keine Immobilien gefunden',
+    'try_adjusting_search' => 'Versuchen Sie, Ihre Suchfilter anzupassen oder alle unsere Immobilien zu erkunden',
+    'view_all_properties' => 'Alle Immobilien Anzeigen',
+
 ];

@@ -59,7 +59,7 @@
                                 
                                 <!-- Property Type Badge -->
                                 @if($property->propertyType)
-                                    <div class="james-property-badge absolute top-4 right-4 bg-neutral-800 text-white px-3 py-1 text-xs font-medium rounded">
+                                    <div class="james-property-badge absolute top-4 right-24 bg-neutral-800 text-white px-3 py-1 text-xs font-medium rounded">
                                         {{ $property->propertyType->name }}
                                     </div>
                                 @endif

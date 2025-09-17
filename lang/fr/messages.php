@@ -557,5 +557,98 @@ return [
     'aire_acondicionado' => 'Climatisation',
     'ascensor' => 'Ascenseur',
     'buscar_con_filtros' => 'Rechercher avec filtres',
-    'limpiar_filtros' => 'Effacer les filtres'
+    'limpiar_filtros' => 'Effacer les filtres',
+
+    // ===== RECHERCHE AVANCÉE =====
+    'busqueda_avanzada' => 'Recherche Avancée',
+    'buscar_con_filtros' => 'Rechercher avec Filtres',
+    'limpiar_filtros' => 'Effacer les Filtres',
+    
+    // Champs de formulaire de base
+    'tipo_propiedad' => 'Type de Propriété',
+    'todos_tipos' => 'Tous les Types',
+    'operacion' => 'Opération',
+    'todas_operaciones' => 'Toutes les Opérations',
+    'precio_minimo' => 'Prix Minimum',
+    'sin_minimo' => 'Sans Minimum',
+    'precio_maximo' => 'Prix Maximum',
+    'sin_maximo' => 'Sans Maximum',
+    'price_range' => 'Gamme de Prix',
+    
+    
+    // Champs avancés
+    'habitaciones' => 'Chambres',
+    'banos' => 'Salles de Bain',
+    'cualquier_cantidad' => 'N\'importe Quelle Quantité',
+    'tipo_vista' => 'Type de Vue',
+    'cualquier_vista' => 'N\'importe Quelle Vue',
+    'vista_mar' => 'Vue sur Mer',
+    'vista_montaña' => 'Vue sur Montagne',
+    'vista_golf' => 'Vue sur Golf',
+    'vista_ciudad' => 'Vue sur Ville',
+    'vista_piscina' => 'Vue sur Piscine',
+    'area_minima' => 'Surface Minimale',
+    'cualquier_area' => 'N\'importe Quelle Surface',
+    'busqueda_texto' => 'Recherche par Texte',
+    
+    // Caractéristiques extérieures
+    'caracteristicas_exteriores' => 'Caractéristiques Extérieures',
+    'piscina' => 'Piscine',
+    'terraza' => 'Terrasse',
+    'jardin' => 'Jardin',
+    'balcon' => 'Balcon',
+    'parking' => 'Parking',
+    'aire_acondicionado' => 'Climatisation',
+    
+    // Options générales
+    'cualquier' => 'N\'importe',
+    'indiferente' => 'Indifférent',
+    'si' => 'Oui',
+    'no' => 'Non',
+    'plaza' => 'Place',
+    'plazas' => 'Places',
+    
+    // Labels d\'aide
+    'all_types' => 'Tous les Types',
+    'all_operations' => 'Toutes les Opérations',
+    'min_price' => 'Prix Minimum',
+    'max_price' => 'Prix Maximum',
+    'no_minimum' => 'Sans Minimum',
+    'no_maximum' => 'Sans Maximum',
+    'any' => 'N\'importe',
+    'any_view' => 'N\'importe Quelle Vue',
+    'sea_view' => 'Vue sur Mer',
+    'mountain_view' => 'Vue sur Montagne',
+    'golf_view' => 'Vue sur Golf',
+    'city_view' => 'Vue sur Ville',
+    'pool_view' => 'Vue sur Piscine',
+    'search_text' => 'Texte de Recherche',
+    'search_property_placeholder' => 'Rechercher par lieu, référence...',
+    'search_button' => 'Rechercher',
+    'clear_button' => 'Effacer',
+    'yes' => 'Oui',
+    'bedrooms' => 'Chambres',
+    'bathrooms' => 'Salles de Bain',
+    'view_type' => 'Type de Vue',
+    'terrace' => 'Terrasse',
+    'pool' => 'Piscine',
+    'garden' => 'Jardin',
+    'balcony' => 'Balcon',
+    'air_conditioning' => 'Climatisation',
+    
+    // Résultats de recherche
+    'properties_available' => 'Propriétés Disponibles',
+    'residential_complexes' => 'Complexes Résidentiels',
+    'available_homes' => 'logements disponibles',
+    'search_filters_applied' => 'Filtres appliqués',
+    'from' => 'À partir de',
+    'up_to' => 'Jusqu\'à',
+    'clear_filters' => 'Effacer les filtres',
+    'search_results_for' => 'Résultats de recherche pour',
+    
+    // Messages contextuels
+    'no_properties_found' => 'Aucune propriété trouvée',
+    'try_adjusting_search' => 'Essayez d\'ajuster vos filtres de recherche ou explorez toutes nos propriétés',
+    'view_all_properties' => 'Voir Toutes les Propriétés',
+
 ];

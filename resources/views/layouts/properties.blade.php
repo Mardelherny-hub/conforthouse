@@ -63,8 +63,9 @@
     </header>
 </header>
 
+
     <!-- Buscador Avanzado Properties -->
-    <section class="bg-white  py-6" x-data="{ showAdvanced: false }">
+    <section class="bg-white py-6" x-data="{ showAdvanced: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <form action="{{ route('properties.index', ['locale' => app()->getLocale()]) }}" method="GET">
                 
@@ -102,11 +103,13 @@
                             <label class="block text-sm font-medium text-gray-700">{{ __('messages.precio_minimo') }}</label>
                             <select name="min_price" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
                                 <option value="">{{ __('messages.sin_minimo') }}</option>
-                                <option value="100000">€100.000</option>
-                                <option value="200000">€200.000</option>
-                                <option value="500000">€500.000</option>
-                                <option value="1000000">€1.000.000</option>
-                                <option value="2000000">€2.000.000</option>
+                                <option value="100000" {{ $min_price == '100000' ? 'selected' : '' }}>€100.000</option>
+                                <option value="200000" {{ $min_price == '200000' ? 'selected' : '' }}>€200.000</option>
+                                <option value="300000" {{ $min_price == '300000' ? 'selected' : '' }}>€300.000</option>
+                                <option value="500000" {{ $min_price == '500000' ? 'selected' : '' }}>€500.000</option>
+                                <option value="750000" {{ $min_price == '750000' ? 'selected' : '' }}>€750.000</option>
+                                <option value="1000000" {{ $min_price == '1000000' ? 'selected' : '' }}>€1.000.000</option>
+                                <option value="2000000" {{ $min_price == '2000000' ? 'selected' : '' }}>€2.000.000</option>
                             </select>
                         </div>
 
@@ -115,11 +118,14 @@
                             <label class="block text-sm font-medium text-gray-700">{{ __('messages.precio_maximo') }}</label>
                             <select name="max_price" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
                                 <option value="">{{ __('messages.sin_maximo') }}</option>
-                                <option value="300000">€300.000</option>
-                                <option value="500000">€500.000</option>
-                                <option value="1000000">€1.000.000</option>
-                                <option value="2000000">€2.000.000</option>
-                                <option value="5000000">€5.000.000</option>
+                                <option value="300000" {{ $max_price == '300000' ? 'selected' : '' }}>€300.000</option>
+                                <option value="500000" {{ $max_price == '500000' ? 'selected' : '' }}>€500.000</option>
+                                <option value="750000" {{ $max_price == '750000' ? 'selected' : '' }}>€750.000</option>
+                                <option value="1000000" {{ $max_price == '1000000' ? 'selected' : '' }}>€1.000.000</option>
+                                <option value="1500000" {{ $max_price == '1500000' ? 'selected' : '' }}>€1.500.000</option>
+                                <option value="2000000" {{ $max_price == '2000000' ? 'selected' : '' }}>€2.000.000</option>
+                                <option value="3000000" {{ $max_price == '3000000' ? 'selected' : '' }}>€3.000.000</option>
+                                <option value="5000000" {{ $max_price == '5000000' ? 'selected' : '' }}>€5.000.000</option>
                             </select>
                         </div>
 
@@ -142,27 +148,28 @@
 
                     <!-- Búsqueda Avanzada -->
                     <div x-show="showAdvanced" 
-                         x-transition:enter="transition ease-out duration-200"
-                         x-transition:enter-start="opacity-0 transform -translate-y-2"
-                         x-transition:enter-end="opacity-100 transform translate-y-0"
-                         x-transition:leave="transition ease-in duration-150"
-                         x-transition:leave-start="opacity-100 transform translate-y-0"
-                         x-transition:leave-end="opacity-0 transform -translate-y-2"
-                         class="border-t border-gray-200 pt-6">
+                        x-transition:enter="transition ease-out duration-200"
+                        x-transition:enter-start="opacity-0 transform -translate-y-2"
+                        x-transition:enter-end="opacity-100 transform translate-y-0"
+                        x-transition:leave="transition ease-in duration-150"
+                        x-transition:leave-start="opacity-100 transform translate-y-0"
+                        x-transition:leave-end="opacity-0 transform -translate-y-2"
+                        class="border-t border-gray-200 pt-6">
                         
                         <h3 class="text-lg font-medium text-gray-900 mb-4">{{ __('messages.busqueda_avanzada') }}</h3>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                        <!-- Campos principales del filtrado avanzado -->
+                        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
                             <!-- Habitaciones -->
                             <div class="space-y-2">
                                 <label class="block text-sm font-medium text-gray-700">{{ __('messages.habitaciones') }}</label>
-                                <select name="rooms" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                                <select name="bedrooms" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
                                     <option value="">{{ __('messages.cualquier_cantidad') }}</option>
-                                    <option value="1">1+</option>
-                                    <option value="2">2+</option>
-                                    <option value="3">3+</option>
-                                    <option value="4">4+</option>
-                                    <option value="5">5+</option>
+                                    <option value="1" {{ request('bedrooms') == '1' ? 'selected' : '' }}>1+</option>
+                                    <option value="2" {{ request('bedrooms') == '2' ? 'selected' : '' }}>2+</option>
+                                    <option value="3" {{ request('bedrooms') == '3' ? 'selected' : '' }}>3+</option>
+                                    <option value="4" {{ request('bedrooms') == '4' ? 'selected' : '' }}>4+</option>
+                                    <option value="5" {{ request('bedrooms') == '5' ? 'selected' : '' }}>5+</option>
                                 </select>
                             </div>
 
@@ -171,10 +178,23 @@
                                 <label class="block text-sm font-medium text-gray-700">{{ __('messages.banos') }}</label>
                                 <select name="bathrooms" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
                                     <option value="">{{ __('messages.cualquier_cantidad') }}</option>
-                                    <option value="1">1+</option>
-                                    <option value="2">2+</option>
-                                    <option value="3">3+</option>
-                                    <option value="4">4+</option>
+                                    <option value="1" {{ request('bathrooms') == '1' ? 'selected' : '' }}>1+</option>
+                                    <option value="2" {{ request('bathrooms') == '2' ? 'selected' : '' }}>2+</option>
+                                    <option value="3" {{ request('bathrooms') == '3' ? 'selected' : '' }}>3+</option>
+                                    <option value="4" {{ request('bathrooms') == '4' ? 'selected' : '' }}>4+</option>
+                                </select>
+                            </div>
+
+                            <!-- Vista (keyvista) -->
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">{{ __('messages.tipo_vista') }}</label>
+                                <select name="keyvista" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+                                    <option value="">{{ __('messages.cualquier_vista') }}</option>
+                                    <option value="sea" {{ request('keyvista') == 'sea' ? 'selected' : '' }}>{{ __('messages.vista_mar') }}</option>
+                                    <option value="mountain" {{ request('keyvista') == 'mountain' ? 'selected' : '' }}>{{ __('messages.vista_montaña') }}</option>
+                                    <option value="golf" {{ request('keyvista') == 'golf' ? 'selected' : '' }}>{{ __('messages.vista_golf') }}</option>
+                                    <option value="city" {{ request('keyvista') == 'city' ? 'selected' : '' }}>{{ __('messages.vista_ciudad') }}</option>
+                                    <option value="pool" {{ request('keyvista') == 'pool' ? 'selected' : '' }}>{{ __('messages.vista_piscina') }}</option>
                                 </select>
                             </div>
 
@@ -183,63 +203,74 @@
                                 <label class="block text-sm font-medium text-gray-700">{{ __('messages.area_minima') }}</label>
                                 <select name="min_area" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
                                     <option value="">{{ __('messages.cualquier_area') }}</option>
-                                    <option value="50">50+ m²</option>
-                                    <option value="100">100+ m²</option>
-                                    <option value="150">150+ m²</option>
-                                    <option value="200">200+ m²</option>
-                                    <option value="300">300+ m²</option>
+                                    <option value="50" {{ request('min_area') == '50' ? 'selected' : '' }}>50+ m²</option>
+                                    <option value="100" {{ request('min_area') == '100' ? 'selected' : '' }}>100+ m²</option>
+                                    <option value="150" {{ request('min_area') == '150' ? 'selected' : '' }}>150+ m²</option>
+                                    <option value="200" {{ request('min_area') == '200' ? 'selected' : '' }}>200+ m²</option>
+                                    <option value="300" {{ request('min_area') == '300' ? 'selected' : '' }}>300+ m²</option>
+                                    <option value="500" {{ request('min_area') == '500' ? 'selected' : '' }}>500+ m²</option>
                                 </select>
                             </div>
 
-                            <!-- Parking -->
+                            <!-- Búsqueda de texto -->
                             <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700">{{ __('messages.parking') }}</label>
-                                <select name="parking" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
-                                    <option value="">{{ __('messages.indiferente') }}</option>
-                                    <option value="1">1+ {{ __('messages.plaza') }}</option>
-                                    <option value="2">2+ {{ __('messages.plazas') }}</option>
-                                </select>
+                                <label class="block text-sm font-medium text-gray-700">{{ __('messages.busqueda_texto') }}</label>
+                                <input type="text" name="search" value="{{ $search ?? '' }}" 
+                                    placeholder="{{ __('messages.search_property_placeholder') }}" 
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
                             </div>
                         </div>
 
-                        <!-- Características Premium -->
-                        <div class="mb-4">
-                            <label class="block text-sm font-medium text-gray-700 mb-3">{{ __('messages.caracteristicas_premium') }}</label>
+                        <!-- Características Exteriores - Lo que pidió el cliente -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">{{ __('messages.caracteristicas_exteriores') }}</label>
                             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
                                 <!-- Piscina -->
                                 <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="checkbox" name="features[]" value="piscina" class="rounded border-gray-300 text-amber-500 focus:ring-amber-500">
+                                    <input type="checkbox" name="features[]" value="piscina" 
+                                        {{ in_array('piscina', request('features', [])) ? 'checked' : '' }}
+                                        class="rounded border-gray-300 text-amber-500 focus:ring-amber-500">
                                     <span class="text-sm text-gray-700">{{ __('messages.piscina') }}</span>
-                                </label>
-
-                                <!-- Vistas al mar -->
-                                <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="checkbox" name="features[]" value="vistasalmar" class="rounded border-gray-300 text-amber-500 focus:ring-amber-500">
-                                    <span class="text-sm text-gray-700">{{ __('messages.vistas_mar') }}</span>
-                                </label>
-
-                                <!-- Jardín -->
-                                <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="checkbox" name="features[]" value="jardin" class="rounded border-gray-300 text-amber-500 focus:ring-amber-500">
-                                    <span class="text-sm text-gray-700">{{ __('messages.jardin') }}</span>
                                 </label>
 
                                 <!-- Terraza -->
                                 <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="checkbox" name="features[]" value="terraza" class="rounded border-gray-300 text-amber-500 focus:ring-amber-500">
+                                    <input type="checkbox" name="features[]" value="terraza" 
+                                        {{ in_array('terraza', request('features', [])) ? 'checked' : '' }}
+                                        class="rounded border-gray-300 text-amber-500 focus:ring-amber-500">
                                     <span class="text-sm text-gray-700">{{ __('messages.terraza') }}</span>
+                                </label>
+
+                                <!-- Jardín -->
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" name="features[]" value="jardin" 
+                                        {{ in_array('jardin', request('features', [])) ? 'checked' : '' }}
+                                        class="rounded border-gray-300 text-amber-500 focus:ring-amber-500">
+                                    <span class="text-sm text-gray-700">{{ __('messages.jardin') }}</span>
+                                </label>
+
+                                <!-- Balcón -->
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" name="features[]" value="balcon" 
+                                        {{ in_array('balcon', request('features', [])) ? 'checked' : '' }}
+                                        class="rounded border-gray-300 text-amber-500 focus:ring-amber-500">
+                                    <span class="text-sm text-gray-700">{{ __('messages.balcon') }}</span>
+                                </label>
+
+                                <!-- Parking -->
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" name="features[]" value="parking" 
+                                        {{ in_array('parking', request('features', [])) ? 'checked' : '' }}
+                                        class="rounded border-gray-300 text-amber-500 focus:ring-amber-500">
+                                    <span class="text-sm text-gray-700">{{ __('messages.parking') }}</span>
                                 </label>
 
                                 <!-- Aire acondicionado -->
                                 <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="checkbox" name="features[]" value="aire_con" class="rounded border-gray-300 text-amber-500 focus:ring-amber-500">
+                                    <input type="checkbox" name="features[]" value="aire_acondicionado" 
+                                        {{ in_array('aire_acondicionado', request('features', [])) ? 'checked' : '' }}
+                                        class="rounded border-gray-300 text-amber-500 focus:ring-amber-500">
                                     <span class="text-sm text-gray-700">{{ __('messages.aire_acondicionado') }}</span>
-                                </label>
-
-                                <!-- Ascensor -->
-                                <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="checkbox" name="features[]" value="ascensor" class="rounded border-gray-300 text-amber-500 focus:ring-amber-500">
-                                    <span class="text-sm text-gray-700">{{ __('messages.ascensor') }}</span>
                                 </label>
                             </div>
                         </div>
@@ -249,7 +280,8 @@
                             <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-2 rounded-md font-medium transition-colors duration-200">
                                 {{ __('messages.buscar_con_filtros') }}
                             </button>
-                            <button type="button" onclick="this.closest('form').reset()" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-md font-medium transition-colors duration-200">
+                            <button type="button" onclick="this.closest('form').reset(); window.location.href='{{ route('properties.index', ['locale' => app()->getLocale()]) }}'" 
+                                class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-md font-medium transition-colors duration-200">
                                 {{ __('messages.limpiar_filtros') }}
                             </button>
                         </div>

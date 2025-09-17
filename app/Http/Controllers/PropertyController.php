@@ -13,23 +13,24 @@ use Illuminate\Support\Facades\Log;
 
 class PropertyController extends Controller
 {
-    public function index(Request $request)
+    
+public function index(Request $request)
 {
     $locale = app()->getLocale();
     
-    // Filtros básicos
+    // Filtros básicos existentes
     $operationId = $request->query('operation_id');
     $typeId = $request->query('type_id');
     $max_price = $request->query('max_price');
     $min_price = $request->query('min_price');
     $search = $request->query('search');
-    
-    // Filtros avanzados
-    $rooms = $request->query('rooms');
+
+    // Nuevos filtros avanzados
+    $bedrooms = $request->query('bedrooms');
     $bathrooms = $request->query('bathrooms');
+    $keyvista = $request->query('keyvista');
     $min_area = $request->query('min_area');
-    $parking = $request->query('parking');
-    $features = $request->query('features', []); // Array de características
+    $features = $request->query('features', []);
 
     // Consulta base con relaciones necesarias
     $query = Property::with([
@@ -43,14 +44,12 @@ class PropertyController extends Controller
         }
     ])->select('properties.*');
 
-    // === FILTROS BÁSICOS ===
+    // === FILTROS BÁSICOS EXISTENTES ===
     
     // Manejo especial para Viviendas de Lujo (ID=3)
     if ($operationId == 3) {
-        // Si es "Viviendas de Lujo", filtrar por precio > 1M€
         $query->where('precioinmo', '>=', 1000000);
     } elseif ($operationId) {
-        // Para otras operaciones, filtrar normalmente
         $query->where('operation_id', $operationId);
     }
 
@@ -58,95 +57,131 @@ class PropertyController extends Controller
         $query->where('property_type_id', $typeId);
     }
 
-    // Filtros de precio
-    // Filtros de precio - aplicar individualmente
-    if ($min_price) {
-        $query->where('precioinmo', '>=', $min_price);
-    }
-
-    if ($max_price) {
+    // Filtros de precio - usar precioinmo que es el campo principal
+    if ($max_price && $min_price) {
+        $query->whereBetween('precioinmo', [$min_price, $max_price]);
+    } elseif ($max_price) {
         $query->where('precioinmo', '<=', $max_price);
+    } elseif ($min_price) {
+        $query->where('precioinmo', '>=', $min_price);
     }
 
     // Búsqueda por texto
     if ($search) {
         $query->where(function ($q) use ($search) {
             $q->where('title', 'like', "%{$search}%")
-                ->orWhere('description', 'like', "%{$search}%");
+                ->orWhere('description', 'like', "%{$search}%")
+                ->orWhere('zona_inmovilla', 'like', "%{$search}%")
+                ->orWhere('ciudad_inmovilla', 'like', "%{$search}%");
         });
     }
 
-    // === FILTROS AVANZADOS ===
+    // === NUEVOS FILTROS AVANZADOS ===
     
-    if ($rooms) {
-        $query->where('rooms', '>=', $rooms);
+    // Filtro por habitaciones (usando total_hab que es el campo de Inmovilla)
+    if ($bedrooms) {
+        $query->where('total_hab', '>=', $bedrooms);
     }
 
+    // Filtro por baños (usando banyos que es el campo correcto)
     if ($bathrooms) {
-        $query->where('bathrooms', '>=', $bathrooms);
+        $query->where('banyos', '>=', $bathrooms);
     }
 
+    // Filtro por vista (keyvista)
+    if ($keyvista) {
+        switch ($keyvista) {
+            case 'sea':
+                $query->where(function($q) {
+                    $q->where('keyvista', 'like', '%mar%')
+                      ->orWhere('keyvista', 'like', '%sea%')
+                      ->orWhere('vistasalmar', true);
+                });
+                break;
+            case 'mountain':
+                $query->where(function($q) {
+                    $q->where('keyvista', 'like', '%montaña%')
+                      ->orWhere('keyvista', 'like', '%mountain%');
+                });
+                break;
+            case 'golf':
+                $query->where(function($q) {
+                    $q->where('keyvista', 'like', '%golf%');
+                });
+                break;
+            case 'city':
+                $query->where(function($q) {
+                    $q->where('keyvista', 'like', '%ciudad%')
+                      ->orWhere('keyvista', 'like', '%city%');
+                });
+                break;
+            case 'pool':
+                $query->where(function($q) {
+                    $q->where('keyvista', 'like', '%piscina%')
+                      ->orWhere('keyvista', 'like', '%pool%');
+                });
+                break;
+        }
+    }
+
+    // Filtro por área mínima construida
     if ($min_area) {
         $query->where('built_area', '>=', $min_area);
     }
 
-    if ($parking) {
-        $query->where('parking', '>=', $parking);
-    }
-
-    // Filtros de características premium (checkboxes)
+    // Filtros por características exteriores
     if (!empty($features)) {
         foreach ($features as $feature) {
             switch ($feature) {
                 case 'piscina':
                     $query->where(function($q) {
-                        $q->where('piscina_prop', 1)->orWhere('piscina_com', 1);
+                        $q->where('piscina_com', true)
+                          ->orWhere('piscina_prop', true);
                     });
                     break;
-                case 'vistasalmar':
-                    $query->where('vistasalmar', 1);
+                case 'terraza':
+                    $query->where('terraza', true);
                     break;
                 case 'jardin':
-                    $query->where('jardin', 1);
+                    $query->where('jardin', true);
                     break;
-                case 'terraza':
-                    $query->where('terraza', 1);
+                case 'balcon':
+                    $query->where('balcon', true);
                     break;
-                case 'aire_con':
-                    $query->where('aire_con', 1);
+                case 'parking':
+                    $query->where('parking', '>', 0);
                     break;
-                case 'ascensor':
-                    $query->where('ascensor', 1);
+                case 'aire_acondicionado':
+                    $query->where('aire_con', true);
                     break;
             }
         }
     }
 
-    // Después de obtener los filtros avanzados, agregar:
-\Log::info('Filtros avanzados recibidos:', [
-    'rooms' => $rooms,
-    'bathrooms' => $bathrooms,
-    'min_area' => $min_area,
-    'parking' => $parking,
-    'features' => $features
-]);
+    // === LÓGICA EXISTENTE PARA COMPLEJOS ===
+    
+    $showComplexes = $request->query('complexes');
 
-// Verificar qué campos existen realmente en la primera propiedad:
-$firstProperty = Property::first();
-\Log::info('Campos disponibles en Property:', [
-    'rooms' => $firstProperty->rooms ?? 'NO EXISTE',
-    'bathrooms' => $firstProperty->bathrooms ?? 'NO EXISTE',
-    'built_area' => $firstProperty->built_area ?? 'NO EXISTE',
-    'parking' => $firstProperty->parking ?? 'NO EXISTE',
-    'piscina_prop' => $firstProperty->piscina_prop ?? 'NO EXISTE',
-    'vistasalmar' => $firstProperty->vistasalmar ?? 'NO EXISTE'
-]);
-
-// Contar propiedades ANTES de aplicar filtros avanzados:
-\Log::info('Propiedades antes de filtros avanzados: ' . $query->count());
+    if ($showComplexes === 'true') {
+        $query->whereNotNull('keypromo')->where('keypromo', '!=', 0);
+    }
 
     // Obtener resultados paginados
     $properties = $query->latest()->paginate(9);
+
+    // Agrupar por complejos si se solicita
+    $groupedComplexes = null;
+    if ($showComplexes === 'true') {
+        $groupedComplexes = $properties->groupBy('keypromo')->map(function($group) {
+            $first = $group->first();
+            return [
+                'name' => $first->zona_inmovilla,
+                'city' => $first->ciudad_inmovilla, 
+                'count' => $group->count(),
+                'properties' => $group
+            ];
+        });
+    }
 
     // Aplicar traducciones a cada propiedad
     foreach ($properties as $property) {
@@ -157,8 +192,11 @@ $firstProperty = Property::first();
     $operations = Operation::all();
     $propertyTypes = PropertyType::all();
     
+    // Pasar todas las variables a la vista
     return view('properties.index', compact(
         'properties',
+        'groupedComplexes', 
+        'showComplexes',
         'operationId',
         'typeId',
         'max_price',
@@ -166,10 +204,11 @@ $firstProperty = Property::first();
         'operations',
         'propertyTypes',
         'search',
-        'rooms',
-        'bathrooms', 
+        // Nuevas variables para el formulario avanzado
+        'bedrooms',
+        'bathrooms',
+        'keyvista',
         'min_area',
-        'parking',
         'features'
     ));
 }
