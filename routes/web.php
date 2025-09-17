@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\TestPropertyController;
+use App\Http\Controllers\ComplexController;
 
 //controladores para el panel de control
 use App\Http\Controllers\Admin\DashboardController;
@@ -43,6 +44,10 @@ Route::group([
     Route::get('/properties', [PropertyController::class, 'index'])->name('properties.index');
     Route::get('/properties/{slug}', [PropertyController::class, 'show'])->name('prop.show');
 
+    // === RUTAS COMPLEJOS RESIDENCIALES ===
+    Route::get('/complexes', [ComplexController::class, 'index'])->name('complexes.index');
+    Route::get('/complexes/{keypromo}', [ComplexController::class, 'show'])->name('complexes.show');
+
 
     //Página Servicios
     Route::get('/services', [PropertyController::class, 'services'])->name('services');
@@ -71,6 +76,8 @@ Route::group([
 
 
     });
+
+    
 
 
 // Rutas protegidas para usuarios autenticados (No admin)

@@ -14,114 +14,166 @@ use Illuminate\Support\Facades\Log;
 class PropertyController extends Controller
 {
     public function index(Request $request)
-    {
-        $locale = app()->getLocale();
-        $operationId = $request->query('operation_id');
-        $typeId = $request->query('type_id');
-        $max_price = $request->query('max_price');
-        $min_price = $request->query('min_price');
-        $search = $request->query('search'); // Añadido para manejar búsquedas por texto
+{
+    $locale = app()->getLocale();
+    
+    // Filtros básicos
+    $operationId = $request->query('operation_id');
+    $typeId = $request->query('type_id');
+    $max_price = $request->query('max_price');
+    $min_price = $request->query('min_price');
+    $search = $request->query('search');
+    
+    // Filtros avanzados
+    $rooms = $request->query('rooms');
+    $bathrooms = $request->query('bathrooms');
+    $min_area = $request->query('min_area');
+    $parking = $request->query('parking');
+    $features = $request->query('features', []); // Array de características
 
-        // Consulta base con relaciones necesarias
-        // Consulta base con relaciones necesarias
-        $query = Property::with([
-            'images', 
-            'propertyType', 
-            'operation', 
-            'status',
-            'descriptions' => function($q) use ($locale) {
-                $q->whereIn('locale', [$locale, 'es'])
-                ->orderByRaw("locale = ? DESC", [$locale]);
-            }
-        ])->select('properties.*'); // Asegurar que se seleccionen todos los campos
-
-        // Aplicar filtros si existen
-        // Aplicar filtros si existen - Manejo especial para Viviendas de Lujo (ID=5)
-        if ($operationId == 3) {
-            // Si es "Viviendas de Lujo", filtrar por precio > 1M€
-            $query->where('precioinmo', '>=', 1000000);
-        } elseif ($operationId) {
-            // Para otras operaciones, filtrar normalmente
-            $query->where('operation_id', $operationId);
+    // Consulta base con relaciones necesarias
+    $query = Property::with([
+        'images', 
+        'propertyType', 
+        'operation', 
+        'status',
+        'descriptions' => function($q) use ($locale) {
+            $q->whereIn('locale', [$locale, 'es'])
+            ->orderByRaw("locale = ? DESC", [$locale]);
         }
+    ])->select('properties.*');
 
-        if ($typeId) {
-            $query->where('property_type_id', $typeId);
-        }
-
-        if ($max_price && $min_price) {
-            $query->whereBetween('price', [$min_price, $max_price]);
-        } elseif ($max_price) {
-            $query->where('price', '<=', $max_price);
-        } elseif ($min_price) {
-            $query->where('price', '>=', $min_price);
-        }
-
-        // Añadir búsqueda por texto
-        if ($search) {
-            $query->where(function ($q) use ($search) {
-                $q->where('title', 'like', "%{$search}%")
-                    ->orWhere('description', 'like', "%{$search}%");
-            });
-        }
-
-        $showComplexes = $request->query('complexes');
-
-        // Si se solicita vista de complejos, cambiar la consulta
-        if ($showComplexes === 'true') {
-            // Solo propiedades que pertenecen a complejos
-            $query->whereNotNull('keypromo')->where('keypromo', '!=', 0);
-        }
-
-        // Obtener resultados paginados
-        $properties = $query->latest()->paginate(9);
-
-        // Agrupar por complejos si se solicita
-        $groupedComplexes = null;
-        if ($showComplexes === 'true') {
-            $groupedComplexes = $properties->groupBy('keypromo')->map(function($group) {
-                $first = $group->first();
-                return [
-                    'name' => $first->zona_inmovilla,
-                    'city' => $first->ciudad_inmovilla, 
-                    'count' => $group->count(),
-                    'properties' => $group
-                ];
-            });
-        }
-
-        // Aplicar traducciones a cada propiedad
-        foreach ($properties as $property) {
-            $this->applyTranslations($property, $locale);
-            //$this->translateRelations($property, $locale);
-        }
-
-        // Obtener operaciones y tipos para los filtros del formulario
-        $operations = Operation::all();
-        $propertyTypes = PropertyType::all();
-
-        // Traducir las operaciones y tipos para mostrar en los filtros
-        //foreach ($operations as $operation) {
-        //    $this->translateRelation($operation, 'name', $locale);
-        //}
-
-        //foreach ($propertyTypes as $type) {
-        //    $this->translateRelation($type, 'name', $locale);
-        //}
-        
-        return view('properties.index', compact(
-            'properties',
-            'groupedComplexes', 
-            'showComplexes',
-            'operationId',
-            'typeId',
-            'max_price',
-            'min_price',
-            'operations',
-            'propertyTypes',
-            'search'
-        ));
+    // === FILTROS BÁSICOS ===
+    
+    // Manejo especial para Viviendas de Lujo (ID=3)
+    if ($operationId == 3) {
+        // Si es "Viviendas de Lujo", filtrar por precio > 1M€
+        $query->where('precioinmo', '>=', 1000000);
+    } elseif ($operationId) {
+        // Para otras operaciones, filtrar normalmente
+        $query->where('operation_id', $operationId);
     }
+
+    if ($typeId) {
+        $query->where('property_type_id', $typeId);
+    }
+
+    // Filtros de precio
+    // Filtros de precio - aplicar individualmente
+    if ($min_price) {
+        $query->where('precioinmo', '>=', $min_price);
+    }
+
+    if ($max_price) {
+        $query->where('precioinmo', '<=', $max_price);
+    }
+
+    // Búsqueda por texto
+    if ($search) {
+        $query->where(function ($q) use ($search) {
+            $q->where('title', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%");
+        });
+    }
+
+    // === FILTROS AVANZADOS ===
+    
+    if ($rooms) {
+        $query->where('rooms', '>=', $rooms);
+    }
+
+    if ($bathrooms) {
+        $query->where('bathrooms', '>=', $bathrooms);
+    }
+
+    if ($min_area) {
+        $query->where('built_area', '>=', $min_area);
+    }
+
+    if ($parking) {
+        $query->where('parking', '>=', $parking);
+    }
+
+    // Filtros de características premium (checkboxes)
+    if (!empty($features)) {
+        foreach ($features as $feature) {
+            switch ($feature) {
+                case 'piscina':
+                    $query->where(function($q) {
+                        $q->where('piscina_prop', 1)->orWhere('piscina_com', 1);
+                    });
+                    break;
+                case 'vistasalmar':
+                    $query->where('vistasalmar', 1);
+                    break;
+                case 'jardin':
+                    $query->where('jardin', 1);
+                    break;
+                case 'terraza':
+                    $query->where('terraza', 1);
+                    break;
+                case 'aire_con':
+                    $query->where('aire_con', 1);
+                    break;
+                case 'ascensor':
+                    $query->where('ascensor', 1);
+                    break;
+            }
+        }
+    }
+
+    // Después de obtener los filtros avanzados, agregar:
+\Log::info('Filtros avanzados recibidos:', [
+    'rooms' => $rooms,
+    'bathrooms' => $bathrooms,
+    'min_area' => $min_area,
+    'parking' => $parking,
+    'features' => $features
+]);
+
+// Verificar qué campos existen realmente en la primera propiedad:
+$firstProperty = Property::first();
+\Log::info('Campos disponibles en Property:', [
+    'rooms' => $firstProperty->rooms ?? 'NO EXISTE',
+    'bathrooms' => $firstProperty->bathrooms ?? 'NO EXISTE',
+    'built_area' => $firstProperty->built_area ?? 'NO EXISTE',
+    'parking' => $firstProperty->parking ?? 'NO EXISTE',
+    'piscina_prop' => $firstProperty->piscina_prop ?? 'NO EXISTE',
+    'vistasalmar' => $firstProperty->vistasalmar ?? 'NO EXISTE'
+]);
+
+// Contar propiedades ANTES de aplicar filtros avanzados:
+\Log::info('Propiedades antes de filtros avanzados: ' . $query->count());
+
+    // Obtener resultados paginados
+    $properties = $query->latest()->paginate(9);
+
+    // Aplicar traducciones a cada propiedad
+    foreach ($properties as $property) {
+        $this->applyTranslations($property, $locale);
+    }
+
+    // Obtener operaciones y tipos para los filtros del formulario
+    $operations = Operation::all();
+    $propertyTypes = PropertyType::all();
+    
+    return view('properties.index', compact(
+        'properties',
+        'operationId',
+        'typeId',
+        'max_price',
+        'min_price',
+        'operations',
+        'propertyTypes',
+        'search',
+        'rooms',
+        'bathrooms', 
+        'min_area',
+        'parking',
+        'features'
+    ));
+}
+
 
     public function show($locale, $slug)
     {

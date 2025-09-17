@@ -89,82 +89,82 @@
     </section>
 
    <!-- Sección Estadísticas -->
-<section class="py-16 bg-dark/95 relative">
-    <div class="absolute inset-0 bg-cover bg-center opacity-20"
-        style="background-image: url('{{ asset('assets/images/about/stats-bg.jpeg') }}')"></div>
-    <div class="container mx-auto px-6 relative z-10">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <section class="py-16 bg-dark/95 relative">
+        <div class="absolute inset-0 bg-cover bg-center opacity-20"
+            style="background-image: url('{{ asset('assets/images/about/stats-bg.jpeg') }}')"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
 
-            <!-- Años de Experiencia -->
-            <div class="text-center">
-                <div class="flex justify-center mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-400" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M2 12h20M12 2v20" />
-                        <path d="M8 22h8M9 2h6" />
-                    </svg>
+                <!-- Años de Experiencia -->
+                <div class="text-center">
+                    <div class="flex justify-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-400" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 12h20M12 2v20" />
+                            <path d="M8 22h8M9 2h6" />
+                        </svg>
+                    </div>
+                    <div class="text-amber-400 text-4xl font-luxury font-bold">{{ __('messages.stats_years') }}</div>
+                    <p class="text-white font-luxury-sans text-sm uppercase tracking-wider">
+                        {{ __('messages.stats_years_label') }}
+                    </p>
                 </div>
-                <div class="text-amber-400 text-4xl font-luxury font-bold">{{ __('messages.stats_years') }}</div>
-                <p class="text-white font-luxury-sans text-sm uppercase tracking-wider">
-                    {{ __('messages.stats_years_label') }}
-                </p>
-            </div>
 
-            <!-- Propiedades -->
-            <div class="text-center">
-                <div class="flex justify-center mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-400" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 9l9-7 9 7" />
-                        <path d="M9 22V12h6v10" />
-                        <path d="M21 22V10" />
-                        <path d="M3 22V10" />
-                    </svg>
+                <!-- Propiedades -->
+                <div class="text-center">
+                    <div class="flex justify-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-400" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7" />
+                            <path d="M9 22V12h6v10" />
+                            <path d="M21 22V10" />
+                            <path d="M3 22V10" />
+                        </svg>
+                    </div>
+                    <div class="text-amber-400 text-4xl font-luxury font-bold">{{ __('messages.stats_properties') }}</div>
+                    <p class="text-white font-luxury-sans text-sm uppercase tracking-wider">
+                        {{ __('messages.stats_properties_label') }}
+                    </p>
                 </div>
-                <div class="text-amber-400 text-4xl font-luxury font-bold">{{ __('messages.stats_properties') }}</div>
-                <p class="text-white font-luxury-sans text-sm uppercase tracking-wider">
-                    {{ __('messages.stats_properties_label') }}
-                </p>
-            </div>
 
-            <!-- Clientes -->
-            <div class="text-center">
-                <div class="flex justify-center mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-400" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="9" cy="7" r="4" />
-                        <path d="M17 11a4 4 0 1 0-6 3.46" />
-                        <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
-                    </svg>
+                <!-- Clientes -->
+                <div class="text-center">
+                    <div class="flex justify-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-400" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M17 11a4 4 0 1 0-6 3.46" />
+                            <path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+                        </svg>
+                    </div>
+                    <div class="text-amber-400 text-4xl font-luxury font-bold">{{ __('messages.stats_clients') }}</div>
+                    <p class="text-white font-luxury-sans text-sm uppercase tracking-wider">
+                        {{ __('messages.stats_clients_label') }}
+                    </p>
                 </div>
-                <div class="text-amber-400 text-4xl font-luxury font-bold">{{ __('messages.stats_clients') }}</div>
-                <p class="text-white font-luxury-sans text-sm uppercase tracking-wider">
-                    {{ __('messages.stats_clients_label') }}
-                </p>
-            </div>
 
-            <!-- Premios -->
-            <div class="text-center">
-                <div class="flex justify-center mb-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-400" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M8 21h8M12 17v4" />
-                        <path d="M7 3h10l-1 8H8z" />
-                        <path d="M12 17l-3-3m3 3l3-3" />
-                    </svg>
+                <!-- Premios -->
+                <div class="text-center">
+                    <div class="flex justify-center mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-400" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8 21h8M12 17v4" />
+                            <path d="M7 3h10l-1 8H8z" />
+                            <path d="M12 17l-3-3m3 3l3-3" />
+                        </svg>
+                    </div>
+                    <div class="text-amber-400 text-4xl font-luxury font-bold">{{ __('messages.stats_awards') }}</div>
+                    <p class="text-white font-luxury-sans text-sm uppercase tracking-wider">
+                        {{ __('messages.stats_awards_label') }}
+                    </p>
                 </div>
-                <div class="text-amber-400 text-4xl font-luxury font-bold">{{ __('messages.stats_awards') }}</div>
-                <p class="text-white font-luxury-sans text-sm uppercase tracking-wider">
-                    {{ __('messages.stats_awards_label') }}
-                </p>
-            </div>
 
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Sección Equipo -->
-    <section class="py-20 bg-gray-50">
+    {{-- <section class="py-20 bg-gray-50">
         <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-luxury font-bold text-gray-900 mb-4">{{ __('messages.team_title') }}</h2>
@@ -297,7 +297,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- Sección Historia de la empresa -->
     <section class="py-20 bg-white">

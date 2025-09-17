@@ -11,7 +11,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
         <!-- Residencias -->
-        <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'complexes' => 'true']) }}" class="category-card">
+        <a href="{{ route('complexes.index', ['locale' => app()->getLocale()]) }}" class="category-card">
             <img src="{{ asset('assets/images/home/cat_homes.webp') }}" alt="Residencias" class="category-card__img">
             <div class="category-card__overlay"></div>
             

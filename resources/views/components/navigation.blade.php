@@ -41,7 +41,7 @@
                 <!-- Properties Dropdown -->
                 <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
                     <button class="james-nav-link flex items-center space-x-1 group {{ request()->routeIs('properties.*') ? 'active' : '' }}">
-                        <span>{{ __('messages.propiedades') }}</span>
+                        <span>{{ __('messages.Propiedades') }}</span>
                         <svg class="w-3 h-3 transition-transform duration-200" 
                              :class="{ 'rotate-180': open }" 
                              viewBox="0 0 12 12" fill="currentColor">
@@ -95,6 +95,12 @@
                                     </a>
                                 @endforeach
                             @endif
+                            
+                            <!-- Complejos Residenciales -->
+                            <a href="{{ route('complexes.index', ['locale' => app()->getLocale()]) }}" 
+                            class="james-dropdown-item mt-2">
+                                {{ __('messages.complejos_residenciales') }}
+                            </a>
                         </div>
                     </div>
                 </div>

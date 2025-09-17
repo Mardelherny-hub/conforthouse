@@ -27,51 +27,42 @@
     </div>
 </div> --}}
 
-<!-- Floating Contact Buttons -->
-<!-- Call Button (opens contact modal) -->
-<div class="fixed bottom-32 left-8 z-50 hidden lg:block">
+<!-- Floating Contact Button - James Edition Style (Sobrio) -->
+<div class="fixed bottom-8 left-8 z-50 hidden lg:block">
     <div class="relative group">
         <!-- Main Button -->
         <button onclick="openContactModal()" 
-                class="flex items-center justify-center w-14 h-14 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group">
+                class="flex items-center justify-center w-14 h-14 bg-white hover:bg-neutral-50 text-neutral-700 hover:text-neutral-900 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-neutral-200">
             
             <!-- Phone Icon -->
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
             </svg>
         </button>
         
         <!-- Tooltip -->
-        <div class="absolute left-20 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
-            <div class="bg-neutral-900 text-white px-4 py-2 rounded-lg text-sm font-body whitespace-nowrap relative">
-                {{ __('messages.contacto') }}
-                <!-- Arrow -->
+        <div class="absolute left-16 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+            <div class="bg-neutral-900 text-white px-3 py-2 rounded-lg text-sm font-body whitespace-nowrap relative">
+                {{ __('messages.floating_button_tooltip') }}
                 <div class="absolute top-1/2 -left-2 transform -translate-y-1/2 w-0 h-0 border-r-8 border-r-neutral-900 border-t-4 border-b-4 border-t-transparent border-b-transparent"></div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Contact Modal -->
-<div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center p-4 z-[9999] opacity-0 invisible transition-all duration-300">
-    <div id="modalContent" class="bg-white rounded-2xl shadow-2xl w-full max-w-md transform scale-90 transition-transform duration-300">
+<!-- Contact Modal - Compact & Sober -->
+<div id="contactModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-[9999] opacity-0 invisible transition-all duration-300">
+    <div id="modalContent" class="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] overflow-y-auto transform scale-90 transition-all duration-300">
         
         <!-- Modal Header -->
-        <div class="bg-gradient-to-r from-amber-500 to-amber-600 text-white p-6 rounded-t-2xl">
+        <div class="bg-neutral-900 text-white px-6 py-5 rounded-t-2xl">
             <div class="flex items-center justify-between">
-                <div class="flex items-center">
-                    <div class="bg-white/20 rounded-full p-2 mr-3">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold">{{ __('messages.contactanos') }}</h3>
-                        <p class="text-white/80 text-sm">{{ __('messages.estamos_aqui_ayudarte') }}</p>
-                    </div>
+                <div>
+                    <h3 class="text-lg font-semibold font-luxury">{{ __('messages.floating_button_modal_title') }}</h3>
+                    <p class="text-neutral-300 text-sm font-body mt-1">{{ __('messages.floating_button_modal_subtitle') }}</p>
                 </div>
-                <button onclick="closeContactModal()" class="text-white/80 hover:text-white transition-colors duration-200">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button onclick="closeContactModal()" class="text-neutral-400 hover:text-white transition-colors duration-200 p-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
                 </button>
@@ -80,314 +71,199 @@
 
         <!-- Modal Body -->
         <div class="p-6">
-            <form id="contactForm" action="{{ route('contact.store', ['locale' => app()->getLocale()]) }}" method="POST" class="space-y-4">
+            <form id="contactForm" action="{{ route('consultation.store', ['locale' => app()->getLocale()]) }}" method="POST" class="space-y-4">
                 @csrf
                 
-                <!-- Name Field -->
-                <div>
-                    <label for="contact_name" class="block text-sm font-medium text-gray-700 mb-2">
-                        {{ __('messages.nombre') }} *
-                    </label>
-                    <input type="text" 
-                           id="contact_name" 
-                           name="name" 
-                           required
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
-                           placeholder="{{ __('messages.tu_nombre') }}">
+                <!-- Name & Email Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="contact_name" class="block text-sm font-medium text-neutral-700 mb-1">
+                            {{ __('messages.nombre') }} *
+                        </label>
+                        <input type="text" 
+                               id="contact_name" 
+                               name="name" 
+                               required
+                               class="w-full px-3 py-2.5 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500/50 focus:border-neutral-500 transition-all duration-200 text-sm"
+                               placeholder="{{ __('messages.contact_form_name_placeholder') }}">
+                    </div>
+                    <div>
+                        <label for="contact_email" class="block text-sm font-medium text-neutral-700 mb-1">
+                            {{ __('messages.email') }} *
+                        </label>
+                        <input type="email" 
+                               id="contact_email" 
+                               name="email" 
+                               required
+                               class="w-full px-3 py-2.5 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500/50 focus:border-neutral-500 transition-all duration-200 text-sm"
+                               placeholder="{{ __('messages.contact_form_email_placeholder') }}">
+                    </div>
                 </div>
 
-                <!-- Email Field -->
-                <div>
-                    <label for="contact_email" class="block text-sm font-medium text-gray-700 mb-2">
-                        {{ __('messages.email') }} *
-                    </label>
-                    <input type="email" 
-                           id="contact_email" 
-                           name="email" 
-                           required
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
-                           placeholder="{{ __('messages.tu_email') }}">
-                </div>
-
-                <!-- Phone Field -->
-                <div>
-                    <label for="contact_phone" class="block text-sm font-medium text-gray-700 mb-2">
-                        {{ __('messages.telefono') }}
-                    </label>
-                    <input type="tel" 
-                           id="contact_phone" 
-                           name="phone" 
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
-                           placeholder="{{ __('messages.tu_telefono') }}">
-                </div>
-
-                <!-- Subject Field -->
-                <div>
-                    <label for="contact_subject" class="block text-sm font-medium text-gray-700 mb-2">
-                        {{ __('messages.asunto') }} *
-                    </label>
-                    <select id="contact_subject" 
-                            name="subject" 
-                            required
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white">
-                        <option value="">{{ __('messages.selecciona_asunto') }}</option>
-                        <option value="informacion_general">{{ __('messages.informacion_general') }}</option>
-                        <option value="consulta_propiedad">{{ __('messages.consulta_propiedad') }}</option>
-                        <option value="valoracion_inmueble">{{ __('messages.valoracion_inmueble') }}</option>
-                        <option value="servicios_inmobiliarios">{{ __('messages.servicios_inmobiliarios') }}</option>
-                        <option value="otro">{{ __('messages.otro') }}</option>
-                    </select>
+                <!-- Phone & Subject Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="contact_phone" class="block text-sm font-medium text-neutral-700 mb-1">
+                            {{ __('messages.telefono') }}
+                        </label>
+                        <input type="tel" 
+                               id="contact_phone" 
+                               name="phone" 
+                               class="w-full px-3 py-2.5 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500/50 focus:border-neutral-500 transition-all duration-200 text-sm"
+                               placeholder="+34 123 456 789">
+                    </div>
+                    <div>
+                        <label for="contact_subject" class="block text-sm font-medium text-neutral-700 mb-1">
+                            {{ __('messages.asunto') }} *
+                        </label>
+                        <select id="contact_subject" 
+                                name="subject" 
+                                required
+                                class="w-full px-3 py-2.5 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500/50 focus:border-neutral-500 transition-all duration-200 text-sm">
+                            <option value="">Seleccionar...</option>
+                            <option value="quiero_comprar">{{ __('messages.quiero_comprar') }}</option>
+                            <option value="quiero_vender">{{ __('messages.quiero_vender') }}</option>
+                            <option value="quiero_alquilar">{{ __('messages.quiero_alquilar') }}</option>
+                            <option value="valoracion_propiedad">{{ __('messages.valoracion_propiedad') }}</option>
+                            <option value="otro">{{ __('messages.otro') }}</option>
+                        </select>
+                    </div>
                 </div>
 
                 <!-- Message Field -->
                 <div>
-                    <label for="contact_message" class="block text-sm font-medium text-gray-700 mb-2">
+                    <label for="contact_message" class="block text-sm font-medium text-neutral-700 mb-1">
                         {{ __('messages.mensaje') }} *
                     </label>
                     <textarea id="contact_message" 
                               name="message" 
-                              rows="4" 
+                              rows="3" 
                               required
-                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white resize-none"
-                              placeholder="{{ __('messages.cuentanos_como_podemos_ayudarte') }}"></textarea>
+                              class="w-full px-3 py-2.5 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-neutral-500/50 focus:border-neutral-500 transition-all duration-200 resize-none text-sm"
+                              placeholder="{{ __('messages.cuentanos_necesidades') }}"></textarea>
                 </div>
 
                 <!-- Privacy Policy -->
-                <div class="flex items-start">
+                <div class="flex items-start space-x-2">
                     <input type="checkbox" 
                            id="privacy_policy" 
                            name="privacy_accepted" 
                            required
-                           class="h-4 w-4 text-amber-600 focus:ring-amber-500 border-gray-300 rounded mt-1">
-                    <label for="privacy_policy" class="ml-3 text-sm text-gray-600">
+                           class="h-4 w-4 text-neutral-600 focus:ring-neutral-500 border-neutral-300 rounded mt-0.5">
+                    <label for="privacy_policy" class="text-xs text-neutral-600 leading-relaxed">
                         {{ __('messages.acepto') }} 
                         <a href="{{ route('privacy', ['locale' => app()->getLocale()]) }}" 
                            target="_blank" 
-                           class="text-amber-600 hover:text-amber-700 underline">
+                           class="text-neutral-900 hover:underline">
                             {{ __('messages.politica_privacidad') }}
                         </a>
                     </label>
                 </div>
 
-                <!-- Submit Button -->
-                <div class="pt-4">
+                <!-- Submit Buttons -->
+                <div class="flex gap-3 pt-2">
+                    <button type="button" 
+                            onclick="closeContactModal()"
+                            class="flex-1 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 font-medium py-2.5 px-4 rounded-lg transition-all duration-200 text-sm">
+                        Cancelar
+                    </button>
                     <button type="submit" 
                             id="submitBtn"
-                            class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed">
-                        <span id="btnText">{{ __('messages.enviar_mensaje') }}</span>
-                        <span id="btnLoading" class="hidden">
-                            <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                            {{ __('messages.enviando') }}...
-                        </span>
+                            class="flex-1 bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-2.5 px-4 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm">
+                        <span id="btnText">{{ __('messages.contact_form_submit') }}</span>
+                        <span id="btnLoading" class="hidden">Enviando...</span>
                     </button>
                 </div>
             </form>
         </div>
-
-        <!-- Modal Footer -->
-        <div class="bg-gray-50 px-6 py-4 rounded-b-2xl">
-            <div class="flex items-center justify-center space-x-6 text-sm text-gray-600">
-                <div class="flex items-center">
-                    <svg class="w-4 h-4 mr-2 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                    </svg>
-                    <a href="tel:+5491123456789" class="hover:text-amber-600 transition-colors">+54 911 2345 6789</a>
-                </div>
-                <div class="flex items-center">
-                    <svg class="w-4 h-4 mr-2 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                    </svg>
-                    <a href="mailto:info@conforthouse.com" class="hover:text-amber-600 transition-colors">info@conforthouse.com</a>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
-<!-- Back to Top Button -->
-<div class="fixed bottom-32 right-8 z-40" id="backToTop" style="display: none;">
-    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
-            class="flex items-center justify-center w-12 h-12 bg-neutral-800 hover:bg-amber-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group">
-        
-        <!-- Arrow Up Icon -->
-        <svg class="w-5 h-5 transform group-hover:-translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
-        </svg>
-    </button>
-</div>
-
-<!-- JavaScript for Contact Modal and Back to Top -->
+<!-- JavaScript para el Modal -->
 <script>
-    // Contact Modal Functions
-    function openContactModal() {
-        const modal = document.getElementById('contactModal');
-        const content = document.getElementById('modalContent');
-        
-        modal.classList.remove('invisible', 'opacity-0');
-        setTimeout(() => {
-            content.classList.remove('scale-90');
-            content.classList.add('scale-100');
-        }, 10);
-        
-        // Focus first input
-        setTimeout(() => {
-            document.getElementById('contact_name').focus();
-        }, 300);
-        
-        // Prevent body scroll
-        document.body.style.overflow = 'hidden';
-    }
+function openContactModal() {
+    const modal = document.getElementById('contactModal');
+    const modalContent = document.getElementById('modalContent');
+    
+    modal.classList.remove('opacity-0', 'invisible');
+    modalContent.classList.remove('scale-90');
+    modalContent.classList.add('scale-100');
+    document.body.style.overflow = 'hidden';
+}
 
-    function closeContactModal() {
-        const modal = document.getElementById('contactModal');
-        const content = document.getElementById('modalContent');
-        
-        content.classList.remove('scale-100');
-        content.classList.add('scale-90');
-        
-        setTimeout(() => {
-            modal.classList.add('opacity-0', 'invisible');
-        }, 200);
-        
-        // Restore body scroll
-        document.body.style.overflow = '';
-        
-        // Reset form if needed
-        resetContactForm();
-    }
+function closeContactModal() {
+    const modal = document.getElementById('contactModal');
+    const modalContent = document.getElementById('modalContent');
+    
+    modalContent.classList.remove('scale-100');
+    modalContent.classList.add('scale-90');
+    
+    setTimeout(() => {
+        modal.classList.add('opacity-0', 'invisible');
+        document.body.style.overflow = 'auto';
+    }, 300);
+}
 
-    function resetContactForm() {
-        const form = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const btnText = document.getElementById('btnText');
-        const btnLoading = document.getElementById('btnLoading');
-        
-        form.reset();
+// Close modal when clicking outside
+document.getElementById('contactModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeContactModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeContactModal();
+    }
+});
+
+// Form submission
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const btnLoading = document.getElementById('btnLoading');
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    btnText.classList.add('hidden');
+    btnLoading.classList.remove('hidden');
+    
+    // Create FormData object
+    const formData = new FormData(this);
+    
+    // Submit form
+    fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('¡Mensaje enviado con éxito! Te contactaremos pronto.');
+            closeContactModal();
+            this.reset();
+        } else {
+            alert('Error al enviar el mensaje. Por favor, inténtalo de nuevo.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al enviar el mensaje. Por favor, inténtalo de nuevo.');
+    })
+    .finally(() => {
+        // Reset button state
         submitBtn.disabled = false;
         btnText.classList.remove('hidden');
         btnLoading.classList.add('hidden');
-    }
-
-    // Close modal with Escape key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-            const modal = document.getElementById('contactModal');
-            if (!modal.classList.contains('invisible')) {
-                closeContactModal();
-            }
-        }
     });
-
-    // Close modal clicking outside
-    document.getElementById('contactModal').addEventListener('click', function(event) {
-        if (event.target === this) {
-            closeContactModal();
-        }
-    });
-
-    // Form submission handling
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const submitBtn = document.getElementById('submitBtn');
-        const btnText = document.getElementById('btnText');
-        const btnLoading = document.getElementById('btnLoading');
-        
-        // Show loading state
-        submitBtn.disabled = true;
-        btnText.classList.add('hidden');
-        btnLoading.classList.remove('hidden');
-        
-        // Get form data
-        const formData = new FormData(this);
-        
-        // Submit form via fetch
-        fetch(this.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Show success message
-                showNotification('success', '{{ __("messages.mensaje_enviado_correctamente") }}');
-                closeContactModal();
-            } else {
-                throw new Error(data.message || '{{ __("messages.error_enviar_mensaje") }}');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            showNotification('error', error.message || '{{ __("messages.error_enviar_mensaje") }}');
-        })
-        .finally(() => {
-            // Reset loading state
-            submitBtn.disabled = false;
-            btnText.classList.remove('hidden');
-            btnLoading.classList.add('hidden');
-        });
-    });
-
-    // Notification function
-    function showNotification(type, message) {
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = `fixed top-4 right-4 z-[10000] p-4 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full ${
-            type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
-        }`;
-        notification.innerHTML = `
-            <div class="flex items-center">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    ${type === 'success' 
-                        ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>' 
-                        : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>'
-                    }
-                </svg>
-                <span>${message}</span>
-            </div>
-        `;
-        
-        document.body.appendChild(notification);
-        
-        // Animate in
-        setTimeout(() => {
-            notification.classList.remove('translate-x-full');
-        }, 100);
-        
-        // Remove after 5 seconds
-        setTimeout(() => {
-            notification.classList.add('translate-x-full');
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        }, 5000);
-    }
-
-    // Show/Hide Back to Top button
-    window.addEventListener('scroll', function() {
-        const backToTop = document.getElementById('backToTop');
-        if (window.scrollY > 300) {
-            backToTop.style.display = 'block';
-            backToTop.style.opacity = '0';
-            setTimeout(() => {
-                backToTop.style.opacity = '1';
-            }, 10);
-        } else {
-            backToTop.style.opacity = '0';
-            setTimeout(() => {
-                if (window.scrollY <= 300) {
-                    backToTop.style.display = 'none';
-                }
-            }, 300);
-        }
-    });
+});
 </script>
 
 <!-- Back to Top Button -->

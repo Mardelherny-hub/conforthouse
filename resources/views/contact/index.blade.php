@@ -49,7 +49,7 @@
                             <div>
                                 <h4 class="font-luxury-sans font-medium text-gray-900 mb-1">{{ __('messages.phone') }}
                                 </h4>
-                                <p class="text-gray-600 font-luxury-sans">696 649 243 <br> 693 805 030</p>
+                                <p class="text-gray-600 font-luxury-sans">696 649 243 <br> 963 805 030</p>
                             </div>
                         </div>
 
