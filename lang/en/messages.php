@@ -135,6 +135,8 @@ return [
     'location' => 'Location',
     'share_property' => 'Share this Property',
     'facebook' => 'Facebook',
+    'instagram' => 'Instagram',
+    'visit_instagram' => 'Visit Instagram',
     'twitter' => 'Twitter',
     'whatsapp' => 'WhatsApp',
     'email' => 'Email',
@@ -649,5 +651,8 @@ return [
     'try_adjusting_search' => 'Try adjusting your search filters or explore all our properties',
     'view_all_properties' => 'View All Properties',
 
+    'avanzados' => 'Advanced',
+    'basicos' => 'Basic',
+    
 
 ];

@@ -135,6 +135,8 @@ return [
     'location' => 'Locatie',
     'share_property' => 'Deze Woning Delen',
     'facebook' => 'Facebook',
+    'instagram' => 'Instagram',
+    'visit_instagram' => 'Bekijk Instagram',
     'twitter' => 'Twitter',
     'whatsapp' => 'WhatsApp',
     'email' => 'E-mail',
@@ -649,4 +651,7 @@ return [
     'try_adjusting_search' => 'Probeer de zoekfilters aan te passen of bekijk al onze woningen',
     'view_all_properties' => 'Bekijk Alle Woningen',
 
+    'avanzados' => 'Geavanceerd',
+    'basicos' => 'Basis',
+    
 ];

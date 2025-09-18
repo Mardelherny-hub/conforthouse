@@ -135,6 +135,8 @@ return [
     'location' => 'Lage',
     'share_property' => 'Diese Immobilie Teilen',
     'facebook' => 'Facebook',
+    'instagram' => 'Instagram',
+    'visit_instagram',
     'twitter' => 'Twitter',
     'whatsapp' => 'WhatsApp',
     'email' => 'E-Mail',
@@ -649,4 +651,6 @@ return [
     'try_adjusting_search' => 'Versuchen Sie, Ihre Suchfilter anzupassen oder alle unsere Immobilien zu erkunden',
     'view_all_properties' => 'Alle Immobilien Anzeigen',
 
+    'avanzados' => 'Erweiterte Suchen',
+    'basicos' => 'Grundlegende',
 ];

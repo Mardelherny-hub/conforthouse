@@ -112,25 +112,25 @@ return [
         3499 => 'apartamento',    // Planta baja → apartamento
         3599 => 'apartamento',    // Triplex → apartamento
         
-        // Casas
-        399  => 'Casa',            // Casa
-        499  => 'Casa',            // Chalet → Casa
+        // villas
+        399  => 'villa',            // villa
+        499  => 'villa',            // Chalet → villa
         199  => 'Adosado',         // Adosado
-        299  => 'Casa',            // Bungalow → Casa
-        999  => 'Casa',            // Pareado → Casa
-        4999 => 'Casa',            // Villa → Casa
-        599  => 'Casa',            // Cortijo → Casa
-        899  => 'Casa',            // Masía → Casa
+        299  => 'villa',            // Bungalow → villa
+        999  => 'villa',            // Pareado → villa
+        4999 => 'villa',            // Villa → villa
+        599  => 'villa',            // Cortijo → villa
+        899  => 'villa',            // Masía → villa
         
         // Comerciales y otros
-        1299 => 'Casa',            // Local comercial → Casa
-        1399 => 'Casa',            // Oficina → Casa
-        2399 => 'Casa',            // Garaje → Casa
-        2599 => 'Casa',            // Parking → Casa
-        2699 => 'Casa',            // Trastero → Casa
-        3699 => 'Casa',            // Finca rústica → Casa
-        3899 => 'Casa',            // Solar → Casa
-        4199 => 'Casa',            // Terreno urbano → Casa
+        1299 => 'villa',            // Local comercial → villa
+        1399 => 'villa',            // Oficina → villa
+        2399 => 'villa',            // Garaje → villa
+        2599 => 'villa',            // Parking → villa
+        2699 => 'villa',            // Trastero → villa
+        3699 => 'villa',            // Finca rústica → villa
+        3899 => 'villa',            // Solar → villa
+        4199 => 'villa',            // Terreno urbano → villa
     ],
     
     /*

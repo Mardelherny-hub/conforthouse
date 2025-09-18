@@ -206,21 +206,19 @@
                                         <div class="james-property-badge new font-body">{{ __('messages.new') }}</div>
                                     @endif
 
-                                    {{-- BADGE DE COMPLEJO - ESQUINA SUPERIOR DERECHA --}}
+                                    <!-- Property Type Badge (esquina superior derecha, usando estilo 'new') -->
+                                    <div class="james-property-badge new font-body" style="top: 1rem; right: 1rem; left: auto;">
+                                        {{ $property->getMappedPropertyType() }}
+                                    </div>
+
+                                    {{-- BADGE DE COMPLEJO - ESQUINA INFERIOR DERECHA usando estilo 'featured' --}}
                                     @if($property->keypromo && $property->keypromo != 0)
-                                        <div class="james-complex-badge featured font-body">
+                                        <div class="james-property-badge featured font-body" style="top: auto; bottom: 1rem; right: 1rem; left: auto;">
                                             🏢 {{ $property->zona_inmovilla }}
                                         </div>
                                     @endif
                                     
-                                    
-                                    <!-- Property Type Badge -->
-                                    @if($property->keypromo && $property->keypromo != 0)
-                                        <div style="position: absolute; top: 1rem;  out border: 1px solid #d4a674ff; border-radius: 2px; background: #d4a6748e; color: black; padding: 0.5rem; font-size: 0.75rem; font-weight: 600; z-index: 10; clip-path: polygon(0 0, 100% 0, 85% 50%, 100% 100%, 0 100%); box-shadow: 0 2px 4px rgba(0,0,0,0.2); white-space: nowrap; min-width: 10rem; overflow: hidden; text-overflow: ellipsis;">
-                                            {{ $property->zona_inmovilla }}
-                                        </div>
-                                    @endif
-                                                                    </div>
+                                </div>
 
                                 <div class="james-property-content">
                                     <div class="james-property-location font-body">

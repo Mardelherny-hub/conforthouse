@@ -1175,7 +1175,7 @@
 }
 
 .james-property-badge.featured {
-    background: #111827;
+    background: var(--champagne-800);
     color: white;
 }
 
