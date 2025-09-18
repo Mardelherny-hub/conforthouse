@@ -32,15 +32,15 @@ return [
     'Apartamentos de Lujo' => 'Apartamentos de Lujo',
     'Villas' => 'Villas',
     'Villas exclusivas con amplios jardines y piscina privada' => 'Villas exclusivas con amplios jardines y piscina privada',
-    'Fincas' => 'Fincas',
-    'Haciendas y fincas de lujo con amplios terrenos' => 'Haciendas y fincas de lujo con amplios terrenos',
+    'villas' => 'villas',
+    'Haciendas y villas de lujo con amplios terrenos' => 'Haciendas y villas de lujo con amplios terrenos',
     'alquiler' => 'Alquiler',
     'venta' => 'Venta',
     'obra_nueva' => 'Obra Nueva',
     'viviendas_de_lujo' => 'Viviendas de Lujo',
 
     // Subcategorías de Servicios
-    'serv_tasacion' => 'Tasación',
+    'serv_valoracion' => 'valoración',
     'serv_consultoria' => 'Consultoría',
     'serv_inversion' => 'Inversión',
 
@@ -75,7 +75,7 @@ return [
 
     // Footer
     'footer_about_title' => 'Sobre Conforthouse Living',
-    'footer_about_description' => 'Conforthouse Living es una agencia inmobiliaria especializada en propiedades de alto nivel. Nos dedicamos a ofrecer una cuidada selección de viviendas exclusivas —como casas, apartamentos y fincas— en ubicaciones privilegiadas. Trabajamos de forma personalizada para conectar a cada cliente con la propiedad ideal.',
+    'footer_about_description' => 'Conforthouse Living es una agencia inmobiliaria especializada en propiedades de alto nivel. Nos dedicamos a ofrecer una cuidada selección de viviendas exclusivas —como casas, apartamentos y villas— en ubicaciones privilegiadas. Trabajamos de forma personalizada para conectar a cada cliente con la propiedad ideal.',
     'footer_inicio' => 'Inicio',
     'footer_contacto' => 'Contacto',
     'footer_enlaces' => 'Enlaces',
@@ -114,7 +114,7 @@ return [
     // Sección servicios exclusivos
     'servicios_exclusivos' => 'Servicios <span class="text-amber-400">Exclusivos</span>',    'Ver Todos los Servicios' => 'Ver Todos los Servicios',
     'Destacado' => 'Destacado',
-    'Property Valuation' => 'Tasación de Propiedades',
+    'Property Valuation' => 'valoración de Propiedades',
     'We accurately value each property, offering a detailed and objective analysis of the luxury real estate market.' => 'Valoramos con precisión cada propiedad, ofreciendo un análisis detallado y objetivo del mercado inmobiliario de lujo.',
     'Servicio Premium' => 'Servicio Premium',
     'Consulta disponibilidad' => 'Consulta disponibilidad',
@@ -192,7 +192,7 @@ return [
     'stats_happy_clients' => 'Clientes Satisfechos',
     // Servicios Exclusivos
     'exclusive_services_title' => 'Servicios Exclusivos',
-    'service_valuation_title' => 'Tasación de Propiedades',
+    'service_valuation_title' => 'valoración de Propiedades',
     'service_valuation_description' => 'Valoramos con precisión cada propiedad, ofreciendo un análisis detallado y objetivo del mercado inmobiliario de lujo.',
     'service_consulting_title' => 'Consultoría Personalizada',
     'service_consulting_description' => 'Asesoramiento integral adaptado a las necesidades específicas de cada cliente en el mercado inmobiliario de alto nivel.',
@@ -305,7 +305,7 @@ return [
     'renting_properties_desc' => 'Descubre nuestra selección de propiedades en alquiler . Encontramos el espacio perfecto para ti, ya sea a corto o largo plazo, gestionando todos los detalles para tu comodidad.',
     'real_estate_consulting' => 'Consultoría Inmobiliaria',
     'real_estate_consulting_desc' => 'Nuestros expertos te ofrecen asesoramiento personalizado para tomar decisiones informadas en el mercado inmobiliario. Maximiza tus oportunidades con nuestra experiencia.',
-    'property_valuation' => 'Tasación de Propiedades',
+    'property_valuation' => 'valoración de Propiedades',
     'property_valuation_desc' => 'Obtén una valoración precisa y profesional de tu propiedad . Conoce el valor real de tu inmueble para comprar, vender o invertir con confianza.',
     'legal_advice' => 'Asesoría Legal',
     'legal_advice_desc' => 'Nuestro equipo legal especializado en derecho inmobiliario te brinda la tranquilidad que necesitas. Te asesoramos en contratos, trámites y cualquier aspecto legal relacionado con tu propiedad .',
@@ -412,7 +412,7 @@ return [
     'faq_a1' => 'El proceso generalmente incluye la búsqueda de propiedades, visitas, presentación de una oferta, negociación, firma del contrato de arras, obtención de financiación (si es necesario) y finalmente, la firma de la escritura pública ante notario.',
 
     'faq_q2' => '¿Qué gastos debo considerar además del precio de la propiedad?',
-    'faq_a2' => 'Además del precio de la propiedad, debes considerar gastos como impuestos (ITP o IVA), notaría, registro de la propiedad, gestoría y posibles gastos de financiación (tasación, comisiones bancarias).',
+    'faq_a2' => 'Además del precio de la propiedad, debes considerar gastos como impuestos (ITP o IVA), notaría, registro de la propiedad, gestoría y posibles gastos de financiación (valoración, comisiones bancarias).',
 
     'faq_q3' => '¿Necesito ser residente en España para comprar una propiedad?',
     'faq_a3' => 'No es necesario ser residente en España para comprar una propiedad. Sin embargo, necesitarás obtener un Número de Identificación de Extranjero (NIE). Nosotros podemos ayudarte con este trámite.',
@@ -421,7 +421,7 @@ return [
     'faq_a4' => 'La documentación habitual incluye la escritura de propiedad, DNI/NIE del propietario, certificado energético, cédula de habitabilidad, justificante del pago del IBI, y si aplica, información sobre cargas o hipotecas.',
 
     'faq_q5' => '¿Cómo puedo saber cuánto vale mi propiedad ?',
-    'faq_a5' => 'Podemos realizar una tasación profesional de tu propiedad basada en el análisis del mercado actual, características del inmueble y ubicación. Contáctanos para solicitar una valoración.',
+    'faq_a5' => 'Podemos realizar una valoración profesional de tu propiedad basada en el análisis del mercado actual, características del inmueble y ubicación. Contáctanos para solicitar una valoración.',
 
     'faq_q6' => '¿Qué servicios ofrecen para el alquiler de propiedades?',
     'faq_a6' => 'Ofrecemos servicios integrales para el alquiler, incluyendo la búsqueda de inquilinos, gestión de contratos, cobro de rentas, mantenimiento de la propiedad y resolución de incidencias.',
@@ -465,7 +465,7 @@ return [
 'consultation_type_sell' => 'Venta de propiedad',
 'consultation_type_rent' => 'Alquiler',
 'consultation_type_investment' => 'Inversión inmobiliaria',
-'consultation_type_valuation' => 'Tasación',
+'consultation_type_valuation' => 'valoración',
 'consultation_type_legal' => 'Consulta legal',
 'consultation_type_other' => 'Otro',
 

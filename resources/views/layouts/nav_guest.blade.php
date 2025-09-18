@@ -170,7 +170,7 @@
                                 </svg>
                             </span>
                             <div>
-                                <p class="text-amber-300 font-luxury text-sm">{{ __('messages.serv_tasacion') }}</p>
+                                <p class="text-amber-300 font-luxury text-sm">{{ __('messages.serv_valoracion') }}</p>
                                 <p class="text-gray-400 text-xs font-luxury-sans">Valoración profesional de su propiedad
                                 </p>
                             </div>
@@ -372,7 +372,7 @@
                         x-transition:enter-end="opacity-100 transform translate-y-0"
                         class="pl-8 pb-2 pt-1 bg-gray-800 bg-opacity-50">
                         <a href="#"
-                            class="block px-4 py-2 text-white hover:text-amber-300 transition duration-300 font-luxury-sans">{{ __('messages.serv_tasacion') }}</a>
+                            class="block px-4 py-2 text-white hover:text-amber-300 transition duration-300 font-luxury-sans">{{ __('messages.serv_valoracion') }}</a>
                         <a href="#"
                             class="block px-4 py-2 text-white hover:text-amber-300 transition duration-300 font-luxury-sans">{{ __('messages.serv_consultoria') }}</a>
                         <a href="#"

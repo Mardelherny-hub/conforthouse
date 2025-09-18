@@ -99,8 +99,8 @@ return [
     'Apartamentos de Lujo' => 'Luxus-Apartments',
     'Villas' => 'Villen',
     'Villas exclusivas con amplios jardines y piscina privada' => 'Exklusive Villen mit großen Gärten und privatem Pool',
-    'Fincas' => 'Landgüter',
-    'Haciendas y fincas de lujo con amplios terrenos' => 'Luxus-Haciendas und Landgüter mit weitläufigen Grundstücken',
+    'villas' => 'Landgüter',
+    'Haciendas y villas de lujo con amplios terrenos' => 'Luxus-Haciendas und Landgüter mit weitläufigen Grundstücken',
 
     // =====  IMMOBILIEN =====
     'properties_found' => 'Immobilien Gefunden',
@@ -156,7 +156,7 @@ return [
     'bath' => 'Bad',
 
     // ===== DIENSTLEISTUNGEN =====
-    'serv_tasacion' => 'Bewertung',
+    'serv_valoracion' => 'Bewertung',
     'serv_consultoria' => 'Beratung',
     'serv_inversion' => 'Investment',
     'consultoria_inmobiliaria' => 'Immobilienberatung',

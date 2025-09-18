@@ -171,14 +171,14 @@
                         <div class="transition-all duration-500 transform group-hover:-translate-y-2">
                             <h3
                                 class="text-2xl font-luxury text-white mb-1 group-hover:text-amber-300 transition-colors duration-300">
-                                Fincas</h3>
+                                villas</h3>
                             <p
                                 class="text-sm text-gray-300 transition-all duration-500 opacity-80 group-hover:opacity-100">
                                 Explore 452 propiedades</p>
                         </div>
                         <div
                             class="overflow-hidden h-0 opacity-0 transition-all duration-500 group-hover:h-16 group-hover:opacity-100 mt-3">
-                            <p class="text-sm text-white/70 mb-4">Haciendas y fincas de lujo con amplios terrenos</p>
+                            <p class="text-sm text-white/70 mb-4">Haciendas y villas de lujo con amplios terrenos</p>
                             <a href="#"
                                 class="inline-flex items-center text-amber-300 text-xs uppercase tracking-widest luxury-nav">
                                 Descubrir

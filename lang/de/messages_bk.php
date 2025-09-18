@@ -32,8 +32,8 @@ return [
     'Apartamentos de Lujo' => 'Luxuswohnungen und Penthäuser mit Panoramablick',
     'Villas' => 'Villen',
     'Villas exclusivas con amplios jardines y piscina privada' => 'Exklusive Villen mit großen Gärten und privatem Pool',
-    'Fincas' => 'Landgüter',
-    'Haciendas y fincas de lujo con amplios terrenos' => 'Luxuriöse Haciendas und Landgüter mit großen Grundstücken',
+    'villas' => 'Landgüter',
+    'Haciendas y villas de lujo con amplios terrenos' => 'Luxuriöse Haciendas und Landgüter mit großen Grundstücken',
     'alquiler' => 'Miete',
     'venta' => 'Verkauf',
     'obra_nueva' => 'Neubau',
@@ -41,7 +41,7 @@ return [
 
 
     // Subcategorías de Servicios
-    'serv_tasacion' => 'Bewertung',
+    'serv_valoracion' => 'Bewertung',
     'serv_consultoria' => 'Beratung',
     'serv_inversion' => 'Investition',
 

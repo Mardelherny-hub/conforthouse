@@ -24,15 +24,15 @@ return [
     'Apartamentos de Lujo' => 'Appartements de luxe et penthouses avec vue panoramique',
     'Villas' => 'Villas',
     'Villas exclusivas con amplios jardines y piscina privada' => 'Villas exclusives avec grands jardins et piscine privée',
-    'Fincas' => 'Domaines',
-    'Haciendas y fincas de lujo con amplios terrenos' => 'Haciendas et domaines de luxe avec vastes terrains',
+    'villas' => 'Domaines',
+    'Haciendas y villas de lujo con amplios terrenos' => 'Haciendas et domaines de luxe avec vastes terrains',
     'alquiler' => 'Location',
     'venta' => 'Vente',
     'obra_nueva' => 'Programme Neuf',
     'viviendas_de_lujo' => 'Logements de Luxe',
 
     // Subcategorías de Servicios
-    'serv_tasacion' => 'Évaluation',
+    'serv_valoracion' => 'Évaluation',
     'serv_consultoria' => 'Conseil',
     'serv_inversion' => 'Investissement',
 

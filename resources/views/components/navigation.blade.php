@@ -18,11 +18,11 @@
             <div x-cloak class="flex-shrink-0">
                 <a href="{{ route('home', ['locale' => app()->getLocale()]) }}" 
                    class="james-logo flex items-center group transition-all duration-300">
-                   <img x-show="!scrolled" src="{{ asset('assets/images/logo/conforthouse-logo-0-40.webp') }}" 
+                   <img x-show="!scrolled" src="{{ asset('assets/images/logo/conforthouse-logo-0.png') }}" 
                         :style="scrolled ? 'height: 50px;' : 'height: 55px;'"
                         class="transition-all duration-500 ease-out brightness-110 group-hover:brightness-125"
                         alt="Conforthouse Living">
-                   <img x-show="scrolled" src="{{ asset('assets/images/logo/conforthouse-logo-1-40.webp') }}" 
+                   <img x-show="scrolled" src="{{ asset('assets/images/logo/conforthouse-logo.png') }}" 
                         :style="scrolled ? 'height: 50px;' : 'height: 55px;'"
                         class="transition-all duration-500 ease-out brightness-110 group-hover:brightness-125"
                         alt="Conforthouse Living">

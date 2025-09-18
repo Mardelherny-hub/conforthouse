@@ -32,15 +32,15 @@ return [
     'Apartamentos de Lujo' => 'Luxury Apartments',
     'Villas' => 'Villas',
     'Villas exclusivas con amplios jardines y piscina privada' => 'Exclusive Villas',
-    'Fincas' => 'Estates',
-    'Haciendas y fincas de lujo con amplios terrenos' => 'Luxury Estates',
+    'villas' => 'Estates',
+    'Haciendas y villas de lujo con amplios terrenos' => 'Luxury Estates',
     'alquiler' => 'Rent',
     'venta' => 'Sale',
     'obra_nueva' => 'New Build',
     'viviendas_de_lujo' => 'Luxury Homes',
 
     // Subcategorías de Servicios
-    'serv_tasacion' => 'Valuation',
+    'serv_valoracion' => 'Valuation',
     'serv_consultoria' => 'Consulting',
     'serv_inversion' => 'Investment',
 

@@ -28,27 +28,50 @@
 </div> --}}
 
 <!-- Floating Contact Button - James Edition Style (Sobrio) -->
-<div class="fixed bottom-8 left-8 z-50 hidden lg:block">
-    <div class="relative group">
-        <!-- Main Button -->
-        <button onclick="openContactModal()" 
-                class="flex items-center justify-center w-14 h-14 bg-white hover:bg-neutral-50 text-neutral-700 hover:text-neutral-900 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-neutral-200">
+<div class="fixed bottom-8 left-8 z-50 hidden lg:block" x-data="{ expanded: false }">
+    <div class="relative">
+        <!-- Main Button with expandable effect -->
+        <button @click="openContactModal()" 
+                @mouseenter="expanded = true"
+                @mouseleave="expanded = false"
+                class="flex items-center justify-center bg-neutral-800 hover:bg-neutral-800 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 animate-pulse overflow-hidden"
+                :class="expanded ? 'w-64 h-14 justify-start px-6' : 'w-14 h-14'"
+                style="animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);">
             
             <!-- Phone Icon -->
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
             </svg>
+            
+            <!-- Expandable Text -->
+            <span x-show="expanded" 
+                  x-transition:enter="transition ease-out duration-300"
+                  x-transition:enter-start="opacity-0 transform translate-x-2"
+                  x-transition:enter-end="opacity-100 transform translate-x-0"
+                  x-transition:leave="transition ease-in duration-200"
+                  x-transition:leave-start="opacity-100 transform translate-x-0"
+                  x-transition:leave-end="opacity-0 transform translate-x-2"
+                  class="ml-3 text-sm font-medium whitespace-nowrap">
+                ¿Dudas? <br> No dudes en llamarnos
+            </span>
         </button>
-        
-        <!-- Tooltip -->
-        <div class="absolute left-16 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
-            <div class="bg-neutral-900 text-white px-3 py-2 rounded-lg text-sm font-body whitespace-nowrap relative">
-                {{ __('messages.floating_button_tooltip') }}
-                <div class="absolute top-1/2 -left-2 transform -translate-y-1/2 w-0 h-0 border-r-8 border-r-neutral-900 border-t-4 border-b-4 border-t-transparent border-b-transparent"></div>
-            </div>
-        </div>
     </div>
 </div>
+
+<style>
+/* Efecto pulse personalizado en ámbar */
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 0 rgba(245, 158, 11, 0.7);
+    }
+    50% {
+        box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 10px rgba(245, 158, 11, 0);
+    }
+}
+</style>
+
+<!-- Script de Alpine.js si no está incluido -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 <!-- Contact Modal - Compact & Sober -->
 <div id="contactModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-[9999] opacity-0 invisible transition-all duration-300">

@@ -24,7 +24,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ __('messages.servicios') }}</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">{{ __('messages.serv_tasacion') }}</a></li>
+                        <li><a href="#">{{ __('messages.serv_valoracion') }}</a></li>
                         <li><a href="#">{{ __('messages.serv_consultoria') }}</a></li>
                         <li><a href="#">{{ __('messages.serv_inversion') }}</a></li>
                     </ul>

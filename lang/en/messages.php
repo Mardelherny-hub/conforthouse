@@ -99,8 +99,8 @@ return [
     'Apartamentos de Lujo' => 'Luxury Apartments',
     'Villas' => 'Villas',
     'Villas exclusivas con amplios jardines y piscina privada' => 'Exclusive villas with large gardens and private pool',
-    'Fincas' => 'Estates',
-    'Haciendas y fincas de lujo con amplios terrenos' => 'Luxury haciendas and estates with extensive grounds',
+    'villas' => 'Estates',
+    'Haciendas y villas de lujo con amplios terrenos' => 'Luxury haciendas and estates with extensive grounds',
 
     // =====  PROPERTIES =====
     'properties_found' => 'Properties Found',
@@ -156,7 +156,7 @@ return [
     'bath' => 'bath',
 
     // ===== SERVICES =====
-    'serv_tasacion' => 'Valuation',
+    'serv_valoracion' => 'Valuation',
     'serv_consultoria' => 'Consulting',
     'serv_inversion' => 'Investment',
     'consultoria_inmobiliaria' => 'Real Estate Consulting',

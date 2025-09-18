@@ -65,7 +65,7 @@
                             <div>
                                 <h4 class="font-luxury-sans font-medium text-gray-900 mb-1">{{ __('messages.email') }}
                                 </h4>
-                                <p class="text-gray-600 font-luxury-sans">conforthoauseliving@conforthouse.com</p>
+                                <p class="text-gray-600 font-luxury-sans">conforthouseliving@rbconforthouse.com.com</p>
                             </div>
                         </div>
 

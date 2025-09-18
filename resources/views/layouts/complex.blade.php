@@ -77,7 +77,7 @@
                 <div>
                     <h4 class="text-white text-sm font-medium mb-4 font-body">{{ __('messages.servicios') }}</h4>
                     <ul class="space-y-2 text-sm font-body">
-                        <li><a href="#" class="hover:text-white transition-colors">{{ __('messages.serv_tasacion') }}</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">{{ __('messages.serv_valoracion') }}</a></li>
                         <li><a href="#" class="hover:text-white transition-colors">{{ __('messages.serv_consultoria') }}</a></li>
                         <li><a href="#" class="hover:text-white transition-colors">{{ __('messages.serv_inversion') }}</a></li>
                     </ul>

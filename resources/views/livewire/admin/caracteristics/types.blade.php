@@ -41,7 +41,7 @@
                         id="new-type-name"
                         type="text"
                         wire:model.blur="name"
-                        placeholder="Ej: Casa, Departamento, Loft..."
+                        placeholder="Ej: Casa, apartamento, Loft..."
                         class="w-full border border-gray-300 p-2 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                     >
                     @error('name') <span class="text-red-500 text-sm block mt-1">{{ $message }}</span> @enderror

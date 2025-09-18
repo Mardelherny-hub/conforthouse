@@ -298,6 +298,7 @@
                     <div class="james-property-header">
                         <div class="flex flex-wrap items-center gap-2 mb-4">
                             <span class="james-property-badge">{{ $property->propertyType->name }}</span>
+                            <span class="james-property-badge james-badge-secondary">{{ $property->operation->name }}</span>
                         </div>
                         
                         

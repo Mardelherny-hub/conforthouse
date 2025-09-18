@@ -74,12 +74,12 @@ return [
     'view_details' => 'Ver Detalles',
     'premium_services' => 'Servicios Premium',
     'services_description' => 'Servicios inmobiliarios profesionales adaptados a propiedades de lujo. Nuestro equipo experto ofrece soluciones integrales para compradores, vendedores e inversores.',
-    'property_valuation' => 'Tasación de Propiedades',
-    'property_valuation_desc' => 'Análisis de mercado experto y tasación precisa de propiedades',
+    'property_valuation' => 'valoración de Propiedades',
+    'property_valuation_desc' => 'Análisis de mercado experto y valoración precisa de propiedades',
     'investment_consulting' => 'Consultoría de Inversión',
     'investment_consulting_desc' => 'Asesoramiento estratégico para inversiones inmobiliarias de lujo',
     'property_management' => 'Gestión de Propiedades',
-    'property_management_desc' => 'Gestión completa de propiedades para fincas de lujo',
+    'property_management_desc' => 'Gestión completa de propiedades para villas de lujo',
     'learn_more' => 'Conocer Más',
     'ready_find_dream_property' => '¿Listo para Encontrar tu Propiedad Ideal?',
     'connect_luxury_experts' => 'Conéctate con nuestros expertos en Patrimonio Inmobiliario de lujo y descubre oportunidades exclusivas en las ubicaciones más deseadas del mundo.',
@@ -99,8 +99,8 @@ return [
     'Apartamentos de Lujo' => 'Apartamentos de Lujo',
     'Villas' => 'Villas',
     'Villas exclusivas con amplios jardines y piscina privada' => 'Villas exclusivas con amplios jardines y piscina privada',
-    'Fincas' => 'Fincas',
-    'Haciendas y fincas de lujo con amplios terrenos' => 'Haciendas y fincas de lujo con amplios terrenos',
+    'villas' => 'villas',
+    'Haciendas y villas de lujo con amplios terrenos' => 'Haciendas y villas de lujo con amplios terrenos',
 
 
     // =====  PROPIEDADES =====
@@ -157,7 +157,7 @@ return [
     'bath' => 'baños',
 
     // ===== SERVICIOS =====
-    'serv_tasacion' => 'Tasación',
+    'serv_valoracion' => 'valoración',
     'serv_consultoria' => 'Consultoría',
     'serv_inversion' => 'Inversión',
     'consultoria_inmobiliaria' => 'Consultoría Inmobiliaria',
@@ -168,7 +168,7 @@ return [
     'investment_consulting_desc' => 'Análisis de mercado y oportunidades de inversión inmobiliaria',
     'real_estate_consulting' => 'Consultoría Inmobiliaria',
     'real_estate_consulting_desc' => 'Asesoramiento experto en transacciones inmobiliarias complejas',
-    'property_valuation' => 'Tasación de Propiedades',
+    'property_valuation' => 'valoración de Propiedades',
     'property_valuation_desc' => 'Valoraciones precisas realizadas por tasadores certificados',
     'interior_design' => 'Diseño de Interiores',
     'interior_design_desc' => 'Diseño y decoración de espacios con estilo y funcionalidad',
@@ -315,7 +315,7 @@ return [
     'consultation_type_sell' => 'Venta de propiedad',
     'consultation_type_rent' => 'Alquiler',
     'consultation_type_investment' => 'Inversión inmobiliaria',
-    'consultation_type_valuation' => 'Tasación',
+    'consultation_type_valuation' => 'valoración',
     'consultation_type_legal' => 'Consulta legal',
     'consultation_type_other' => 'Otro',
 
@@ -384,7 +384,7 @@ return [
     'testimonial_1' => 'Excelente servicio, encontraron exactamente lo que buscábamos. Muy profesionales.',
     'client_name_1' => 'María González',
     'client_title_1' => 'Empresaria',
-    'testimonial_2' => 'La tasación fue muy precisa y el proceso de venta fue muy fluido gracias a su equipo.',
+    'testimonial_2' => 'La valoración fue muy precisa y el proceso de venta fue muy fluido gracias a su equipo.',
     'client_name_2' => 'Carlos Rodríguez',
     'client_title_2' => 'Inversor',
     'testimonial_3' => 'Su asesoramiento legal nos ayudó a evitar problemas. Altamente recomendados.',
@@ -446,8 +446,8 @@ return [
     'faq_a2' => 'Trabajamos con las mejores entidades financieras para ofertar las mejores condiciones de financiación.',
     'faq_q3' => '¿Cuánto tiempo toma vender una propiedad?',
     'faq_a3' => 'El tiempo varía según el mercado y la propiedad, pero nuestro equipo trabaja para optimizar los tiempos de venta.',
-    'faq_q4' => '¿Realizan tasaciones gratuitas?',
-    'faq_a4' => 'Sí, ofrecemos tasaciones gratuitas realizadas por profesionales certificados.',
+    'faq_q4' => '¿Realizan valoraciones gratuitas?',
+    'faq_a4' => 'Sí, ofrecemos valoraciones gratuitas realizadas por profesionales certificados.',
     'faq_q5' => '¿Atienden a clientes internacionales?',
     'faq_a5' => 'Por supuesto, tenemos experiencia atendiendo clientes de todo el mundo con servicios especializados.',
 
@@ -498,7 +498,7 @@ return [
     
      // Footer
     'footer_about_title' => 'Sobre Conforthouse Living',
-    'footer_about_description' => 'Conforthouse Living es una agencia inmobiliaria especializada en propiedades de alto nivel. Nos dedicamos a ofrecer una cuidada selección de viviendas exclusivas —como casas, apartamentos y fincas— en ubicaciones privilegiadas. Trabajamos de forma personalizada para conectar a cada cliente con la propiedad ideal.',
+    'footer_about_description' => 'Conforthouse Living es una agencia inmobiliaria especializada en propiedades de alto nivel. Nos dedicamos a ofrecer una cuidada selección de viviendas exclusivas —como casas, apartamentos y villas— en ubicaciones privilegiadas. Trabajamos de forma personalizada para conectar a cada cliente con la propiedad ideal.',
     'footer_inicio' => 'Inicio',
     'footer_contacto' => 'Contacto',
     'footer_enlaces' => 'Enlaces',

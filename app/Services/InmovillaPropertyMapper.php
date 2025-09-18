@@ -24,15 +24,15 @@ class InmovillaPropertyMapper
     // === MAPEO TIPOS INMOVILLA → LARAVEL ===
     private $propertyTypesMapping = [
         // Apartamentos y pisos
-        2799 => 'Departamento',    // Apartamento
+        2799 => 'apartamento',    // Apartamento
         2899 => 'Ático',           // Ático
-        2999 => 'Departamento',    // Duplex → Departamento
-        3099 => 'Departamento',    // Estudio → Departamento
-        3199 => 'Departamento',    // Habitación → Departamento
-        3299 => 'Departamento',    // Loft → Departamento
-        3399 => 'Departamento',    // Piso → Departamento
-        3499 => 'Departamento',    // Planta baja → Departamento
-        3599 => 'Departamento',    // Triplex → Departamento
+        2999 => 'apartamento',    // Duplex → apartamento
+        3099 => 'apartamento',    // Estudio → apartamento
+        3199 => 'apartamento',    // Habitación → apartamento
+        3299 => 'apartamento',    // Loft → apartamento
+        3399 => 'apartamento',    // Piso → apartamento
+        3499 => 'apartamento',    // Planta baja → apartamento
+        3599 => 'apartamento',    // Triplex → apartamento
         
         // Casas
         399  => 'Casa',            // Casa

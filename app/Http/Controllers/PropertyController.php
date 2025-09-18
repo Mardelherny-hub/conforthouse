@@ -48,7 +48,7 @@ public function index(Request $request)
     
     // Manejo especial para Viviendas de Lujo (ID=3)
     if ($operationId == 3) {
-        $query->where('precioinmo', '>=', 1000000);
+        $query->where('precioinmo', '>=', 3000000);
     } elseif ($operationId) {
         $query->where('operation_id', $operationId);
     }

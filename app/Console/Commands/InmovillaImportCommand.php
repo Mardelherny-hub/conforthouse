@@ -394,7 +394,7 @@ class InmovillaImportCommand extends Command
             case 'chalet':
             case 'casa': return 1; // Casa
             case 'apartamento':
-            case 'piso': return 2; // Departamento
+            case 'piso': return 2; // apartamento
             case 'ático': return 3; // Ático
             case 'obra nueva': return 4; // Obra Nueva
             case 'adosado': return 5; // Adosado

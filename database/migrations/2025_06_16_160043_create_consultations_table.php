@@ -22,7 +22,7 @@ return new class extends Migration
                 'venta',
                 'alquiler',
                 'inversion',
-                'tasacion',
+                'valoracion',
                 'legal',
                 'otro'
             ])->nullable();

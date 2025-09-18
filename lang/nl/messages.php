@@ -99,8 +99,8 @@ return [
     'Apartamentos de Lujo' => 'Luxe Appartementen',
     'Villas' => 'Villa\'s',
     'Villas exclusivas con amplios jardines y piscina privada' => 'Exclusieve villa\'s met grote tuinen en privé zwembad',
-    'Fincas' => 'Landgoederen',
-    'Haciendas y fincas de lujo con amplios terrenos' => 'Luxe hacienda\'s en landgoederen met uitgestrekte terreinen',
+    'villas' => 'Landgoederen',
+    'Haciendas y villas de lujo con amplios terrenos' => 'Luxe hacienda\'s en landgoederen met uitgestrekte terreinen',
 
     // =====  WONINGEN =====
     'properties_found' => 'Woningen Gevonden',
@@ -156,7 +156,7 @@ return [
     'bath' => 'bdk',
 
     // ===== DIENSTEN =====
-    'serv_tasacion' => 'Taxatie',
+    'serv_valoracion' => 'Taxatie',
     'serv_consultoria' => 'Advies',
     'serv_inversion' => 'Investering',
     'consultoria_inmobiliaria' => 'Vastgoedadvies',

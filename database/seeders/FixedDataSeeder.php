@@ -44,7 +44,7 @@ class FixedDataSeeder extends Seeder
         // === TIPOS DE PROPIEDADES CON TRADUCCIONES CORREGIDAS ===
         $propertyTypes = [
             ['name' => 'Casa', 'translations' => ['en' => 'House', 'fr' => 'Maison', 'de' => 'Haus', 'nl' => 'Huis']],
-            ['name' => 'Departamento', 'translations' => ['en' => 'Apartment', 'fr' => 'Appartement', 'de' => 'Wohnung', 'nl' => 'Appartement']],
+            ['name' => 'apartamento', 'translations' => ['en' => 'Apartment', 'fr' => 'Appartement', 'de' => 'Wohnung', 'nl' => 'Appartement']],
             ['name' => 'Ático', 'translations' => ['en' => 'Penthouse', 'fr' => 'Penthouse', 'de' => 'Dachgeschoss', 'nl' => 'Penthouse']],
             ['name' => 'Obra Nueva', 'translations' => ['en' => 'New Build', 'fr' => 'Nouveau Bâtiment', 'de' => 'Neubau', 'nl' => 'Nieuwbouw']],
             ['name' => 'Adosado', 'translations' => ['en' => 'Townhouse', 'fr' => 'Maison Mitoyenne', 'de' => 'Reihenhaus', 'nl' => 'Rijtjeshuis']],
