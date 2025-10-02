@@ -266,21 +266,65 @@ class InmovillaImportCommand extends Command
         });
     }
 
-    private function importAddress($propertyId, $xmlProperty)
-    {
-        Address::updateOrCreate(
-            ['property_id' => $propertyId],
-            [
-                'street' => 'Sin especificar', // No viene en XML, requerido en BD
-                'postal_code' => (string)$xmlProperty->cp,
-                'city' => (string)$xmlProperty->ciudad,
-                'province' => (string)$xmlProperty->provincia,
-                'zone' => (string)$xmlProperty->zona,
-                'inmovilla_cp' => (string)$xmlProperty->cp,
-                'inmovilla_provincia' => (string)$xmlProperty->provincia,
-            ]
-        );
+private function importAddress($propertyId, $xmlProperty)
+{
+    // Extraer coordenadas del XML
+    $latitudRaw = (string)$xmlProperty->latitud;
+    $longitudRaw = (string)$xmlProperty->altitud; // Inmovilla usa "altitud" para longitud
+    
+    // Validar y procesar coordenadas
+    $latitude = null;
+    $longitude = null;
+    
+    // Validar latitud
+    if (!empty($latitudRaw) && is_numeric($latitudRaw) && $latitudRaw !== '0') {
+        $lat = (float)$latitudRaw;
+        if ($lat >= -90 && $lat <= 90) {
+            $latitude = $lat;
+        }
     }
+    
+    // Validar longitud
+    if (!empty($longitudRaw) && is_numeric($longitudRaw) && $longitudRaw !== '0') {
+        $lng = (float)$longitudRaw;
+        if ($lng >= -180 && $lng <= 180) {
+            $longitude = $lng;
+        }
+    }
+    
+    // Log de debug
+    Log::info("IMPORTANDO DIRECCIÓN", [
+        'property_id' => $propertyId,
+        'ref' => (string)$xmlProperty->ref,
+        'latitud_xml' => $latitudRaw,
+        'longitud_xml' => $longitudRaw,
+        'latitude_validada' => $latitude,
+        'longitude_validada' => $longitude,
+    ]);
+    
+    // Crear o actualizar dirección
+    $address = Address::updateOrCreate(
+        ['property_id' => $propertyId],
+        [
+            'street' => 'Sin especificar',
+            'postal_code' => (string)$xmlProperty->cp,
+            'city' => (string)$xmlProperty->ciudad,
+            'province' => (string)$xmlProperty->provincia,
+            'zone' => (string)$xmlProperty->zona,
+            'latitude' => $latitude,
+            'longitude' => $longitude,
+        ]
+    );
+    
+    // Confirmar guardado
+    Log::info("DIRECCIÓN GUARDADA", [
+        'address_id' => $address->id,
+        'latitude' => $address->latitude,
+        'longitude' => $address->longitude,
+    ]);
+    
+    return $address;
+}
 
     private function importTranslations($propertyId, $xmlProperty)
     {
@@ -379,37 +423,80 @@ class InmovillaImportCommand extends Command
     
     private function mapOperation($accion)
     {
-        switch (strtolower($accion)) {
-            case 'vender': return 1; // Venta
-            case 'alquilar': return 2; // Alquiler
-            case 'traspasar': return 4; // Traspaso
-            default: return 1;
+        // Mapear texto de operación a ID en BD
+        $operationMap = [
+            'vender' => 'Venta',
+            'alquilar' => 'Alquiler',
+            'traspasar' => 'Venta', // Traspaso → Venta
+        ];
+        
+        $operationName = $operationMap[strtolower($accion)] ?? 'Venta';
+        
+        $operation = \App\Models\Operation::where('name', $operationName)->first();
+        
+        if (!$operation) {
+            Log::warning("Operación no encontrada: {$operationName}");
+            return 1; // Default: primer ID disponible
         }
+        
+        return $operation->id;
     }
 
     private function mapPropertyType($tipo)
     {
-        // Mapeo básico - puedes expandir según necesites
-        switch (strtolower($tipo)) {
-            case 'chalet':
-            case 'casa': return 1; // Casa
-            case 'apartamento':
-            case 'piso': return 2; // apartamento
-            case 'ático': return 3; // Ático
-            case 'obra nueva': return 4; // Obra Nueva
-            case 'adosado': return 5; // Adosado
-            default: return 1;
+        // Mapear texto de tipo a nombre en BD (Casa, apartamento, Ático)
+        $typeMap = [
+            // VILLAS/CASAS → Casa
+            'chalet' => 'Casa',
+            'casa' => 'Casa',
+            'villa' => 'Casa',
+            'adosado' => 'Casa',
+            'pareado' => 'Casa',
+            'bungalow' => 'Casa',
+            'cortijo' => 'Casa',
+            'masía' => 'Casa',
+            
+            // APARTAMENTOS → apartamento
+            'apartamento' => 'apartamento',
+            'piso' => 'apartamento',
+            'duplex' => 'apartamento',
+            'estudio' => 'apartamento',
+            'loft' => 'apartamento',
+            'planta baja' => 'apartamento',
+            
+            // ÁTICOS → Ático
+            'ático' => 'Ático',
+            'atico' => 'Ático',
+            'penthouse' => 'Ático',
+        ];
+        
+        $typeName = $typeMap[strtolower($tipo)] ?? 'Casa'; // Default: Casa
+        
+        $propertyType = \App\Models\PropertyType::where('name', $typeName)->first();
+        
+        if (!$propertyType) {
+            Log::warning("Tipo de propiedad no encontrado en BD: {$typeName} (tipo original: {$tipo})");
+            return 1; // Default: primer ID disponible
         }
+        
+        return $propertyType->id;
     }
 
     private function mapStatus($estadoficha)
     {
-        switch ($estadoficha) {
-            case 1: return 1; // Disponible
-            case 2: return 2; // Reservado
-            default: return 1;
+        // Solo 2 estados: Disponible (1) o Reservado (2)
+        $statusName = ($estadoficha == 2) ? 'Reservado' : 'Disponible';
+        
+        $status = \App\Models\Status::where('name', $statusName)->first();
+        
+        if (!$status) {
+            Log::warning("Estado no encontrado: {$statusName}");
+            return 1; // Default: Disponible
         }
+        
+        return $status->id;
     }
+
 
     private function parseDate($date)
     {

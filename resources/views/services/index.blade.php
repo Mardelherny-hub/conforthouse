@@ -65,7 +65,7 @@
                     </a>
                 </div>
 
-                <!-- Servicio 4: valoración de Propiedades -->
+                <!-- Servicio 4: Valoración de Propiedades -->
                 <div class="group bg-white border border-gray-200 hover:border-amber-300 p-8 rounded-sm transition-all duration-300 hover:shadow-lg flex flex-col">
                     <div class="mb-6 text-amber-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -15,16 +15,11 @@ class FixedDataSeeder extends Seeder
 {
     public function run()
     {
-        // === OPERACIONES: SOLO MENÚ (Venta, Alquiler, Viviendas de Lujo) + Compatibilidad Inmovilla ===
+        // === OPERACIONES: SOLO 3 ===
         $operations = [
-            // MENÚ PRINCIPAL - Estas 3 aparecen en el menú
             ['name' => 'Venta', 'translations' => ['en' => 'Sale', 'fr' => 'Vente', 'de' => 'Verkauf', 'nl' => 'Verkoop']],
             ['name' => 'Alquiler', 'translations' => ['en' => 'Rent', 'fr' => 'Location', 'de' => 'Miete', 'nl' => 'Verhuur']],
             ['name' => 'Viviendas de Lujo', 'translations' => ['en' => 'Luxury Properties', 'fr' => 'Propriétés de Luxe', 'de' => 'Luxus-Immobilien', 'nl' => 'Luxe Woningen']],
-            
-            // COMPATIBILIDAD INMOVILLA - No aparecen en menú, pero necesarias para mapeo
-            ['name' => 'Leasing', 'translations' => ['en' => 'Leasing', 'fr' => 'Leasing', 'de' => 'Leasing', 'nl' => 'Leasing']],
-            ['name' => 'Traspaso', 'translations' => ['en' => 'Transfer', 'fr' => 'Transfert', 'de' => 'Übertragung', 'nl' => 'Overdracht']],
         ];
 
         foreach ($operations as $operation) {
@@ -41,13 +36,30 @@ class FixedDataSeeder extends Seeder
             }
         }
 
-        // === TIPOS DE PROPIEDADES CON TRADUCCIONES CORREGIDAS ===
+        // === TIPOS DE PROPIEDADES - Solo 3 tipos ===
         $propertyTypes = [
-            ['name' => 'Casa', 'translations' => ['en' => 'House', 'fr' => 'Maison', 'de' => 'Haus', 'nl' => 'Huis']],
-            ['name' => 'apartamento', 'translations' => ['en' => 'Apartment', 'fr' => 'Appartement', 'de' => 'Wohnung', 'nl' => 'Appartement']],
-            ['name' => 'Ático', 'translations' => ['en' => 'Penthouse', 'fr' => 'Penthouse', 'de' => 'Dachgeschoss', 'nl' => 'Penthouse']],
-            ['name' => 'Obra Nueva', 'translations' => ['en' => 'New Build', 'fr' => 'Nouveau Bâtiment', 'de' => 'Neubau', 'nl' => 'Nieuwbouw']],
-            ['name' => 'Adosado', 'translations' => ['en' => 'Townhouse', 'fr' => 'Maison Mitoyenne', 'de' => 'Reihenhaus', 'nl' => 'Rijtjeshuis']],
+            // En BD se llama "Casa" pero en español se muestra como "Villa"
+            ['name' => 'Casa', 'translations' => [
+                'es' => 'Villa',
+                'en' => 'Villa', 
+                'fr' => 'Villa', 
+                'de' => 'Villa', 
+                'nl' => 'Villa'
+            ]],
+            ['name' => 'apartamento', 'translations' => [
+                'es' => 'Apartamento',
+                'en' => 'Apartment', 
+                'fr' => 'Appartement', 
+                'de' => 'Wohnung', 
+                'nl' => 'Appartement'
+            ]],
+            ['name' => 'Ático', 'translations' => [
+                'es' => 'Ático',
+                'en' => 'Penthouse', 
+                'fr' => 'Penthouse', 
+                'de' => 'Dachgeschoss', 
+                'nl' => 'Penthouse'
+            ]],
         ];
 
         foreach ($propertyTypes as $type) {
@@ -64,7 +76,7 @@ class FixedDataSeeder extends Seeder
             }
         }
 
-        // === ESTADOS CON TRADUCCIONES CORREGIDAS ===
+        // === ESTADOS - Solo 2 ===
         $statuses = [
             ['name' => 'Disponible', 'translations' => ['en' => 'Available', 'fr' => 'Disponible', 'de' => 'Verfügbar', 'nl' => 'Beschikbaar']],
             ['name' => 'Reservado', 'translations' => ['en' => 'Reserved', 'fr' => 'Réservé', 'de' => 'Reserviert', 'nl' => 'Gereserveerd']],

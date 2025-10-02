@@ -378,4 +378,9 @@ public function index(Request $request)
     {
         return view('privacy.index', compact('locale'));
     }
+
+    public function legal($locale)
+    {
+        return view('legal.index', compact('locale'));
+    }
 }

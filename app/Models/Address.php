@@ -25,6 +25,10 @@ class Address extends Model
         'inmovilla_direccion',
         'inmovilla_cp',
         'inmovilla_provincia',
+
+        // === COORDENADAS PARA GOOGLE MAPS ===
+        'latitude',
+        'longitude',
     ];
     /*
     desestimamos los registros de ciudades provincias y comunidades autónomas

@@ -107,7 +107,15 @@ return new class extends Migration {
             $table->string('city')->nullable(); // Ciudad de la dirección (opcional)
             $table->string('province')->nullable(); // Provincia de la dirección (opcional)
             $table->string('autonomous_community')->nullable(); // Comunidad autónoma de la dirección (opcional)
+
+            // NUEVOS CAMPOS PARA GOOGLE MAPS
+            $table->decimal('latitude', 10, 7)->nullable()->comment('Latitud para Google Maps');
+            $table->decimal('longitude', 10, 7)->nullable()->comment('Longitud para Google Maps');
+            
             $table->timestamps(); // Timestamps para seguimiento de creación y actualización
+
+            // Índice para búsquedas geográficas
+            $table->index(['latitude', 'longitude'], 'idx_coordinates');
         });
 
         // Crear la tabla de imágenes de propiedades

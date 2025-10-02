@@ -65,7 +65,7 @@
                             <div>
                                 <h4 class="font-luxury-sans font-medium text-gray-900 mb-1">{{ __('messages.email') }}
                                 </h4>
-                                <p class="text-gray-600 font-luxury-sans">conforthouseliving@rbconforthouse.com.com</p>
+                                <p class="text-gray-600 font-luxury-sans">conforthouseliving@rbconforthouse.com</p>
                             </div>
                         </div>
 
@@ -127,8 +127,11 @@
                     <div class="bg-white shadow-xl p-8 border border-amber-200/20">
                         <h3 class="text-2xl font-luxury text-gray-900 mb-6">{{ __('messages.send_message') }}</h3>
 
-                        <form action="#" method="POST"
-                            class="space-y-6">
+                        <form action="{{ route('contact.store', ['locale' => app()->getLocale()]) }}" 
+                            method="POST"
+                            class="space-y-6"
+                            data-contact-form>
+                            
                             @csrf
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -40,7 +40,7 @@ return [
     'viviendas_de_lujo' => 'Viviendas de Lujo',
 
     // Subcategorías de Servicios
-    'serv_valoracion' => 'valoración',
+    'serv_valoracion' => 'Valoración',
     'serv_consultoria' => 'Consultoría',
     'serv_inversion' => 'Inversión',
 
@@ -114,7 +114,7 @@ return [
     // Sección servicios exclusivos
     'servicios_exclusivos' => 'Servicios <span class="text-amber-400">Exclusivos</span>',    'Ver Todos los Servicios' => 'Ver Todos los Servicios',
     'Destacado' => 'Destacado',
-    'Property Valuation' => 'valoración de Propiedades',
+    'Property Valuation' => 'Valoración de Propiedades',
     'We accurately value each property, offering a detailed and objective analysis of the luxury real estate market.' => 'Valoramos con precisión cada propiedad, ofreciendo un análisis detallado y objetivo del mercado inmobiliario de lujo.',
     'Servicio Premium' => 'Servicio Premium',
     'Consulta disponibilidad' => 'Consulta disponibilidad',
@@ -192,7 +192,7 @@ return [
     'stats_happy_clients' => 'Clientes Satisfechos',
     // Servicios Exclusivos
     'exclusive_services_title' => 'Servicios Exclusivos',
-    'service_valuation_title' => 'valoración de Propiedades',
+    'service_valuation_title' => 'Valoración de Propiedades',
     'service_valuation_description' => 'Valoramos con precisión cada propiedad, ofreciendo un análisis detallado y objetivo del mercado inmobiliario de lujo.',
     'service_consulting_title' => 'Consultoría Personalizada',
     'service_consulting_description' => 'Asesoramiento integral adaptado a las necesidades específicas de cada cliente en el mercado inmobiliario de alto nivel.',
@@ -305,7 +305,7 @@ return [
     'renting_properties_desc' => 'Descubre nuestra selección de propiedades en alquiler . Encontramos el espacio perfecto para ti, ya sea a corto o largo plazo, gestionando todos los detalles para tu comodidad.',
     'real_estate_consulting' => 'Consultoría Inmobiliaria',
     'real_estate_consulting_desc' => 'Nuestros expertos te ofrecen asesoramiento personalizado para tomar decisiones informadas en el mercado inmobiliario. Maximiza tus oportunidades con nuestra experiencia.',
-    'property_valuation' => 'valoración de Propiedades',
+    'property_valuation' => 'Valoración de Propiedades',
     'property_valuation_desc' => 'Obtén una valoración precisa y profesional de tu propiedad . Conoce el valor real de tu inmueble para comprar, vender o invertir con confianza.',
     'legal_advice' => 'Asesoría Legal',
     'legal_advice_desc' => 'Nuestro equipo legal especializado en derecho inmobiliario te brinda la tranquilidad que necesitas. Te asesoramos en contratos, trámites y cualquier aspecto legal relacionado con tu propiedad .',
@@ -465,7 +465,7 @@ return [
 'consultation_type_sell' => 'Venta de propiedad',
 'consultation_type_rent' => 'Alquiler',
 'consultation_type_investment' => 'Inversión inmobiliaria',
-'consultation_type_valuation' => 'valoración',
+'consultation_type_valuation' => 'Valoración',
 'consultation_type_legal' => 'Consulta legal',
 'consultation_type_other' => 'Otro',
 

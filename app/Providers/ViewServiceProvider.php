@@ -17,8 +17,8 @@ class ViewServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        // Compartir datos globalmente con todas las vistas
-        View::composer('layouts.properties', function ($view) {
+        // Compartir datos con layouts.properties y search-modal
+        View::composer(['layouts.properties', 'components.search-modal'], function ($view) {
             $locale = app()->getLocale();
             
             $propertyTypes = PropertyType::with(['translations' => function($query) use ($locale) {
@@ -29,16 +29,18 @@ class ViewServiceProvider extends ServiceProvider
                 $query->where('locale', $locale);
             }])->orderBy('name')->get();
             
-            // Aplicar traducciones
+            // Aplicar traducciones en TODOS los idiomas (incluyendo español)
             foreach ($operations as $operation) {
-                if ($locale !== 'es' && $operation->translations->isNotEmpty()) {
-                    $operation->name = $operation->translations->first()->name ?? $operation->name;
+                $translation = $operation->translations->where('locale', $locale)->first();
+                if ($translation) {
+                    $operation->name = $translation->name;
                 }
             }
             
             foreach ($propertyTypes as $type) {
-                if ($locale !== 'es' && $type->translations->isNotEmpty()) {
-                    $type->name = $type->translations->first()->name ?? $type->name;
+                $translation = $type->translations->where('locale', $locale)->first();
+                if ($translation) {
+                    $type->name = $translation->name;
                 }
             }
 

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -12,7 +13,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        // Actualización diaria de Inmovilla - 3:00 AM
+        $schedule->command('inmovilla:update')
+            ->dailyAt('03:00')
+            ->timezone('America/Argentina/Buenos_Aires')
+            ->onSuccess(function () {
+                Log::info('✅ Actualización automática Inmovilla completada');
+            })
+            ->onFailure(function () {
+                Log::error('❌ Error en actualización automática Inmovilla');
+            });
     }
 
     /**

@@ -130,23 +130,23 @@
                         </div>
 
                        <!-- Botones -->
-<div class="space-y-2">
-    <label class="block text-sm font-medium text-transparent">{{ __('messages.buscar') }}</label>
-    <div class="flex gap-2">
-        <button type="submit" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-md font-medium transition-colors duration-200">
-            {{ __('messages.buscar') }}
-        </button>
-        <button type="button" @click="showAdvanced = !showAdvanced"
-                class="px-3 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors duration-200 flex items-center gap-1">
-            <span class="text-xs font-medium hidden sm:inline" x-text="showAdvanced ? '{{ __('messages.basicos') }}' : '{{ __('messages.avanzados') }}'">
-                {{ __('messages.avanzados') }}
-            </span>
-            <svg class="w-4 h-4 transform transition-transform duration-200" :class="{ 'rotate-180': showAdvanced }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-        </button>
-    </div>
-</div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-transparent">{{ __('messages.buscar') }}</label>
+                            <div class="flex gap-2">
+                                <button type="submit" class="flex-1 bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-md font-medium transition-colors duration-200">
+                                    {{ __('messages.buscar') }}
+                                </button>
+                                <button type="button" @click="showAdvanced = !showAdvanced"
+                                        class="px-3 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors duration-200 flex items-center gap-1">
+                                    <span class="text-xs font-medium hidden sm:inline" x-text="showAdvanced ? '{{ __('messages.basicos') }}' : '{{ __('messages.avanzados') }}'">
+                                        {{ __('messages.avanzados') }}
+                                    </span>
+                                    <svg class="w-4 h-4 transform transition-transform duration-200" :class="{ 'rotate-180': showAdvanced }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Búsqueda Avanzada -->
@@ -308,6 +308,7 @@
     <x-search-modal :operations="$operations ?? collect()" :property-types="$propertyTypes ?? collect()" />
 
     <!-- JavaScript Links -->
+    <script src="{{ asset('js/contact-forms.js') }}"></script>
 </body>
 
 </html>

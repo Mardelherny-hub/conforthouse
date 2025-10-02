@@ -654,4 +654,146 @@ return [
     'avanzados' => 'Geavanceerd',
     'basicos' => 'Basis',
     
+
+    // ===== JURIDISCHE KENNISGEVING =====
+    'legal_notice' => 'Juridische Kennisgeving',
+    'legal_notice_description' => 'Juridische informatie en gebruiksvoorwaarden van de website',
+
+    // ===================================
+// AGREGAR AL ARCHIVO: lang/nl/messages.php
+// ===================================
+
+    // ===== JURIDISCHE KENNISGEVING =====
+    'legal_notice' => 'Juridische Kennisgeving',
+    'legal_notice_description' => 'Juridische informatie en gebruiksvoorwaarden van de website',
+    'last_update' => 'Laatste update',
+    'legal_update_date' => '04/09/2025',
+    
+    // Bedrijfsgegevens
+    'company_name' => 'Bedrijfsnaam',
+    'company_cif' => 'Fiscaal identificatienummer',
+    'company_address' => 'Adres',
+    'company_phone' => 'Telefoon',
+    'company_email' => 'E-mail',
+    'company_registry' => 'Handelsregister',
+    'company_registry_details' => 'Geregistreerd in het Handelsregister van Valencia, Elektronisch folio, inschrijving 1, Blad V-223974.',
+    
+    // Sectie 1: Identificatie
+    'legal_section_1_title' => '1. Identificatie van de website-eigenaar',
+    'legal_section_1_intro' => 'In overeenstemming met Wet 34/2002 van 11 juli inzake diensten van de informatiemaatschappij en elektronische handel (LSSICE), informeren wij u dat deze website https://www.rbconforthouse.com/ eigendom is van:',
+    
+    // Sectie 2: Gebruiksvoorwaarden
+    'legal_section_2_title' => '2. Gebruiksvoorwaarden',
+    'legal_section_2_p1' => 'Toegang tot en gebruik van de website https://www.rbconforthouse.com/ verleent de gebruikersstatus en impliceert volledige en onvoorwaardelijke aanvaarding van alle bepalingen in deze Juridische Kennisgeving, die onderhevig kunnen zijn aan wijzigingen.',
+    'legal_section_2_p2' => 'De gebruiker verbindt zich ertoe de website en haar inhoud op de juiste manier te gebruiken, met inachtneming van de geldende wetgeving, te goeder trouw, de openbare orde, verkeersgebruiken en deze Juridische Kennisgeving. Het gebruik van de website voor onwettige of schadelijke doeleinden voor Conforthouse Living S.L. of derden is verboden, die op enigerlei wijze schade kunnen veroorzaken of de normale werking van de website kunnen belemmeren.',
+    
+    // Sectie 3: Intellectueel eigendom
+    'legal_section_3_title' => '3. Intellectueel en industrieel eigendom',
+    'legal_section_3_p1' => 'Alle inhoud van de website, inclusief teksten, afbeeldingen, ontwerp, broncode en alle andere elementen zijn eigendom van Conforthouse Living S.L., of in voorkomend geval van derden die toestemming hebben gegeven voor het gebruik ervan. Ze zijn beschermd door intellectuele en industriële eigendomsrechten.',
+    'legal_section_3_p2' => 'Reproductie, distributie, openbare communicatie, transformatie of enige andere vorm van exploitatie is verboden zonder voorafgaande schriftelijke toestemming van Conforthouse Living S.L.',
+    
+    // Sectie 4: Aansprakelijkheid
+    'legal_section_4_title' => '4. Aansprakelijkheid',
+    'legal_section_4_text' => 'Conforthouse Living S.L. is niet verantwoordelijk voor schade van welke aard dan ook die kan voortvloeien uit het gebruik van de website, met inbegrip van, maar niet beperkt tot, fouten of weglatingen in de inhoud, gebrek aan beschikbaarheid van het portaal, of de overdracht van virussen of kwaadaardige of schadelijke programma\'s in de inhoud, ondanks het nemen van alle noodzakelijke technologische maatregelen om dit te voorkomen.',
+    
+    // Sectie 5: Links naar derden
+    'legal_section_5_title' => '5. Links naar derden',
+    'legal_section_5_text' => 'Als de website links of hyperlinks naar andere internetsites bevat, oefent Conforthouse Living S.L. geen controle uit over deze sites en inhoud. In geen geval zal zij enige verantwoordelijkheid aanvaarden voor de inhoud van een link behorend tot een externe website, noch garandeert zij de technische beschikbaarheid, kwaliteit, betrouwbaarheid, nauwkeurigheid, omvang, waarheidsgetrouwheid, geldigheid of grondwettigheid van enig materiaal of informatie in dergelijke hyperlinks of andere internetsites.',
+    
+    // Sectie 6: Wetgeving
+    'legal_section_6_title' => '6. Toepasselijk recht en jurisdictie',
+    'legal_section_6_text' => 'De relatie tussen Conforthouse Living S.L. en de gebruiker wordt beheerst door de geldende Spaanse wetgeving. Voor de beslechting van geschillen onderwerpen beide partijen zich aan de rechtbanken van Valencia, Spanje, waarbij zij uitdrukkelijk afstand doen van elk ander forum dat voor hen van toepassing zou kunnen zijn.',
+    
+    // Sectie 7: Contact
+    'legal_section_7_title' => '7. Contact',
+    'legal_section_7_intro' => 'Voor vragen of vragen over deze Juridische Kennisgeving kunt u contact met ons opnemen via:',
+
+
+    // ===================================
+// AGREGAR AL ARCHIVO: lang/nl/messages.php
+// ===================================
+
+    // ===== PRIVACYBELEID =====
+    'privacy_policy' => 'Privacybeleid',
+    'privacy_description' => 'Informatie over de verwerking en bescherming van uw persoonsgegevens',
+    
+    // Introductie
+    'privacy_introduction' => 'Introductie',
+    'privacy_intro_text' => 'Bij Conforthouse Living S.L. respecteren wij uw privacy en zijn wij toegewijd aan het beschermen van uw persoonsgegevens. Dit privacybeleid informeert u over hoe wij uw persoonsgegevens verwerken wanneer u onze website bezoekt en informeert u over uw privacyrechten.',
+    'privacy_last_updated' => 'Laatst bijgewerkt: :date',
+    
+    // Gegevens die we verzamelen
+    'data_we_collect' => 'Persoonsgegevens die we verzamelen',
+    'personal_info' => 'Identificatiegegevens',
+    'personal_info_details' => 'Naam, achternaam, e-mailadres, telefoonnummer.',
+    'property_preferences' => 'Vastgoedvoorkeuren',
+    'property_preferences_details' => 'Type woning van interesse, voorkeurslocatie, prijsklasse, specifieke behoeften.',
+    'usage_data' => 'Navigatiegegevens',
+    'usage_data_details' => 'IP-adres, browsertype, bezochte pagina\'s, tijd doorgebracht, besturingssysteem.',
+    'cookies' => 'Cookies',
+    'cookies_details' => 'Informatie opgeslagen op uw apparaat wanneer u onze website bezoekt.',
+    
+    // Hoe we gegevens gebruiken
+    'how_we_use_data' => 'Doel van gegevensverwerking',
+    'use_provide_service' => 'Beheren en beantwoorden van uw vragen, informatieverzoeken en communicatie.',
+    'use_improve_service' => 'Verbeteren van onze diensten en gebruikerservaring op onze website.',
+    'use_personalize' => 'Verstrekken van informatie over vastgoed die aansluit bij uw voorkeuren.',
+    'use_communication' => 'Verzenden van commerciële communicatie over onze diensten en eigendommen, met uitdrukkelijke toestemming.',
+    'use_legal' => 'Voldoen aan wettelijke verplichtingen die van toepassing zijn op onze activiteit.',
+    
+    // Gegevensdeling
+    'data_sharing' => 'Ontvangers en gegevensoverdrachten',
+    'data_sharing_text' => 'Uw persoonsgegevens kunnen worden meegedeeld aan de volgende ontvangers:',
+    'service_providers' => 'Technologie dienstverleners',
+    'service_providers_details' => 'Bedrijven die ons hosting-, webonderhoud- en gegevensanalysediensten verlenen.',
+    'legal_requirements' => 'Overheidsinstanties',
+    'legal_requirements_details' => 'Wanneer noodzakelijk vanwege wettelijke verplichting.',
+    'business_transfers' => 'Professionele adviseurs',
+    'business_transfers_details' => 'Advocaten, accountants of consultants, wanneer noodzakelijk voor het verlenen van onze diensten.',
+    
+    // Uw rechten
+    'your_rights' => 'Uw gegevensbeschermingsrechten',
+    'your_rights_text' => 'Als eigenaar van persoonsgegevens heeft u het recht om de volgende rechten uit te oefenen:',
+    'right_access' => 'Recht op toegang: Bevestiging verkrijgen of wij uw persoonsgegevens verwerken.',
+    'right_rectification' => 'Recht op rectificatie: Correctie van onjuiste of onvolledige gegevens aanvragen.',
+    'right_erasure' => 'Recht op verwijdering: Verwijdering van uw gegevens aanvragen wanneer ze niet langer nodig zijn.',
+    'right_restrict' => 'Recht op beperking van verwerking: Verzoeken dat de verwerking van uw gegevens in bepaalde omstandigheden wordt beperkt.',
+    'right_object' => 'Recht op bezwaar: Bezwaar maken tegen de verwerking van uw gegevens om redenen die verband houden met uw specifieke situatie.',
+    'right_data_portability' => 'Recht op gegevensoverdraagbaarheid: Uw gegevens ontvangen in een gestructureerd, algemeen gebruikt formaat.',
+    
+    // Gegevensbeveiliging
+    'data_security' => 'Beveiligingsmaatregelen',
+    'data_security_text' => 'Conforthouse Living S.L. heeft de nodige technische en organisatorische maatregelen genomen om de beveiliging van uw persoonsgegevens te waarborgen en wijziging, verlies, verwerking of ongeautoriseerde toegang te voorkomen.',
+    
+    // Internationale overdrachten
+    'international_transfers' => 'Internationale overdrachten',
+    'international_transfers_text' => 'Wij voeren geen internationale overdrachten van persoonsgegevens uit buiten de Europese Economische Ruimte. Indien nodig zouden passende waarborgen worden vastgesteld in overeenstemming met de AVG.',
+    
+    // Privacy van kinderen
+    'children_privacy' => 'Privacy van minderjarigen',
+    'children_privacy_text' => 'Onze diensten zijn niet gericht op personen jonger dan 18 jaar. We verzamelen niet bewust persoonlijke informatie van minderjarigen. Als u een ouder of voogd bent en u weet dat uw kind ons persoonsgegevens heeft verstrekt, neem dan contact met ons op.',
+    
+    // Wijzigingen in het beleid
+    'changes_policy' => 'Wijzigingen in het privacybeleid',
+    'changes_policy_text' => 'Conforthouse Living S.L. behoudt zich het recht voor om dit privacybeleid te wijzigen om het aan te passen aan wettelijke, jurisprudentiële wijzigingen of in onze bedrijfspraktijken. Wij raden u aan deze pagina regelmatig te bekijken.',
+    
+    // Contact
+    'contact_us' => 'Contact',
+    'contact_privacy_text' => 'Voor vragen of vragen over dit privacybeleid of over de verwerking van uw persoonsgegevens, kunt u contact met ons opnemen of een klacht indienen bij het Spaanse Bureau voor Gegevensbescherming.',
+
+    'message_sent_success' => 'Bericht succesvol verzonden. Wij nemen zo spoedig mogelijk contact met u op.',
+    'message_sent_error' => 'Er is een fout opgetreden bij het verzenden van uw bericht. Probeer het later opnieuw.',
+    'confirmation_email_subject' => 'We hebben uw aanvraag ontvangen',
+    // Bevestigingsmail
+    'confirmation_email_subject' => 'We hebben uw aanvraag ontvangen',
+    'confirmation_email_title' => 'Bedankt voor uw contact!',
+    'confirmation_email_greeting' => 'Hallo',
+    'confirmation_email_body' => 'We hebben uw aanvraag ontvangen en nemen zo spoedig mogelijk contact met u op.',
+    'confirmation_email_summary' => 'Samenvatting van uw aanvraag',
+    'confirmation_email_response_time' => 'Ons team zal uw aanvraag beoordelen en spoedig reageren.',
+    'confirmation_email_phone_contact' => 'We nemen contact met u op via',
+    'confirmation_email_thanks' => 'Bedankt voor uw vertrouwen,',
+    'aviso_no_responder' => 'Stuur geen antwoord naar dit e-mailadres, het is een automatisch gegenereerd bericht.',
+    
+
 ];

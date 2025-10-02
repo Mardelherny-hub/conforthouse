@@ -37,10 +37,17 @@
 
                                 <!-- Tipo de propiedad -->
                                 @if($typeId)
-                                    @php $propertyType = $propertyTypes->find($typeId) @endphp
+                                    @php 
+                                        $propertyType = $propertyTypes->find($typeId);
+                                        if ($propertyType) {
+                                            $locale = app()->getLocale();
+                                            $translation = $propertyType->translations->where('locale', $locale)->first();
+                                            $typeName = $translation ? $translation->name : $propertyType->name;
+                                        }
+                                    @endphp
                                     @if($propertyType)
                                         <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">
-                                            {{ $propertyType->name }}
+                                            {{ $typeName }}
                                         </span>
                                     @endif
                                 @endif
@@ -200,15 +207,20 @@
                                     @endif
                                     
                                     <!-- Property Badges -->
-                                    @if ($property->is_featured == 1)
+                                    {{-- @if ($property->is_featured == 1)
                                         <div class="james-property-badge featured font-body">{{ __('messages.featured') }}</div>
                                     @else
                                         <div class="james-property-badge new font-body">{{ __('messages.new') }}</div>
-                                    @endif
+                                    @endif --}}
 
                                     <!-- Property Type Badge (esquina superior derecha, usando estilo 'new') -->
                                     <div class="james-property-badge new font-body" style="top: 1rem; right: 1rem; left: auto;">
-                                        {{ $property->getMappedPropertyType() }}
+                                        @php
+                                            $locale = app()->getLocale();
+                                            $typeTranslation = $property->propertyType->translations->where('locale', $locale)->first();
+                                            $typeDisplayName = $typeTranslation ? $typeTranslation->name : $property->propertyType->name;
+                                        @endphp
+                                        {{ $typeDisplayName }}
                                     </div>
 
                                     {{-- BADGE DE COMPLEJO - ESQUINA INFERIOR DERECHA usando estilo 'featured' --}}

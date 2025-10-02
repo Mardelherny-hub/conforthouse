@@ -43,11 +43,11 @@
         </a>
 
         <!-- Villas -->
-        <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'type_id' => 3]) }}" class="category-card">
-            <img src="{{ asset('assets/images/home/cat_villas.png') }}" alt="Villas" class="category-card__img">
+        <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'type_id' => 1]) }}" class="category-card">
+            <img src="{{ asset('assets/images/home/cat_villas.png') }}" alt="{{ __('messages.villas') }}" class="category-card__img">
             <div class="category-card__overlay"></div>
             <div class="category-card__content">
-            <h3 class="category-card__title font-luxury">{{ __('messages.villas') }}</h3>
+            <h3 class="category-card__title font-luxury">{{ __('messages.Villas') }}</h3>
             <span class="category-card__cta font-body">
                 {{ __('messages.ver_propiedades') }}
                 <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -144,19 +144,18 @@
                     <div class="lg:col-span-3">
                         <div class="bg-white shadow-lg overflow-hidden h-full min-h-[500px] sticky top-6">
                             <!-- Map Header -->
-                            <div class="bg-gradient-champagne  text-center p-4">
-                                <h3 class="category-card__title flex items-center" style="color: #262626d0;">
+                            <div class="bg-gradient-champagne text-center p-4">
+                                <h3 class="category-card__title flex items-center justify-center" style="color: #262626d0;">
                                     <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
                                     </svg>
                                     {{ __('messages.ubicacion') }}
-                                    
                                 </h3>
                             </div>
                             
                             <!-- Map Container -->
-                            <div class="relative flex-1">
-                                <div id="properties-map" class="w-full h-96 lg:h-[calc(100%-4rem)]"></div>
+                            <div class="relative" style="height: calc(100% - 4rem);">
+                                <div id="properties-map" class="w-full h-full" style="min-height: 450px;"></div>
                                 
                                 <!-- Loading State -->
                                 <div id="map-loading" class="absolute inset-0 bg-gray-100 flex items-center justify-center">
@@ -168,159 +167,224 @@
                             </div>
                         </div>
                     </div>
-                    
-                </div>
-            </div>
-        </section>
 
-        <!-- Enhanced Google Maps Script -->
-        <script>
-            let map;
-            let markers = [];
-            let mapLoaded = false;
+                    </div>
+                    </div>
+                    </section>
 
-            function initMap() {
-                // Hide loading state
-                const loadingElement = document.getElementById('map-loading');
-                if (loadingElement) {
-                    loadingElement.style.display = 'none';
-                }
+                    <!-- Enhanced Google Maps Script -->
+                    <script>
+                        let map;
+                        let markers = [];
+                        let infoWindows = [];
+                        let mapLoaded = false;
 
-                // Coordenadas del centro de España como fallback
-                const spainCenter = { lat: 40.4637, lng: -3.7492 };
-                
-                // Obtener coordenadas de la propiedad destacada
-                @if($featuredProperty->address && $featuredProperty->address->latitude && $featuredProperty->address->longitude)
-                    const featuredPropertyCoords = {
-                        lat: {{ $featuredProperty->address->latitude }},
-                        lng: {{ $featuredProperty->address->longitude }}
-                    };
-                @else
-                    const featuredPropertyCoords = spainCenter;
-                @endif
+                        function initMap() {
+                            console.log('Iniciando mapa...');
+                            
+                            const loadingElement = document.getElementById('map-loading');
+                            if (loadingElement) {
+                                loadingElement.style.display = 'none';
+                            }
 
-                // Inicializar el mapa con estilo personalizado
-                map = new google.maps.Map(document.getElementById("properties-map"), {
-                    zoom: 13,
-                    center: featuredPropertyCoords,
-                    mapTypeControl: false,
-                    streetViewControl: false,
-                    fullscreenControl: false,
-                    styles: [
-                        {
-                            "featureType": "poi",
-                            "elementType": "labels",
-                            "stylers": [{ "visibility": "off" }]
-                        },
-                        {
-                            "featureType": "transit",
-                            "elementType": "labels",
-                            "stylers": [{ "visibility": "off" }]
-                        },
-                        {
-                            "featureType": "road",
-                            "elementType": "labels.icon",
-                            "stylers": [{ "visibility": "off" }]
-                        }
-                    ]
-                });
+                            const mapContainer = document.getElementById('properties-map');
+                            if (!mapContainer) {
+                                console.error('No se encontró el contenedor del mapa');
+                                return;
+                            }
 
-                // Añadir marcador de la propiedad destacada
-                @if($featuredProperty->address && $featuredProperty->address->latitude && $featuredProperty->address->longitude)
-                    const featuredMarker = new google.maps.Marker({
-                        position: featuredPropertyCoords,
-                        map: map,
-                        title: "{{ addslashes($featuredProperty->title) }}",
-                        icon: {
-                            path: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z",
-                            fillColor: '#EF4444',
-                            fillOpacity: 1,
-                            strokeColor: '#FFFFFF',
-                            strokeWeight: 2,
-                            scale: 1.5,
-                            anchor: new google.maps.Point(12, 24)
-                        },
-                        animation: google.maps.Animation.DROP
-                    });
+                            // Centro de España para vista general
+                            const spainCenter = { lat: 40.4637, lng: -3.7492 };
+                            
+                            // Inicializar el mapa con zoom apropiado para España
+                            map = new google.maps.Map(mapContainer, {
+                                zoom: 6,
+                                center: spainCenter,
+                                mapTypeControl: false,
+                                streetViewControl: false,
+                                fullscreenControl: true,
+                                styles: [
+                                    {
+                                        "featureType": "poi",
+                                        "elementType": "labels",
+                                        "stylers": [{ "visibility": "off" }]
+                                    },
+                                    {
+                                        "featureType": "transit",
+                                        "elementType": "labels",
+                                        "stylers": [{ "visibility": "off" }]
+                                    }
+                                ]
+                            });
 
-                    // Info window mejorada
-                    const infoWindow = new google.maps.InfoWindow({
-                        content: `
-                            <div class="p-3 max-w-xs">
-                                <div class="flex items-start justify-between mb-2">
-                                    <h3 class="font-bold text-base text-gray-900 leading-tight">{{ addslashes($featuredProperty->title) }}</h3>
-                                    <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full ml-2 flex-shrink-0">Destacada</span>
-                                </div>
-                                <p class="text-sm text-gray-600 mb-2 flex items-center">
-                                    <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                                    </svg>
-                                    {{ $featuredProperty->address->city ?? '' }}, {{ $featuredProperty->address->province ?? '' }}
-                                </p>
-                                <div class="border-t pt-2">
-                                    <p class="text-lg font-bold text-blue-600 mb-2">
-                                        €{{ number_format($featuredProperty->price) }}
-                                    </p>
-                                    <div class="flex text-xs text-gray-500 space-x-3">
-                                        <span>{{ $featuredProperty->built_area }}m²</span>
-                                        <span>{{ $featuredProperty->rooms }} hab.</span>
-                                        <span>{{ $featuredProperty->bathrooms }} baños</span>
+                            console.log('Mapa inicializado');
+
+                            // Array para bounds (ajustar vista del mapa)
+                            const bounds = new google.maps.LatLngBounds();
+                            let hasValidCoordinates = false;
+
+                            // URL base para las propiedades
+                            const baseUrl = "{{ route('prop.show', ['locale' => app()->getLocale(), 'slug' => 'SLUG_PLACEHOLDER']) }}";
+
+                            // Array de propiedades con coordenadas válidas
+                            const propertiesData = [
+                                @foreach($properties as $property)
+                                    @if($property->address && $property->address->latitude && $property->address->longitude)
+                                    {
+                                        id: {{ $property->id }},
+                                        lat: parseFloat({{ $property->address->latitude }}),
+                                        lng: parseFloat({{ $property->address->longitude }}),
+                                        title: {!! json_encode($property->title) !!},
+                                        price: "{{ number_format($property->price, 0, ',', '.') }} €",
+                                        city: "{{ $property->address->city ?? '' }}",
+                                        province: "{{ $property->address->province ?? '' }}",
+                                        rooms: {{ $property->rooms ?? 0 }},
+                                        bathrooms: {{ $property->bathrooms ?? 0 }},
+                                        area: {{ $property->main_built_area ?? 0 }},
+                                        slug: "{{ $property->slug }}",
+                                        isFeatured: {{ $property->is_featured ? 'true' : 'false' }},
+                                        @if($property->images && $property->images->first())
+                                        image: "{{ str_starts_with($property->images->first()->image_path, 'http') ? $property->images->first()->image_path : asset('storage/' . $property->images->first()->image_path) }}"
+                                        @else
+                                        image: "{{ asset('images/no-image.jpg') }}"
+                                        @endif
+                                    },
+                                    @endif
+                                @endforeach
+                            ];
+
+                            console.log(`Total propiedades con coordenadas: ${propertiesData.length}`);
+
+                            // Crear marcadores para cada propiedad
+                            propertiesData.forEach((property, index) => {
+                                if (!property.lat || !property.lng || isNaN(property.lat) || isNaN(property.lng)) {
+                                    console.warn(`Propiedad ${property.id} tiene coordenadas inválidas`);
+                                    return;
+                                }
+
+                                const position = { lat: property.lat, lng: property.lng };
+                                
+                                // Añadir al bounds
+                                bounds.extend(position);
+                                hasValidCoordinates = true;
+
+                                // Crear marcador con icono personalizado
+                                const marker = new google.maps.Marker({
+                                    position: position,
+                                    map: map,
+                                    title: property.title,
+                                    icon: {
+                                        path: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z",
+                                        fillColor: property.isFeatured ? '#EF4444' : '#3B82F6',
+                                        fillOpacity: 1,
+                                        strokeColor: '#FFFFFF',
+                                        strokeWeight: 2,
+                                        scale: 1.3,
+                                        anchor: new google.maps.Point(12, 24)
+                                    },
+                                    animation: google.maps.Animation.DROP
+                                });
+
+                                // Construir URL correctamente
+                                const propertyUrl = baseUrl.replace('SLUG_PLACEHOLDER', property.slug);
+
+                                // Crear contenido del InfoWindow
+                                const infoWindowContent = `
+                                    <div class="p-3 max-w-sm">
+                                        <div class="flex items-start justify-between mb-2">
+                                            <h3 class="font-bold text-sm text-gray-900 leading-tight pr-2">${property.title}</h3>
+                                            ${property.isFeatured ? '<span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full flex-shrink-0">Destacada</span>' : ''}
+                                        </div>
+                                        
+                                        <img src="${property.image}" alt="${property.title}" class="w-full h-32 object-cover rounded mb-2" onerror="this.src='{{ asset('images/no-image.jpg') }}';" />
+                                        
+                                        <p class="text-sm text-gray-600 mb-2 flex items-center">
+                                            <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                                            </svg>
+                                            ${property.city}${property.province ? ', ' + property.province : ''}
+                                        </p>
+                                        
+                                        <div class="text-xs text-gray-500 mb-2 flex items-center gap-3">
+                                            ${property.rooms > 0 ? `<span>${property.rooms} hab</span>` : ''}
+                                            ${property.bathrooms > 0 ? `<span>${property.bathrooms} baños</span>` : ''}
+                                            ${property.area > 0 ? `<span>${property.area}m²</span>` : ''}
+                                        </div>
+                                        
+                                        <p class="text-lg font-bold text-blue-600 mb-2">${property.price}</p>
+                                        
+                                        <a href="${propertyUrl}" 
+                                        class="block w-full text-center bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 transition-colors">
+                                            Ver detalles
+                                        </a>
                                     </div>
-                                </div>
-                            </div>
-                        `
-                    });
+                                `;
 
-                    featuredMarker.addListener('click', () => {
-                        infoWindow.open(map, featuredMarker);
-                    });
-                    
-                    // Auto-open info window after a delay
-                    setTimeout(() => {
-                        infoWindow.open(map, featuredMarker);
-                    }, 1500);
-                @endif
+                                const infoWindow = new google.maps.InfoWindow({
+                                    content: infoWindowContent
+                                });
 
-                mapLoaded = true;
-            }
+                                // Click en marcador para abrir info
+                                marker.addListener('click', () => {
+                                    // Cerrar todos los info windows abiertos
+                                    infoWindows.forEach(iw => iw.close());
+                                    infoWindow.open(map, marker);
+                                });
 
-            // Error handling for map loading
-            function handleMapError() {
-                const mapContainer = document.getElementById('properties-map');
-                const loadingElement = document.getElementById('map-loading');
-                
-                if (mapContainer && loadingElement) {
-                    loadingElement.innerHTML = `
-                        <div class="text-center">
-                            <svg class="w-12 h-12 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <p class="text-gray-500 text-sm">Error al cargar el mapa</p>
-                            <button onclick="location.reload()" class="mt-2 text-blue-600 text-sm hover:underline">
-                                Intentar de nuevo
-                            </button>
-                        </div>
-                    `;
-                }
-            }
+                                markers.push(marker);
+                                infoWindows.push(infoWindow);
+                            });
 
-            // Initialize map when page loads
-            window.addEventListener('load', function() {
-                if (typeof google !== 'undefined' && google.maps) {
-                    initMap();
-                } else {
-                    setTimeout(() => {
-                        if (!mapLoaded) handleMapError();
-                    }, 5000);
-                }
-            });
-        </script>
+                            console.log(`Marcadores creados: ${markers.length}`);
 
-        <!-- Google Maps API with error handling -->
-        <script async defer 
-            src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY_AQUI&callback=initMap&loading=async"
-            onerror="handleMapError()">
-        </script>
+                            // Ajustar vista para mostrar todos los marcadores
+                            if (hasValidCoordinates && propertiesData.length > 0) {
+                                map.fitBounds(bounds);
+                                
+                                // Si solo hay una propiedad, hacer zoom más cercano
+                                if (propertiesData.length === 1) {
+                                    google.maps.event.addListenerOnce(map, 'bounds_changed', function() {
+                                        map.setZoom(13);
+                                    });
+                                }
+                            } else {
+                                console.warn('No hay propiedades con coordenadas válidas');
+                            }
+
+                            mapLoaded = true;
+                            console.log('Mapa cargado completamente');
+                        }
+
+                        function handleMapError() {
+                            console.error('Error al cargar Google Maps');
+                            const loadingElement = document.getElementById('map-loading');
+                            if (loadingElement) {
+                                loadingElement.innerHTML = `
+                                    <div class="text-center text-red-600">
+                                        <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                        <p class="text-sm">Error al cargar el mapa</p>
+                                        <p class="text-xs text-gray-500 mt-1">Verifique la API Key de Google Maps</p>
+                                    </div>
+                                `;
+                            }
+                        }
+
+                        // Timeout de seguridad para detectar fallo de carga
+                        setTimeout(() => {
+                            if (!mapLoaded) {
+                                console.warn('Timeout: el mapa no se ha cargado en 10 segundos');
+                                handleMapError();
+                            }
+                        }, 10000);
+                    </script>
+
+                    <!-- Google Maps API -->
+                    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.key') }}&callback=initMap&loading=async" 
+                            async defer 
+                            onerror="handleMapError()">
+                    </script>
     @endif
 
     <!-- Properties Grid -->

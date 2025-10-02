@@ -76,7 +76,7 @@
                                 @foreach($operations as $operation)
                                     @if($operation->id <= 3)
                                         @if($operation->name == 'Viviendas de Lujo')
-                                            <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'min_price' => 1000000]) }}"
+                                            <a href="{{ route('properties.index', ['locale' => app()->getLocale(), 'operation_id' => $operation->id]) }}"
                                             class="james-dropdown-item">
                                                 {{ $operation->name }}
                                             </a>

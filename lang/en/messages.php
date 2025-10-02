@@ -654,5 +654,146 @@ return [
     'avanzados' => 'Advanced',
     'basicos' => 'Basic',
     
+        // ===== LEGAL NOTICE =====
+    'legal_notice' => 'Legal Notice',
+    'legal_notice_description' => 'Legal information and website terms of use',
+
+    // ===================================
+// AGREGAR AL ARCHIVO: lang/en/messages.php
+// ===================================
+
+    // ===== LEGAL NOTICE =====
+    'legal_notice' => 'Legal Notice',
+    'legal_notice_description' => 'Legal information and website terms of use',
+    'last_update' => 'Last update',
+    'legal_update_date' => '09/04/2025',
+    
+    // Company data
+    'company_name' => 'Company name',
+    'company_cif' => 'Tax ID',
+    'company_address' => 'Address',
+    'company_phone' => 'Phone',
+    'company_email' => 'Email',
+    'company_registry' => 'Commercial Registry',
+    'company_registry_details' => 'Registered in the Valencia Commercial Registry, Electronic folio, registration 1, Sheet V-223974.',
+    
+    // Section 1: Identification
+    'legal_section_1_title' => '1. Website Owner Identification',
+    'legal_section_1_intro' => 'In compliance with Law 34/2002, of July 11, on Information Society Services and Electronic Commerce (LSSICE), we inform you that this website https://www.rbconforthouse.com/ is owned by:',
+    
+    // Section 2: Terms of use
+    'legal_section_2_title' => '2. Terms of Use',
+    'legal_section_2_p1' => 'Access to and use of the website https://www.rbconforthouse.com/ grants the user status and implies full and unreserved acceptance of each and every provision included in this Legal Notice, which may be subject to modifications.',
+    'legal_section_2_p2' => 'The user agrees to make proper use of the website and its contents, respecting current laws, good faith, public order, traffic customs and this Legal Notice. The use of the website for unlawful or harmful purposes for Conforthouse Living S.L. or any third party is prohibited, which in any way may cause damage or prevent the normal functioning of the website.',
+    
+    // Section 3: Intellectual property
+    'legal_section_3_title' => '3. Intellectual and Industrial Property',
+    'legal_section_3_p1' => 'All website contents, including texts, graphics, images, design, source code, and any other elements are the property of Conforthouse Living S.L., or, where applicable, of third parties who have authorized their use. They are protected by intellectual and industrial property rights.',
+    'legal_section_3_p2' => 'Reproduction, distribution, public communication, transformation or any other form of exploitation is prohibited without prior written consent from Conforthouse Living S.L.',
+    
+    // Section 4: Liability
+    'legal_section_4_title' => '4. Liability',
+    'legal_section_4_text' => 'Conforthouse Living S.L. is not responsible for damages of any nature that may result from the use of the website, including, but not limited to, errors or omissions in content, lack of portal availability, or transmission of viruses or malicious or harmful programs in content, despite having adopted all necessary technological measures to avoid it.',
+    
+    // Section 5: Third-party links
+    'legal_section_5_title' => '5. Third-Party Links',
+    'legal_section_5_text' => 'If the website contains links or hyperlinks to other Internet sites, Conforthouse Living S.L. will not exercise any control over such sites and contents. In no case will it assume any responsibility for the contents of any link belonging to an external website, nor will it guarantee the technical availability, quality, reliability, accuracy, breadth, truthfulness, validity or constitutionality of any material or information contained in such hyperlinks or other Internet sites.',
+    
+    // Section 6: Legislation
+    'legal_section_6_title' => '6. Applicable Law and Jurisdiction',
+    'legal_section_6_text' => 'The relationship between Conforthouse Living S.L. and the user will be governed by current Spanish regulations. For the resolution of any dispute that may arise, both parties submit to the Courts and Tribunals of Valencia, Spain, expressly waiving any other jurisdiction that may correspond to them.',
+    
+    // Section 7: Contact
+    'legal_section_7_title' => '7. Contact',
+    'legal_section_7_intro' => 'For any questions or queries about this Legal Notice, you can contact us at:',
+
+
+    // ===================================
+// AGREGAR AL ARCHIVO: lang/en/messages.php
+// ===================================
+
+    // ===== PRIVACY POLICY =====
+    'privacy_policy' => 'Privacy Policy',
+    'privacy_description' => 'Information about the processing and protection of your personal data',
+    
+    // Introduction
+    'privacy_introduction' => 'Introduction',
+    'privacy_intro_text' => 'At Conforthouse Living S.L., we respect your privacy and are committed to protecting your personal data. This privacy policy will inform you about how we process your personal data when you visit our website and will inform you of your privacy rights.',
+    'privacy_last_updated' => 'Last updated: :date',
+    
+    // Data we collect
+    'data_we_collect' => 'Personal data we collect',
+    'personal_info' => 'Identification data',
+    'personal_info_details' => 'Name, surname, email address, telephone number.',
+    'property_preferences' => 'Property preferences',
+    'property_preferences_details' => 'Type of property of interest, preferred location, price range, specific needs.',
+    'usage_data' => 'Navigation data',
+    'usage_data_details' => 'IP address, browser type, pages visited, time spent, operating system.',
+    'cookies' => 'Cookies',
+    'cookies_details' => 'Information stored on your device when you visit our website.',
+    
+    // How we use data
+    'how_we_use_data' => 'Purpose of data processing',
+    'use_provide_service' => 'Manage and respond to your queries, information requests and communications.',
+    'use_improve_service' => 'Improve our services and user experience on our website.',
+    'use_personalize' => 'Provide information about real estate properties that match your preferences.',
+    'use_communication' => 'Send commercial communications about our services and properties, with express authorization.',
+    'use_legal' => 'Comply with legal obligations applicable to our activity.',
+    
+    // Data sharing
+    'data_sharing' => 'Recipients and data transfers',
+    'data_sharing_text' => 'Your personal data may be communicated to the following recipients:',
+    'service_providers' => 'Technology service providers',
+    'service_providers_details' => 'Companies that provide us with hosting, web maintenance and data analysis services.',
+    'legal_requirements' => 'Public administrations',
+    'legal_requirements_details' => 'When necessary due to legal obligation.',
+    'business_transfers' => 'Professional advisors',
+    'business_transfers_details' => 'Lawyers, auditors or consultants, when necessary for the provision of our services.',
+    
+    // Your rights
+    'your_rights' => 'Your data protection rights',
+    'your_rights_text' => 'As the owner of personal data, you have the right to exercise the following rights:',
+    'right_access' => 'Right of access: Obtain confirmation as to whether we are processing your personal data.',
+    'right_rectification' => 'Right of rectification: Request the correction of inaccurate or incomplete data.',
+    'right_erasure' => 'Right of erasure: Request the deletion of your data when they are no longer necessary.',
+    'right_restrict' => 'Right to restriction of processing: Request that the processing of your data be limited in certain circumstances.',
+    'right_object' => 'Right to object: Object to the processing of your data for reasons related to your particular situation.',
+    'right_data_portability' => 'Right to data portability: Receive your data in a structured, commonly used format.',
+    
+    // Data security
+    'data_security' => 'Security measures',
+    'data_security_text' => 'Conforthouse Living S.L. has adopted the necessary technical and organizational measures to guarantee the security of your personal data and prevent their alteration, loss, processing or unauthorized access.',
+    
+    // International transfers
+    'international_transfers' => 'International transfers',
+    'international_transfers_text' => 'We do not make international transfers of personal data outside the European Economic Area. If necessary, appropriate safeguards would be established in accordance with the GDPR.',
+    
+    // Children's privacy
+    'children_privacy' => 'Children\'s privacy',
+    'children_privacy_text' => 'Our services are not directed at individuals under 18 years of age. We do not knowingly collect personal information from minors. If you are a parent or guardian and you are aware that your child has provided us with personal data, please contact us.',
+    
+    // Changes to policy
+    'changes_policy' => 'Changes to privacy policy',
+    'changes_policy_text' => 'Conforthouse Living S.L. reserves the right to modify this privacy policy to adapt it to legislative, jurisprudential changes or in our business practices. We recommend that you review this page periodically.',
+    
+    // Contact
+    'contact_us' => 'Contact',
+    'contact_privacy_text' => 'For any questions or queries about this Privacy Policy or about the processing of your personal data, you can contact us or file a complaint with the Spanish Data Protection Agency.',
+
+
+    'message_sent_success' => 'Message sent!',
+    'message_sent_error' => 'Error sending message. Please try again.',
+    'confirmation_email_subject' => 'We have received your inquiry',
+    // Confirmation email
+    'confirmation_email_subject' => 'We have received your inquiry',
+    'confirmation_email_title' => 'Thank you for contacting us!',
+    'confirmation_email_greeting' => 'Hello',
+    'confirmation_email_body' => 'We have received your inquiry and will contact you as soon as possible.',
+    'confirmation_email_summary' => 'Summary of your inquiry',
+    'confirmation_email_response_time' => 'Our team will review your inquiry and respond soon.',
+    'confirmation_email_phone_contact' => 'We will contact you at',
+    'confirmation_email_thanks' => 'Thank you for your trust,',
+    'aviso_no_responder' => 'Please do not reply to this email. It is an automated message.',
+    
 
 ];

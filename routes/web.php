@@ -61,6 +61,10 @@ Route::group([
     // Página Privacy
         Route::get('/privacy', [PropertyController::class, 'privacy'])->name('privacy');
 
+    // Página Aviso Legal
+    Route::get('/legal', [PropertyController::class, 'legal'])->name('legal');
+
+
     // Rutas para consultas unificadas con middleware de throttling
     Route::post('/consultation', [App\Http\Controllers\ConsultationController::class, 'store'])
          ->name('consultation.store')

@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         $locale = app()->getLocale();
         
-        // Cargar propiedades con eager loading optimizado
+        // Cargar propiedades con eager loading optimizado - LIMITADO A 10
         $properties = Property::with([
                 'images', 
                 'propertyType',
@@ -38,10 +38,8 @@ class HomeController extends Controller
             ])
             ->where('destacado', false)
             ->orderBy('id', 'desc')
-            ->take(10)
+            ->limit(5)  // LÍMITE DE 10 PROPIEDADES
             ->get();
-
-            
 
         // Cargar propiedad destacada con eager loading
         $featuredProperty = Property::with([
@@ -86,7 +84,6 @@ class HomeController extends Controller
         if ($featuredProperty) {
             $this->applyTranslationsToSingle($featuredProperty, $locale);
         }
-        //dd($featuredProperty);
 
         return view('home', compact('properties', 'featuredProperty'));
     }
@@ -106,49 +103,39 @@ class HomeController extends Controller
             if ($translation) {
                 $entity->title = $translation->title ?? $entity->title;
                 $entity->description = $translation->description ?? $entity->description;
-                //$entity->meta_description = $translation->meta_description ?? $entity->meta_description;
-                //$entity->slug = $translation->slug ?? $entity->slug;
             }
-        }
 
-        // Para relaciones (tipo, operación, estado)
-        if ($entity->relationLoaded('propertyType') && $entity->propertyType) {
-            $this->translateRelationFromLoaded($entity->propertyType, $locale, 'name');
-        }
-        if ($entity->relationLoaded('operation') && $entity->operation) {
-            $this->translateRelationFromLoaded($entity->operation, $locale, 'name');
-        }
-        if ($entity->relationLoaded('status') && $entity->status) {
-            $this->translateRelationFromLoaded($entity->status, $locale, 'name');
+            // Traducir relaciones si están cargadas
+            if ($entity->relationLoaded('propertyType') && $entity->propertyType) {
+                $typeTranslation = $entity->propertyType->translations->first();
+                if ($typeTranslation) {
+                    $entity->propertyType->name = $typeTranslation->name;
+                }
+            }
+
+            if ($entity->relationLoaded('operation') && $entity->operation) {
+                $opTranslation = $entity->operation->translations->first();
+                if ($opTranslation) {
+                    $entity->operation->name = $opTranslation->name;
+                }
+            }
+
+            if ($entity->relationLoaded('status') && $entity->status) {
+                $statusTranslation = $entity->status->translations->first();
+                if ($statusTranslation) {
+                    $entity->status->name = $statusTranslation->name;
+                }
+            }
         }
     }
 
     /**
-     * Aplica traducciones a una colección usando datos ya cargados
+     * Aplica traducciones a una colección de entidades
      */
     private function applyTranslationsToCollection($collection, $locale)
     {
-        if ($locale === 'es') {
-            return; // No necesita traducción
-        }
-
-        foreach ($collection as $item) {
-            $this->applyTranslationsToSingle($item, $locale);
-        }
-    }
-
-    /**
-     * Traduce una relación usando traducciones ya cargadas
-     */
-    private function translateRelationFromLoaded($model, $locale, $attribute)
-    {
-        if ($locale === 'es' || !$model->relationLoaded('translations')) {
-            return;
-        }
-
-        $translation = $model->translations->first();
-        if ($translation && isset($translation->$attribute)) {
-            $model->$attribute = $translation->$attribute;
+        foreach ($collection as $entity) {
+            $this->applyTranslationsToSingle($entity, $locale);
         }
     }
 }

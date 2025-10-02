@@ -1,136 +1,49 @@
 <?php
 
-
 return [
     /*
     |--------------------------------------------------------------------------
-    | Configuración API Inmovilla
-    |--------------------------------------------------------------------------
-    |
-    | Configuración para la integración con la API de Inmovilla.
-    | Credenciales y parámetros de conexión.
-    |
-    */
-
-    // Credenciales de acceso
-    'usuario' => env('INMOVILLA_USUARIO', '11855_244_ext'),
-    'password' => env('INMOVILLA_PASSWORD', 'd?%c7Q6ta'),
-    
-    // Configuración de idioma
-    'idioma' => env('INMOVILLA_IDIOMA', 1), // 1 = Español
-    
-    // Ruta del archivo API
-    'api_file_path' => env('INMOVILLA_API_FILE', storage_path('app/inmovilla/apiinmovilla.php')),
-    
-    /*
-    |--------------------------------------------------------------------------
-    | Rate Limiting
-    |--------------------------------------------------------------------------
-    |
-    | Configuración para el control de peticiones por minuto.
-    | API Inmovilla tiene límite de 70 peticiones/minuto con bloqueo de 10 min.
-    |
-    */
-    
-    'rate_limit' => [
-        'max_requests' => env('INMOVILLA_MAX_REQUESTS', 65), // Margen de seguridad
-        'window_seconds' => env('INMOVILLA_WINDOW_SECONDS', 60),
-        'retry_after_block' => env('INMOVILLA_RETRY_AFTER_BLOCK', 600), // 10 minutos
-    ],
-    
-    /*
-    |--------------------------------------------------------------------------
-    | Configuración de Sincronización
-    |--------------------------------------------------------------------------
-    |
-    | Parámetros para la sincronización de propiedades.
-    |
-    */
-    
-    'sync' => [
-        'batch_size' => env('INMOVILLA_BATCH_SIZE', 50), // Propiedades por lote
-        'max_featured' => env('INMOVILLA_MAX_FEATURED', 30), // Destacadas máximo
-        'max_available_codes' => env('INMOVILLA_MAX_AVAILABLE_CODES', 5000),
-        'sync_interval_hours' => env('INMOVILLA_SYNC_INTERVAL_HOURS', 24), // Sincronización completa cada 24h
-        'delta_sync_minutes' => env('INMOVILLA_DELTA_SYNC_MINUTES', 60), // Sincronización delta cada hora
-        'auto_translate' => env('INMOVILLA_AUTO_TRANSLATE', true), // Traducir automáticamente
-        'translation_languages' => ['en', 'fr', 'de'], // Idiomas a traducir
-    ],
-    
-    /*
-    |--------------------------------------------------------------------------
-    | Validación y Testing
-    |--------------------------------------------------------------------------
-    |
-    | Configuración para pruebas y validaciones de la API.
-    |
-    */
-    
-    'testing' => [
-        'enable_mock_data' => env('INMOVILLA_ENABLE_MOCK', false), // Solo para desarrollo
-        'mock_property_count' => env('INMOVILLA_MOCK_COUNT', 10),
-        'connection_timeout' => env('INMOVILLA_TIMEOUT', 30), // segundos
-        'retry_attempts' => env('INMOVILLA_RETRY_ATTEMPTS', 3),
-    ],
-    
-    /*
-    |--------------------------------------------------------------------------
-    | Mapeo de Operaciones
-    |--------------------------------------------------------------------------
-    |
-    | Mapeo entre keyacci de Inmovilla y operations de Laravel.
-    |
-    */
-    
-    'operation_mapping' => [
-        1 => 'Venta',        // keyacci 1 = Venta
-        2 => 'Alquiler',     // keyacci 2 = Alquiler  
-        3 => 'Traspaso',     // keyacci 3 = Traspaso
-        4 => 'Leasing',      // keyacci 4 = Leasing
-        9 => 'Alquiler',     // keyacci 9 = Alquiler Vacacional → Alquiler
-        15 => 'Alquiler',    // keyacci 15 = Alquiler Opción Compra → Alquiler
-    ],
-    
-    /*
-    |--------------------------------------------------------------------------
-    | Mapeo de Tipos de Propiedad
+    | Mapeo de Tipos de Propiedad Inmovilla → Laravel
     |--------------------------------------------------------------------------
     |
     | Mapeo entre key_tipo de Inmovilla y property_types de Laravel.
+    | SOLO 3 TIPOS: Casa (mostrado como Villa), apartamento, Ático
     |
     */
     
     'property_type_mapping' => [
-        // Apartamentos y pisos
+        // APARTAMENTOS → apartamento
         2799 => 'apartamento',    // Apartamento
-        2899 => 'Ático',           // Ático
-        2999 => 'apartamento',    // Duplex → apartamento
-        3099 => 'apartamento',    // Estudio → apartamento
-        3199 => 'apartamento',    // Habitación → apartamento
-        3299 => 'apartamento',    // Loft → apartamento
-        3399 => 'apartamento',    // Piso → apartamento
-        3499 => 'apartamento',    // Planta baja → apartamento
-        3599 => 'apartamento',    // Triplex → apartamento
+        2999 => 'apartamento',    // Duplex
+        3099 => 'apartamento',    // Estudio
+        3199 => 'apartamento',    // Habitación
+        3299 => 'apartamento',    // Loft
+        3399 => 'apartamento',    // Piso
+        3499 => 'apartamento',    // Planta baja
+        3599 => 'apartamento',    // Triplex
         
-        // villas
-        399  => 'villa',            // villa
-        499  => 'villa',            // Chalet → villa
-        199  => 'Adosado',         // Adosado
-        299  => 'villa',            // Bungalow → villa
-        999  => 'villa',            // Pareado → villa
-        4999 => 'villa',            // Villa → villa
-        599  => 'villa',            // Cortijo → villa
-        899  => 'villa',            // Masía → villa
+        // ÁTICOS → Ático
+        2899 => 'Ático',          // Ático
         
-        // Comerciales y otros
-        1299 => 'villa',            // Local comercial → villa
-        1399 => 'villa',            // Oficina → villa
-        2399 => 'villa',            // Garaje → villa
-        2599 => 'villa',            // Parking → villa
-        2699 => 'villa',            // Trastero → villa
-        3699 => 'villa',            // Finca rústica → villa
-        3899 => 'villa',            // Solar → villa
-        4199 => 'villa',            // Terreno urbano → villa
+        // VILLAS/CASAS → Casa (se muestra como "Villa" en español en frontend)
+        399  => 'Casa',           // Casa
+        499  => 'Casa',           // Chalet
+        199  => 'Casa',           // Adosado
+        299  => 'Casa',           // Bungalow
+        999  => 'Casa',           // Pareado
+        4999 => 'Casa',           // Villa
+        599  => 'Casa',           // Cortijo
+        899  => 'Casa',           // Masía
+        
+        // COMERCIALES Y TERRENOS → Casa
+        1299 => 'Casa',           // Local comercial
+        1399 => 'Casa',           // Oficina
+        2399 => 'Casa',           // Garaje
+        2599 => 'Casa',           // Parking
+        2699 => 'Casa',           // Trastero
+        3699 => 'Casa',           // Finca rústica
+        3899 => 'Casa',           // Solar
+        4199 => 'Casa',           // Terreno urbano
     ],
     
     /*
@@ -139,22 +52,40 @@ return [
     |--------------------------------------------------------------------------
     |
     | Mapeo entre conservacion de Inmovilla y statuses de Laravel.
+    | SOLO 2 ESTADOS: Disponible, Reservado
     |
     */
     
     'conservation_mapping' => [
-        5   => 'Disponible',    // Para reformar → Disponible
-        10  => 'Disponible',    // De origen → Disponible
-        15  => 'Disponible',    // Reformar parcialmente → Disponible
-        20  => 'Disponible',    // Entrar a vivir → Disponible
-        30  => 'Disponible',    // Buen estado → Disponible
-        40  => 'Disponible',    // Semireformado → Disponible
-        50  => 'Disponible',    // Reformado → Disponible
-        60  => 'Disponible',    // Seminuevo → Disponible
-        70  => 'Disponible',    // Nuevo → Disponible
-        80  => 'Disponible',    // Obra nueva → Disponible
-        90  => 'Reservado',     // En construcción → Reservado
-        100 => 'Reservado',     // En proyecto → Reservado
+        5   => 'Disponible',
+        10  => 'Disponible',
+        15  => 'Disponible',
+        20  => 'Disponible',
+        30  => 'Disponible',
+        40  => 'Disponible',
+        50  => 'Disponible',
+        60  => 'Disponible',
+        70  => 'Disponible',
+        80  => 'Disponible',
+        90  => 'Reservado',
+        100 => 'Reservado',
+    ],
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Mapeo de Operaciones
+    |--------------------------------------------------------------------------
+    |
+    | Mapeo entre keyacci de Inmovilla y operations de Laravel.
+    | SOLO 3 OPERACIONES: Venta, Alquiler, Viviendas de Lujo
+    |
+    */
+    
+    'operation_mapping' => [
+        1 => 'Venta',
+        2 => 'Alquiler',
+        3 => 'Venta',      // Traspaso → Venta
+        4 => 'Alquiler',   // Leasing → Alquiler
     ],
     
     /*
@@ -216,23 +147,59 @@ return [
             'habitaciones',
             'banyos',
         ],
-        'max_price' => 50000000, // 50 millones máximo
-        'min_price' => 1000,     // 1000 euros mínimo
-        'max_area' => 10000,     // 10,000 m² máximo
+        'max_price' => 50000000,
+        'min_price' => 1000,
+        'max_area' => 10000,
+    ],
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Configuración API Inmovilla
+    |--------------------------------------------------------------------------
+    */
+
+    'usuario' => env('INMOVILLA_USUARIO', '11855_244_ext'),
+    'password' => env('INMOVILLA_PASSWORD', 'd?%c7Q6ta'),
+    'idioma' => env('INMOVILLA_IDIOMA', 1),
+    'api_file_path' => env('INMOVILLA_API_FILE', storage_path('app/inmovilla/apiinmovilla.php')),
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Rate Limiting
+    |--------------------------------------------------------------------------
+    */
+    
+    'rate_limit' => [
+        'max_requests' => env('INMOVILLA_MAX_REQUESTS', 65),
+        'window_seconds' => env('INMOVILLA_WINDOW_SECONDS', 60),
+        'retry_after_block' => env('INMOVILLA_RETRY_AFTER_BLOCK', 600),
+    ],
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Configuración de Sincronización
+    |--------------------------------------------------------------------------
+    */
+    
+    'sync' => [
+        'batch_size' => env('INMOVILLA_BATCH_SIZE', 50),
+        'max_featured' => env('INMOVILLA_MAX_FEATURED', 30),
+        'max_available_codes' => env('INMOVILLA_MAX_AVAILABLE_CODES', 5000),
+        'sync_interval_hours' => env('INMOVILLA_SYNC_INTERVAL_HOURS', 24),
+        'delta_sync_minutes' => env('INMOVILLA_DELTA_SYNC_MINUTES', 60),
+        'auto_translate' => env('INMOVILLA_AUTO_TRANSLATE', true),
+        'translation_languages' => ['en', 'fr', 'de'],
     ],
     
     /*
     |--------------------------------------------------------------------------
     | Configuración de Logging
     |--------------------------------------------------------------------------
-    |
-    | Configuración específica para logs de Inmovilla.
-    |
     */
     
     'logging' => [
         'enabled' => env('INMOVILLA_LOGGING_ENABLED', true),
-        'level' => env('INMOVILLA_LOG_LEVEL', 'info'), // debug, info, warning, error
+        'level' => env('INMOVILLA_LOG_LEVEL', 'info'),
         'log_api_responses' => env('INMOVILLA_LOG_API_RESPONSES', false),
         'log_failed_requests' => env('INMOVILLA_LOG_FAILED_REQUESTS', true),
     ],
@@ -241,13 +208,10 @@ return [
     |--------------------------------------------------------------------------
     | URLs y Endpoints
     |--------------------------------------------------------------------------
-    |
-    | Configuración de URLs si fuera necesario para futuras extensiones.
-    |
     */
     
     'urls' => [
-        'base_url' => env('INMOVILLA_BASE_URL', null), // Por si cambian a REST API
+        'base_url' => env('INMOVILLA_BASE_URL', null),
         'api_version' => env('INMOVILLA_API_VERSION', 'v1'),
         'timeout' => env('INMOVILLA_REQUEST_TIMEOUT', 30),
     ],

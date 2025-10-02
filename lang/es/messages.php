@@ -74,7 +74,7 @@ return [
     'view_details' => 'Ver Detalles',
     'premium_services' => 'Servicios Premium',
     'services_description' => 'Servicios inmobiliarios profesionales adaptados a propiedades de lujo. Nuestro equipo experto ofrece soluciones integrales para compradores, vendedores e inversores.',
-    'property_valuation' => 'valoración de Propiedades',
+    'property_valuation' => 'Valoración de Propiedades',
     'property_valuation_desc' => 'Análisis de mercado experto y valoración precisa de propiedades',
     'investment_consulting' => 'Consultoría de Inversión',
     'investment_consulting_desc' => 'Asesoramiento estratégico para inversiones inmobiliarias de lujo',
@@ -159,7 +159,7 @@ return [
     'bath' => 'baños',
 
     // ===== SERVICIOS =====
-    'serv_valoracion' => 'valoración',
+    'serv_valoracion' => 'Valoración',
     'serv_consultoria' => 'Consultoría',
     'serv_inversion' => 'Inversión',
     'consultoria_inmobiliaria' => 'Consultoría Inmobiliaria',
@@ -170,7 +170,7 @@ return [
     'investment_consulting_desc' => 'Análisis de mercado y oportunidades de inversión inmobiliaria',
     'real_estate_consulting' => 'Consultoría Inmobiliaria',
     'real_estate_consulting_desc' => 'Asesoramiento experto en transacciones inmobiliarias complejas',
-    'property_valuation' => 'valoración de Propiedades',
+    'property_valuation' => 'Valoración de Propiedades',
     'property_valuation_desc' => 'Valoraciones precisas realizadas por tasadores certificados',
     'interior_design' => 'Diseño de Interiores',
     'interior_design_desc' => 'Diseño y decoración de espacios con estilo y funcionalidad',
@@ -317,7 +317,7 @@ return [
     'consultation_type_sell' => 'Venta de propiedad',
     'consultation_type_rent' => 'Alquiler',
     'consultation_type_investment' => 'Inversión inmobiliaria',
-    'consultation_type_valuation' => 'valoración',
+    'consultation_type_valuation' => 'Valoración',
     'consultation_type_legal' => 'Consulta legal',
     'consultation_type_other' => 'Otro',
 
@@ -654,4 +654,145 @@ return [
 
     'avanzados' => 'Avanzados',
     'basicos' => 'Básicos',
+
+        // ===== AVISO LEGAL =====
+    'legal_notice' => 'Aviso Legal',
+    'legal_notice_description' => 'Información legal y condiciones de uso del sitio web',
+
+
+    // ===================================
+// AGREGAR AL ARCHIVO: lang/es/messages.php
+// ===================================
+
+    // ===== AVISO LEGAL =====
+    'legal_notice' => 'Aviso Legal',
+    'legal_notice_description' => 'Información legal y condiciones de uso del sitio web',
+    'last_update' => 'Última actualización',
+    'legal_update_date' => '04/09/2025',
+    
+    // Datos de la empresa
+    'company_name' => 'Nombre de la empresa',
+    'company_cif' => 'CIF/NIF',
+    'company_address' => 'Dirección',
+    'company_phone' => 'Teléfono',
+    'company_email' => 'Correo electrónico',
+    'company_registry' => 'Registro Mercantil',
+    'company_registry_details' => 'Inscrita en el Registro mercantil de Valencia, Folio electrónico, inscripción 1, Hoja V-223974.',
+    
+    // Sección 1: Identificación
+    'legal_section_1_title' => '1. Identificación del titular del sitio web',
+    'legal_section_1_intro' => 'En cumplimiento de lo establecido por la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSICE), se informa que el presente sitio web https://www.rbconforthouse.com/ es propiedad de:',
+    
+    // Sección 2: Condiciones de uso
+    'legal_section_2_title' => '2. Condiciones de uso',
+    'legal_section_2_p1' => 'El acceso y uso del sitio web https://www.rbconforthouse.com/ atribuye la condición de usuario e implica la aceptación plena y sin reservas de todas y cada una de las disposiciones incluidas en este Aviso Legal, que pueden sufrir modificaciones.',
+    'legal_section_2_p2' => 'El usuario se compromete a hacer un uso adecuado del sitio web y de sus contenidos, respetando las leyes vigentes, la buena fe, el orden público, los usos del tráfico y el presente Aviso Legal. Queda prohibido el uso del sitio web con fines ilícitos o lesivos para Conforthouse Living S.L. o cualquier tercero, que de cualquier forma puedan causar perjuicio o impedir el normal funcionamiento del sitio web.',
+    
+    // Sección 3: Propiedad intelectual
+    'legal_section_3_title' => '3. Propiedad intelectual e industrial',
+    'legal_section_3_p1' => 'Todos los contenidos del sitio web, incluyendo textos, gráficos, imágenes, diseño, código fuente, y cualesquiera otros elementos son propiedad de Conforthouse Living S.L., o, en su caso, de terceros que hayan autorizado su uso. Están protegidos por los derechos de propiedad intelectual e industrial.',
+    'legal_section_3_p2' => 'Queda prohibida la reproducción, distribución, comunicación pública, transformación o cualquier otra forma de explotación, sin el consentimiento previo y por escrito de Conforthouse Living S.L.',
+    
+    // Sección 4: Responsabilidad
+    'legal_section_4_title' => '4. Responsabilidad',
+    'legal_section_4_text' => 'Conforthouse Living S.L. no se responsabiliza de los daños y perjuicios de cualquier naturaleza que pudieran derivarse del uso del sitio web, incluyendo, a título enunciativo, errores u omisiones en los contenidos, falta de disponibilidad del portal, o la transmisión de virus o programas maliciosos o lesivos en los contenidos, a pesar de haber adoptado todas las medidas tecnológicas necesarias para evitarlo.',
+    
+    // Sección 5: Enlaces a terceros
+    'legal_section_5_title' => '5. Enlaces a terceros',
+    'legal_section_5_text' => 'En caso de que en el sitio web se dispusiesen enlaces o hipervínculos hacia otros sitios de Internet, Conforthouse Living S.L. no ejercerá ningún tipo de control sobre dichos sitios y contenidos. En ningún caso asumirá responsabilidad alguna por los contenidos de algún enlace perteneciente a un sitio web ajeno, ni garantizará la disponibilidad técnica, calidad, fiabilidad, exactitud, amplitud, veracidad, validez o constitucionalidad de cualquier material o información contenida en tales hipervínculos u otros sitios de Internet.',
+    
+    // Sección 6: Legislación
+    'legal_section_6_title' => '6. Legislación aplicable y jurisdicción',
+    'legal_section_6_text' => 'La relación entre Conforthouse Living S.L. y el usuario se regirá por la normativa española vigente. Para la resolución de cualquier controversia que pudiera surgir, ambas partes se someterán a los Juzgados y Tribunales de Valencia, España, renunciando expresamente a cualquier otro fuero que pudiera corresponderles.',
+    
+    // Sección 7: Contacto
+    'legal_section_7_title' => '7. Contacto',
+    'legal_section_7_intro' => 'Para cualquier duda o consulta sobre este Aviso Legal, puede ponerse en contacto con nosotros en:',
+
+
+    // ===================================
+// AGREGAR AL ARCHIVO: lang/es/messages.php
+// ===================================
+
+    // ===== POLÍTICA DE PRIVACIDAD =====
+    'privacy_policy' => 'Política de Privacidad',
+    'privacy_description' => 'Información sobre el tratamiento y protección de sus datos personales',
+    
+    // Introducción
+    'privacy_introduction' => 'Introducción',
+    'privacy_intro_text' => 'En Conforthouse Living S.L., respetamos su privacidad y nos comprometemos a proteger sus datos personales. Esta política de privacidad le informará sobre cómo tratamos sus datos personales cuando visita nuestro sitio web y le indicará sus derechos en materia de privacidad.',
+    'privacy_last_updated' => 'Última actualización: :date',
+    
+    // Datos que recopilamos
+    'data_we_collect' => 'Datos personales que recopilamos',
+    'personal_info' => 'Datos de identificación',
+    'personal_info_details' => 'Nombre, apellidos, dirección de correo electrónico, número de teléfono.',
+    'property_preferences' => 'Preferencias inmobiliarias',
+    'property_preferences_details' => 'Tipo de propiedad de interés, ubicación preferida, rango de precio, necesidades específicas.',
+    'usage_data' => 'Datos de navegación',
+    'usage_data_details' => 'Dirección IP, tipo de navegador, páginas visitadas, tiempo de permanencia, sistema operativo.',
+    'cookies' => 'Cookies',
+    'cookies_details' => 'Información almacenada en su dispositivo cuando visita nuestro sitio web.',
+    
+    // Cómo usamos los datos
+    'how_we_use_data' => 'Finalidad del tratamiento de datos',
+    'use_provide_service' => 'Gestionar y responder a sus consultas, solicitudes de información y comunicaciones.',
+    'use_improve_service' => 'Mejorar nuestros servicios y la experiencia de usuario en nuestro sitio web.',
+    'use_personalize' => 'Proporcionar información sobre propiedades inmobiliarias que se ajusten a sus preferencias.',
+    'use_communication' => 'Enviar comunicaciones comerciales sobre nuestros servicios y propiedades, previa autorización expresa.',
+    'use_legal' => 'Cumplir con las obligaciones legales aplicables a nuestra actividad.',
+    
+    // Compartir datos
+    'data_sharing' => 'Destinatarios y transferencias de datos',
+    'data_sharing_text' => 'Sus datos personales podrán ser comunicados a los siguientes destinatarios:',
+    'service_providers' => 'Proveedores de servicios tecnológicos',
+    'service_providers_details' => 'Empresas que nos prestan servicios de hosting, mantenimiento web y análisis de datos.',
+    'legal_requirements' => 'Administraciones públicas',
+    'legal_requirements_details' => 'Cuando sea necesario por obligación legal.',
+    'business_transfers' => 'Asesores profesionales',
+    'business_transfers_details' => 'Abogados, auditores o consultores, cuando sea necesario para la prestación de nuestros servicios.',
+    
+    // Sus derechos
+    'your_rights' => 'Sus derechos en materia de protección de datos',
+    'your_rights_text' => 'Como titular de los datos personales, usted tiene derecho a ejercitar los siguientes derechos:',
+    'right_access' => 'Derecho de acceso: Obtener confirmación sobre si estamos tratando sus datos personales.',
+    'right_rectification' => 'Derecho de rectificación: Solicitar la corrección de datos inexactos o incompletos.',
+    'right_erasure' => 'Derecho de supresión: Solicitar la eliminación de sus datos cuando ya no sean necesarios.',
+    'right_restrict' => 'Derecho de limitación del tratamiento: Solicitar que se limite el tratamiento de sus datos en determinadas circunstancias.',
+    'right_object' => 'Derecho de oposición: Oponerse al tratamiento de sus datos por motivos relacionados con su situación particular.',
+    'right_data_portability' => 'Derecho de portabilidad: Recibir sus datos en un formato estructurado y de uso común.',
+    
+    // Seguridad de datos
+    'data_security' => 'Medidas de seguridad',
+    'data_security_text' => 'Conforthouse Living S.L. ha adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad de sus datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado.',
+    
+    // Transferencias internacionales
+    'international_transfers' => 'Transferencias internacionales',
+    'international_transfers_text' => 'No realizamos transferencias internacionales de datos personales fuera del Espacio Económico Europeo. En caso de ser necesario, se establecerían las garantías adecuadas conforme al RGPD.',
+    
+    // Privacidad de menores
+    'children_privacy' => 'Privacidad de menores',
+    'children_privacy_text' => 'Nuestros servicios no están dirigidos a menores de 18 años. No recopilamos conscientemente información personal de menores. Si usted es padre o tutor y tiene conocimiento de que su hijo nos ha proporcionado datos personales, por favor contáctenos.',
+    
+    // Cambios en la política
+    'changes_policy' => 'Modificaciones de la política de privacidad',
+    'changes_policy_text' => 'Conforthouse Living S.L. se reserva el derecho a modificar esta política de privacidad para adaptarla a cambios legislativos, jurisprudenciales o en nuestras prácticas empresariales. Le recomendamos revisar periódicamente esta página.',
+    
+    // Contacto
+    'contact_us' => 'Contacto',
+    'contact_privacy_text' => 'Para cualquier duda o consulta sobre esta Política de Privacidad o sobre el tratamiento de sus datos personales, puede ponerse en contacto con nosotros o presentar una reclamación ante la Agencia Española de Protección de Datos.',
+
+    'message_sent_success' => 'Mensaje enviado!',
+    'message_sent_error' => 'Error al enviar el mensaje. Por favor, inténtalo nuevamente.',
+    'confirmation_email_subject' => 'Hemos recibido tu consulta',
+    // Email de confirmación
+    'confirmation_email_subject' => 'Hemos recibido tu consulta',
+    'confirmation_email_title' => '¡Gracias por contactarnos!',
+    'confirmation_email_greeting' => 'Hola',
+    'confirmation_email_body' => 'Hemos recibido tu consulta y nos pondremos en contacto contigo lo antes posible.',
+    'confirmation_email_summary' => 'Resumen de tu consulta',
+    'confirmation_email_response_time' => 'Nuestro equipo revisará tu consulta y te responderemos pronto.',
+    'confirmation_email_phone_contact' => 'Te contactaremos al teléfono',
+    'confirmation_email_thanks' => 'Gracias por tu confianza,',
+    'aviso_no_responder' => 'Este email fue enviado automáticamente. Por favor no respondas a este mensaje.'
 ];

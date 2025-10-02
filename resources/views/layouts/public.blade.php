@@ -232,6 +232,7 @@
     }
 }
     </script>
+    <script src="{{ asset('js/contact-forms.js') }}"></script>
 </body>
 
 </html>

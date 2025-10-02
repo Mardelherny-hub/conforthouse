@@ -52,7 +52,7 @@
                   x-transition:leave-start="opacity-100 transform translate-x-0"
                   x-transition:leave-end="opacity-0 transform translate-x-2"
                   class="ml-3 text-sm font-medium whitespace-nowrap">
-                ¿Dudas? <br> No dudes en llamarnos
+                ¿Dudas? <br> Nosotros te llamamos
             </span>
         </button>
     </div>
@@ -94,7 +94,12 @@
 
         <!-- Modal Body -->
         <div class="p-6">
-            <form id="contactForm" action="{{ route('consultation.store', ['locale' => app()->getLocale()]) }}" method="POST" class="space-y-4">
+            <form id="contactForm" 
+                action="{{ route('consultation.store', ['locale' => app()->getLocale()]) }}" 
+                method="POST" 
+                class="space-y-4"
+                data-contact-form>
+                
                 @csrf
                 
                 <!-- Name & Email Grid -->
@@ -241,52 +246,7 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Form submission
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const submitBtn = document.getElementById('submitBtn');
-    const btnText = document.getElementById('btnText');
-    const btnLoading = document.getElementById('btnLoading');
-    
-    // Show loading state
-    submitBtn.disabled = true;
-    btnText.classList.add('hidden');
-    btnLoading.classList.remove('hidden');
-    
-    // Create FormData object
-    const formData = new FormData(this);
-    
-    // Submit form
-    fetch(this.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('¡Mensaje enviado con éxito! Te contactaremos pronto.');
-            closeContactModal();
-            this.reset();
-        } else {
-            alert('Error al enviar el mensaje. Por favor, inténtalo de nuevo.');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error al enviar el mensaje. Por favor, inténtalo de nuevo.');
-    })
-    .finally(() => {
-        // Reset button state
-        submitBtn.disabled = false;
-        btnText.classList.remove('hidden');
-        btnLoading.classList.add('hidden');
-    });
-});
+
 </script>
 
 <!-- Back to Top Button -->

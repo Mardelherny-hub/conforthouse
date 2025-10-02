@@ -36,7 +36,11 @@
                         {{ __('messages.envianos_mensaje') }}
                     </h3>
                     
-                    <form action="{{-- r#oute('contact.submit') --}}#" method="POST" class="space-y-6">
+                    <form action="{{ route('home.contact.store', ['locale' => app()->getLocale()]) }}" 
+                        method="POST" 
+                        class="space-y-6"
+                        data-contact-form>
+                        
                         @csrf
                         
                         <!-- Name Fields -->
