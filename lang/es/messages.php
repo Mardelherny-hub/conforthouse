@@ -295,8 +295,7 @@ return [
     // ===== MODAL DE CONSULTAS FLOTANTE =====
     'floating_button_tooltip' => '¿Dudas?',
     'floating_button_modal_title' => '¿Tienes dudas?',
-    'floating_button_modal_subtitle' => 'Estamos aquí para ayudarte. Envíanos tu consulta y te responderemos pronto.',
-    'consultation_form_name' => 'Nombre completo',
+    'floating_button_modal_subtitle' => 'Gracias por contactar con nosotros. En este momento no podemos responderle, nuestro horario es de lunes a viernes de 10 a 14 y de 16 a 19.30h y sábado 10.30 a 13.30. Le responderemos lo antes posible. Gracias.',
     'consultation_form_name_placeholder' => 'Tu nombre completo',
     'consultation_form_email' => 'Correo electrónico',
     'consultation_form_email_placeholder' => 'tu@email.com',
@@ -382,7 +381,10 @@ return [
     'renting_properties' => 'Alquiler de Propiedades',
     'renting_properties_desc' => 'Servicios completos de alquiler tanto para propietarios como para inquilinos',
     'legal_advice' => 'Asesoría Legal',
-    'legal_advice_desc' => 'Consultoría legal especializada en transacciones inmobiliarias y documentación',
+    //'legal_advice_desc' => 'Consultoría legal especializada en transacciones inmobiliarias y documentación',
+
+    'legal_advice_desc' => "En Conforthouse Living, disponemos de servicio propio de gabinete jurídico, Abogados especializados en derecho inmobiliario, con quien se podrá comunicar en el momento que lo necesite mediante idioma español o inglés para cualquier consulta que necesite.<br><br>Además estará a su lado durante todo el proceso para supervisar la compraventa y que todo se realice correctamente y sobre las bases legales españolas, dándole toda la seguridad que usted se merece ante un proceso tan importante como este.<br><br>Nuestros abogados también tienen la posibilidad de asistirle para la adquisición del N.I.E., documento imprescindible para extranjeros en la compra de vivienda en España y cualquier trámite que pueda ser necesario para usted.<br><br>Su tranquilidad, es nuestra tranquilidad.",
+
     'testimonial_1' => 'Excelente servicio, encontraron exactamente lo que buscábamos. Muy profesionales.',
     'client_name_1' => 'María González',
     'client_title_1' => 'Empresaria',
@@ -453,11 +455,14 @@ return [
     'faq_q5' => '¿Atienden a clientes internacionales?',
     'faq_a5' => 'Por supuesto, tenemos experiencia atendiendo clientes de todo el mundo con servicios especializados.',
 
-    //Página About us
+    // Página About us
     'about_subtitle' => 'Conoce Nuestra Historia',
-    'about_title' => 'Pasión por Encontrar tu Lugar Ideal ',
-    'about_desc_1' => 'En Conforthouse Living, somos más que una agencia inmobiliaria; somos un equipo de profesionales apasionados por conectar a las personas con el hogar perfecto . Nuestra historia se construye sobre la confianza, la dedicación y un profundo conocimiento del mercado local.',
-    'about_desc_2' => 'Desde nuestros inicios, nos hemos comprometido a ofrecer un servicio excepcional, guiando a nuestros clientes en cada paso del proceso de compra, venta o alquiler de propiedades. Entendemos que cada cliente es único y nos esforzamos por superar sus expectativas con soluciones personalizadas y transparentes.',
+    'about_title' => 'Pasión por Encontrar tu Lugar Ideal',
+
+    // ✅ Texto actualizado según el cliente
+    'about_desc_1' => 'En ConfortHouse Living, nos enorgullecemos de ofrecer servicios inmobiliarios excepcionales, adaptados a las necesidades específicas de nuestros clientes. Con un profundo conocimiento del mercado inmobiliario español, especialmente en zonas costeras de prestigio como la Costa Blanca y la Costa del Sol, abordamos con experiencia y dedicación la compra, venta e inversión en propiedades.',
+    'about_desc_2' => 'Nuestro equipo se compromete a brindar un servicio personalizado, asegurando que cada cliente se sienta valorado e informado durante todo el proceso. Aprovechamos nuestra amplia red de contactos y nuestra experiencia en el sector para conectar a nuestros clientes con las mejores oportunidades del mercado español. Ya sea su primera compra o si tiene experiencia como inversor, le acompañaremos en cada paso del proceso, basándonos en la confianza, la transparencia y el compromiso de ayudarle a alcanzar sus objetivos inmobiliarios.',
+
     'value_1_title' => 'Compromiso',
     'value_1_desc' => 'Estamos dedicados a lograr tus objetivos inmobiliarios, trabajando incansablemente para encontrar la mejor opción para ti.',
     'value_2_title' => 'Integridad',
@@ -466,14 +471,16 @@ return [
     'value_3_desc' => 'Nuestro equipo cuenta con un profundo conocimiento del mercado inmobiliario, ofreciendo asesoramiento experto y basado en datos.',
     'value_4_title' => 'Atención Personalizada',
     'value_4_desc' => 'Entendemos tus necesidades individuales y te brindamos un servicio a medida, adaptándonos a tus tiempos y preferencias.',
-    'stats_years' => '10+', // Ejemplo, reemplazar con el número real
+
+    'stats_years' => '10+',
     'stats_years_label' => 'Años de Experiencia',
-    'stats_properties' => '500+', // Ejemplo, reemplazar con el número real
+    'stats_properties' => '500+',
     'stats_properties_label' => 'Propiedades Gestionadas',
-    'stats_clients' => '300+', // Ejemplo, reemplazar con el número real
+    'stats_clients' => '300+',
     'stats_clients_label' => 'Clientes Satisfechos',
-    'stats_awards' => '3', // Ejemplo, reemplazar con el número real
+    'stats_awards' => '3',
     'stats_awards_label' => 'Premios Reconocidos',
+
     'team_title' => 'Nuestro Equipo de Expertos',
     'team_subtitle' => 'Conoce a las personas que hacen posible tu experiencia inmobiliaria ideal',
     'team_member_1_name' => 'Sofía Pérez',
@@ -484,18 +491,21 @@ return [
     'team_member_2_desc' => 'Carlos posee un profundo conocimiento del mercado local y se compromete a encontrar la propiedad perfecta para cada cliente.',
     'team_member_3_name' => 'Isabel Torres',
     'team_member_3_position' => 'Especialista en Alquileres',
-    'team_member_3_desc' => 'Isabel es experta en el mercado de alquileres , ofreciendo soluciones eficientes tanto para propietarios como para inquilinos.',
+    'team_member_3_desc' => 'Isabel es experta en el mercado de alquileres, ofreciendo soluciones eficientes tanto para propietarios como para inquilinos.',
+
     'history_title' => 'Nuestra Trayectoria',
-    'history_subtitle' => 'Un recorrido por los hitos que nos han convertido en líderes ',
+    'history_subtitle' => 'Un recorrido por los hitos que nos han convertido en líderes',
     'history_year_1' => '2015',
-    'history_desc_1' => 'Fundación de Conforthouse Living con la visión de ofrecer un servicio inmobiliario diferente .',
+    'history_desc_1' => 'Fundación de Conforthouse Living con la visión de ofrecer un servicio inmobiliario diferente.',
     'history_year_2' => '2018',
     'history_desc_2' => 'Expansión de nuestros servicios y consolidación como una de las agencias de referencia en la ciudad.',
     'history_year_3' => 'Presente',
     'history_desc_3' => 'Continuamos creciendo e innovando, manteniendo nuestro compromiso con la excelencia y la satisfacción del cliente.',
+
     'cta_about_title' => '¿Listo para dar el siguiente paso?',
-    'cta_about_desc' => 'Ponte en contacto con nuestro equipo y descubre cómo podemos ayudarte a encontrar tu lugar ideal .',
+    'cta_about_desc' => 'Ponte en contacto con nuestro equipo y descubre cómo podemos ayudarte a encontrar tu lugar ideal.',
     'contact_us_button' => 'Contactar',
+
 
     
      // Footer
@@ -710,78 +720,97 @@ return [
     'legal_section_7_intro' => 'Para cualquier duda o consulta sobre este Aviso Legal, puede ponerse en contacto con nosotros en:',
 
 
-    // ===================================
-// AGREGAR AL ARCHIVO: lang/es/messages.php
-// ===================================
-
+    
     // ===== POLÍTICA DE PRIVACIDAD =====
     'privacy_policy' => 'Política de Privacidad',
-    'privacy_description' => 'Información sobre el tratamiento y protección de sus datos personales',
-    
-    // Introducción
-    'privacy_introduction' => 'Introducción',
-    'privacy_intro_text' => 'En Conforthouse Living S.L., respetamos su privacidad y nos comprometemos a proteger sus datos personales. Esta política de privacidad le informará sobre cómo tratamos sus datos personales cuando visita nuestro sitio web y le indicará sus derechos en materia de privacidad.',
-    'privacy_last_updated' => 'Última actualización: :date',
-    
-    // Datos que recopilamos
-    'data_we_collect' => 'Datos personales que recopilamos',
-    'personal_info' => 'Datos de identificación',
-    'personal_info_details' => 'Nombre, apellidos, dirección de correo electrónico, número de teléfono.',
-    'property_preferences' => 'Preferencias inmobiliarias',
-    'property_preferences_details' => 'Tipo de propiedad de interés, ubicación preferida, rango de precio, necesidades específicas.',
-    'usage_data' => 'Datos de navegación',
-    'usage_data_details' => 'Dirección IP, tipo de navegador, páginas visitadas, tiempo de permanencia, sistema operativo.',
-    'cookies' => 'Cookies',
-    'cookies_details' => 'Información almacenada en su dispositivo cuando visita nuestro sitio web.',
-    
-    // Cómo usamos los datos
-    'how_we_use_data' => 'Finalidad del tratamiento de datos',
-    'use_provide_service' => 'Gestionar y responder a sus consultas, solicitudes de información y comunicaciones.',
-    'use_improve_service' => 'Mejorar nuestros servicios y la experiencia de usuario en nuestro sitio web.',
-    'use_personalize' => 'Proporcionar información sobre propiedades inmobiliarias que se ajusten a sus preferencias.',
-    'use_communication' => 'Enviar comunicaciones comerciales sobre nuestros servicios y propiedades, previa autorización expresa.',
-    'use_legal' => 'Cumplir con las obligaciones legales aplicables a nuestra actividad.',
-    
-    // Compartir datos
-    'data_sharing' => 'Destinatarios y transferencias de datos',
-    'data_sharing_text' => 'Sus datos personales podrán ser comunicados a los siguientes destinatarios:',
-    'service_providers' => 'Proveedores de servicios tecnológicos',
-    'service_providers_details' => 'Empresas que nos prestan servicios de hosting, mantenimiento web y análisis de datos.',
-    'legal_requirements' => 'Administraciones públicas',
-    'legal_requirements_details' => 'Cuando sea necesario por obligación legal.',
-    'business_transfers' => 'Asesores profesionales',
-    'business_transfers_details' => 'Abogados, auditores o consultores, cuando sea necesario para la prestación de nuestros servicios.',
-    
-    // Sus derechos
-    'your_rights' => 'Sus derechos en materia de protección de datos',
-    'your_rights_text' => 'Como titular de los datos personales, usted tiene derecho a ejercitar los siguientes derechos:',
-    'right_access' => 'Derecho de acceso: Obtener confirmación sobre si estamos tratando sus datos personales.',
-    'right_rectification' => 'Derecho de rectificación: Solicitar la corrección de datos inexactos o incompletos.',
-    'right_erasure' => 'Derecho de supresión: Solicitar la eliminación de sus datos cuando ya no sean necesarios.',
-    'right_restrict' => 'Derecho de limitación del tratamiento: Solicitar que se limite el tratamiento de sus datos en determinadas circunstancias.',
-    'right_object' => 'Derecho de oposición: Oponerse al tratamiento de sus datos por motivos relacionados con su situación particular.',
-    'right_data_portability' => 'Derecho de portabilidad: Recibir sus datos en un formato estructurado y de uso común.',
-    
-    // Seguridad de datos
-    'data_security' => 'Medidas de seguridad',
-    'data_security_text' => 'Conforthouse Living S.L. ha adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad de sus datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado.',
-    
-    // Transferencias internacionales
-    'international_transfers' => 'Transferencias internacionales',
-    'international_transfers_text' => 'No realizamos transferencias internacionales de datos personales fuera del Espacio Económico Europeo. En caso de ser necesario, se establecerían las garantías adecuadas conforme al RGPD.',
-    
-    // Privacidad de menores
-    'children_privacy' => 'Privacidad de menores',
-    'children_privacy_text' => 'Nuestros servicios no están dirigidos a menores de 18 años. No recopilamos conscientemente información personal de menores. Si usted es padre o tutor y tiene conocimiento de que su hijo nos ha proporcionado datos personales, por favor contáctenos.',
-    
-    // Cambios en la política
-    'changes_policy' => 'Modificaciones de la política de privacidad',
-    'changes_policy_text' => 'Conforthouse Living S.L. se reserva el derecho a modificar esta política de privacidad para adaptarla a cambios legislativos, jurisprudenciales o en nuestras prácticas empresariales. Le recomendamos revisar periódicamente esta página.',
-    
-    // Contacto
-    'contact_us' => 'Contacto',
-    'contact_privacy_text' => 'Para cualquier duda o consulta sobre esta Política de Privacidad o sobre el tratamiento de sus datos personales, puede ponerse en contacto con nosotros o presentar una reclamación ante la Agencia Española de Protección de Datos.',
+    'privacy_description' => 'En Conforthouse Living S.L., nos comprometemos a proteger la privacidad de nuestros usuarios.',
 
+    // Resumen inicial (para formularios)
+    'privacy_responsible' => 'Responsable: Conforthouse Living S.L.',
+    'privacy_purpose' => 'Finalidad: Gestión de las solicitudes de información a través de la página web con la finalidad de prestarles servicios profesionales inmobiliarios y así facilitarles información sobre lo que solicite.',
+    'privacy_legitimation' => 'Legitimación: La legitimación se basa en el consentimiento que usted nos otorga al clicar el botón "Acepto la política de protección de datos".',
+    'privacy_recipients' => 'Destinatarios: Sus datos no se cederán a nadie, salvo obligación legal.',
+    'privacy_rights' => 'Derechos: Podrá ejercitar los derechos de acceso, rectificación, supresión, oposición, portabilidad y retirada de consentimiento de sus datos personales en la dirección de correo electrónico conforthouseliving@rbconforthouse.com',
+
+    // Introducción
+    'privacy_introduction' => 'Política de Privacidad',
+    'privacy_intro_text' => 'En Conforthouse Living S.L., nos comprometemos a proteger la privacidad de nuestros usuarios. Esta Política de Privacidad describe cómo recopilamos, usamos y compartimos la información personal que obtenemos a través de nuestro sitio web https://www.rbconforthouse.com/.',
+    'privacy_last_updated' => 'Última actualización: :date',
+
+    // 1. Información que recopilamos
+    'data_we_collect' => 'Información que recopilamos',
+    'data_we_collect_intro' => 'Recopilamos información personal que usted nos proporciona directamente, como cuando:',
+    'data_collect_form' => 'Completa un formulario de contacto.',
+    'data_collect_newsletter' => 'Se suscribe a nuestro boletín informativo.',
+    'data_collect_inquiry' => 'Realiza una consulta sobre un inmueble.',
+    'data_collect_surveys' => 'Participa en encuestas o promociones.',
+    'data_collect_includes' => 'La información personal que podemos recopilar incluye, entre otros:',
+    'personal_info' => 'Nombre completo',
+    'personal_info_details' => 'Nombre completo',
+    'data_collect_email' => 'Dirección de correo electrónico',
+    'data_collect_phone' => 'Número de teléfono',
+    'property_preferences' => 'Información sobre el inmueble de interés',
+    'property_preferences_details' => 'Información sobre el inmueble de interés',
+
+    // 2. Uso de la información
+    'how_we_use_data' => 'Uso de la información',
+    'how_we_use_intro' => 'Utilizamos la información que recopilamos para:',
+    'use_provide_service' => 'Proporcionar y mejorar nuestros servicios.',
+    'use_improve_service' => 'Responder a sus consultas y solicitudes.',
+    'use_communication' => 'Enviarle comunicaciones comerciales, como boletines o información sobre propiedades que puedan ser de su interés.',
+    'use_legal' => 'Cumplir con nuestras obligaciones legales y contractuales.',
+
+    // 3. Compartir la información
+    'data_sharing' => 'Compartir la información',
+    'data_sharing_text' => 'No compartimos su información personal con terceros, excepto en las siguientes circunstancias:',
+    'service_providers' => 'Proveedores de servicios',
+    'service_providers_details' => 'Con proveedores de servicios que nos ayudan a operar nuestro sitio web y prestar nuestros servicios.',
+    'legal_requirements' => 'Cumplimiento legal',
+    'legal_requirements_details' => 'Cuando sea necesario para cumplir con la ley o responder a solicitudes legales.',
+    'business_transfers' => 'Transferencias de negocio',
+    'business_transfers_details' => 'En caso de que vendamos o transfiramos parte o la totalidad de nuestro negocio.',
+
+    // 4. Seguridad
+    'data_security' => 'Seguridad',
+    'data_security_text' => 'Tomamos medidas razonables para proteger la información personal que recopilamos, incluyendo el uso de medidas de seguridad técnicas y organizativas adecuadas.',
+
+    // 5. Cookies y tecnologías similares
+    'cookies_policy' => 'Cookies y tecnologías similares',
+    'cookies' => 'Cookies',
+    'cookies_details' => 'Utilizamos cookies y tecnologías similares para recopilar información sobre su uso de nuestro sitio web y mejorar su experiencia en línea. Puede ajustar la configuración de su navegador para rechazar las cookies, aunque esto puede afectar la funcionalidad del sitio.',
+
+    // 6. Sus derechos
+    'your_rights' => '6. Sus derechos',
+    'your_rights_text' => 'Tiene derecho a acceder, corregir, actualizar o eliminar su información personal en cualquier momento. Para ejercer estos derechos, póngase en contacto con nosotros a través de la siguiente dirección de correo electrónico conforthouseliving@rbconforthouse.com',
+    'right_access' => 'Derecho de acceso a sus datos personales',
+    'right_rectification' => 'Derecho de rectificación de datos inexactos',
+    'right_erasure' => 'Derecho de supresión de sus datos',
+    'right_restrict' => 'Derecho de limitación del tratamiento',
+    'right_object' => 'Derecho de oposición al tratamiento',
+    'right_data_portability' => 'Derecho de portabilidad de los datos',
+
+    // 7. Cambios en esta política de privacidad
+    'changes_policy' => 'Cambios en esta política de privacidad',
+    'changes_policy_text' => 'Podemos actualizar esta Política de Privacidad de vez en cuando. Cualquier cambio se publicará en esta página, y le recomendamos que la revise periódicamente.',
+
+    // 8. Contacto
+    'contact_us' => 'Contacto',
+    'contact_privacy_text' => 'Si tiene preguntas o inquietudes sobre nuestra Política de Privacidad, por favor contáctenos en:',
+    'company_name' => 'Conforthouse Living S.L.',
+    'company_address' => 'Dirección',
+    'company_email' => 'E-mail',
+
+    // Campos que no están en el documento pero la vista podría necesitar
+    'usage_data' => 'Datos de uso',
+    'usage_data_details' => 'Información sobre cómo utiliza nuestro sitio web',
+    'use_personalize' => 'Personalizar su experiencia en nuestro sitio web.',
+    'international_transfers' => 'Transferencias internacionales',
+    'international_transfers_text' => 'Sus datos pueden ser transferidos y procesados en países fuera de su país de residencia, donde las leyes de protección de datos pueden ser diferentes.',
+    'children_privacy' => 'Privacidad de menores',
+    'children_privacy_text' => 'Nuestros servicios no están dirigidos a menores de 18 años. No recopilamos intencionalmente información personal de menores.',
+
+
+    //================================================ Formularios de Contacto  ==================================================
     'message_sent_success' => 'Mensaje enviado!',
     'message_sent_error' => 'Error al enviar el mensaje. Por favor, inténtalo nuevamente.',
     'confirmation_email_subject' => 'Hemos recibido tu consulta',

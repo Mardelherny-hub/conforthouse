@@ -5,6 +5,8 @@ import '../css/app.css';
 // Import Alpine.js
 
 import Alpine from 'alpinejs';
+import collapse from '@alpinejs/collapse';
+Alpine.plugin(collapse);
 
 window.Alpine = Alpine;
 

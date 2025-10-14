@@ -294,7 +294,7 @@ return [
     // ===== ZWEVENDE CONSULTATIE MODAL =====
     'floating_button_tooltip' => 'Vragen?',
     'floating_button_modal_title' => 'Heeft u vragen?',
-    'floating_button_modal_subtitle' => 'Wij zijn er om u te helpen. Stuur ons uw vraag en wij reageren snel.',
+    'floating_button_modal_subtitle' => 'Bedankt dat u contact met ons heeft opgenomen. Op dit moment kunnen we niet reageren. Onze openingstijden zijn van maandag tot en met vrijdag van 10:00 tot 14:00 en van 16:00 tot 19:30, en op zaterdag van 10:30 tot 13:30. We nemen zo snel mogelijk contact met u op. Bedankt.',
     'consultation_form_name' => 'Volledige naam',
     'consultation_form_name_placeholder' => 'Uw volledige naam',
     'consultation_form_email' => 'E-mailadres',
@@ -381,7 +381,8 @@ return [
     'renting_properties' => 'Woning Verhuur',
     'renting_properties_desc' => 'Volledige verhuurdiensten voor zowel eigenaren als huurders',
     'legal_advice' => 'Juridisch Advies',
-    'legal_advice_desc' => 'Gespecialiseerd juridisch advies voor vastgoedtransacties en documentatie',
+    //'legal_advice_desc' => 'Gespecialiseerd juridisch advies voor vastgoedtransacties en documentatie',
+    'legal_advice_desc' => "Bij Conforthouse Living beschikken we over een eigen juridisch team met advocaten die gespecialiseerd zijn in vastgoedrecht. U kunt op elk moment contact met hen opnemen, in het Spaans of Engels, voor alle vragen of juridisch advies dat u nodig heeft.<br><br>Zij begeleiden u gedurende het hele koop- of verkoopproces, houden toezicht op elke stap en zorgen ervoor dat alles correct wordt uitgevoerd volgens de Spaanse wetgeving, zodat u de zekerheid en gemoedsrust heeft die u verdient bij zo’n belangrijke stap.<br><br>Onze advocaten kunnen u ook helpen bij het verkrijgen van het N.I.E., een essentieel document voor buitenlanders die een woning in Spanje willen kopen, evenals bij andere administratieve formaliteiten die nodig kunnen zijn.<br><br>Uw gemoedsrust is onze prioriteit.",
     'testimonial_1' => 'Uitstekende service, zij vonden precies wat wij zochten. Zeer professioneel.',
     'client_name_1' => 'Maria González',
     'client_title_1' => 'Onderneemster',
@@ -455,8 +456,10 @@ return [
     //Over Ons Pagina
     'about_subtitle' => 'Leer Ons Verhaal Kennen',
     'about_title' => 'Passie voor het Vinden van Uw Ideale Plek',
-    'about_desc_1' => 'Bij Conforthouse Living zijn wij meer dan een makelaarskantoor; wij zijn een team van professionals die gepassioneerd zijn over het verbinden van mensen met het perfecte thuis. Ons verhaal is gebouwd op vertrouwen, toewijding en diepgaande kennis van de lokale markt.',
-    'about_desc_2' => 'Vanaf onze start hebben wij ons gecommitteerd aan het bieden van uitzonderlijke service, waarbij wij onze klanten begeleiden door elke stap van het koop-, verkoop- of huurproces. Wij begrijpen dat elke klant uniek is en streven ernaar hun verwachtingen te overtreffen met gepersonaliseerde en transparante oplossingen.',
+    // ✅ Bijgewerkte tekst volgens de instructies van de klant
+    'about_desc_1' => 'Bij ConfortHouse Living zijn we trots op het aanbieden van uitzonderlijke vastgoedservices die zijn afgestemd op de specifieke behoeften van onze klanten. Met diepgaande kennis van de Spaanse vastgoedmarkt — met name in prestigieuze kustgebieden zoals de Costa Blanca en de Costa del Sol — benaderen wij elke aankoop, verkoop of investering met deskundigheid en toewijding.',
+    'about_desc_2' => 'Ons team zet zich in voor een persoonlijke service, zodat elke klant zich gewaardeerd en goed geïnformeerd voelt gedurende het hele proces. Dankzij ons uitgebreide netwerk van contacten en onze jarenlange ervaring verbinden wij onze klanten met de beste kansen op de Spaanse vastgoedmarkt. Of het nu gaat om uw eerste aankoop of dat u al een ervaren investeerder bent, wij begeleiden u bij elke stap — met vertrouwen, transparantie en een sterke toewijding om uw vastgoeddoelen te bereiken.',
+
     'value_1_title' => 'Toewijding',
     'value_1_desc' => 'Wij zijn toegewijd aan het behalen van uw vastgoeddoelen, waarbij wij onvermoeibaar werken om de beste optie voor u te vinden.',
     'value_2_title' => 'Integriteit',
@@ -709,78 +712,96 @@ return [
     'legal_section_7_intro' => 'Voor vragen of vragen over deze Juridische Kennisgeving kunt u contact met ons opnemen via:',
 
 
-    // ===================================
-// AGREGAR AL ARCHIVO: lang/nl/messages.php
-// ===================================
-
     // ===== PRIVACYBELEID =====
     'privacy_policy' => 'Privacybeleid',
-    'privacy_description' => 'Informatie over de verwerking en bescherming van uw persoonsgegevens',
-    
-    // Introductie
-    'privacy_introduction' => 'Introductie',
-    'privacy_intro_text' => 'Bij Conforthouse Living S.L. respecteren wij uw privacy en zijn wij toegewijd aan het beschermen van uw persoonsgegevens. Dit privacybeleid informeert u over hoe wij uw persoonsgegevens verwerken wanneer u onze website bezoekt en informeert u over uw privacyrechten.',
-    'privacy_last_updated' => 'Laatst bijgewerkt: :date',
-    
-    // Gegevens die we verzamelen
-    'data_we_collect' => 'Persoonsgegevens die we verzamelen',
-    'personal_info' => 'Identificatiegegevens',
-    'personal_info_details' => 'Naam, achternaam, e-mailadres, telefoonnummer.',
-    'property_preferences' => 'Vastgoedvoorkeuren',
-    'property_preferences_details' => 'Type woning van interesse, voorkeurslocatie, prijsklasse, specifieke behoeften.',
-    'usage_data' => 'Navigatiegegevens',
-    'usage_data_details' => 'IP-adres, browsertype, bezochte pagina\'s, tijd doorgebracht, besturingssysteem.',
-    'cookies' => 'Cookies',
-    'cookies_details' => 'Informatie opgeslagen op uw apparaat wanneer u onze website bezoekt.',
-    
-    // Hoe we gegevens gebruiken
-    'how_we_use_data' => 'Doel van gegevensverwerking',
-    'use_provide_service' => 'Beheren en beantwoorden van uw vragen, informatieverzoeken en communicatie.',
-    'use_improve_service' => 'Verbeteren van onze diensten en gebruikerservaring op onze website.',
-    'use_personalize' => 'Verstrekken van informatie over vastgoed die aansluit bij uw voorkeuren.',
-    'use_communication' => 'Verzenden van commerciële communicatie over onze diensten en eigendommen, met uitdrukkelijke toestemming.',
-    'use_legal' => 'Voldoen aan wettelijke verplichtingen die van toepassing zijn op onze activiteit.',
-    
-    // Gegevensdeling
-    'data_sharing' => 'Ontvangers en gegevensoverdrachten',
-    'data_sharing_text' => 'Uw persoonsgegevens kunnen worden meegedeeld aan de volgende ontvangers:',
-    'service_providers' => 'Technologie dienstverleners',
-    'service_providers_details' => 'Bedrijven die ons hosting-, webonderhoud- en gegevensanalysediensten verlenen.',
-    'legal_requirements' => 'Overheidsinstanties',
-    'legal_requirements_details' => 'Wanneer noodzakelijk vanwege wettelijke verplichting.',
-    'business_transfers' => 'Professionele adviseurs',
-    'business_transfers_details' => 'Advocaten, accountants of consultants, wanneer noodzakelijk voor het verlenen van onze diensten.',
-    
-    // Uw rechten
-    'your_rights' => 'Uw gegevensbeschermingsrechten',
-    'your_rights_text' => 'Als eigenaar van persoonsgegevens heeft u het recht om de volgende rechten uit te oefenen:',
-    'right_access' => 'Recht op toegang: Bevestiging verkrijgen of wij uw persoonsgegevens verwerken.',
-    'right_rectification' => 'Recht op rectificatie: Correctie van onjuiste of onvolledige gegevens aanvragen.',
-    'right_erasure' => 'Recht op verwijdering: Verwijdering van uw gegevens aanvragen wanneer ze niet langer nodig zijn.',
-    'right_restrict' => 'Recht op beperking van verwerking: Verzoeken dat de verwerking van uw gegevens in bepaalde omstandigheden wordt beperkt.',
-    'right_object' => 'Recht op bezwaar: Bezwaar maken tegen de verwerking van uw gegevens om redenen die verband houden met uw specifieke situatie.',
-    'right_data_portability' => 'Recht op gegevensoverdraagbaarheid: Uw gegevens ontvangen in een gestructureerd, algemeen gebruikt formaat.',
-    
-    // Gegevensbeveiliging
-    'data_security' => 'Beveiligingsmaatregelen',
-    'data_security_text' => 'Conforthouse Living S.L. heeft de nodige technische en organisatorische maatregelen genomen om de beveiliging van uw persoonsgegevens te waarborgen en wijziging, verlies, verwerking of ongeautoriseerde toegang te voorkomen.',
-    
-    // Internationale overdrachten
-    'international_transfers' => 'Internationale overdrachten',
-    'international_transfers_text' => 'Wij voeren geen internationale overdrachten van persoonsgegevens uit buiten de Europese Economische Ruimte. Indien nodig zouden passende waarborgen worden vastgesteld in overeenstemming met de AVG.',
-    
-    // Privacy van kinderen
-    'children_privacy' => 'Privacy van minderjarigen',
-    'children_privacy_text' => 'Onze diensten zijn niet gericht op personen jonger dan 18 jaar. We verzamelen niet bewust persoonlijke informatie van minderjarigen. Als u een ouder of voogd bent en u weet dat uw kind ons persoonsgegevens heeft verstrekt, neem dan contact met ons op.',
-    
-    // Wijzigingen in het beleid
-    'changes_policy' => 'Wijzigingen in het privacybeleid',
-    'changes_policy_text' => 'Conforthouse Living S.L. behoudt zich het recht voor om dit privacybeleid te wijzigen om het aan te passen aan wettelijke, jurisprudentiële wijzigingen of in onze bedrijfspraktijken. Wij raden u aan deze pagina regelmatig te bekijken.',
-    
-    // Contact
-    'contact_us' => 'Contact',
-    'contact_privacy_text' => 'Voor vragen of vragen over dit privacybeleid of over de verwerking van uw persoonsgegevens, kunt u contact met ons opnemen of een klacht indienen bij het Spaanse Bureau voor Gegevensbescherming.',
+    'privacy_description' => 'Bij Conforthouse Living S.L. zetten wij ons in om de privacy van onze gebruikers te beschermen.',
 
+    // Samenvatting (voor formulieren)
+    'privacy_responsible' => 'Verantwoordelijke: Conforthouse Living S.L.',
+    'privacy_purpose' => 'Doel: Beheer van informatieaanvragen via de website om professionele vastgoedservices te verlenen en u de gevraagde informatie te verstrekken.',
+    'privacy_legitimation' => 'Rechtsgrond: Uw toestemming, verleend door op de knop "Ik accepteer het privacybeleid" te klikken.',
+    'privacy_recipients' => 'Ontvangers: Uw gegevens worden niet aan derden doorgegeven, behalve indien wettelijk vereist.',
+    'privacy_rights' => 'Rechten: U kunt uw rechten op inzage, rectificatie, verwijdering, bezwaar, overdraagbaarheid en intrekking van toestemming uitoefenen via conforthouseliving@rbconforthouse.com',
+
+    // Inleiding
+    'privacy_introduction' => 'Privacybeleid',
+    'privacy_intro_text' => 'Bij Conforthouse Living S.L. respecteren wij de privacy van onze gebruikers. Dit privacybeleid beschrijft hoe wij persoonlijke gegevens verzamelen, gebruiken en delen die via onze website https://www.rbconforthouse.com/ worden verkregen.',
+    'privacy_last_updated' => 'Laatste update: :date',
+
+    // 1. Gegevens die wij verzamelen
+    'data_we_collect' => 'Gegevens die wij verzamelen',
+    'data_we_collect_intro' => 'Wij verzamelen persoonlijke informatie die u rechtstreeks aan ons verstrekt, bijvoorbeeld wanneer u:',
+    'data_collect_form' => 'Een contactformulier invult.',
+    'data_collect_newsletter' => 'Zich aanmeldt voor onze nieuwsbrief.',
+    'data_collect_inquiry' => 'Een aanvraag doet voor een woning.',
+    'data_collect_surveys' => 'Deelneemt aan enquêtes of promoties.',
+    'data_collect_includes' => 'De persoonlijke informatie die wij kunnen verzamelen omvat onder meer:',
+    'personal_info' => 'Volledige naam',
+    'personal_info_details' => 'Volledige naam',
+    'data_collect_email' => 'E-mailadres',
+    'data_collect_phone' => 'Telefoonnummer',
+    'property_preferences' => 'Informatie over de woning van interesse',
+    'property_preferences_details' => 'Informatie over de woning van interesse',
+
+    // 2. Gebruik van gegevens
+    'how_we_use_data' => 'Gebruik van de informatie',
+    'how_we_use_intro' => 'Wij gebruiken de verzamelde gegevens om:',
+    'use_provide_service' => 'Onze diensten te leveren en te verbeteren.',
+    'use_improve_service' => 'Op uw vragen en verzoeken te reageren.',
+    'use_communication' => 'U commerciële communicatie te sturen, zoals nieuwsbrieven of informatie over woningen die voor u interessant kunnen zijn.',
+    'use_legal' => 'Te voldoen aan onze wettelijke en contractuele verplichtingen.',
+
+    // 3. Delen van informatie
+    'data_sharing' => 'Delen van informatie',
+    'data_sharing_text' => 'Wij delen uw persoonlijke gegevens niet met derden, behalve in de volgende gevallen:',
+    'service_providers' => 'Dienstverleners',
+    'service_providers_details' => 'Met dienstverleners die ons helpen onze website te beheren en onze diensten te leveren.',
+    'legal_requirements' => 'Wettelijke verplichtingen',
+    'legal_requirements_details' => 'Wanneer dit nodig is om te voldoen aan de wet of om te reageren op wettelijke verzoeken.',
+    'business_transfers' => 'Bedrijfsoverdrachten',
+    'business_transfers_details' => 'In het geval dat wij een deel of het geheel van ons bedrijf verkopen of overdragen.',
+
+    // 4. Beveiliging
+    'data_security' => 'Beveiliging',
+    'data_security_text' => 'Wij nemen redelijke maatregelen om de persoonlijke gegevens die wij verzamelen te beschermen, inclusief passende technische en organisatorische beveiligingsmaatregelen.',
+
+    // 5. Cookies en vergelijkbare technologieën
+    'cookies_policy' => 'Cookies en vergelijkbare technologieën',
+    'cookies' => 'Cookies',
+    'cookies_details' => 'Wij gebruiken cookies en vergelijkbare technologieën om informatie te verzamelen over uw gebruik van onze website en om uw online ervaring te verbeteren. U kunt uw browserinstellingen aanpassen om cookies te weigeren, maar dit kan invloed hebben op de functionaliteit van de site.',
+
+    // 6. Uw rechten
+    'your_rights' => 'Uw rechten',
+    'your_rights_text' => 'U hebt het recht om uw persoonlijke gegevens op elk moment in te zien, te corrigeren, bij te werken of te verwijderen. Neem voor het uitoefenen van deze rechten contact met ons op via conforthouseliving@rbconforthouse.com',
+    'right_access' => 'Recht op inzage in uw persoonsgegevens',
+    'right_rectification' => 'Recht op rectificatie van onjuiste gegevens',
+    'right_erasure' => 'Recht op verwijdering van uw gegevens',
+    'right_restrict' => 'Recht op beperking van de verwerking',
+    'right_object' => 'Recht van bezwaar tegen de verwerking',
+    'right_data_portability' => 'Recht op overdraagbaarheid van gegevens',
+
+    // 7. Wijzigingen in dit beleid
+    'changes_policy' => 'Wijzigingen in dit privacybeleid',
+    'changes_policy_text' => 'Wij kunnen dit privacybeleid van tijd tot tijd bijwerken. Alle wijzigingen worden op deze pagina gepubliceerd; wij raden u aan het regelmatig te controleren.',
+
+    // 8. Contact
+    'contact_us' => 'Contact',
+    'contact_privacy_text' => 'Als u vragen of zorgen heeft over ons privacybeleid, kunt u contact met ons opnemen via:',
+    'company_name' => 'Conforthouse Living S.L.',
+    'company_address' => 'Plaza del Ayuntamiento Nº19, 3-A, C.P. 46002, Valencia, Spanje.',
+    'company_email' => 'conforthouseliving@rbconforthouse.com',
+
+    // Extra velden
+    'usage_data' => 'Gebruiksgegevens',
+    'usage_data_details' => 'Informatie over hoe u onze website gebruikt',
+    'use_personalize' => 'Uw ervaring op onze website personaliseren.',
+    'international_transfers' => 'Internationale gegevensoverdracht',
+    'international_transfers_text' => 'Uw gegevens kunnen worden overgedragen en verwerkt in landen buiten uw woonplaats, waar mogelijk andere privacywetgeving geldt.',
+    'children_privacy' => 'Privacy van minderjarigen',
+    'children_privacy_text' => 'Onze diensten zijn niet gericht op personen jonger dan 18 jaar. Wij verzamelen niet bewust persoonlijke informatie van minderjarigen.',
+
+
+    //======================Formularios de contacto ===================================================
     'message_sent_success' => 'Bericht succesvol verzonden. Wij nemen zo spoedig mogelijk contact met u op.',
     'message_sent_error' => 'Er is een fout opgetreden bij het verzenden van uw bericht. Probeer het later opnieuw.',
     'confirmation_email_subject' => 'We hebben uw aanvraag ontvangen',

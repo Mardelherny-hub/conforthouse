@@ -213,7 +213,7 @@
                                         <div class="james-property-badge new font-body">{{ __('messages.new') }}</div>
                                     @endif --}}
 
-                                    <!-- Property Type Badge (esquina superior derecha, usando estilo 'new') -->
+                                    {{-- <!-- Property Type Badge (esquina superior derecha, usando estilo 'new') -->
                                     <div class="james-property-badge new font-body" style="top: 1rem; right: 1rem; left: auto;">
                                         @php
                                             $locale = app()->getLocale();
@@ -221,14 +221,14 @@
                                             $typeDisplayName = $typeTranslation ? $typeTranslation->name : $property->propertyType->name;
                                         @endphp
                                         {{ $typeDisplayName }}
-                                    </div>
+                                    </div> --}}
 
                                     {{-- BADGE DE COMPLEJO - ESQUINA INFERIOR DERECHA usando estilo 'featured' --}}
-                                    @if($property->keypromo && $property->keypromo != 0)
+                                    {{-- @if($property->keypromo && $property->keypromo != 0)
                                         <div class="james-property-badge featured font-body" style="top: auto; bottom: 1rem; right: 1rem; left: auto;">
                                             🏢 {{ $property->zona_inmovilla }}
                                         </div>
-                                    @endif
+                                    @endif --}}
                                     
                                 </div>
 

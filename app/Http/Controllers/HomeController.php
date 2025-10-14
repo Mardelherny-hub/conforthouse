@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         $locale = app()->getLocale();
         
-        // Cargar propiedades con eager loading optimizado - LIMITADO A 10
+        // Propiedades principales del Home (limitadas)
         $properties = Property::with([
                 'images', 
                 'propertyType',
@@ -29,7 +29,6 @@ class HomeController extends Controller
                     $q->where('locale', $locale);
                 },
                 'descriptions' => function($q) use ($locale) {
-                    // Priorizar idioma solicitado, fallback a español
                     $q->where(function($subQ) use ($locale) {
                         $subQ->where('locale', $locale)
                             ->orWhere('locale', 'es');
@@ -38,55 +37,63 @@ class HomeController extends Controller
             ])
             ->where('destacado', false)
             ->orderBy('id', 'desc')
-            ->limit(5)  // LÍMITE DE 10 PROPIEDADES
+            ->limit(5)
             ->get();
 
-        // Cargar propiedad destacada con eager loading
+        // Propiedad destacada
         $featuredProperty = Property::with([
-            'images', 
-            'address',
-            'propertyType',
-            'propertyType.translations' => function($q) use ($locale) {
-                $q->where('locale', $locale);
-            },
-            'operation',
-            'operation.translations' => function($q) use ($locale) {
-                $q->where('locale', $locale);
-            },
-            'status',
-            'status.translations' => function($q) use ($locale) {
-                $q->where('locale', $locale);
-            },
-            'descriptions' => function($q) use ($locale) {
-                $q->where('locale', $locale)->limit(1);
-            }
-        ])
-        ->where('destacado', true)
-        ->orderBy('id', 'desc')
-        ->first();
-
-        // Si no hay propiedad destacada, tomar la última
-        if (!$featuredProperty) {
-            $featuredProperty = Property::with([
                 'images', 
                 'address',
+                'propertyType',
+                'propertyType.translations' => function($q) use ($locale) {
+                    $q->where('locale', $locale);
+                },
+                'operation',
+                'operation.translations' => function($q) use ($locale) {
+                    $q->where('locale', $locale);
+                },
+                'status',
+                'status.translations' => function($q) use ($locale) {
+                    $q->where('locale', $locale);
+                },
                 'descriptions' => function($q) use ($locale) {
                     $q->where('locale', $locale)->limit(1);
                 }
             ])
+            ->where('destacado', true)
             ->orderBy('id', 'desc')
             ->first();
+
+        if (!$featuredProperty) {
+            $featuredProperty = Property::with(['images','address','descriptions' => function($q) use ($locale) {
+                $q->where('locale', $locale)->limit(1);
+            }])->orderBy('id', 'desc')->first();
         }
 
-        // Aplicar traducciones usando datos ya cargados
+        // 👉 Propiedades para el mapa (mismo conjunto, sin límite)
+        $mapProperties = Property::with([
+                'images', 
+                'address',
+                'descriptions' => function($q) use ($locale) {
+                    $q->where(function($subQ) use ($locale) {
+                        $subQ->where('locale', $locale)
+                            ->orWhere('locale', 'es');
+                    })->orderByRaw("CASE WHEN locale = ? THEN 1 ELSE 2 END", [$locale]);
+                }
+            ])
+            ->whereHas('address', function($q) {
+                $q->whereNotNull('latitude')->whereNotNull('longitude');
+            })
+            ->orderBy('id', 'desc')
+            ->get();
+
+        // Traducciones
         $this->applyTranslationsToCollection($properties, $locale);
-        
-        if ($featuredProperty) {
-            $this->applyTranslationsToSingle($featuredProperty, $locale);
-        }
+        if ($featuredProperty) $this->applyTranslationsToSingle($featuredProperty, $locale);
 
-        return view('home', compact('properties', 'featuredProperty'));
+        return view('home', compact('properties', 'featuredProperty', 'mapProperties'));
     }
+
 
     /**
      * Aplica traducciones a una sola entidad usando datos ya cargados

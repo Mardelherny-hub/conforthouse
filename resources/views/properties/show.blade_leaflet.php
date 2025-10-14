@@ -454,7 +454,57 @@
                     </div>
 
                     <!-- Location Map Section -->
-                    @if($property->address && $property->address->latitude && $property->address->longitude)
+
+                    <div id="property-map" class="w-full h-96 rounded-lg overflow-hidden"></div>
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const lat = {{ $property->address->latitude ?? 'null' }};
+  const lng = {{ $property->address->longitude ?? 'null' }};
+  const title = {!! json_encode($property->title) !!};
+
+  if (!lat || !lng) {
+    console.warn('No hay coordenadas para esta propiedad');
+    return;
+  }
+
+  const map = L.map('property-map').setView([lat, lng], 15);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  const popupHtml = `
+    <div class="p-2">
+      <strong>${title}</strong><br>
+      <span class="text-sm text-gray-600">
+        {{ $property->address->city ?? '' }}
+        {{ $property->address->province ? ', ' . $property->address->province : '' }}
+      </span>
+    </div>
+  `;
+
+  L.marker([lat, lng]).addTo(map)
+    .bindPopup(popupHtml)
+    .openPopup();
+});
+</script>
+
+
+                    {{-- @if($property->address && $property->address->latitude && $property->address->longitude)
                     <div class="james-property-map">
                         <h2 class="james-section-title">{{ __('messages.location') }}</h2>
                         
@@ -619,11 +669,12 @@
                     </script>
 
                     <!-- Google Maps API -->
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcKA1RrcEhTjruBl6y4wvgxpKEGUrpoig&callback=initPropertyMap&v=weekly" 
+                    <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.google_maps.key') }}&callback=initPropertyMap&v=weekly" 
                             async defer 
                             onerror="handlePropertyMapError()">
                     </script>
-                    @endif
+
+                    @endif --}}
 
                     <!-- Share Property -->
                     <div class="james-property-share">

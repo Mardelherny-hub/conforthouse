@@ -36,7 +36,7 @@
                             <li><strong>{{ __('messages.company_cif') }}:</strong> B75855817</li>
                             <li><strong>{{ __('messages.company_address') }}:</strong> Plaza del Ayuntamiento Nº19, 3-A, C.P. 46002, Valencia</li>
                             <li><strong>{{ __('messages.company_phone') }}:</strong> 696 649 243</li>
-                            <li><strong>{{ __('messages.company_email') }}:</strong> <a href="mailto:conforthouseliving@rbconforthouse.com" class="text-amber-600 hover:underline">conforthouseliving@rbconforthouse.com</a></li>
+                            <li><strong>{{ __('messages.email') }}:</strong> <a href="mailto:conforthouseliving@rbconforthouse.com" class="text-amber-600 hover:underline">conforthouseliving@rbconforthouse.com</a></li>
                             <li><strong>{{ __('messages.company_registry') }}:</strong> {{ __('messages.company_registry_details') }}</li>
                         </ul>
                     </section>
@@ -100,11 +100,11 @@
                             {{ __('messages.legal_section_7_intro') }}
                         </p>
                         <div class="bg-amber-50 border-l-4 border-amber-400 p-4">
-                            <p class="font-luxury font-medium text-gray-900 mb-2">Conforthouse Living S.L.</p>
+                            <p class="font-luxury text-xl font-semibold text-gray-900 mb-2">Conforthouse Living S.L.</p>
                             <ul class="space-y-1 font-luxury-sans text-gray-700">
-                                <li><strong>{{ __('messages.company_address') }}:</strong> Plaza del Ayuntamiento Nº19, 3-A, C.P. 46002, Valencia</li>
-                                <li><strong>{{ __('messages.company_phone') }}:</strong> 696 649 243</li>
-                                <li><strong>{{ __('messages.company_email') }}:</strong> <a href="mailto:conforthouseliving@rbconforthouse.com" class="text-amber-600 hover:underline">conforthouseliving@rbconforthouse.com</a></li>
+                                <li><strong>{{ __('messages.address') }}:</strong> Plaza del Ayuntamiento Nº19, 3-A, C.P. 46002, Valencia</li>
+                                <li><strong>{{ __('messages.phone') }}:</strong> 696 649 243</li>
+                                <li><strong>{{ __('messages.email') }}:</strong> <a href="mailto:conforthouseliving@rbconforthouse.com" class="text-amber-600 hover:underline">conforthouseliving@rbconforthouse.com</a></li>
                             </ul>
                         </div>
                     </section>

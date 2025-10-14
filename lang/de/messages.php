@@ -294,7 +294,7 @@ return [
     // ===== SCHWEBENDES BERATUNGSMODAL =====
     'floating_button_tooltip' => 'Fragen?',
     'floating_button_modal_title' => 'Haben Sie Fragen?',
-    'floating_button_modal_subtitle' => 'Wir sind hier, um Ihnen zu helfen. Senden Sie uns Ihre Anfrage und wir antworten bald.',
+    'floating_button_modal_subtitle' => 'Vielen Dank, dass Sie uns kontaktiert haben. Im Moment können wir nicht antworten. Unsere Geschäftszeiten sind Montag bis Freitag von 10:00 bis 14:00 Uhr und von 16:00 bis 19:30 Uhr sowie Samstag von 10:30 bis 13:30 Uhr. Wir werden Ihnen so bald wie möglich antworten. Vielen Dank.',
     'consultation_form_name' => 'Vollständiger Name',
     'consultation_form_name_placeholder' => 'Ihr vollständiger Name',
     'consultation_form_email' => 'E-Mail-Adresse',
@@ -381,7 +381,8 @@ return [
     'renting_properties' => 'Immobilienvermietung',
     'renting_properties_desc' => 'Vollständige Vermietungsdienstleistungen sowohl für Eigentümer als auch für Mieter',
     'legal_advice' => 'Rechtsberatung',
-    'legal_advice_desc' => 'Spezialisierte Rechtsberatung für Immobilientransaktionen und Dokumentation',
+    //'legal_advice_desc' => 'Spezialisierte Rechtsberatung für Immobilientransaktionen und Dokumentation',
+    'legal_advice_desc' => "Bei Conforthouse Living verfügen wir über eine eigene Rechtsabteilung mit Anwälten, die auf Immobilienrecht spezialisiert sind. Sie können sich jederzeit – auf Spanisch oder Englisch – mit ihnen in Verbindung setzen, um rechtliche Beratung oder Unterstützung zu erhalten.<br><br>Unsere Anwälte begleiten Sie während des gesamten Kauf- oder Verkaufsprozesses, überwachen jede Phase und stellen sicher, dass alles korrekt und gemäß den spanischen Rechtsgrundlagen erfolgt. So bieten wir Ihnen die Sicherheit und das Vertrauen, das Sie bei einem so wichtigen Schritt verdienen.<br><br>Darüber hinaus unterstützen wir Sie auch bei der Beantragung der N.I.E., eines unerlässlichen Dokuments für ausländische Käufer in Spanien, sowie bei allen weiteren administrativen Formalitäten, die erforderlich sein könnten.<br><br>Ihre Ruhe ist unser Anliegen.",
     'testimonial_1' => 'Ausgezeichneter Service, sie fanden genau das, was wir suchten. Sehr professionell.',
     'client_name_1' => 'Maria González',
     'client_title_1' => 'Unternehmerin',
@@ -455,8 +456,10 @@ return [
     //Über Uns Seite
     'about_subtitle' => 'Lernen Sie Unsere Geschichte Kennen',
     'about_title' => 'Leidenschaft für das Finden Ihres Idealen Ortes',
-    'about_desc_1' => 'Bei Conforthouse Living sind wir mehr als eine Immobilienagentur; wir sind ein Team von Fachleuten, die leidenschaftlich daran arbeiten, Menschen mit dem perfekten Zuhause zu verbinden. Unsere Geschichte basiert auf Vertrauen, Hingabe und tiefem Wissen über den lokalen Markt.',
-    'about_desc_2' => 'Seit unseren Anfängen haben wir uns verpflichtet, außergewöhnlichen Service zu bieten und unsere Kunden durch jeden Schritt des Kauf-, Verkaufs- oder Mietprozesses zu führen. Wir verstehen, dass jeder Kunde einzigartig ist und streben danach, ihre Erwartungen mit personalisierten und transparenten Lösungen zu übertreffen.',
+    // ✅ Aktualisierter Text laut Kundenanweisung
+    'about_desc_1' => 'Bei ConfortHouse Living sind wir stolz darauf, außergewöhnliche Immobiliendienstleistungen anzubieten, die auf die individuellen Bedürfnisse unserer Kunden zugeschnitten sind. Mit umfassender Kenntnis des spanischen Immobilienmarktes – insbesondere in renommierten Küstenregionen wie der Costa Blanca und der Costa del Sol – widmen wir uns jedem Kauf, Verkauf oder Investment mit Fachwissen und Engagement.',
+    'about_desc_2' => 'Unser Team verpflichtet sich, einen persönlichen Service zu bieten, damit sich jeder Kunde während des gesamten Prozesses wertgeschätzt und gut informiert fühlt. Dank unseres weitreichenden Netzwerks und unserer Branchenerfahrung verbinden wir unsere Kunden mit den besten Möglichkeiten auf dem spanischen Immobilienmarkt. Ob es sich um Ihren ersten Kauf handelt oder Sie bereits ein erfahrener Investor sind – wir begleiten Sie auf jedem Schritt mit Vertrauen, Transparenz und einem starken Engagement, Ihre Immobilienziele zu erreichen.',
+
     'value_1_title' => 'Engagement',
     'value_1_desc' => 'Wir sind der Erreichung Ihrer Immobilienziele gewidmet und arbeiten unermüdlich daran, die beste Option für Sie zu finden.',
     'value_2_title' => 'Integrität',
@@ -708,78 +711,96 @@ return [
     'legal_section_7_intro' => 'Bei Fragen oder Anfragen zu diesem Impressum können Sie uns kontaktieren unter:',
 
 
-    // ===================================
-// AGREGAR AL ARCHIVO: lang/de/messages.php
-// ===================================
-
     // ===== DATENSCHUTZRICHTLINIE =====
-    'privacy_policy' => 'Datenschutzerklärung',
-    'privacy_description' => 'Informationen über die Verarbeitung und den Schutz Ihrer personenbezogenen Daten',
-    
-    // Einleitung
-    'privacy_introduction' => 'Einleitung',
-    'privacy_intro_text' => 'Bei Conforthouse Living S.L. respektieren wir Ihre Privatsphäre und verpflichten uns zum Schutz Ihrer personenbezogenen Daten. Diese Datenschutzerklärung informiert Sie darüber, wie wir Ihre personenbezogenen Daten verarbeiten, wenn Sie unsere Website besuchen, und informiert Sie über Ihre Datenschutzrechte.',
-    'privacy_last_updated' => 'Letzte Aktualisierung: :date',
-    
-    // Gesammelte Daten
-    'data_we_collect' => 'Personenbezogene Daten, die wir sammeln',
-    'personal_info' => 'Identifikationsdaten',
-    'personal_info_details' => 'Name, Nachname, E-Mail-Adresse, Telefonnummer.',
-    'property_preferences' => 'Immobilienpräferenzen',
-    'property_preferences_details' => 'Art der interessanten Immobilie, bevorzugter Standort, Preisspanne, spezifische Bedürfnisse.',
-    'usage_data' => 'Navigationsdaten',
-    'usage_data_details' => 'IP-Adresse, Browsertyp, besuchte Seiten, Verweildauer, Betriebssystem.',
-    'cookies' => 'Cookies',
-    'cookies_details' => 'Informationen, die auf Ihrem Gerät gespeichert werden, wenn Sie unsere Website besuchen.',
-    
-    // Wie wir Daten verwenden
-    'how_we_use_data' => 'Zweck der Datenverarbeitung',
-    'use_provide_service' => 'Verwaltung und Beantwortung Ihrer Anfragen, Informationsanfragen und Mitteilungen.',
-    'use_improve_service' => 'Verbesserung unserer Dienste und der Benutzererfahrung auf unserer Website.',
-    'use_personalize' => 'Bereitstellung von Informationen über Immobilien, die Ihren Präferenzen entsprechen.',
-    'use_communication' => 'Versand von Werbemitteilungen über unsere Dienstleistungen und Immobilien mit ausdrücklicher Genehmigung.',
-    'use_legal' => 'Erfüllung der für unsere Tätigkeit geltenden gesetzlichen Verpflichtungen.',
-    
-    // Datenweitergabe
-    'data_sharing' => 'Empfänger und Datenübermittlungen',
-    'data_sharing_text' => 'Ihre personenbezogenen Daten können an folgende Empfänger weitergegeben werden:',
-    'service_providers' => 'Technologie-Dienstleister',
-    'service_providers_details' => 'Unternehmen, die uns Hosting-, Webwartungs- und Datenanalysedienste zur Verfügung stellen.',
-    'legal_requirements' => 'Öffentliche Verwaltungen',
-    'legal_requirements_details' => 'Wenn dies aufgrund gesetzlicher Verpflichtungen erforderlich ist.',
-    'business_transfers' => 'Professionelle Berater',
-    'business_transfers_details' => 'Rechtsanwälte, Wirtschaftsprüfer oder Berater, wenn dies für die Erbringung unserer Dienstleistungen erforderlich ist.',
-    
-    // Ihre Rechte
-    'your_rights' => 'Ihre Datenschutzrechte',
-    'your_rights_text' => 'Als Inhaber personenbezogener Daten haben Sie das Recht, die folgenden Rechte auszuüben:',
-    'right_access' => 'Auskunftsrecht: Bestätigung erhalten, ob wir Ihre personenbezogenen Daten verarbeiten.',
-    'right_rectification' => 'Recht auf Berichtigung: Berichtigung unrichtiger oder unvollständiger Daten verlangen.',
-    'right_erasure' => 'Recht auf Löschung: Löschung Ihrer Daten verlangen, wenn sie nicht mehr erforderlich sind.',
-    'right_restrict' => 'Recht auf Einschränkung der Verarbeitung: Verlangen, dass die Verarbeitung Ihrer Daten unter bestimmten Umständen eingeschränkt wird.',
-    'right_object' => 'Widerspruchsrecht: Der Verarbeitung Ihrer Daten aus Gründen widersprechen, die sich aus Ihrer besonderen Situation ergeben.',
-    'right_data_portability' => 'Recht auf Datenübertragbarkeit: Ihre Daten in einem strukturierten, gängigen Format erhalten.',
-    
-    // Datensicherheit
-    'data_security' => 'Sicherheitsmaßnahmen',
-    'data_security_text' => 'Conforthouse Living S.L. hat die erforderlichen technischen und organisatorischen Maßnahmen ergriffen, um die Sicherheit Ihrer personenbezogenen Daten zu gewährleisten und deren Veränderung, Verlust, Verarbeitung oder unbefugten Zugriff zu verhindern.',
-    
-    // Internationale Übermittlungen
-    'international_transfers' => 'Internationale Übermittlungen',
-    'international_transfers_text' => 'Wir nehmen keine internationalen Übermittlungen personenbezogener Daten außerhalb des Europäischen Wirtschaftsraums vor. Falls erforderlich, würden angemessene Garantien gemäß der DSGVO eingerichtet.',
-    
-    // Datenschutz für Kinder
-    'children_privacy' => 'Datenschutz für Minderjährige',
-    'children_privacy_text' => 'Unsere Dienste richten sich nicht an Personen unter 18 Jahren. Wir sammeln wissentlich keine personenbezogenen Informationen von Minderjährigen. Wenn Sie ein Elternteil oder Erziehungsberechtigter sind und wissen, dass Ihr Kind uns personenbezogene Daten zur Verfügung gestellt hat, kontaktieren Sie uns bitte.',
-    
-    // Änderungen der Richtlinie
-    'changes_policy' => 'Änderungen der Datenschutzerklärung',
-    'changes_policy_text' => 'Conforthouse Living S.L. behält sich das Recht vor, diese Datenschutzerklärung zu ändern, um sie an gesetzliche, rechtliche Änderungen oder an unsere Geschäftspraktiken anzupassen. Wir empfehlen Ihnen, diese Seite regelmäßig zu überprüfen.',
-    
-    // Kontakt
-    'contact_us' => 'Kontakt',
-    'contact_privacy_text' => 'Bei Fragen oder Anfragen zu dieser Datenschutzerklärung oder zur Verarbeitung Ihrer personenbezogenen Daten können Sie uns kontaktieren oder eine Beschwerde bei der spanischen Datenschutzbehörde einreichen.',
+    'privacy_policy' => 'Datenschutzrichtlinie',
+    'privacy_description' => 'Bei Conforthouse Living S.L. verpflichten wir uns, die Privatsphäre unserer Nutzer zu schützen.',
 
+    // Zusammenfassung (für Formulare)
+    'privacy_responsible' => 'Verantwortlich: Conforthouse Living S.L.',
+    'privacy_purpose' => 'Zweck: Verwaltung von Informationsanfragen über die Website, um professionelle Immobiliendienstleistungen zu erbringen und Ihnen die gewünschten Informationen bereitzustellen.',
+    'privacy_legitimation' => 'Rechtsgrundlage: Ihre Einwilligung, die Sie uns durch Klicken auf die Schaltfläche „Ich akzeptiere die Datenschutzbestimmungen“ erteilen.',
+    'privacy_recipients' => 'Empfänger: Ihre Daten werden nicht an Dritte weitergegeben, es sei denn, dies ist gesetzlich vorgeschrieben.',
+    'privacy_rights' => 'Rechte: Sie können Ihre Rechte auf Auskunft, Berichtigung, Löschung, Widerspruch, Datenübertragbarkeit und Widerruf Ihrer Einwilligung jederzeit per E-Mail an conforthouseliving@rbconforthouse.com ausüben.',
+
+    // Einführung
+    'privacy_introduction' => 'Datenschutzrichtlinie',
+    'privacy_intro_text' => 'Bei Conforthouse Living S.L. legen wir großen Wert auf den Schutz der Privatsphäre unserer Nutzer. Diese Datenschutzrichtlinie beschreibt, wie wir personenbezogene Daten sammeln, verwenden und weitergeben, die über unsere Website https://www.rbconforthouse.com/ erhoben werden.',
+    'privacy_last_updated' => 'Letzte Aktualisierung: :date',
+
+    // 1. Informationen, die wir sammeln
+    'data_we_collect' => 'Von uns erhobene Informationen',
+    'data_we_collect_intro' => 'Wir erfassen personenbezogene Daten, die Sie uns direkt zur Verfügung stellen, zum Beispiel wenn Sie:',
+    'data_collect_form' => 'Ein Kontaktformular ausfüllen.',
+    'data_collect_newsletter' => 'Unseren Newsletter abonnieren.',
+    'data_collect_inquiry' => 'Eine Anfrage zu einer Immobilie stellen.',
+    'data_collect_surveys' => 'An Umfragen oder Werbeaktionen teilnehmen.',
+    'data_collect_includes' => 'Zu den personenbezogenen Daten, die wir erfassen können, gehören unter anderem:',
+    'personal_info' => 'Vollständiger Name',
+    'personal_info_details' => 'Vollständiger Name',
+    'data_collect_email' => 'E-Mail-Adresse',
+    'data_collect_phone' => 'Telefonnummer',
+    'property_preferences' => 'Informationen über die gewünschte Immobilie',
+    'property_preferences_details' => 'Informationen über die gewünschte Immobilie',
+
+    // 2. Verwendung der Informationen
+    'how_we_use_data' => 'Verwendung der Informationen',
+    'how_we_use_intro' => 'Wir verwenden die erhobenen Informationen, um:',
+    'use_provide_service' => 'Unsere Dienstleistungen bereitzustellen und zu verbessern.',
+    'use_improve_service' => 'Auf Ihre Anfragen und Wünsche zu antworten.',
+    'use_communication' => 'Ihnen Werbemitteilungen oder Informationen zu Immobilien zu senden, die für Sie interessant sein könnten.',
+    'use_legal' => 'Unsere gesetzlichen und vertraglichen Verpflichtungen zu erfüllen.',
+
+    // 3. Weitergabe der Informationen
+    'data_sharing' => 'Weitergabe der Informationen',
+    'data_sharing_text' => 'Wir geben Ihre personenbezogenen Daten nicht an Dritte weiter, außer in den folgenden Fällen:',
+    'service_providers' => 'Dienstleister',
+    'service_providers_details' => 'An Dienstleister, die uns bei der Verwaltung unserer Website und der Erbringung unserer Dienstleistungen unterstützen.',
+    'legal_requirements' => 'Gesetzliche Anforderungen',
+    'legal_requirements_details' => 'Wenn dies erforderlich ist, um geltende Gesetze einzuhalten oder auf behördliche Anfragen zu reagieren.',
+    'business_transfers' => 'Unternehmensübertragungen',
+    'business_transfers_details' => 'Im Falle eines Verkaufs oder einer Übertragung unseres gesamten Unternehmens oder eines Teils davon.',
+
+    // 4. Sicherheit
+    'data_security' => 'Sicherheit',
+    'data_security_text' => 'Wir ergreifen angemessene technische und organisatorische Maßnahmen, um die von uns erhobenen personenbezogenen Daten zu schützen.',
+
+    // 5. Cookies und ähnliche Technologien
+    'cookies_policy' => 'Cookies und ähnliche Technologien',
+    'cookies' => 'Cookies',
+    'cookies_details' => 'Wir verwenden Cookies und ähnliche Technologien, um Informationen über Ihre Nutzung unserer Website zu sammeln und Ihre Online-Erfahrung zu verbessern. Sie können Ihren Browser so einstellen, dass Cookies abgelehnt werden; dies kann jedoch die Funktionalität der Website beeinträchtigen.',
+
+    // 6. Ihre Rechte
+    'your_rights' => 'Ihre Rechte',
+    'your_rights_text' => 'Sie haben das Recht, Ihre personenbezogenen Daten jederzeit einzusehen, zu korrigieren, zu aktualisieren oder löschen zu lassen. Zur Ausübung dieser Rechte kontaktieren Sie uns bitte unter conforthouseliving@rbconforthouse.com',
+    'right_access' => 'Recht auf Auskunft über Ihre personenbezogenen Daten',
+    'right_rectification' => 'Recht auf Berichtigung unrichtiger Daten',
+    'right_erasure' => 'Recht auf Löschung Ihrer Daten',
+    'right_restrict' => 'Recht auf Einschränkung der Verarbeitung',
+    'right_object' => 'Recht auf Widerspruch gegen die Verarbeitung',
+    'right_data_portability' => 'Recht auf Datenübertragbarkeit',
+
+    // 7. Änderungen an dieser Richtlinie
+    'changes_policy' => 'Änderungen an dieser Datenschutzrichtlinie',
+    'changes_policy_text' => 'Wir können diese Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Änderungen werden auf dieser Seite veröffentlicht; bitte überprüfen Sie sie regelmäßig.',
+
+    // 8. Kontakt
+    'contact_us' => 'Kontakt',
+    'contact_privacy_text' => 'Wenn Sie Fragen oder Bedenken zu dieser Datenschutzrichtlinie haben, kontaktieren Sie uns bitte unter:',
+    'company_name' => 'Conforthouse Living S.L.',
+    'company_address' => 'Adresse',
+    'company_email' => 'E-mail',
+
+    // Zusätzliche Felder
+    'usage_data' => 'Nutzungsdaten',
+    'usage_data_details' => 'Informationen darüber, wie Sie unsere Website nutzen',
+    'use_personalize' => 'Ihre Erfahrung auf unserer Website personalisieren.',
+    'international_transfers' => 'Internationale Datenübertragungen',
+    'international_transfers_text' => 'Ihre Daten können in Länder außerhalb Ihres Wohnsitzes übertragen und verarbeitet werden, in denen andere Datenschutzgesetze gelten können.',
+    'children_privacy' => 'Datenschutz für Minderjährige',
+    'children_privacy_text' => 'Unsere Dienste richten sich nicht an Personen unter 18 Jahren. Wir erfassen nicht absichtlich personenbezogene Daten von Minderjährigen.',
+
+
+    //======================= Formularios de contacto=======================================
     'message_sent_success' => 'Nachricht gesendet mit Erfolg',
     'message_sent_error' => 'Fehler beim Senden der Nachricht',
     'confirmation_email_subject' => 'Wir haben Ihre Anfrage erhalten',

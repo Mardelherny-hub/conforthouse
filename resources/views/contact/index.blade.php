@@ -231,16 +231,170 @@
     <!-- Sección de mapa -->
     <section class="py-16 bg-gray-100">
         <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12">
-            <div class="bg-white shadow-xl p-4 border border-amber-200/20">
-                <div class="aspect-w-16 aspect-h-9">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12345.67890!2d-3.70379!3d40.416775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422997800a3c81%3A0xc436dec1618c2269!2sMadrid%2C%20Spain!5e0!3m2!1sen!2ses!4v1616603897565!5m2!1sen!2ses"
-                        class="w-full h-full" style="border:0;" allowfullscreen="" loading="lazy">
-                    </iframe>
+            <div class="bg-white shadow-xl border border-amber-200/20">
+                <div class="relative w-full h-96">
+                    <div id="contact-map" class="w-full h-full"></div>
+                    
+                    <!-- Loading State -->
+                    <div id="contact-map-loading" class="absolute inset-0 bg-gray-100 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-amber-500 mx-auto mb-2"></div>
+                            <p class="text-gray-500 text-sm">Cargando mapa...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Map Script -->
+    <script>
+        let contactMap;
+        let contactMapLoaded = false;
+
+        function initContactMap() {
+            console.log('🗺️ Iniciando mapa de contacto...');
+            
+            // Ocultar loading
+            const loadingElement = document.getElementById('contact-map-loading');
+            if (loadingElement) {
+                loadingElement.style.display = 'none';
+            }
+
+            const mapContainer = document.getElementById('contact-map');
+            if (!mapContainer) {
+                console.error('❌ No se encontró el contenedor del mapa');
+                return;
+            }
+
+            // Coordenadas de la oficina en Valencia
+            // Plaza del Ayuntamiento Nº19 3º A, Valencia 46002, Spain
+            const officeLocation = {
+                lat: 39.4699,
+                lng: -0.3763
+            };
+
+            console.log('📍 Coordenadas oficina:', officeLocation);
+
+            // Inicializar mapa
+            contactMap = new google.maps.Map(mapContainer, {
+                zoom: 16,
+                center: officeLocation,
+                mapTypeControl: true,
+                streetViewControl: true,
+                fullscreenControl: true,
+                styles: [
+                    {
+                        "featureType": "poi",
+                        "elementType": "labels",
+                        "stylers": [{ "visibility": "off" }]
+                    }
+                ]
+            });
+
+            // Crear marcador personalizado
+            const marker = new google.maps.Marker({
+                position: officeLocation,
+                map: contactMap,
+                title: 'Conforthouse Living - Plaza del Ayuntamiento',
+                icon: {
+                    path: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z",
+                    fillColor: '#F59E0B',
+                    fillOpacity: 1,
+                    strokeColor: '#FFFFFF',
+                    strokeWeight: 2,
+                    scale: 1.8,
+                    anchor: new google.maps.Point(12, 24)
+                },
+                animation: google.maps.Animation.DROP
+            });
+
+            // Contenido del InfoWindow
+            const infoContent = `
+                <div class="p-4 max-w-sm">
+                    <h3 class="font-bold text-lg text-gray-900 mb-3">Conforthouse Living</h3>
+                    
+                    <div class="space-y-2 text-sm">
+                        <p class="flex items-start text-gray-600">
+                            <svg class="w-4 h-4 mr-2 mt-0.5 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                            </svg>
+                            <span>Plaza del Ayuntamiento Nº19 3º A<br>Valencia 46002, Spain</span>
+                        </p>
+                        
+                        <p class="flex items-center text-gray-600">
+                            <svg class="w-4 h-4 mr-2 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                            </svg>
+                            <span>696 649 243 | 963 805 030</span>
+                        </p>
+                        
+                        <p class="flex items-center text-gray-600">
+                            <svg class="w-4 h-4 mr-2 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                            </svg>
+                            <span>conforthouseliving@rbconforthouse.com</span>
+                        </p>
+                    </div>
+                    
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=39.4699,-0.3763" 
+                    target="_blank"
+                    class="block mt-4 w-full text-center bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded text-sm transition-colors">
+                        Cómo llegar
+                    </a>
+                </div>
+            `;
+
+            // Crear InfoWindow
+            const infoWindow = new google.maps.InfoWindow({
+                content: infoContent
+            });
+
+            // Click en marcador
+            marker.addListener('click', () => {
+                infoWindow.open(contactMap, marker);
+            });
+
+            // Abrir automáticamente después de 500ms
+            setTimeout(() => {
+                infoWindow.open(contactMap, marker);
+            }, 500);
+
+            contactMapLoaded = true;
+            console.log('✅ Mapa de contacto cargado correctamente');
+        }
+
+        function handleContactMapError() {
+            console.error('❌ Error al cargar Google Maps');
+            const loadingElement = document.getElementById('contact-map-loading');
+            if (loadingElement) {
+                loadingElement.innerHTML = `
+                    <div class="text-center text-red-600 py-8">
+                        <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <p class="text-sm font-medium">Error al cargar el mapa</p>
+                        <p class="text-xs text-gray-500 mt-1">Verifique la configuración de Google Maps</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Timeout de seguridad (10 segundos)
+        setTimeout(() => {
+            if (!contactMapLoaded) {
+                console.warn('⚠️ Timeout: el mapa no se ha cargado en 10 segundos');
+                handleContactMapError();
+            }
+        }, 10000);
+    </script>
+
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcKA1RrcEhTjruBl6y4wvgxpKEGUrpoig&callback=initContactMap&v=weekly" 
+            async defer 
+            onerror="handleContactMapError()">
+    </script>
 
     <!-- Sección de agentes inmobiliarios destacados -->
     {{-- <section class="py-16 bg-gray-50">
@@ -539,7 +693,7 @@
                             </svg>
                         </button>
                         <div x-show="openFaq === 5" x-collapse class="px-6 pb-4">
-                            <p class="text-gray-600 font-luxury-sans">{{ __('messages.faq_a5') }}</p>
+                            <p class="text-gray-600 font-luxury-sans">{!! __('messages.legal_advice_desc') !!}</p>
                         </div>
                     </div>
                 </div>
