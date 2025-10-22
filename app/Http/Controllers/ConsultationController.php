@@ -56,6 +56,52 @@ class ConsultationController extends Controller
     }
 
     /**
+     * Procesa el formulario del home
+     */
+    public function storeHomeContact(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:20',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string|max:2000',
+        ]);
+
+        // Agregar tipo de formulario
+        $validated['form_type'] = 'Formulario Home';
+
+        try {
+            // Enviar email al administrador
+            Mail::to(config('mail.from.address'))
+                ->send(new ConsultationMail($validated));
+
+            // Enviar email de confirmación al usuario
+            Mail::to($validated['email'])
+                ->send(new UserConfirmationMail($validated));
+
+            return response()->json([
+                'success' => true,
+                'message' => __('messages.message_sent_success')
+            ]);
+
+        } catch (\Exception $e) {
+            // Log del error para debugging
+            \Log::error('Error enviando email de home:', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+                'data' => $validated
+            ]);
+
+            return response()->json([
+                'success' => false,
+                'message' => __('messages.message_sent_error'),
+                'debug' => config('app.debug') ? $e->getMessage() : null
+            ], 500);
+        }
+    }
+
+    /**
      * Procesa el formulario de la página de contacto
      */
     public function storeContact(Request $request)
@@ -103,20 +149,28 @@ class ConsultationController extends Controller
     }
 
     /**
-     * Procesa el formulario del home
+     * Procesa el formulario de contacto de propiedades
      */
-    public function storeHomeContact(Request $request)
+    public function storePropertyContact(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'nullable|string|max:20',
-            'subject' => 'required|string|max:255',
             'message' => 'required|string|max:2000',
+            'property_id' => 'required|exists:properties,id',
         ]);
 
         // Agregar tipo de formulario
-        $validated['form_type'] = 'Formulario Home';
+        $validated['form_type'] = 'Consulta de Propiedad';
+        
+        // Obtener información de la propiedad
+        $property = \App\Models\Property::find($validated['property_id']);
+        $validated['property_title'] = $property ? $property->title : 'Propiedad no encontrada';
+        $validated['property_reference'] = $property ? $property->reference : '';
+        
+        // Agregar subject automático basado en la propiedad
+        $validated['subject'] = 'Consulta sobre: ' . $validated['property_title'];
 
         try {
             // Enviar email al administrador
@@ -134,7 +188,7 @@ class ConsultationController extends Controller
 
         } catch (\Exception $e) {
             // Log del error para debugging
-            \Log::error('Error enviando email de home:', [
+            \Log::error('Error enviando email de propiedad:', [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
                 'data' => $validated

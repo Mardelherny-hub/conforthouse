@@ -32,7 +32,7 @@
                             {{ __('messages.legal_section_1_intro') }}
                         </p>
                         <ul class="space-y-2 font-luxury-sans text-gray-700 pl-4">
-                            <li><strong>{{ __('messages.company_name') }}:</strong> Conforthouse Living S.L.</li>
+                            <li><strong>{{ __('messages.company_name') }}:</strong></li>
                             <li><strong>{{ __('messages.company_cif') }}:</strong> B75855817</li>
                             <li><strong>{{ __('messages.company_address') }}:</strong> Plaza del Ayuntamiento Nº19, 3-A, C.P. 46002, Valencia</li>
                             <li><strong>{{ __('messages.company_phone') }}:</strong> 696 649 243</li>

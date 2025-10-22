@@ -6,7 +6,7 @@
         <div class="james-section-header">
                     <h2 class="james-section-title font-luxury mr-4">{{ __('messages.nuestras_categorias_premium') }}</h2>
                     <a href="{{ route('properties.index', ['locale' => app()->getLocale()]) }}"
-                    class="james-view-all font-body">{{ __('messages.explora_seleccion_propiedades') }}</a>
+                    class="james-view-all font-body" style="padding: 0.5rem 1rem 1.5rem 2rem;">{{ __('messages.explora_seleccion_propiedades') }}</a>
                 </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 

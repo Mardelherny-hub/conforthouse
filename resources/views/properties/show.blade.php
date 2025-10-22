@@ -677,8 +677,11 @@
                             <p class="james-contact-subtitle">
                                  {{ __('messages.more-info') }}.
                             </p>
-                            
-                            <form class="james-contact-form" method="POST" action="#">
+
+                            <form class="james-contact-form" 
+                                method="POST" 
+                                action="{{ route('property.contact.store', ['locale' => app()->getLocale()]) }}"
+                                data-property-contact-form>
                                 @csrf
                                 <input type="hidden" name="property_id" value="{{ $property->id }}">
                                 
@@ -739,6 +742,54 @@
                                     {{ __('messages.send_message') }}
                                 </button>
                             </form>
+
+                            <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const form = document.querySelector('[data-property-contact-form]');
+                                
+                                if (form) {
+                                    form.addEventListener('submit', async function(e) {
+                                        e.preventDefault();
+                                        
+                                        const submitButton = form.querySelector('button[type="submit"]');
+                                        const originalText = submitButton.innerHTML;
+                                        
+                                        // Deshabilitar botón y mostrar loading
+                                        submitButton.disabled = true;
+                                        submitButton.innerHTML = '<svg class="animate-spin h-5 w-5 mr-2 inline" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Enviando...';
+                                        
+                                        try {
+                                            const formData = new FormData(form);
+                                            const response = await fetch(form.action, {
+                                                method: 'POST',
+                                                body: formData,
+                                                headers: {
+                                                    'X-Requested-With': 'XMLHttpRequest',
+                                                    'Accept': 'application/json'
+                                                }
+                                            });
+                                            
+                                            const data = await response.json();
+                                            
+                                            if (data.success) {
+                                                // Mostrar mensaje de éxito
+                                                alert(data.message || 'Mensaje enviado correctamente');
+                                                form.reset();
+                                            } else {
+                                                alert(data.message || 'Error al enviar el mensaje');
+                                            }
+                                        } catch (error) {
+                                            console.error('Error:', error);
+                                            alert('Error al enviar el mensaje. Por favor, intente nuevamente.');
+                                        } finally {
+                                            // Restaurar botón
+                                            submitButton.disabled = false;
+                                            submitButton.innerHTML = originalText;
+                                        }
+                                    });
+                                }
+                            });
+                            </script>
 
                             <!-- Contact Info -->
                             <div class="james-contact-info">

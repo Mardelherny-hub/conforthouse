@@ -58,11 +58,11 @@
                                 @endif
                                 
                                 <!-- Property Type Badge -->
-                                @if($property->propertyType)
+                                {{-- @if($property->propertyType)
                                     <div class="james-property-badge absolute top-4 right-24 bg-neutral-800 text-white px-3 py-1 text-xs font-medium rounded">
                                         {{ $property->getMappedPropertyType() }}
                                     </div>
-                                @endif
+                                @endif --}}
                             </div>
                             
                             <div class="james-property-content">

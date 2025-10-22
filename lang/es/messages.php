@@ -295,7 +295,7 @@ return [
     // ===== MODAL DE CONSULTAS FLOTANTE =====
     'floating_button_tooltip' => '¿Dudas?',
     'floating_button_modal_title' => '¿Tienes dudas?',
-    'floating_button_modal_subtitle' => 'Gracias por contactar con nosotros. En este momento no podemos responderle, nuestro horario es de lunes a viernes de 10 a 14 y de 16 a 19.30h y sábado 10.30 a 13.30. Le responderemos lo antes posible. Gracias.',
+    'floating_button_modal_subtitle' => 'Nosotros te llamamos. Envíanos en este formulario tu nombre, correo electrónico, y si lo prefieres número de teléfono, con un pequeño mensaje indicando en que podemos ayudarte y nos pondremos en contacto contigo lo antes posible. Gracias.',
     'consultation_form_name_placeholder' => 'Tu nombre completo',
     'consultation_form_email' => 'Correo electrónico',
     'consultation_form_email_placeholder' => 'tu@email.com',

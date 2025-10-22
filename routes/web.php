@@ -78,6 +78,13 @@ Route::group([
          ->name('home.contact.store')
          ->middleware('throttle:3,1'); // Formulario del home
 
+    Route::post('/home-contact', [App\Http\Controllers\ConsultationController::class, 'storeHomeContact'])
+    ->name('home.contact.store')
+    ->middleware('throttle:3,1'); // Formulario del home
+
+    Route::post('/property-contact', [App\Http\Controllers\ConsultationController::class, 'storePropertyContact'])
+         ->name('property.contact.store')
+         ->middleware('throttle:3,1'); // Formulario de propiedades
 
     });
 

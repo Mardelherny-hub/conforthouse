@@ -266,65 +266,65 @@ class InmovillaImportCommand extends Command
         });
     }
 
-private function importAddress($propertyId, $xmlProperty)
-{
-    // Extraer coordenadas del XML
-    $latitudRaw = (string)$xmlProperty->latitud;
-    $longitudRaw = (string)$xmlProperty->altitud; // Inmovilla usa "altitud" para longitud
-    
-    // Validar y procesar coordenadas
-    $latitude = null;
-    $longitude = null;
-    
-    // Validar latitud
-    if (!empty($latitudRaw) && is_numeric($latitudRaw) && $latitudRaw !== '0') {
-        $lat = (float)$latitudRaw;
-        if ($lat >= -90 && $lat <= 90) {
-            $latitude = $lat;
+    private function importAddress($propertyId, $xmlProperty)
+    {
+        // Extraer coordenadas del XML
+        $latitudRaw = (string)$xmlProperty->latitud;
+        $longitudRaw = (string)$xmlProperty->altitud; // Inmovilla usa "altitud" para longitud
+        
+        // Validar y procesar coordenadas
+        $latitude = null;
+        $longitude = null;
+        
+        // Validar latitud
+        if (!empty($latitudRaw) && is_numeric($latitudRaw) && $latitudRaw !== '0') {
+            $lat = (float)$latitudRaw;
+            if ($lat >= -90 && $lat <= 90) {
+                $latitude = $lat;
+            }
         }
-    }
-    
-    // Validar longitud
-    if (!empty($longitudRaw) && is_numeric($longitudRaw) && $longitudRaw !== '0') {
-        $lng = (float)$longitudRaw;
-        if ($lng >= -180 && $lng <= 180) {
-            $longitude = $lng;
+        
+        // Validar longitud
+        if (!empty($longitudRaw) && is_numeric($longitudRaw) && $longitudRaw !== '0') {
+            $lng = (float)$longitudRaw;
+            if ($lng >= -180 && $lng <= 180) {
+                $longitude = $lng;
+            }
         }
+        
+        // Log de debug
+        Log::info("IMPORTANDO DIRECCIÓN", [
+            'property_id' => $propertyId,
+            'ref' => (string)$xmlProperty->ref,
+            'latitud_xml' => $latitudRaw,
+            'longitud_xml' => $longitudRaw,
+            'latitude_validada' => $latitude,
+            'longitude_validada' => $longitude,
+        ]);
+        
+        // Crear o actualizar dirección
+        $address = Address::updateOrCreate(
+            ['property_id' => $propertyId],
+            [
+                'street' => 'Sin especificar',
+                'postal_code' => (string)$xmlProperty->cp,
+                'city' => (string)$xmlProperty->ciudad,
+                'province' => (string)$xmlProperty->provincia,
+                'zone' => (string)$xmlProperty->zona,
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+            ]
+        );
+        
+        // Confirmar guardado
+        Log::info("DIRECCIÓN GUARDADA", [
+            'address_id' => $address->id,
+            'latitude' => $address->latitude,
+            'longitude' => $address->longitude,
+        ]);
+        
+        return $address;
     }
-    
-    // Log de debug
-    Log::info("IMPORTANDO DIRECCIÓN", [
-        'property_id' => $propertyId,
-        'ref' => (string)$xmlProperty->ref,
-        'latitud_xml' => $latitudRaw,
-        'longitud_xml' => $longitudRaw,
-        'latitude_validada' => $latitude,
-        'longitude_validada' => $longitude,
-    ]);
-    
-    // Crear o actualizar dirección
-    $address = Address::updateOrCreate(
-        ['property_id' => $propertyId],
-        [
-            'street' => 'Sin especificar',
-            'postal_code' => (string)$xmlProperty->cp,
-            'city' => (string)$xmlProperty->ciudad,
-            'province' => (string)$xmlProperty->provincia,
-            'zone' => (string)$xmlProperty->zona,
-            'latitude' => $latitude,
-            'longitude' => $longitude,
-        ]
-    );
-    
-    // Confirmar guardado
-    Log::info("DIRECCIÓN GUARDADA", [
-        'address_id' => $address->id,
-        'latitude' => $address->latitude,
-        'longitude' => $address->longitude,
-    ]);
-    
-    return $address;
-}
 
     private function importTranslations($propertyId, $xmlProperty)
     {
@@ -444,33 +444,79 @@ private function importAddress($propertyId, $xmlProperty)
 
     private function mapPropertyType($tipo)
     {
-        // Mapear texto de tipo a nombre en BD (Casa, apartamento, Ático)
+        // Mapear texto de tipo a nombre EXACTO en BD (Casa, apartamento, Ático)
         $typeMap = [
-            // VILLAS/CASAS → Casa
-            'chalet' => 'Casa',
-            'casa' => 'Casa',
-            'villa' => 'Casa',
-            'adosado' => 'Casa',
-            'pareado' => 'Casa',
-            'bungalow' => 'Casa',
-            'cortijo' => 'Casa',
-            'masía' => 'Casa',
-            
-            // APARTAMENTOS → apartamento
+            // APARTAMENTOS → apartamento (minúscula en BD)
             'apartamento' => 'apartamento',
             'piso' => 'apartamento',
             'duplex' => 'apartamento',
+            'dúplex' => 'apartamento',
             'estudio' => 'apartamento',
             'loft' => 'apartamento',
             'planta baja' => 'apartamento',
+            'adosado' => 'apartamento',
+            'pareado' => 'apartamento',
+            'triplex' => 'apartamento',
+            'tríplex' => 'apartamento',
+            'entresuelo' => 'apartamento',
+            'piso único' => 'apartamento',
             
-            // ÁTICOS → Ático
+            // ÁTICOS → Ático (con mayúscula y tilde en BD)
             'ático' => 'Ático',
             'atico' => 'Ático',
+            'ático dúplex' => 'Ático',
+            'ático duplex' => 'Ático',
+            'atico duplex' => 'Ático',
             'penthouse' => 'Ático',
+            'semiático' => 'Ático',
+            'semiatico' => 'Ático',
+            'sobreático' => 'Ático',
+            'sobreatico' => 'Ático',
+            
+            // VILLAS/CASAS → Casa (con mayúscula en BD)
+            'chalet' => 'Casa',
+            'casa' => 'Casa',
+            'villa' => 'Casa',
+            'villa de lujo' => 'Casa',  // ✅ AGREGADO
+            'bungalow' => 'Casa',
+            'cortijo' => 'Casa',
+            'masía' => 'Casa',
+            'masia' => 'Casa',
+            'hacienda' => 'Casa',
+            'torre' => 'Casa',
+            'casa de campo' => 'Casa',
+            'buhardilla' => 'Casa',
+            'quad house' => 'Casa',
+            'quad' => 'Casa',
+            'sótano' => 'Casa',
+            'sotano' => 'Casa',
+            'castillo' => 'Casa',
+            'casa cueva' => 'Casa',
+            'casa de madera' => 'Casa',
+            'caserío' => 'Casa',
+            'caserio' => 'Casa',
+            'casa solar' => 'Casa',
+            'casa de pueblo' => 'Casa',
+            'casita agrícola' => 'Casa',
+            'casita agricola' => 'Casa',
+            'casa terrera' => 'Casa',
+            'pazo' => 'Casa',
+            'casa de piedra' => 'Casa',
+            'cabaña' => 'Casa',
+            'cabana' => 'Casa',
+            'casa con terreno' => 'Casa',
+            'mansión' => 'Casa',
+            'mansion' => 'Casa',
+            'alquería' => 'Casa',
+            'alqueria' => 'Casa',
+            'residencia' => 'Casa',
+            'caserón' => 'Casa',
+            'caseron' => 'Casa',
+            'palacio' => 'Casa',
         ];
         
-        $typeName = $typeMap[strtolower($tipo)] ?? 'Casa'; // Default: Casa
+        $tipoLower = mb_strtolower($tipo, 'UTF-8');
+        $typeName = $typeMap[$tipoLower] ?? 'Casa'; // Default: Casa
         
         $propertyType = \App\Models\PropertyType::where('name', $typeName)->first();
         
@@ -478,6 +524,12 @@ private function importAddress($propertyId, $xmlProperty)
             Log::warning("Tipo de propiedad no encontrado en BD: {$typeName} (tipo original: {$tipo})");
             return 1; // Default: primer ID disponible
         }
+        
+        Log::info("Tipo mapeado correctamente", [
+            'tipo_original' => $tipo,
+            'tipo_mapeado' => $typeName,
+            'property_type_id' => $propertyType->id
+        ]);
         
         return $propertyType->id;
     }
