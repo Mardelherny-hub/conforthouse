@@ -819,7 +819,7 @@
         <div class="w-full px-4 lg:px-6 xl:px-8 2xl:px-12 py-16">
             <div class="james-section-header">
                 <h2 class="james-section-title">{{ __('messages.similar_properties') }}</h2>
-                <p class="james-section-subtitle ml-4">{{ __('messages.discover_properties') }}</p>
+                <p class="james-section-subtitle ml-6 mb-4">{{ __('messages.discover_properties') }}</p>
             </div>
             
             <div class="james-properties-similar-grid">

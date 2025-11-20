@@ -88,7 +88,16 @@ Route::group([
 
     });
 
-    
+   // Ruta para Cron Job de IONOS
+    // Ruta para Cron Job de IONOS - Sin guiones ni caracteres especiales
+    Route::get('/cronrun', function () {
+        Artisan::call('inmovilla:update');
+        return response()->json([
+            'success' => true,
+            'message' => 'Scheduler ejecutado',
+            'output' => Artisan::output()
+        ]);
+    });
 
 
 // Rutas protegidas para usuarios autenticados (No admin)

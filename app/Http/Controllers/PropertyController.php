@@ -166,8 +166,24 @@ public function index(Request $request)
         $query->whereNotNull('keypromo')->where('keypromo', '!=', 0);
     }
 
+    // === ORDENAMIENTO ===
+    $sort = $request->query('sort', 'recent'); // por defecto: más recientes
+
+    switch ($sort) {
+        case 'price_asc':
+            $query->orderBy('precioinmo', 'asc');
+            break;
+        case 'price_desc':
+            $query->orderBy('precioinmo', 'desc');
+            break;
+        case 'recent':
+        default:
+            $query->orderBy('created_at', 'desc');
+            break;
+    }
+
     // Obtener resultados paginados
-    $properties = $query->latest()->paginate(9);
+    $properties = $query->paginate(9);
 
     // Agrupar por complejos si se solicita
     $groupedComplexes = null;
@@ -191,6 +207,8 @@ public function index(Request $request)
     // Obtener operaciones y tipos para los filtros del formulario
     $operations = Operation::all();
     $propertyTypes = PropertyType::all();
+
+    
     
     // Pasar todas las variables a la vista
     return view('properties.index', compact(
@@ -209,7 +227,8 @@ public function index(Request $request)
         'bathrooms',
         'keyvista',
         'min_area',
-        'features'
+        'features',
+        'sort'
     ));
 }
 

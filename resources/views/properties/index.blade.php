@@ -19,6 +19,38 @@
                         @endif
                     </div>
 
+                    <!-- Selector de Ordenamiento -->
+                    <div class="mb-4 lg:mb-0">
+                        <form method="GET" action="{{ route('properties.index', ['locale' => app()->getLocale()]) }}" id="sortForm">
+                            <!-- Mantener todos los filtros actuales -->
+                            @if($operationId)<input type="hidden" name="operation_id" value="{{ $operationId }}">@endif
+                            @if($typeId)<input type="hidden" name="type_id" value="{{ $typeId }}">@endif
+                            @if($min_price)<input type="hidden" name="min_price" value="{{ $min_price }}">@endif
+                            @if($max_price)<input type="hidden" name="max_price" value="{{ $max_price }}">@endif
+                            @if($bedrooms)<input type="hidden" name="bedrooms" value="{{ $bedrooms }}">@endif
+                            @if($bathrooms)<input type="hidden" name="bathrooms" value="{{ $bathrooms }}">@endif
+                            @if($keyvista)<input type="hidden" name="keyvista" value="{{ $keyvista }}">@endif
+                            @if($min_area)<input type="hidden" name="min_area" value="{{ $min_area }}">@endif
+                            @if($search)<input type="hidden" name="search" value="{{ $search }}">@endif
+                            @if(!empty($features))
+                                @foreach($features as $feature)
+                                    <input type="hidden" name="features[]" value="{{ $feature }}">
+                                @endforeach
+                            @endif
+                            
+                            <div class="flex items-center gap-3">
+                                <label for="sort" class="text-sm font-medium text-gray-700">{{ __('messages.ordenar_por') }}:</label>
+                                <select name="sort" id="sort" 
+                                    onchange="document.getElementById('sortForm').submit()"
+                                    class="px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-sm">
+                                    <option value="recent" {{ $sort == 'recent' ? 'selected' : '' }}>{{ __('messages.mas_recientes') }}</option>
+                                    <option value="price_asc" {{ $sort == 'price_asc' ? 'selected' : '' }}>{{ __('messages.menor_precio') }}</option>
+                                    <option value="price_desc" {{ $sort == 'price_desc' ? 'selected' : '' }}>{{ __('messages.mayor_precio') }}</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+
                     <!-- Filtros aplicados -->
                     @if($operationId || $typeId || $min_price || $max_price || $bedrooms || $bathrooms || $keyvista || $min_area || !empty($features) || $search)
                         <div class="text-sm text-gray-600">

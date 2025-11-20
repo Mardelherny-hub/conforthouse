@@ -137,6 +137,8 @@ return [
     'facebook' => 'Facebook',
     'instagram' => 'Instagram',
     'visit_instagram' => 'Visit Instagram',
+    'copy_link' => 'Copy Link',
+    'copied' => 'Copied!',
     'twitter' => 'Twitter',
     'whatsapp' => 'WhatsApp',
     'email' => 'Email',
