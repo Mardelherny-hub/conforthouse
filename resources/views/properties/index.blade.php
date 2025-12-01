@@ -34,7 +34,7 @@
                             @if($search)<input type="hidden" name="search" value="{{ $search }}">@endif
                             @if(!empty($features))
                                 @foreach($features as $feature)
-                                    <input type="hidden" name="features[]" value="{{ $feature }}">
+                    <input type="hidden" name="features[]" value="{{ $feature }}">
                                 @endforeach
                             @endif
                             
@@ -131,8 +131,6 @@
                                             @case('pool')
                                                 {{ __('messages.pool_view') }}
                                                 @break
-                                            @default
-                                                {{ ucfirst($keyvista) }}
                                         @endswitch
                                     </span>
                                 @endif
@@ -140,14 +138,14 @@
                                 <!-- Área mínima -->
                                 @if($min_area)
                                     <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-xs font-medium">
-                                        {{ $min_area }}+ m²
+                                        {{ __('messages.min_area') }}: {{ $min_area }}m²
                                     </span>
                                 @endif
 
                                 <!-- Características -->
                                 @if(!empty($features))
                                     @foreach($features as $feature)
-                                        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-medium">
+                                        <span class="bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-xs font-medium">
                                             @switch($feature)
                                                 @case('piscina')
                                                     {{ __('messages.pool') }}
@@ -167,24 +165,27 @@
                                                 @case('aire_acondicionado')
                                                     {{ __('messages.air_conditioning') }}
                                                     @break
-                                                @default
-                                                    {{ ucfirst(str_replace('_', ' ', $feature)) }}
                                             @endswitch
                                         </span>
                                     @endforeach
                                 @endif
 
-                                <!-- Búsqueda de texto -->
+                                <!-- Búsqueda por texto -->
                                 @if($search)
                                     <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-xs font-medium">
-                                        "{{ $search }}"
+                                        🔍 "{{ Str::limit($search, 20) }}"
                                     </span>
                                 @endif
+                            </div>
 
-                                <!-- Botón limpiar filtros -->
-                                <a href="{{ route('properties.index', ['locale' => app()->getLocale()]) }}"
-                                    class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium hover:bg-red-200 transition-colors">
-                                    {{ __('messages.clear_filters') }} ×
+                            <!-- Botón limpiar filtros -->
+                            <div class="mt-3">
+                                <a href="{{ route('properties.index', ['locale' => app()->getLocale()]) }}" 
+                                    class="text-sm text-amber-600 hover:text-amber-800 font-medium inline-flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                    </svg>
+                                    {{ __('messages.clear_filters') }}
                                 </a>
                             </div>
                         </div>
@@ -307,7 +308,13 @@
                         'type_id' => $typeId,
                         'min_price' => $min_price,
                         'max_price' => $max_price,
-                        'search' => $search
+                        'search' => $search,
+                        'sort' => $sort,
+                        'bedrooms' => $bedrooms,
+                        'bathrooms' => $bathrooms,
+                        'keyvista' => $keyvista,
+                        'min_area' => $min_area,
+                        'features' => $features
                     ])->links('vendor.pagination.james-edition') }}
                 </div>
             @endif
