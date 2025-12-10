@@ -293,8 +293,9 @@ return [
 
     // ===== MODAL DE CONSULTATION FLOTTANTE =====
     'floating_button_tooltip' => 'Des questions ?',
+    'floating_button_text' => 'Nous vous appelons',
     'floating_button_modal_title' => 'Vous avez des questions ?',
-    'floating_button_modal_subtitle' => 'Merci de nous avoir contactés. Nous ne pouvons pas vous répondre pour le moment. Nos horaires d\'ouverture sont du lundi au vendredi de 10h00 à 14h00 et de 16h00 à 19h30, et le samedi de 10h30 à 13h30. Nous vous répondrons dès que possible. Merci.',
+    'floating_button_modal_subtitle' => 'Nous vous appelons. Envoyez-nous votre nom, votre adresse e-mail et, si vous le souhaitez, votre numéro de téléphone via ce formulaire, accompagnés d’un court message indiquant en quoi nous pouvons vous aider. Nous vous contacterons dès que possible. Merci.',
     'consultation_form_name' => 'Nom complet',
     'consultation_form_name_placeholder' => 'Votre nom complet',
     'consultation_form_email' => 'Adresse email',

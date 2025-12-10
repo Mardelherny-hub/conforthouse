@@ -293,8 +293,9 @@ return [
 
     // ===== ZWEVENDE CONSULTATIE MODAL =====
     'floating_button_tooltip' => 'Vragen?',
+    'floating_button_text' => 'Wij bellen u',
     'floating_button_modal_title' => 'Heeft u vragen?',
-    'floating_button_modal_subtitle' => 'Bedankt dat u contact met ons heeft opgenomen. Op dit moment kunnen we niet reageren. Onze openingstijden zijn van maandag tot en met vrijdag van 10:00 tot 14:00 en van 16:00 tot 19:30, en op zaterdag van 10:30 tot 13:30. We nemen zo snel mogelijk contact met u op. Bedankt.',
+    'floating_button_modal_subtitle' => 'Wij bellen je. Stuur ons via dit formulier je naam, e-mailadres en – als je dat wilt – je telefoonnummer, samen met een kort bericht waarin je aangeeft waarmee we je kunnen helpen. We nemen zo snel mogelijk contact met je op. Bedankt.',
     'consultation_form_name' => 'Volledige naam',
     'consultation_form_name_placeholder' => 'Uw volledige naam',
     'consultation_form_email' => 'E-mailadres',

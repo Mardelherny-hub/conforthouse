@@ -295,8 +295,9 @@ return [
 
     // ===== FLOATING CONSULTATION MODAL =====
     'floating_button_tooltip' => 'Questions?',
+    'floating_button_text' => 'We will call you',
     'floating_button_modal_title' => 'Have questions?',
-    'floating_button_modal_subtitle' => 'Thank you for contacting us. We are currently unable to respond. Our business hours are Monday to Friday from 10:00 to 14:00 and from 16:00 to 19:30, and Saturday from 10:30 to 13:30. We will get back to you as soon as possible. Thank you.',
+    'floating_button_modal_subtitle' => 'We’ll call you. Send us your name, email address, and—if you prefer—your phone number through this form, along with a short message telling us how we can help you. We will contact you as soon as possible. Thank you.',
     'consultation_form_name' => 'Full name',
     'consultation_form_name_placeholder' => 'Your full name',
     'consultation_form_email' => 'Email address',

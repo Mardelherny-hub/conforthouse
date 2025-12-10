@@ -39,6 +39,12 @@ class InmovillaImportCommand extends Command
             $totalProperties = count($xml->propiedad);
             $this->info("📊 Total propiedades encontradas: {$totalProperties}");
 
+            // Recopilar todos los cod_ofer que vienen en el XML
+            $xmlCodOfers = [];
+            foreach ($xml->propiedad as $prop) {
+                $xmlCodOfers[] = (int)$prop->id;
+            }
+
             $imported = 0;
             $errors = 0;
 
@@ -61,6 +67,17 @@ class InmovillaImportCommand extends Command
             $this->info("🎉 Importación completada:");
             $this->info("   ✅ Importadas: {$imported}");
             $this->info("   ❌ Errores: {$errors}");
+
+            // Soft delete de propiedades que ya no vienen en el XML
+            $deleted = Property::whereNotNull('cod_ofer')
+                ->whereNotIn('cod_ofer', $xmlCodOfers)
+                ->whereNull('deleted_at')
+                ->delete();
+
+            if ($deleted > 0) {
+                $this->info("   🗑️  Desactivadas: {$deleted}");
+                Log::info("Propiedades desactivadas por no estar en XML", ['cantidad' => $deleted]);
+            }
 
             return Command::SUCCESS;
 

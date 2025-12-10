@@ -293,8 +293,9 @@ return [
 
     // ===== SCHWEBENDES BERATUNGSMODAL =====
     'floating_button_tooltip' => 'Fragen?',
+    'floating_button_text' => 'Wir rufen Sie an',
     'floating_button_modal_title' => 'Haben Sie Fragen?',
-    'floating_button_modal_subtitle' => 'Vielen Dank, dass Sie uns kontaktiert haben. Im Moment können wir nicht antworten. Unsere Geschäftszeiten sind Montag bis Freitag von 10:00 bis 14:00 Uhr und von 16:00 bis 19:30 Uhr sowie Samstag von 10:30 bis 13:30 Uhr. Wir werden Ihnen so bald wie möglich antworten. Vielen Dank.',
+    'floating_button_modal_subtitle' => 'Wir rufen dich an. Sende uns über dieses Formular deinen Namen, deine E-Mail-Adresse und – wenn du möchtest – deine Telefonnummer, zusammen mit einer kurzen Nachricht, in der du erklärst, wie wir dir helfen können. Wir melden uns so schnell wie möglich bei dir. Vielen Dank.',
     'consultation_form_name' => 'Vollständiger Name',
     'consultation_form_name_placeholder' => 'Ihr vollständiger Name',
     'consultation_form_email' => 'E-Mail-Adresse',

@@ -52,7 +52,7 @@
                   x-transition:leave-start="opacity-100 transform translate-x-0"
                   x-transition:leave-end="opacity-0 transform translate-x-2"
                   class="ml-3 text-sm font-medium whitespace-nowrap">
-                ¿Dudas? <br> Nosotros te llamamos
+                {{ __('messages.floating_button_tooltip') }} <br> {{ __('messages.floating_button_text') }}
             </span>
         </button>
     </div>

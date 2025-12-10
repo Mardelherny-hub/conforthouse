@@ -294,6 +294,9 @@ return [
 
     // ===== MODAL DE CONSULTAS FLOTANTE =====
     'floating_button_tooltip' => '¿Dudas?',
+    'floating_button_text' => 'Nosotros te llamamos',
+    'seleccionar_opcion' => 'Seleccionar...',
+    'enviando' => 'Enviando...',
     'floating_button_modal_title' => '¿Tienes dudas?',
     'floating_button_modal_subtitle' => 'Nosotros te llamamos. Envíanos en este formulario tu nombre, correo electrónico, y si lo prefieres número de teléfono, con un pequeño mensaje indicando en que podemos ayudarte y nos pondremos en contacto contigo lo antes posible. Gracias.',
     'consultation_form_name_placeholder' => 'Tu nombre completo',
@@ -310,6 +313,10 @@ return [
     'consultation_form_cancel' => 'Cancelar',
     'consultation_form_submit' => 'Enviar consulta',
     'required_field' => '*',
+
+    
+
+    
 
     // ===== OPCIONES DE CONSULTA =====
     'consultation_type_buy' => 'Compra de propiedad',
