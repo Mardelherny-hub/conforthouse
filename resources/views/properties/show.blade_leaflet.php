@@ -731,6 +731,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             
                             <form class="james-contact-form" method="POST" action="#">
                                 @csrf
+                                @include('partials.antispam-fields')
+                                
                                 <input type="hidden" name="property_id" value="{{ $property->id }}">
                                 
                                 <div class="james-form-group">

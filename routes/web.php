@@ -67,24 +67,20 @@ Route::group([
 
     // Rutas para consultas unificadas con middleware de throttling
     Route::post('/consultation', [App\Http\Controllers\ConsultationController::class, 'store'])
-         ->name('consultation.store')
-         ->middleware('throttle:5,1'); // Modal flotante
+        ->name('consultation.store')
+        ->middleware(['antispam', 'throttle:5,1']);
 
     Route::post('/contact', [App\Http\Controllers\ConsultationController::class, 'storeContact'])
-         ->name('contact.store')
-         ->middleware('throttle:3,1'); // Página de contacto
+        ->name('contact.store')
+        ->middleware(['antispam', 'throttle:3,1']);
 
     Route::post('/home-contact', [App\Http\Controllers\ConsultationController::class, 'storeHomeContact'])
-         ->name('home.contact.store')
-         ->middleware('throttle:3,1'); // Formulario del home
-
-    Route::post('/home-contact', [App\Http\Controllers\ConsultationController::class, 'storeHomeContact'])
-    ->name('home.contact.store')
-    ->middleware('throttle:3,1'); // Formulario del home
+        ->name('home.contact.store')
+        ->middleware(['antispam', 'throttle:3,1']);
 
     Route::post('/property-contact', [App\Http\Controllers\ConsultationController::class, 'storePropertyContact'])
-         ->name('property.contact.store')
-         ->middleware('throttle:3,1'); // Formulario de propiedades
+        ->name('property.contact.store')
+        ->middleware(['antispam', 'throttle:3,1']);
 
     });
 

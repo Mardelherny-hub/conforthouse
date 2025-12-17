@@ -133,6 +133,7 @@
                             data-contact-form>
                             
                             @csrf
+                            @include('partials.antispam-fields')
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <!-- Nombre -->

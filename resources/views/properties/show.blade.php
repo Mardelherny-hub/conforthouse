@@ -682,7 +682,11 @@
                                 method="POST" 
                                 action="{{ route('property.contact.store', ['locale' => app()->getLocale()]) }}"
                                 data-property-contact-form>
+
                                 @csrf
+
+                                @include('partials.antispam-fields')
+                                
                                 <input type="hidden" name="property_id" value="{{ $property->id }}">
                                 
                                 <div class="james-form-group">
