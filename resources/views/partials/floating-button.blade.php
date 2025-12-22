@@ -101,6 +101,8 @@
                 data-contact-form>
                 
                 @csrf
+
+                @include('partials.antispam-fields')
                 
                 <!-- Name & Email Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

@@ -10,18 +10,31 @@ class AntiSpam
 {
     /**
      * Tiempo mínimo en segundos que debe pasar desde la carga del formulario
-     * Un humano normal tarda al menos 3-5 segundos en llenar un formulario
      */
     protected int $minTimeSeconds = 3;
 
     /**
+     * Versión máxima real de Chrome (actualizar periódicamente)
+     * Chrome 131 es la versión estable actual (Dic 2024)
+     */
+    protected int $maxChromeVersion = 135;
+
+    /**
      * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // 1. Validar Honeypot - si el campo tiene contenido, es un bot
+        // 1. Validar User-Agent sospechoso
+        if ($this->failsUserAgentCheck($request)) {
+            \Log::warning('AntiSpam: Bot detectado por User-Agent falso', [
+                'ip' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+            ]);
+            
+            return $this->rejectRequest($request);
+        }
+
+        // 2. Validar Honeypot
         if ($this->failsHoneypot($request)) {
             \Log::warning('AntiSpam: Bot detectado por honeypot', [
                 'ip' => $request->ip(),
@@ -31,7 +44,7 @@ class AntiSpam
             return $this->rejectRequest($request);
         }
 
-        // 2. Validar tiempo mínimo de llenado
+        // 3. Validar tiempo mínimo de llenado
         if ($this->failsTimeCheck($request)) {
             \Log::warning('AntiSpam: Bot detectado por tiempo de envío muy rápido', [
                 'ip' => $request->ip(),
@@ -45,14 +58,35 @@ class AntiSpam
     }
 
     /**
+     * Verifica si el User-Agent es falso/sospechoso
+     */
+    protected function failsUserAgentCheck(Request $request): bool
+    {
+        $userAgent = $request->userAgent();
+        
+        if (empty($userAgent)) {
+            return true; // Sin User-Agent es sospechoso
+        }
+
+        // Detectar versiones falsas de Chrome (ej: Chrome/142.0.0.0)
+        if (preg_match('/Chrome\/(\d+)\./', $userAgent, $matches)) {
+            $chromeVersion = (int) $matches[1];
+            
+            // Si la versión es mayor a la máxima conocida, es falso
+            if ($chromeVersion > $this->maxChromeVersion) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Verifica si el honeypot fue llenado (indica bot)
      */
     protected function failsHoneypot(Request $request): bool
     {
-        // El campo honeypot debe existir y estar vacío
         $honeypotValue = $request->input('website_url');
-        
-        // Si tiene contenido, es bot
         return !empty($honeypotValue);
     }
 
@@ -63,23 +97,20 @@ class AntiSpam
     {
         $formLoadedAt = $request->input('_form_token');
         
-        // Si no hay timestamp, permitir (formularios antiguos sin el campo)
         if (empty($formLoadedAt)) {
             return false;
         }
 
-        // Decodificar el timestamp
         $decodedTime = base64_decode($formLoadedAt);
         
         if (!is_numeric($decodedTime)) {
-            return true; // Timestamp inválido = sospechoso
+            return true;
         }
 
         $loadTime = (int) $decodedTime;
         $currentTime = time();
         $elapsedSeconds = $currentTime - $loadTime;
 
-        // Si pasaron menos de X segundos, es sospechoso
         return $elapsedSeconds < $this->minTimeSeconds;
     }
 
