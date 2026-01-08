@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\DB;
 //Artisan
 use Illuminate\Support\Facades\Artisan;
 
@@ -135,6 +136,42 @@ Route::get('/debug-inmovilla', function() {
         'api_file_exists' => file_exists(storage_path('app/inmovilla/apiinmovilla.php')),
         'api_file_path' => storage_path('app/inmovilla/apiinmovilla.php')
     ]);
+});
+
+// ============================================
+// HEALTH CHECK - Monitoreo básico del sitio
+// ============================================
+Route::get('/health', function () {
+    $checks = [
+        'status' => 'ok',
+        'timestamp' => now()->toIso8601String(),
+        'app' => config('app.name'),
+        'environment' => config('app.env'),
+    ];
+
+    // Verificar conexión a base de datos
+    try {
+        DB::connection()->getPdo();
+        $checks['database'] = 'ok';
+        $checks['properties_count'] = \App\Models\Property::where('is_active', true)->count();
+    } catch (\Exception $e) {
+        $checks['database'] = 'error';
+        $checks['status'] = 'degraded';
+    }
+
+    // Verificar última sincronización Inmovilla
+    $lastSync = \Illuminate\Support\Facades\Cache::get('inmovilla_sync_last_run');
+    $checks['last_sync'] = $lastSync ? $lastSync->toIso8601String() : 'never';
+
+    // Verificar espacio en storage/logs
+    $logPath = storage_path('logs/laravel.log');
+    if (file_exists($logPath)) {
+        $checks['log_size_mb'] = round(filesize($logPath) / 1024 / 1024, 2);
+    }
+
+    $httpStatus = $checks['status'] === 'ok' ? 200 : 503;
+
+    return response()->json($checks, $httpStatus);
 });
 
 // Incluye las rutas de autenticación
