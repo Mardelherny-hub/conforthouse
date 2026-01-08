@@ -30,7 +30,7 @@ class AntiSpam
                 'ip' => $request->ip(),
                 'user_agent' => $request->userAgent(),
             ]);
-            
+            $this->recordSpamAttempt('user_agent', $request);
             return $this->rejectRequest($request);
         }
 
@@ -40,7 +40,7 @@ class AntiSpam
                 'ip' => $request->ip(),
                 'user_agent' => $request->userAgent(),
             ]);
-            
+            $this->recordSpamAttempt('honeypot', $request);
             return $this->rejectRequest($request);
         }
 
@@ -50,11 +50,54 @@ class AntiSpam
                 'ip' => $request->ip(),
                 'user_agent' => $request->userAgent(),
             ]);
-            
+            $this->recordSpamAttempt('time_check', $request);
             return $this->rejectRequest($request);
         }
 
         return $next($request);
+    }
+
+    /**
+     * Registra el intento de spam para estadísticas
+     */
+    protected function recordSpamAttempt(string $type, Request $request): void
+    {
+        $statsFile = storage_path('app/spam_stats.json');
+        
+        // Cargar estadísticas existentes
+        $stats = [];
+        if (file_exists($statsFile)) {
+            $stats = json_decode(file_get_contents($statsFile), true) ?? [];
+        }
+
+        // Mes actual
+        $month = date('Y-m');
+
+        // Inicializar mes si no existe
+        if (!isset($stats[$month])) {
+            $stats[$month] = [
+                'total' => 0,
+                'by_type' => [
+                    'user_agent' => 0,
+                    'honeypot' => 0,
+                    'time_check' => 0,
+                ],
+                'ips' => [],
+            ];
+        }
+
+        // Incrementar contadores
+        $stats[$month]['total']++;
+        $stats[$month]['by_type'][$type]++;
+
+        // Registrar IP (limitado a 50 para no crecer infinito)
+        $ip = $request->ip();
+        if (!in_array($ip, $stats[$month]['ips']) && count($stats[$month]['ips']) < 50) {
+            $stats[$month]['ips'][] = $ip;
+        }
+
+        // Guardar estadísticas
+        file_put_contents($statsFile, json_encode($stats, JSON_PRETTY_PRINT));
     }
 
     /**
@@ -63,7 +106,7 @@ class AntiSpam
     protected function failsUserAgentCheck(Request $request): bool
     {
         $userAgent = $request->userAgent();
-        
+
         if (empty($userAgent)) {
             return true; // Sin User-Agent es sospechoso
         }
@@ -71,7 +114,6 @@ class AntiSpam
         // Detectar versiones falsas de Chrome (ej: Chrome/142.0.0.0)
         if (preg_match('/Chrome\/(\d+)\./', $userAgent, $matches)) {
             $chromeVersion = (int) $matches[1];
-            
             // Si la versión es mayor a la máxima conocida, es falso
             if ($chromeVersion > $this->maxChromeVersion) {
                 return true;
@@ -96,13 +138,13 @@ class AntiSpam
     protected function failsTimeCheck(Request $request): bool
     {
         $formLoadedAt = $request->input('_form_token');
-        
+
         if (empty($formLoadedAt)) {
             return false;
         }
 
         $decodedTime = base64_decode($formLoadedAt);
-        
+
         if (!is_numeric($decodedTime)) {
             return true;
         }

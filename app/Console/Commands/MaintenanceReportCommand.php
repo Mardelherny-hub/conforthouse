@@ -33,7 +33,10 @@ class MaintenanceReportCommand extends Command
         // 4. Estado de logs
         $this->reportLogs();
 
-        // 5. Resumen final
+        // 5. Estadísticas de spam
+        $this->reportSpam();
+
+        // 6. Resumen final
         $this->reportSummary();
 
         return Command::SUCCESS;
@@ -132,6 +135,44 @@ class MaintenanceReportCommand extends Command
         } else {
             $this->info('   Archivo de log no encontrado');
         }
+        
+        $this->info('');
+    }
+
+    private function reportSpam()
+    {
+        $this->info('🛡️  PROTECCIÓN ANTI-SPAM');
+        $this->info('────────────────────────────────────');
+        
+        $statsFile = storage_path('app/spam_stats.json');
+        
+        if (!file_exists($statsFile)) {
+            $this->info('   Sin intentos de spam registrados');
+            $this->info('');
+            return;
+        }
+        
+        $stats = json_decode(file_get_contents($statsFile), true) ?? [];
+        $currentMonth = date('Y-m');
+        
+        if (isset($stats[$currentMonth])) {
+            $monthly = $stats[$currentMonth];
+            $this->info("   Mes actual ({$currentMonth}):");
+            $this->info("      Total bloqueados: {$monthly['total']}");
+            $this->info("      Por User-Agent:   " . ($monthly['by_type']['user_agent'] ?? 0));
+            $this->info("      Por Honeypot:     " . ($monthly['by_type']['honeypot'] ?? 0));
+            $this->info("      Por Tiempo:       " . ($monthly['by_type']['time_check'] ?? 0));
+            $this->info("      IPs únicas:       " . count($monthly['ips'] ?? []));
+        } else {
+            $this->info('   Sin intentos este mes');
+        }
+        
+        // Total histórico
+        $totalHistorico = 0;
+        foreach ($stats as $month => $data) {
+            $totalHistorico += $data['total'] ?? 0;
+        }
+        $this->info("   Total histórico:     {$totalHistorico}");
         
         $this->info('');
     }
