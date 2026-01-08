@@ -153,9 +153,10 @@ Route::get('/health', function () {
     try {
         DB::connection()->getPdo();
         $checks['database'] = 'ok';
-        $checks['properties_count'] = \App\Models\Property::where('is_active', true)->count();
+        $checks['properties_count'] = \App\Models\Property::count();
     } catch (\Exception $e) {
         $checks['database'] = 'error';
+        $checks['database_error'] = $e->getMessage();
         $checks['status'] = 'degraded';
     }
 
