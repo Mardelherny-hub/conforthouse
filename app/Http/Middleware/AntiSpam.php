@@ -13,11 +13,7 @@ class AntiSpam
      */
     protected int $minTimeSeconds = 3;
 
-    /**
-     * Versión máxima real de Chrome (actualizar periódicamente)
-     * Chrome 131 es la versión estable actual (Dic 2024)
-     */
-    protected int $maxChromeVersion = 135;
+   
 
     /**
      * Handle an incoming request.
@@ -107,20 +103,8 @@ class AntiSpam
     {
         $userAgent = $request->userAgent();
 
-        if (empty($userAgent)) {
-            return true; // Sin User-Agent es sospechoso
-        }
-
-        // Detectar versiones falsas de Chrome (ej: Chrome/142.0.0.0)
-        if (preg_match('/Chrome\/(\d+)\./', $userAgent, $matches)) {
-            $chromeVersion = (int) $matches[1];
-            // Si la versión es mayor a la máxima conocida, es falso
-            if ($chromeVersion > $this->maxChromeVersion) {
-                return true;
-            }
-        }
-
-        return false;
+        // Solo rechazar si no hay User-Agent
+        return empty($userAgent);
     }
 
     /**
