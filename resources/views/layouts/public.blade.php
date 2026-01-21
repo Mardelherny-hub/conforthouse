@@ -233,6 +233,29 @@
 }
     </script>
     <script src="{{ asset('js/contact-forms.js') }}"></script>
+
+     <!-- Chat Bob Widget -->
+<script>
+  window.ChatBobConfig = {
+    botId: 15,
+    token: 'wgt_vzHQhpYzAldpXvU09F0KN9gKV4nllzuC',
+    apiUrl: 'https://chat-bob.com',
+    primaryColor: '#0D9488',
+    secondaryColor: '#F0FDFA',
+    textColor: '#1F2937',
+    bgColor: '#FFFFFF',
+    position: 'bottom-right',
+    buttonSize: 'medium',
+    borderRadius: 'rounded',
+    showBranding: true,
+    autoOpen: false,
+    autoOpenDelay: 5,
+    soundEnabled: true
+  };
+</script>
+<script type="module" src="https://chat-bob.com/build/assets/widget.js"></script>
+
+
 </body>
 
 </html>
