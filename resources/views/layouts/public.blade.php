@@ -240,8 +240,6 @@
     botId: 15,
     token: 'wgt_vzHQhpYzAldpXvU09F0KN9gKV4nllzuC',
     apiUrl: 'https://chat-bob.com',
-    botName: 'LIVIN ASSISTANT',
-    botSubtitle: 'Asistente inmobiliario',
     primaryColor: '#B8860B',
     secondaryColor: '#FEF3C7',
     textColor: '#1F2937',
