@@ -249,7 +249,7 @@
         bgColor: '#FFFFFF',
         position: 'bottom-right',
         buttonSize: 'medium',
-        borderRadius: 'rounded',
+        borderRadius: 'square',
         avatarUrl: 'https://rbconforthouse.com/assets/images/favicons/logo_black.jpeg',
         showBranding: true,
         autoOpen: false,
