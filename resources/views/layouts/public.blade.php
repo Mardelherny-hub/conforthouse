@@ -233,30 +233,31 @@
 }
     </script>
     <script src="{{ asset('js/contact-forms.js') }}"></script>
-<link rel="stylesheet" href="https://chat-bob.com/build/assets/widget-q4PC7p8G.css">
+
+    <link rel="stylesheet" href="https://chat-bob.com/build/assets/widget-q4PC7p8G.css">
      <!-- Chat Bob Widget -->
-<script>
-  window.ChatBobConfig = {
-    botId: 15,
-    token: 'wgt_vzHQhpYzAldpXvU09F0KN9gKV4nllzuC',
-    apiUrl: 'https://chat-bob.com',
-    botName: 'LIVIN ASSISTANT',
-    botSubtitle: 'Asistente inmobiliario',
-    primaryColor: '#B8860B',
-    secondaryColor: '#FEF3C7',
-    textColor: '#1F2937',
-    bgColor: '#FFFFFF',
-    position: 'bottom-right',
-    buttonSize: 'medium',
-    borderRadius: 'rounded',
-    avatarUrl: 'https://rbconforthouse.com/assets/images/favicons/favicon.png',
-    showBranding: true,
-    autoOpen: false,
-    autoOpenDelay: 5,
-    soundEnabled: true
-  };
-</script>
-<script type="module" src="https://chat-bob.com/build/assets/widget.js"></script>
+    <script>
+    window.ChatBobConfig = {
+        botId: 15,
+        token: 'wgt_vzHQhpYzAldpXvU09F0KN9gKV4nllzuC',
+        apiUrl: 'https://chat-bob.com',
+        botName: 'LIVING ASSISTANT',
+        botSubtitle: 'Asistente inmobiliario',
+        primaryColor: '#B8860B',
+        secondaryColor: '#FEF3C7',
+        textColor: '#1F2937',
+        bgColor: '#FFFFFF',
+        position: 'bottom-right',
+        buttonSize: 'medium',
+        borderRadius: 'rounded',
+        avatarUrl: 'https://rbconforthouse.com/assets/images/favicons/black-logo.png',
+        showBranding: true,
+        autoOpen: false,
+        autoOpenDelay: 5,
+        soundEnabled: true
+    };
+    </script>
+    <script type="module" src="https://chat-bob.com/build/assets/widget.js"></script>
 
 
 </body>
