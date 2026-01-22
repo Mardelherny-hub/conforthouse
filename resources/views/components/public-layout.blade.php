@@ -132,6 +132,20 @@
     <script src="{{ asset('js/contact-forms.js') }}"></script>
 
         <!-- Chat Bob Widget -->
+    <style>
+      /* Lift Chat Bob widget a bit above the bottom edge */
+      :root {
+        --chatbob-bottom-offset: 60px;
+      }
+      body .chatbob-widget,
+      body .chatbob-widget-button,
+      body .chatbob-launcher,
+      body .chatbob-container,
+      body #chatbob-widget,
+      body #chatbob-button {
+        bottom: var(--chatbob-bottom-offset) !important;
+      }
+    </style>
     <script>
       window.ChatBobConfig = {
         botId: 15,

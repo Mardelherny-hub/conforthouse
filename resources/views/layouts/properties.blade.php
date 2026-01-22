@@ -311,6 +311,20 @@
     <script src="{{ asset('js/contact-forms.js') }}"></script>
 
      <link rel="stylesheet" href="https://chat-bob.com/build/assets/widget-q4PC7p8G.css">
+     <style>
+        /* Lift Chat Bob widget a bit above the bottom edge */
+        :root {
+            --chatbob-bottom-offset: 60px;
+        }
+        body .chatbob-widget,
+        body .chatbob-widget-button,
+        body .chatbob-launcher,
+        body .chatbob-container,
+        body #chatbob-widget,
+        body #chatbob-button {
+            bottom: var(--chatbob-bottom-offset) !important;
+        }
+     </style>
      <!-- Chat Bob Widget -->
     <script>
     window.ChatBobConfig = {
@@ -326,7 +340,7 @@
         position: 'bottom-right',
         buttonSize: 'medium',
         borderRadius: 'rounded',
-        avatarUrl: 'https://rbconforthouse.com/assets/images/favicons/logo_black.jpeg',
+        avatarUrl: 'https://rbconforthouse.com/assets/images/favicons/logo_white.png',
         showBranding: true,
         autoOpen: false,
         autoOpenDelay: 5,
