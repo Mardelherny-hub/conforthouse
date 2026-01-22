@@ -135,7 +135,7 @@
     <style>
       /* Lift Chat Bob widget a bit above the bottom edge */
       :root {
-        --chatbob-bottom-offset: 60px;
+        --chatbob-bottom-offset: var(--chatbob-button-size, 56px);
       }
       body .chatbob-widget,
       body .chatbob-widget-button,
