@@ -326,7 +326,7 @@
         position: 'bottom-right',
         buttonSize: 'medium',
         borderRadius: 'rounded',
-        avatarUrl: 'https://rbconforthouse.com/assets/images/favicons/black-logo.png',
+        avatarUrl: 'https://rbconforthouse.com/assets/images/favicons/logo_black.jpeg',
         showBranding: true,
         autoOpen: false,
         autoOpenDelay: 5,
