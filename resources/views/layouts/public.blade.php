@@ -233,7 +233,7 @@
 }
     </script>
     <script src="{{ asset('js/contact-forms.js') }}"></script>
-
+<link rel="stylesheet" href="https://chat-bob.com/build/assets/widget-q4PC7p8G.css">
     <!-- Chat Bob Widget -->
 <script>
   window.ChatBobConfig = {
