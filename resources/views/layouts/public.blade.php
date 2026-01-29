@@ -249,29 +249,14 @@
             bottom: var(--chatbob-bottom-offset) !important;
         }
     </style>
-     <!-- Chat Bob Widget -->
+    <!-- Chat Bob Widget -->
     <script>
     window.ChatBobConfig = {
         botId: 15,
-        token: 'wgt_vzHQhpYzAldpXvU09F0KN9gKV4nllzuC',
-        apiUrl: 'https://chat-bob.com',
-        botName: 'LIVING ASSISTANT',
-        botSubtitle: 'Asistente inmobiliario',
-        primaryColor: '#B8860B',
-        secondaryColor: '#FEF3C7',
-        textColor: '#1F2937',
-        bgColor: '#FFFFFF',
-        position: 'bottom-right',
-        buttonSize: 'medium',
-        borderRadius: 'square',
-        avatarUrl: 'https://rbconforthouse.com/assets/images/favicons/logo_white.png',
-        showBranding: true,
-        autoOpen: false,
-        autoOpenDelay: 5,
-        soundEnabled: true
+        token: 'wgt_vzHQhpYzAldpXvU09F0KN9gKV4nllzuC'
     };
     </script>
-    <script type="module" src="https://chat-bob.com/build/assets/widget.js"></script>
+    <script src="https://chat-bob.com/widget/chatbob.js" async></script>
 
 
 </body>
