@@ -234,22 +234,7 @@
     </script>
     <script src="{{ asset('js/contact-forms.js') }}"></script>
 
-    <link rel="stylesheet" href="https://chat-bob.com/build/assets/widget-q4PC7p8G.css">
-    <style>
-        /* Lift Chat Bob widget a bit above the bottom edge */
-        :root {
-            --chatbob-bottom-offset: var(--chatbob-button-size, 56px);
-        }
-        body .chatbob-widget,
-        body .chatbob-widget-button,
-        body .chatbob-launcher,
-        body .chatbob-container,
-        body #chatbob-widget,
-        body #chatbob-button {
-            bottom: var(--chatbob-bottom-offset) !important;
-        }
-    </style>
-<!-- Chat Bob Widget -->
+    <!-- Chat Bob Widget -->
 <script>
   window.ChatBobConfig = {
     botId: 15,
