@@ -250,12 +250,14 @@
         }
     </style>
     <!-- Chat Bob Widget -->
-    <script>
-    window.ChatBobConfig = {
-        botId: 15,
-        token: 'wgt_vzHQhpYzAldpXvU09F0KN9gKV4nllzuC'
-    };
-    </script>
+    <!-- Chat Bob Widget -->
+<script>
+  window.ChatBobConfig = {
+    botId: 15,
+    token: 'wgt_vzHQhpYzAldpXvU09F0KN9gKV4nllzuC'
+  };
+</script>
+<script src="https://chat-bob.com/widget/chatbob.js" async type="module"></script>
     <script src="https://chat-bob.com/widget/chatbob.js" async></script>
 
 
