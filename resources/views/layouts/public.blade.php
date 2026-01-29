@@ -249,16 +249,14 @@
             bottom: var(--chatbob-bottom-offset) !important;
         }
     </style>
-    <!-- Chat Bob Widget -->
-    <!-- Chat Bob Widget -->
+<!-- Chat Bob Widget -->
 <script>
   window.ChatBobConfig = {
     botId: 15,
     token: 'wgt_vzHQhpYzAldpXvU09F0KN9gKV4nllzuC'
   };
 </script>
-<script src="https://chat-bob.com/widget/chatbob.js" async type="module"></script>
-    <script src="https://chat-bob.com/widget/chatbob.js" async></script>
+<script src="https://chat-bob.com/build/assets/widget.js" type="module"></script>
 
 
 </body>
