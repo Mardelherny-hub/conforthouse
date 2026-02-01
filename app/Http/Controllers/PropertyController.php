@@ -85,7 +85,7 @@ public function index(Request $request)
 
     // Filtro por baños (usando banyos que es el campo correcto)
     if ($bathrooms) {
-        $query->where('banyos', '>=', $bathrooms);
+        $query->where('bathrooms', '>=', $bathrooms);
     }
 
     // Filtro por vista (keyvista)

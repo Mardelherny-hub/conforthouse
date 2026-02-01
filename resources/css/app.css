@@ -445,13 +445,13 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    color: #374151;
+    color: #1f2937;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 500;
     padding: 12px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #d1d5db;
     border-radius: 4px;
-    background: #ffffff;
+    background: #f3f4f6;
     cursor: pointer;
     transition: all 0.2s ease;
     gap: 8px;

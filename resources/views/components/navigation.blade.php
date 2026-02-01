@@ -248,7 +248,7 @@
                 <!-- Mobile Properties -->
                 <div x-data="{ open: false }">
                     <button @click="open = !open" 
-                            class="james-mobile-link flex items-center justify-between w-full">
+                            class="james-mobile-link w-full" style="display:flex; align-items:center; justify-content:space-between;">
                         <span>{{ __('messages.propiedades') }}</span>
                         <svg class="w-4 h-4 transition-transform duration-200" 
                              :class="{ 'rotate-180': open }" 
@@ -287,18 +287,49 @@
                 <!-- Mobile Actions -->
                  <div class="pt-4 mt-6 border-t border-gray-100 space-y-3">
                     <button x-data @click.prevent="$dispatch('open-search')" 
-                            class="james-mobile-search-btn"><button x-data @click.prevent="$dispatch('open-search')" 
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2">
+                            class="james-mobile-search-btn" style="border: 1px solid #B8731A; background: #f9fafb;">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" 
                                   d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
                         <span>{{ __('messages.buscar') }}</span>
                     </button>
-                    
-                {{--    <a href="#" class="james-mobile-cta-btn">
-                        Sell With Ussss
-                    </a> --}} 
-                </div> 
+
+                    <!-- Mobile Language Selector -->
+                    <div x-data="{ open: false }">
+                        <button @click="open = !open" 
+                                class="james-mobile-link w-full" style="display:flex; align-items:center; justify-content:space-between;">
+                            <span style="display:flex; align-items:center;">
+                                <img src="{{ asset('assets/images/flags/4x3/' . app()->getLocale() . '.svg') }}"
+                                     alt="{{ app()->getLocale() }}" 
+                                     class="w-5 h-3.5 rounded-sm mr-2">
+                                {{ strtoupper(app()->getLocale()) }}
+                            </span>
+                            <svg class="w-4 h-4 transition-transform duration-200" 
+                                 :class="{ 'rotate-180': open }" 
+                                 viewBox="0 0 12 12" fill="currentColor">
+                                <path d="M6 8L10 4H2L6 8Z"/>
+                            </svg>
+                        </button>
+                        
+                        <div x-show="open" x-collapse class="mt-2 ml-4 space-y-2">
+                            @foreach([
+                                'es' => ['flag' => 'es', 'name' => 'lang_es', 'alt' => 'Español'],
+                                'en' => ['flag' => 'en', 'name' => 'lang_en', 'alt' => 'English'], 
+                                'fr' => ['flag' => 'fr', 'name' => 'lang_fr', 'alt' => 'Français'],
+                                'de' => ['flag' => 'de', 'name' => 'lang_de', 'alt' => 'Deutsch'],
+                                'nl' => ['flag' => 'nl', 'name' => 'lang_nl', 'alt' => 'Nederlands'],
+                            ] as $locale => $lang)
+                                <a href="{{ route(Route::currentRouteName(), ['locale' => $locale] + Route::current()->parameters()) }}"
+                                   class="james-mobile-sublink {{ app()->getLocale() == $locale ? 'font-medium text-gray-900' : '' }}" style="display:flex; align-items:center;">
+                                    <img src="{{ asset('assets/images/flags/4x3/' . $lang['flag'] . '.svg') }}" 
+                                         alt="{{ $lang['alt'] }}" class="w-4 h-3 mr-3 rounded-sm">
+                                    <span>{{ __('messages.' . $lang['name']) }}</span>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -519,7 +519,7 @@ return [
     'complejos' => 'Complexes',
     'descubre_exclusivos_complejos' => 'Découvrez des complexes résidentiels exclusifs dans les meilleurs emplacements',
     'complejos_disponibles' => 'complexes disponibles',
-    'propiedades' => 'propriétés',
+    'propiedades' => 'Propriétés',
     'propiedades_disponibles' => 'propriétés disponibles',
     'desde' => 'À partir de',
     'no_complejos_encontrados' => 'Aucun complexe trouvé',

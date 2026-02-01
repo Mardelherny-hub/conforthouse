@@ -532,7 +532,7 @@ return [
     'complejos' => 'Complejos',
     'descubre_exclusivos_complejos' => 'Descubre exclusivos complejos residenciales en las mejores ubicaciones',
     'complejos_disponibles' => 'complejos disponibles',
-    'propiedades' => 'propiedades',
+    'propiedades' => 'Propiedades',
     'propiedades_disponibles' => 'propiedades disponibles',
     'desde' => 'Desde',
     'no_complejos_encontrados' => 'No se encontraron complejos',

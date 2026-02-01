@@ -521,7 +521,7 @@ return [
     'complejos' => 'Complexes',
     'descubre_exclusivos_complejos' => 'Discover exclusive residential complexes in the best locations',
     'complejos_disponibles' => 'complexes available',
-    'propiedades' => 'properties',
+    'propiedades' => 'Properties',
     'propiedades_disponibles' => 'properties available',
     'desde' => 'From',
     'no_complejos_encontrados' => 'No complexes found',
