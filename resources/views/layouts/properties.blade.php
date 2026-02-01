@@ -42,7 +42,6 @@
     <header class="relative w-full h-[200px] sm:h-[200px] lg:h-[300px] bg-white border-b border-gray-100">      
 
         <!-- Estructura principal del header con solo navegación -->
-        <div class="relative w-full h-full flex items-center z-40">
         <div class="relative w-full h-full flex items-center z-50">
             <!-- Solo navegación -->
             <div class="w-full">
@@ -58,10 +57,8 @@
         <!-- Overlay mínimo para legibilidad -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
     
-        
-        
     </header>
-</header>
+
 
 
     <!-- Buscador Avanzado Properties -->
