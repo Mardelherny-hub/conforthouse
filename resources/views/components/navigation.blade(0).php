@@ -97,7 +97,7 @@
                 </div>
 
                 <!-- Services -->
-                <a href="#servicios" class="nav-link-luxury">
+                <a href="{{ route('services', ['locale' => app()->getLocale()]) }}" class="nav-link-luxury">
                     {{ __('messages.servicios') }}
                 </a>
 
@@ -259,19 +259,19 @@
                 </div>
 
                 <!-- Mobile Services -->
-                <a href="#servicios" 
+                <a href="{{ route('services', ['locale' => app()->getLocale()]) }}" 
                    class="block text-white hover:text-gold-400 font-medium text-lg transition-colors duration-200">
                     {{ __('messages.servicios') }}
                 </a>
 
                 <!-- Mobile About -->
-                <a href="#nosotros" 
+                <a href="{{ route('about', ['locale' => app()->getLocale()]) }}" 
                    class="block text-white hover:text-gold-400 font-medium text-lg transition-colors duration-200">
                     {{ __('messages.about_us') }}
                 </a>
 
                 <!-- Mobile Contact -->
-                <a href="#contacto" 
+                <a href="{{ route('contact', ['locale' => app()->getLocale()]) }}" 
                    class="block text-white hover:text-gold-400 font-medium text-lg transition-colors duration-200">
                     {{ __('messages.contacto') }}
                 </a>

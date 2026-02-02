@@ -280,9 +280,9 @@
                     </div>
                 </div>
 
-                <a href="#servicios" class="james-mobile-link">{{ __('messages.servicios') }}</a>
-                <a href="#nosotros" class="james-mobile-link">{{ __('messages.about_us') }}</a>
-                <a href="#contacto" class="james-mobile-link">{{ __('messages.contacto') }}</a>
+                <a href="{{ route('services', ['locale' => app()->getLocale()]) }}" class="james-mobile-link">{{ __('messages.servicios') }}</a>
+                <a href="{{ route('about', ['locale' => app()->getLocale()]) }}" class="james-mobile-link">{{ __('messages.about_us') }}</a>
+                <a href="{{ route('contact', ['locale' => app()->getLocale()]) }}" class="james-mobile-link">{{ __('messages.contacto') }}</a>
 
                 <!-- Mobile Actions -->
                  <div class="pt-4 mt-6 border-t border-gray-100 space-y-3">

@@ -315,7 +315,7 @@
     token: 'wgt_vzHQhpYzAldpXvU09F0KN9gKV4nllzuC'
   };
 </script>
-<script src="https://chat-bob.com/build/assets/widget.js" type="module"></script>
+<script src="http://bothub.local/build/assets/widget.js" type="module"></script>
 
 
 </body>

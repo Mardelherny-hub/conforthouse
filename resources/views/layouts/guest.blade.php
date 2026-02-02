@@ -63,7 +63,7 @@
                        class="nav-link-luxury {{ request()->routeIs('properties.*') ? 'active' : '' }}">
                         {{ __('messages.propiedades') }}
                     </a>
-                    <a href="#servicios" class="nav-link-luxury">
+                    <a href="{{ route('services', ['locale' => app()->getLocale()]) }}" class="nav-link-luxury">
                         {{ __('messages.servicios') }}
                     </a>
                     <a href="#contacto" class="nav-link-luxury">
@@ -165,7 +165,7 @@
                        class="block nav-link-luxury {{ request()->routeIs('properties.*') ? 'active' : '' }}">
                         {{ __('messages.propiedades') }}
                     </a>
-                    <a href="#servicios" class="block nav-link-luxury">
+                    <a href="{{ route('services', ['locale' => app()->getLocale()]) }}" class="block nav-link-luxury">
                         {{ __('messages.servicios') }}
                     </a>
                     <a href="#contacto" class="block nav-link-luxury">
@@ -202,7 +202,7 @@
                    class="btn-luxury-primary">
                     {{ __('messages.ver_propiedades') }}
                 </a>
-                <a href="#contacto" class="btn-luxury-secondary">
+                <a href="{{ route('contact', ['locale' => app()->getLocale()]) }}" class="btn-luxury-secondary">
                     {{ __('messages.contactanos') }}
                 </a>
             </div>
