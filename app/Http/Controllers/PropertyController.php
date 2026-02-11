@@ -72,7 +72,8 @@ public function index(Request $request)
             $q->where('title', 'like', "%{$search}%")
                 ->orWhere('description', 'like', "%{$search}%")
                 ->orWhere('zona_inmovilla', 'like', "%{$search}%")
-                ->orWhere('ciudad_inmovilla', 'like', "%{$search}%");
+                ->orWhere('ciudad_inmovilla', 'like', "%{$search}%")
+                ->orWhere('reference', 'like', "%{$search}%");
         });
     }
 

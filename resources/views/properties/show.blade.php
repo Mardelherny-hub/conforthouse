@@ -297,7 +297,7 @@
                     <!-- Property Header -->
                     <div class="james-property-header">
                         <div class="flex flex-wrap items-center gap-2 mb-4">
-                            <span class="james-property-badge">{{ $property->propertyType->name }}</span>
+                            <span class="james-property-badge">{{ $property->subtipo_name }}</span>
                             <span class="james-property-badge james-badge-secondary">{{ $property->operation->name }}</span>
                         </div>
                         
@@ -382,11 +382,7 @@
                                     <div class="james-detail-item">
                                         <span class="james-detail-label">{{ __('messages.type') }}</span>
                                         <span class="james-detail-value">
-                                            @if(app()->getLocale() !== 'es')
-                                                {{ $property->propertyType->translations->where('locale', app()->getLocale())->first()->name ?? $property->propertyType->name }}
-                                            @else
-                                                {{ $property->propertyType->name }}
-                                            @endif
+                                            {{ $property->subtipo_name }}
                                         </span>
                                     </div>
                                     <div class="james-detail-item">
@@ -453,6 +449,57 @@
                         </div>
                     </div>
 
+                    <!-- Amenities / Comodidades -->
+                    @php
+                        $amenities = collect([
+                            ['field' => 'aire_con', 'label' => __('messages.amenity_air_conditioning')],
+                            ['field' => 'calefaccion', 'label' => __('messages.amenity_heating')],
+                            ['field' => 'bombafriocalor', 'label' => __('messages.amenity_heat_pump')],
+                            ['field' => 'piscina_prop', 'label' => __('messages.amenity_private_pool')],
+                            ['field' => 'piscina_com', 'label' => __('messages.amenity_community_pool')],
+                            ['field' => 'jardin', 'label' => __('messages.amenity_garden')],
+                            ['field' => 'terraza', 'label' => __('messages.amenity_terrace')],
+                            ['field' => 'balcon', 'label' => __('messages.amenity_balcony')],
+                            ['field' => 'ascensor', 'label' => __('messages.amenity_elevator')],
+                            ['field' => 'parking', 'label' => __('messages.amenity_parking')],
+                            ['field' => 'trastero', 'label' => __('messages.amenity_storage')],
+                            ['field' => 'chimenea', 'label' => __('messages.amenity_fireplace')],
+                            ['field' => 'barbacoa', 'label' => __('messages.amenity_barbecue')],
+                            ['field' => 'jacuzzi', 'label' => __('messages.amenity_jacuzzi')],
+                            ['field' => 'sauna', 'label' => __('messages.amenity_sauna')],
+                            ['field' => 'gimnasio', 'label' => __('messages.amenity_gym')],
+                            ['field' => 'solarium', 'label' => __('messages.amenity_solarium')],
+                            ['field' => 'vistasalmar', 'label' => __('messages.amenity_sea_views')],
+                            ['field' => 'primera_line', 'label' => __('messages.amenity_beachfront')],
+                            ['field' => 'muebles', 'label' => __('messages.amenity_furnished')],
+                            ['field' => 'cajafuerte', 'label' => __('messages.amenity_safe')],
+                            ['field' => 'puerta_blin', 'label' => __('messages.amenity_armored_door')],
+                            ['field' => 'urbanizacion', 'label' => __('messages.amenity_gated_community')],
+                            ['field' => 'pergola', 'label' => __('messages.amenity_pergola')],
+                            ['field' => 'luminoso', 'label' => __('messages.amenity_bright')],
+                        ])->filter(fn($item) => $property->{$item['field']});
+                    @endphp
+
+                    @if($amenities->isNotEmpty())
+                    <div class="james-property-details">
+                        <h3 class="james-details-title">{{ __('messages.amenities') }}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            @foreach($amenities->chunk(ceil($amenities->count() / 3)) as $chunk)
+                            <div class="james-details-section">
+                                <div class="james-details-list">
+                                    @foreach($chunk as $amenity)
+                                    <div class="james-detail-item">
+                                        <span class="james-detail-label">{{ $amenity['label'] }}</span>
+                                        <span class="james-detail-value">✓</span>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
+
                     <!-- Location Map Section -->
                     @if($property->address && $property->address->latitude && $property->address->longitude)
                     <div class="james-property-map">
@@ -471,6 +518,7 @@
                             </div>
                         </div>
                     </div>
+
 
                     <!-- Map Script -->
                     <script>

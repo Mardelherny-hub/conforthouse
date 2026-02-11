@@ -34,7 +34,7 @@
                             @if($search)<input type="hidden" name="search" value="{{ $search }}">@endif
                             @if(!empty($features))
                                 @foreach($features as $feature)
-                    <input type="hidden" name="features[]" value="{{ $feature }}">
+                            <input type="hidden" name="features[]" value="{{ $feature }}">
                                 @endforeach
                             @endif
                             
