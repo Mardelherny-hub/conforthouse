@@ -284,6 +284,13 @@ return [
     'Precio/m²' => 'Precio/m²',
     'Ubicación' => 'Ubicación',
 
+    // ===== CARACTERÍSTICAS =====
+    'features' => 'Características',
+    'feature_flooring' => 'Suelos',
+    'feature_views' => 'Vistas',
+    'feature_interior_carpentry' => 'Carpintería Interior',
+    'feature_exterior_carpentry' => 'Carpintería Exterior',
+
     // ===== FORMULARIOS DE CONTACTO =====
     'Contacta con nosotros' => 'Contacta con nosotros',
     'Solicita más información sobre esta propiedad. Te responderemos a la mayor brevedad posible' => 'Solicita más información sobre esta propiedad. Te responderemos a la mayor brevedad posible',

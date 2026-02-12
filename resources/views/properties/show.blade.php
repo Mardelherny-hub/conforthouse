@@ -500,6 +500,47 @@
                     </div>
                     @endif
 
+                    <!-- Property Features / Características -->
+                    @if($property->suelo_name || $property->vista_name || ($property->interior_carpentry && $property->interior_carpentry !== 'No especificado') || ($property->exterior_carpentry && $property->exterior_carpentry !== 'No especificado'))
+                    <div class="james-property-details">
+                        <h3 class="james-details-title">{{ __('messages.features') }}</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="james-details-section">
+                                <div class="james-details-list">
+                                    @if($property->suelo_name)
+                                    <div class="james-detail-item">
+                                        <span class="james-detail-label">{{ __('messages.feature_flooring') }}</span>
+                                        <span class="james-detail-value">{{ $property->suelo_name }}</span>
+                                    </div>
+                                    @endif
+                                    @if($property->vista_name)
+                                    <div class="james-detail-item">
+                                        <span class="james-detail-label">{{ __('messages.feature_views') }}</span>
+                                        <span class="james-detail-value">{{ $property->vista_name }}</span>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="james-details-section">
+                                <div class="james-details-list">
+                                    @if($property->interior_carpentry && $property->interior_carpentry !== 'No especificado')
+                                    <div class="james-detail-item">
+                                        <span class="james-detail-label">{{ __('messages.feature_interior_carpentry') }}</span>
+                                        <span class="james-detail-value">{{ $property->interior_carpentry }}</span>
+                                    </div>
+                                    @endif
+                                    @if($property->exterior_carpentry && $property->exterior_carpentry !== 'No especificado')
+                                    <div class="james-detail-item">
+                                        <span class="james-detail-label">{{ __('messages.feature_exterior_carpentry') }}</span>
+                                        <span class="james-detail-value">{{ $property->exterior_carpentry }}</span>
+                                    </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
                     <!-- Location Map Section -->
                     @if($property->address && $property->address->latitude && $property->address->longitude)
                     <div class="james-property-map">

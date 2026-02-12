@@ -746,4 +746,141 @@ class Property extends Model
             }
         });
     }
+
+    /**
+     * Obtener el nombre del tipo de suelo según keysuelo de Inmovilla
+     */
+    public function getSueloNameAttribute(): ?string
+    {
+        if (!$this->keysuelo || $this->keysuelo == 0) return null;
+
+        $locale = app()->getLocale();
+
+        $suelos = [
+            'es' => [
+                1 => 'Mármol', 2 => 'Tarima Flotante', 3 => 'Parquet', 4 => 'Granito',
+                5 => 'Cerámico', 6 => 'Porcelana', 7 => 'Gres', 8 => 'Terrazo',
+                9 => 'Madera', 10 => 'Acrílico', 11 => 'Arcilla', 12 => 'Hidráulico',
+                13 => 'Bambú', 14 => 'Cemento', 15 => 'Sintasol', 16 => 'Hormigón',
+                17 => 'Técnico', 18 => 'Gres y Tarima Flotante', 19 => 'Gres y Parquet',
+                20 => 'Cristal y Monocapa', 21 => 'Mosaico', 22 => 'Tarima',
+                23 => 'Gres Porcelánico', 24 => 'Rústico', 25 => 'Moqueta',
+                26 => 'Baldosa', 27 => 'Plaqueta', 28 => 'Vinilo', 29 => 'Piedra',
+                30 => 'Laminado', 31 => 'Corcho', 32 => 'Linóleo', 33 => 'Zirconio',
+                34 => 'Microcemento', 35 => 'Cemento Pulido',
+            ],
+            'en' => [
+                1 => 'Marble', 2 => 'Floating Floors', 3 => 'Parquet', 4 => 'Granite',
+                5 => 'Ceramic', 6 => 'Porcelain', 7 => 'Stoneware', 8 => 'Terrazzo',
+                9 => 'Wood', 10 => 'Acrylic', 11 => 'Clay', 12 => 'Hydraulic',
+                13 => 'Bamboo', 14 => 'Cement', 15 => 'Sintasol', 16 => 'Concrete',
+                17 => 'Technical', 18 => 'Stoneware and Floating Floor', 19 => 'Stoneware and Parquet',
+                20 => 'Crystal and Monolayer', 21 => 'Mosaic', 22 => 'Pallet',
+                23 => 'Porcelain Stoneware', 24 => 'Rustic', 25 => 'Carpet',
+                26 => 'Tile', 27 => 'Platelet', 28 => 'Vinyl', 29 => 'Stone',
+                30 => 'Laminate', 31 => 'Cork', 32 => 'Linoleum', 33 => 'Zirconium',
+                34 => 'Microcement', 35 => 'Polished Concrete',
+            ],
+            'fr' => [
+                1 => 'Marbre', 2 => 'Parquet Flottant', 3 => 'Parquet', 4 => 'Granit',
+                5 => 'Céramique', 6 => 'Porcelaine', 7 => 'Grès', 8 => 'Terrazzo',
+                9 => 'Bois', 10 => 'Acrylique', 11 => 'Argile', 12 => 'Hydraulique',
+                13 => 'Bambou', 14 => 'Ciment', 15 => 'Sintasol', 16 => 'Béton',
+                17 => 'Technique', 18 => 'Grès et Parquet Flottant', 19 => 'Grès et Parquet',
+                20 => 'Cristal et Monocouche', 21 => 'Mosaïque', 22 => 'Caillebotis',
+                23 => 'Grès Cérame', 24 => 'Rustique', 25 => 'Moquette',
+                26 => 'Carrelage', 27 => 'Plaquette', 28 => 'Vinyle', 29 => 'Pierre',
+                30 => 'Stratifié', 31 => 'Liège', 32 => 'Linoléum', 33 => 'Zirconium',
+                34 => 'Microciment', 35 => 'Béton Ciré',
+            ],
+            'nl' => [
+                1 => 'Marmer', 2 => 'Zwevende Vloer', 3 => 'Parket', 4 => 'Graniet',
+                5 => 'Keramisch', 6 => 'Porselein', 7 => 'Steengoed', 8 => 'Terrazzo',
+                9 => 'Hout', 10 => 'Acryl', 11 => 'Klei', 12 => 'Hydraulisch',
+                13 => 'Bamboe', 14 => 'Cement', 15 => 'Sintasol', 16 => 'Beton',
+                17 => 'Technisch', 18 => 'Steengoed en Zwevende Vloer', 19 => 'Steengoed en Parket',
+                20 => 'Kristal en Monolaag', 21 => 'Mozaïek', 22 => 'Pallet',
+                23 => 'Porseleinen Steengoed', 24 => 'Rustiek', 25 => 'Tapijt',
+                26 => 'Tegel', 27 => 'Plaatje', 28 => 'Vinyl', 29 => 'Steen',
+                30 => 'Laminaat', 31 => 'Kurk', 32 => 'Linoleum', 33 => 'Zirkonium',
+                34 => 'Microcement', 35 => 'Gepolijst Beton',
+            ],
+            'de' => [
+                1 => 'Marmor', 2 => 'Schwimmender Boden', 3 => 'Parkett', 4 => 'Granit',
+                5 => 'Keramik', 6 => 'Porzellan', 7 => 'Steinzeug', 8 => 'Terrazzo',
+                9 => 'Holz', 10 => 'Acryl', 11 => 'Ton', 12 => 'Hydraulisch',
+                13 => 'Bambus', 14 => 'Zement', 15 => 'Sintasol', 16 => 'Beton',
+                17 => 'Technisch', 18 => 'Steinzeug und Schwimmender Boden', 19 => 'Steinzeug und Parkett',
+                20 => 'Kristall und Einschicht', 21 => 'Mosaik', 22 => 'Palette',
+                23 => 'Feinsteinzeug', 24 => 'Rustikal', 25 => 'Teppich',
+                26 => 'Fliese', 27 => 'Plättchen', 28 => 'Vinyl', 29 => 'Stein',
+                30 => 'Laminat', 31 => 'Kork', 32 => 'Linoleum', 33 => 'Zirkonium',
+                34 => 'Mikrozement', 35 => 'Polierter Beton',
+            ],
+        ];
+
+        $map = $suelos[$locale] ?? $suelos['en'] ?? [];
+        return $map[$this->keysuelo] ?? null;
+    }
+
+    /**
+     * Obtener el nombre del tipo de vista según keyvista de Inmovilla
+     */
+    public function getVistaNameAttribute(): ?string
+    {
+        if (!$this->keyvista || $this->keyvista == 0) return null;
+
+        $locale = app()->getLocale();
+
+        $vistas = [
+            'es' => [
+                1 => 'Al Mar', 2 => 'Montaña', 3 => 'A la Playa', 5 => 'Al Parque',
+                6 => 'Exterior', 7 => 'Patio', 8 => 'Avenida', 9 => 'Jardín',
+                10 => 'A la Calle', 11 => 'Al Puerto', 12 => 'Centro Comercial',
+                13 => 'A la Piscina', 14 => 'Colegio', 15 => 'Plaza', 16 => 'Al Golf',
+                17 => 'Interior', 18 => 'Despejadas', 19 => 'Panorámicas', 20 => 'Valle',
+                21 => 'Valle y Montañas', 22 => 'A Calle Peatonal', 23 => 'Huerto de Palmeras',
+                24 => 'Al Mar y Montaña', 25 => 'A la Bahía', 26 => 'Al Río', 27 => 'A Viñedos',
+            ],
+            'en' => [
+                1 => 'Sea Views', 2 => 'Mountains', 3 => 'To the Beach', 5 => 'To the Park',
+                6 => 'Exterior', 7 => 'Playground', 8 => 'Avenue', 9 => 'Garden',
+                10 => 'To the Street', 11 => 'To the Harbour', 12 => 'Mall',
+                13 => 'To the Pool', 14 => 'School', 15 => 'Square', 16 => 'To the Golf',
+                17 => 'Interior', 18 => 'Clear View', 19 => 'Panoramic', 20 => 'Valley',
+                21 => 'Valley and Mountains', 22 => 'Pedestrian Street', 23 => 'Palm Trees Garden',
+                24 => 'Sea and Mountain', 25 => 'To the Bay', 26 => 'To the River', 27 => 'Vineyards',
+            ],
+            'fr' => [
+                1 => 'Vue sur la Mer', 2 => 'Montagne', 3 => 'Sur la Plage', 5 => 'Sur le Parc',
+                6 => 'Extérieur', 7 => 'Cour', 8 => 'Avenue', 9 => 'Jardin',
+                10 => 'Sur la Rue', 11 => 'Sur le Port', 12 => 'Centre Commercial',
+                13 => 'Sur la Piscine', 14 => 'École', 15 => 'Place', 16 => 'Sur le Golf',
+                17 => 'Intérieur', 18 => 'Dégagée', 19 => 'Panoramique', 20 => 'Vallée',
+                21 => 'Vallée et Montagnes', 22 => 'Rue Piétonne', 23 => 'Palmeraie',
+                24 => 'Mer et Montagne', 25 => 'Sur la Baie', 26 => 'Sur la Rivière', 27 => 'Vignobles',
+            ],
+            'nl' => [
+                1 => 'Zeezicht', 2 => 'Bergen', 3 => 'Op het Strand', 5 => 'Op het Park',
+                6 => 'Exterieur', 7 => 'Binnenplaats', 8 => 'Laan', 9 => 'Tuin',
+                10 => 'Op de Straat', 11 => 'Op de Haven', 12 => 'Winkelcentrum',
+                13 => 'Op het Zwembad', 14 => 'School', 15 => 'Plein', 16 => 'Op de Golf',
+                17 => 'Interieur', 18 => 'Vrij Uitzicht', 19 => 'Panoramisch', 20 => 'Vallei',
+                21 => 'Vallei en Bergen', 22 => 'Voetgangersstraat', 23 => 'Palmentuin',
+                24 => 'Zee en Bergen', 25 => 'Op de Baai', 26 => 'Op de Rivier', 27 => 'Wijngaarden',
+            ],
+            'de' => [
+                1 => 'Meerblick', 2 => 'Berge', 3 => 'Zum Strand', 5 => 'Zum Park',
+                6 => 'Außen', 7 => 'Innenhof', 8 => 'Allee', 9 => 'Garten',
+                10 => 'Zur Straße', 11 => 'Zum Hafen', 12 => 'Einkaufszentrum',
+                13 => 'Zum Pool', 14 => 'Schule', 15 => 'Platz', 16 => 'Zum Golf',
+                17 => 'Innen', 18 => 'Freie Sicht', 19 => 'Panorama', 20 => 'Tal',
+                21 => 'Tal und Berge', 22 => 'Fußgängerzone', 23 => 'Palmengarten',
+                24 => 'Meer und Berge', 25 => 'Zur Bucht', 26 => 'Zum Fluss', 27 => 'Weinberge',
+            ],
+        ];
+
+        $map = $vistas[$locale] ?? $vistas['en'] ?? [];
+        return $map[$this->keyvista] ?? null;
+    }
 }

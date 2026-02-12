@@ -284,6 +284,12 @@ return [
     'Precio/mÂ²' => 'Prijs/m²',
     'UbicaciÃ³n' => 'Locatie',
 
+    'features' => 'Kenmerken',
+    'feature_flooring' => 'Vloeren',
+    'feature_views' => 'Uitzicht',
+    'feature_interior_carpentry' => 'Binnenschrijnwerk',
+    'feature_exterior_carpentry' => 'Buitenschrijnwerk',
+
     // ===== CONTACTFORMULIEREN =====
     'Contacta con nosotros' => 'Neem contact met ons op',
     'Solicita mÃ¡s informaciÃ³n sobre esta propiedad. Te responderemos a la mayor brevedad posible' => 'Vraag meer informatie aan over deze woning. Wij reageren zo spoedig mogelijk',

@@ -285,6 +285,12 @@ return [
     'Precio/mÂ²' => 'Prix/m²',
     'UbicaciÃ³n' => 'Emplacement',
 
+    'features' => 'Caractéristiques',
+    'feature_flooring' => 'Sols',
+    'feature_views' => 'Vues',
+    'feature_interior_carpentry' => 'Menuiserie Intérieure',
+    'feature_exterior_carpentry' => 'Menuiserie Extérieure',
+
     // ===== FORMULAIRES DE CONTACT =====
     'Contacta con nosotros' => 'Contactez-nous',
     'Solicita mÃ¡s informaciÃ³n sobre esta propiedad. Te responderemos a la mayor brevedad posible' => 'Demandez plus d\'informations sur cette propriété. Nous vous répondrons dans les plus brefs délais',
