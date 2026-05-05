@@ -32,6 +32,7 @@
             height: 100%;
             overflow: hidden;
             background: #ffffff;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
         iframe {
             display: block;
@@ -40,6 +41,92 @@
             border: 0;
             margin: 0;
             padding: 0;
+        }
+
+        /* Modal de instalación */
+        #install-modal {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            z-index: 99999;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 24px;
+            color: #fff;
+            text-align: center;
+        }
+        #install-modal.visible {
+            display: flex;
+        }
+        #install-modal-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(184, 115, 26, 0.4);
+        }
+        #install-modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 8px;
+            color: #B8731A;
+            letter-spacing: 0.5px;
+        }
+        #install-modal-subtitle {
+            font-size: 15px;
+            margin: 0 0 32px;
+            opacity: 0.85;
+            max-width: 320px;
+            line-height: 1.4;
+        }
+        #install-modal-btn-primary {
+            background: #B8731A;
+            color: #fff;
+            border: 0;
+            padding: 16px 48px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 32px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(184, 115, 26, 0.5);
+            margin-bottom: 12px;
+            min-width: 240px;
+        }
+        #install-modal-btn-primary:active {
+            transform: scale(0.97);
+        }
+        #install-modal-btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 0;
+            padding: 12px 24px;
+            font-size: 14px;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        /* Instrucciones iOS dentro del modal */
+        #ios-steps {
+            display: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            max-width: 320px;
+            text-align: left;
+        }
+        #ios-steps.visible {
+            display: block;
+        }
+        #ios-steps p {
+            margin: 8px 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        #ios-steps strong {
+            color: #B8731A;
         }
     </style>
 </head>
@@ -51,7 +138,24 @@
         referrerpolicy="no-referrer-when-downgrade"
     ></iframe>
 
+    <!-- Modal instalación -->
+    <div id="install-modal">
+        <img id="install-modal-icon" src="/icons/icon-512.png" alt="Conforthouse Living">
+        <h2 id="install-modal-title">CONFORTHOUSE LIVING</h2>
+        <p id="install-modal-subtitle">Instala nuestra app y accede a todas las propiedades desde tu móvil con un solo toque.</p>
+
+        <div id="ios-steps">
+            <p>1. Tocá el botón <strong>Compartir</strong> en la barra de Safari.</p>
+            <p>2. Elegí <strong>"Añadir a pantalla de inicio"</strong>.</p>
+            <p>3. Tocá <strong>Añadir</strong>.</p>
+        </div>
+
+        <button id="install-modal-btn-primary">Instalar app</button>
+        <button id="install-modal-btn-secondary">Continuar en el navegador</button>
+    </div>
+
     <script>
+        // Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
                 navigator.serviceWorker.register('/service-worker.js')
@@ -59,6 +163,84 @@
                     .catch(function (err) { console.log('SW error:', err); });
             });
         }
+
+        // Detección
+        var ua = navigator.userAgent;
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(ua);
+        var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+        var isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+        var DISMISS_KEY = 'cf_install_dismissed_until';
+        var DISMISS_DAYS = 7;
+
+        var modal = document.getElementById('install-modal');
+        var btnPrimary = document.getElementById('install-modal-btn-primary');
+        var btnSecondary = document.getElementById('install-modal-btn-secondary');
+        var iosSteps = document.getElementById('ios-steps');
+        var deferredPrompt = null;
+
+        function isDismissed() {
+            var until = localStorage.getItem(DISMISS_KEY);
+            if (!until) return false;
+            return Date.now() < parseInt(until, 10);
+        }
+
+        function dismissForDays(days) {
+            var ms = days * 24 * 60 * 60 * 1000;
+            localStorage.setItem(DISMISS_KEY, String(Date.now() + ms));
+        }
+
+        function showModal() {
+            if (!isMobile || isStandalone || isDismissed()) return;
+            modal.classList.add('visible');
+        }
+
+        function hideModal() {
+            modal.classList.remove('visible');
+        }
+
+        // Android Chrome dispara este evento
+        window.addEventListener('beforeinstallprompt', function (e) {
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+
+        // Botón "Instalar app"
+        btnPrimary.addEventListener('click', function () {
+            if (deferredPrompt) {
+                // Android: instalación nativa
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(function (choice) {
+                    if (choice.outcome === 'accepted') {
+                        hideModal();
+                    }
+                    deferredPrompt = null;
+                });
+            } else if (isIOS) {
+                // iOS: mostrar instrucciones
+                iosSteps.classList.add('visible');
+                btnPrimary.style.display = 'none';
+            } else {
+                // Fallback: cerrar modal
+                hideModal();
+            }
+        });
+
+        // Botón "Continuar en el navegador"
+        btnSecondary.addEventListener('click', function () {
+            dismissForDays(DISMISS_DAYS);
+            hideModal();
+        });
+
+        // Mostrar modal después de pequeño delay (deja al iframe empezar a cargar)
+        if (isMobile && !isStandalone && !isDismissed()) {
+            setTimeout(showModal, 800);
+        }
+
+        // App instalada: cerrar modal
+        window.addEventListener('appinstalled', function () {
+            hideModal();
+            deferredPrompt = null;
+        });
     </script>
 </body>
 </html>
