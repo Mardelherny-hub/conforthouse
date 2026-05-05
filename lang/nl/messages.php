@@ -850,6 +850,13 @@ return [
     'confirmation_email_phone_contact' => 'We nemen contact met u op via',
     'confirmation_email_thanks' => 'Bedankt voor uw vertrouwen,',
     'aviso_no_responder' => 'Stuur geen antwoord naar dit e-mailadres, het is een automatisch gegenereerd bericht.',
+
+    //================================================ Banner App  =================================================
+    'app_banner_title'    => 'Conforthouse Living',
+    'app_banner_subtitle' => 'Vind uw ideale woning in de palm van uw hand',
+    'app_banner_cta'      => 'Downloaden'
+
+
     
 
 ];

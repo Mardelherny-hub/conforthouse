@@ -850,6 +850,13 @@ return [
     'confirmation_email_phone_contact' => 'Nous vous contacterons au',
     'confirmation_email_thanks' => 'Merci pour votre confiance,',
     'aviso_no_responder' => 'Veuillez ne pas répondre à cet e-mail automatique.',
+
+    //================================================ Banner App  =================================================
+    'app_banner_title'    => 'Conforthouse Living',
+    'app_banner_subtitle' => 'Trouvez votre propriété idéale dans le creux de la main',
+    'app_banner_cta'      => 'Télécharger'
+
+
     
 
 ];

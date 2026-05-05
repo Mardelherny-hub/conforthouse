@@ -849,7 +849,14 @@ return [
     'confirmation_email_response_time' => 'Unser Team wird Ihre Anfrage prüfen und sich bald melden.',
     'confirmation_email_phone_contact' => 'Wir werden Sie kontaktieren unter',
     'confirmation_email_thanks' => 'Vielen Dank für Ihr Vertrauen,',
-    'aviso_no_responder' => 'Bitte antworten Sie nicht auf diese E-Mail. Sie wurde automatisch generiert.'
+    'aviso_no_responder' => 'Bitte antworten Sie nicht auf diese E-Mail. Sie wurde automatisch generiert.',
+
+    //================================================ Banner App  =================================================
+    'app_banner_title'    => 'Conforthouse Living',
+    'app_banner_subtitle' => 'Finden Sie Ihre Traumimmobilie in Ihrer Hand',
+    'app_banner_cta'      => 'Herunterladen'
+
+
     
 
 ];

@@ -864,5 +864,11 @@ return [
     'confirmation_email_response_time' => 'Nuestro equipo revisará tu consulta y te responderemos pronto.',
     'confirmation_email_phone_contact' => 'Te contactaremos al teléfono',
     'confirmation_email_thanks' => 'Gracias por tu confianza,',
-    'aviso_no_responder' => 'Este email fue enviado automáticamente. Por favor no respondas a este mensaje.'
-];
+    'aviso_no_responder' => 'Este email fue enviado automáticamente. Por favor no respondas a este mensaje.',
+
+    //================================================ Banner App  =================================================
+    'app_banner_title'    => 'Conforthouse Living',
+    'app_banner_subtitle' => 'Encuentra tu propiedad ideal en la palma de tu mano',
+    'app_banner_cta'      => 'Descargar'
+
+    ];

@@ -163,7 +163,10 @@
         soundEnabled: true
       };
     </script>
+    
     <script src="https://chat-bob.com/widget/chatbob.js" async></script>
+
+    @include('partials.app-download-banner')
 </body>
 
 </html>

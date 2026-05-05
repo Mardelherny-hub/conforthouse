@@ -244,6 +244,8 @@
 <script src="https://chat-bob.com/build/assets/widget.js" type="module"></script>
 
 
+    @include('partials.app-download-banner')
+
 </body>
 
 </html>

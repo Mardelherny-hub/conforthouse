@@ -850,6 +850,11 @@ return [
     'confirmation_email_phone_contact' => 'We will contact you at',
     'confirmation_email_thanks' => 'Thank you for your trust,',
     'aviso_no_responder' => 'Please do not reply to this email. It is an automated message.',
-    
+
+    //================================================ Banner App  =================================================
+    'app_banner_title'    => 'Conforthouse Living',
+    'app_banner_subtitle' => 'Find your ideal property in the palm of your hand',
+    'app_banner_cta'      => 'Download'
+
 
 ];
