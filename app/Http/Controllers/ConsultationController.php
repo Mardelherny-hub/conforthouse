@@ -224,12 +224,27 @@ class ConsultationController extends Controller
             'Consulta de Propiedad' => 'pagina_contacto',
         ];
 
+        // Mapeo del valor del formulario al enum real de la columna interested_in.
+        // Si no coincide con ninguno permitido, se guarda null (la columna lo admite).
+        $interesValidos = ['buying_property', 'selling_property', 'renting_property', 'investment', 'other'];
+        $interesMap = [
+            'buy'     => 'buying_property',
+            'sell'    => 'selling_property',
+            'rent'    => 'renting_property',
+            'invest'  => 'investment',
+        ];
+        $interesRecibido = $data['interest'] ?? null;
+        $interesFinal = $interesMap[$interesRecibido] ?? $interesRecibido;
+        if (!in_array($interesFinal, $interesValidos, true)) {
+            $interesFinal = null;
+        }
+
         Consultation::create([
             'nombre'        => $data['name'],
             'email'         => $data['email'],
             'telefono'      => $data['phone'] ?? null,
             'asunto'        => $data['subject'] ?? null,
-            'interested_in' => $data['interest'] ?? null,
+            'interested_in' => $interesFinal,
             'mensaje'       => $data['message'],
             'origen'        => $origenMap[$data['form_type']] ?? 'modal_flotante',
             'locale'        => app()->getLocale(),
