@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ConsultationMail;
 use App\Mail\UserConfirmationMail;
+use App\Models\Consultation;
 
 class ConsultationController extends Controller
 {
@@ -26,6 +27,8 @@ class ConsultationController extends Controller
         $validated['form_type'] = 'Modal de Consulta';
 
         try {
+            $this->guardarConsulta($validated, $request);
+
             // Enviar email al administrador
             Mail::to(config('mail.from.address'))
                 ->send(new ConsultationMail($validated));
@@ -72,6 +75,8 @@ class ConsultationController extends Controller
         $validated['form_type'] = 'Formulario Home';
 
         try {
+            $this->guardarConsulta($validated, $request);
+
             // Enviar email al administrador
             Mail::to(config('mail.from.address'))
                 ->send(new ConsultationMail($validated));
@@ -119,6 +124,8 @@ class ConsultationController extends Controller
         $validated['form_type'] = 'Página de Contacto';
 
         try {
+            $this->guardarConsulta($validated, $request);
+
             // Enviar email al administrador
             Mail::to(config('mail.from.address'))
                 ->send(new ConsultationMail($validated));
@@ -173,6 +180,8 @@ class ConsultationController extends Controller
         $validated['subject'] = 'Consulta sobre: ' . $validated['property_title'];
 
         try {
+            $this->guardarConsulta($validated, $request);
+
             // Enviar email al administrador
             Mail::to(config('mail.from.address'))
                 ->send(new ConsultationMail($validated));
@@ -200,5 +209,32 @@ class ConsultationController extends Controller
                 'debug' => config('app.debug') ? $e->getMessage() : null
             ], 500);
         }
+    }
+
+    /**
+     * Guarda la consulta en la base de datos mapeando los campos del
+     * formulario a las columnas reales de la tabla consultations.
+     */
+    private function guardarConsulta(array $data, Request $request): void
+    {
+        $origenMap = [
+            'Modal de Consulta'     => 'modal_flotante',
+            'Formulario Home'       => 'home_contacto',
+            'Página de Contacto'    => 'pagina_contacto',
+            'Consulta de Propiedad' => 'pagina_contacto',
+        ];
+
+        Consultation::create([
+            'nombre'        => $data['name'],
+            'email'         => $data['email'],
+            'telefono'      => $data['phone'] ?? null,
+            'asunto'        => $data['subject'] ?? null,
+            'interested_in' => $data['interest'] ?? null,
+            'mensaje'       => $data['message'],
+            'origen'        => $origenMap[$data['form_type']] ?? 'modal_flotante',
+            'locale'        => app()->getLocale(),
+            'ip_address'    => $request->ip(),
+            'user_agent'    => $request->userAgent(),
+        ]);
     }
 }
