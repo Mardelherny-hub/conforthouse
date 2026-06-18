@@ -259,7 +259,7 @@ public function index(Request $request)
                                             ->where('locale', $locale)
                                             ->value('property_id');
              if ($propertyId) {
-            $property = Property::with(['images', 'propertyType', 'operation', 'status'])->where('id', $propertyId)->firstOrFail();
+            $property = Property::with(['images', 'propertyType', 'operation', 'status', 'descriptions'])->where('id', $propertyId)->firstOrFail();
             }
 
         }
