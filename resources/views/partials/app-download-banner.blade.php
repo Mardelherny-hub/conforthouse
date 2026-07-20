@@ -8,7 +8,7 @@
         @include('partials.app-download-banner')
 
     Características:
-    - Solo se muestra en dispositivos móviles (iOS / Android)
+    - Se muestra en móvil y escritorio
     - Persistencia con localStorage: 7 días tras cerrar
     - Animación slide-up con Alpine.js
     - Estética alineada a la paleta Conforthouse Living
@@ -237,29 +237,15 @@
             bannerHeight: 15,
 
             init() {
-                // 1) No mostrar si no es dispositivo móvil
-                if (!this.isMobile()) {
-                    return;
-                }
-
-                // 2) No mostrar si fue cerrado y no expiró el plazo
+                // 1) No mostrar si fue cerrado y no expiró el plazo
                 if (this.isDismissed()) {
                     return;
                 }
-
-                // 3) Pequeño delay para no aparecer en el primer paint
+                // 2) Pequeño delay para no aparecer en el primer paint
                 setTimeout(() => {
                     this.visible = true;
                     this.pushChatbobUp();
                 }, 600);
-            },
-
-            isMobile() {
-                // Combinación de matchMedia + User-Agent para mayor robustez
-                const ua = navigator.userAgent || navigator.vendor || window.opera || '';
-                const uaIsMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua);
-                const widthIsMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
-                return uaIsMobile || widthIsMobile;
             },
 
             isDismissed() {
