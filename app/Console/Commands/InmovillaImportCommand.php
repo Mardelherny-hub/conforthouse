@@ -110,6 +110,11 @@ class InmovillaImportCommand extends Command
                 'piscina_com_bool' => (bool)$xmlProperty->piscina_com,
             ]);
             
+            // Si la propiedad volvió al feed tras haber sido desactivada, restaurarla
+            Property::onlyTrashed()
+                ->where('cod_ofer', (int)$xmlProperty->id)
+                ->restore();
+
             // MAPEO DIRECTO XML → BD EXISTENTE
             $property = Property::updateOrCreate(
                 ['cod_ofer' => (int)$xmlProperty->id], // Clave única Inmovilla
