@@ -8,7 +8,8 @@
         @include('partials.app-download-banner')
 
     Características:
-    - Se muestra en móvil y escritorio
+    - Solo se muestra en dispositivos móviles (iOS / Android).
+      En escritorio se usa la tarjeta flotante con QR.
     - Persistencia con localStorage: 7 días tras cerrar
     - Animación slide-up con Alpine.js
     - Estética alineada a la paleta Conforthouse Living
@@ -237,17 +238,30 @@
             bannerHeight: 15,
 
             init() {
-                // 1) No mostrar si fue cerrado y no expiró el plazo
+                // 1) No mostrar si no es dispositivo móvil.
+                //    En escritorio se muestra la tarjeta flotante con QR
+                //    (partials/app-float-card.blade.php)
+                if (!this.isMobile()) {
+                    return;
+                }
+                // 2) No mostrar si fue cerrado y no expiró el plazo
                 if (this.isDismissed()) {
                     return;
                 }
-                // 2) Pequeño delay para no aparecer en el primer paint
+                // 3) Pequeño delay para no aparecer en el primer paint
                 setTimeout(() => {
                     this.visible = true;
                     this.pushChatbobUp();
                 }, 600);
             },
 
+            isMobile() {
+                // Combinación de matchMedia + User-Agent para mayor robustez
+                const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+                const uaIsMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(ua);
+                const widthIsMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+                return uaIsMobile || widthIsMobile;
+            },
             isDismissed() {
                 try {
                     const until = localStorage.getItem('cf_app_banner_dismissed_until');

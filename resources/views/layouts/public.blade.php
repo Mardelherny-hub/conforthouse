@@ -245,6 +245,7 @@
 
 
     @include('partials.app-download-banner')
+    @include('partials.app-float-card')
 
 </body>
 

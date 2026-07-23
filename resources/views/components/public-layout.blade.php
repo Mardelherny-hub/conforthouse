@@ -167,6 +167,7 @@
     <script src="https://chat-bob.com/widget/chatbob.js" async></script>
 
     @include('partials.app-download-banner')
+    @include('partials.app-float-card')
 </body>
 
 </html>
