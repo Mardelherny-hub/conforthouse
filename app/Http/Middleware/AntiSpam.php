@@ -112,7 +112,13 @@ class AntiSpam
      */
     protected function failsHoneypot(Request $request): bool
     {
+        // El campo debe existir en todos los formularios protegidos.
+        if (!$request->request->has('website_url')) {
+            return true;
+        }
+
         $honeypotValue = $request->input('website_url');
+
         return !empty($honeypotValue);
     }
 
@@ -123,13 +129,14 @@ class AntiSpam
     {
         $formLoadedAt = $request->input('_form_token');
 
+        // El token debe existir en todos los formularios protegidos.
         if (empty($formLoadedAt)) {
-            return false;
+            return true;
         }
 
-        $decodedTime = base64_decode($formLoadedAt);
+        $decodedTime = base64_decode($formLoadedAt, true);
 
-        if (!is_numeric($decodedTime)) {
+        if ($decodedTime === false || !is_numeric($decodedTime)) {
             return true;
         }
 

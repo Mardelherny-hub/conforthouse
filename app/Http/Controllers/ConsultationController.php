@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ConsultationMail;
-use App\Mail\UserConfirmationMail;
 use App\Models\Consultation;
 
 class ConsultationController extends Controller
@@ -19,7 +18,7 @@ class ConsultationController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'nullable|string|max:20',
-            'subject' => 'required|string|max:255',
+            'subject' => 'required|string|max:255|in:quiero_comprar,quiero_vender,quiero_alquilar,valoracion_propiedad,otro',
             'message' => 'required|string|max:2000',
         ]);
 
@@ -32,10 +31,6 @@ class ConsultationController extends Controller
             // Enviar email al administrador
             Mail::to(config('mail.from.address'))
                 ->send(new ConsultationMail($validated));
-
-            // Enviar email de confirmación al usuario
-            Mail::to($validated['email'])
-                ->send(new UserConfirmationMail($validated));
 
             return response()->json([
                 'success' => true,
@@ -67,7 +62,7 @@ class ConsultationController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'nullable|string|max:20',
-            'subject' => 'required|string|max:255',
+            'subject' => 'required|string|max:255|in:comprar,vender,alquilar,valoracion,consultoria,otro',
             'message' => 'required|string|max:2000',
         ]);
 
@@ -80,10 +75,6 @@ class ConsultationController extends Controller
             // Enviar email al administrador
             Mail::to(config('mail.from.address'))
                 ->send(new ConsultationMail($validated));
-
-            // Enviar email de confirmación al usuario
-            Mail::to($validated['email'])
-                ->send(new UserConfirmationMail($validated));
 
             return response()->json([
                 'success' => true,
@@ -129,10 +120,6 @@ class ConsultationController extends Controller
             // Enviar email al administrador
             Mail::to(config('mail.from.address'))
                 ->send(new ConsultationMail($validated));
-
-            // Enviar email de confirmación al usuario
-            Mail::to($validated['email'])
-                ->send(new UserConfirmationMail($validated));
 
             return response()->json([
                 'success' => true,
@@ -185,10 +172,6 @@ class ConsultationController extends Controller
             // Enviar email al administrador
             Mail::to(config('mail.from.address'))
                 ->send(new ConsultationMail($validated));
-
-            // Enviar email de confirmación al usuario
-            Mail::to($validated['email'])
-                ->send(new UserConfirmationMail($validated));
 
             return response()->json([
                 'success' => true,
