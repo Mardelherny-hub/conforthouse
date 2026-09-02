@@ -258,11 +258,14 @@ public function index(Request $request)
             $propertyId = PropertyTranslation::where('slug', $slug)
                                             ->where('locale', $locale)
                                             ->value('property_id');
-             if ($propertyId) {
+                          if ($propertyId) {
             $property = Property::with(['images', 'propertyType', 'operation', 'status', 'descriptions'])->where('id', $propertyId)->firstOrFail();
             }
-
         }
+
+        // Slug inexistente en cualquier idioma: 404 limpio en vez de error 500.
+        abort_if(!$property, 404);
+
         // Aplicar traducciones a la propiedad
         $this->applyTranslations($property, $locale);
 
