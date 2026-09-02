@@ -25,6 +25,16 @@ class AntiSpam
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Bloquear la campaña automatizada identificada en producción.
+        if ($this->matchesKnownSpamCampaign($request)) {
+            \Log::warning('AntiSpam: Campaña conocida bloqueada', [
+                'ip' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+            ]);
+
+            return $this->rejectRequest($request);
+        }
+
         // 1. Validar User-Agent sospechoso
         if ($this->failsUserAgentCheck($request)) {
             \Log::warning('AntiSpam: Bot detectado por User-Agent falso', [
@@ -99,6 +109,22 @@ class AntiSpam
 
         // Guardar estadísticas
         file_put_contents($statsFile, json_encode($stats, JSON_PRETTY_PRINT));
+    }
+
+    /**
+     * Detecta la campaña automatizada identificada en producción.
+     */
+    protected function matchesKnownSpamCampaign(Request $request): bool
+    {
+        $name = trim((string) $request->input('name'));
+        $phone = trim((string) $request->input('phone'));
+        $subject = trim((string) $request->input('subject'));
+        $message = trim((string) $request->input('message'));
+
+        return $name === 'Test'
+            && $phone === '+79990000000'
+            && $message === 'Test'
+            && in_array($subject, ['Test', 'Seleccionar...'], true);
     }
 
     /**
