@@ -7,4 +7,5 @@
 </div>
 
 {{-- Token de tiempo: registra cuándo se cargó el formulario --}}
-<input type="hidden" name="_form_token" value="{{ base64_encode(time()) }}">
+@php($antispamTs = time())
+<input type="hidden" name="_form_token" value="{{ base64_encode($antispamTs . '|' . hash_hmac('sha256', $antispamTs, config('app.key'))) }}">

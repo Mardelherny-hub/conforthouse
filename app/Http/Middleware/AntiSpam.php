@@ -13,6 +13,11 @@ class AntiSpam
      */
     protected int $minTimeSeconds = 3;
 
+    /**
+     * Tiempo máximo en segundos de validez del token del formulario (2 horas)
+     */
+    protected int $maxTimeSeconds = 7200;
+
    
 
     /**
@@ -134,17 +139,30 @@ class AntiSpam
             return true;
         }
 
-        $decodedTime = base64_decode($formLoadedAt, true);
+        $decoded = base64_decode($formLoadedAt, true);
 
-        if ($decodedTime === false || !is_numeric($decodedTime)) {
+        if ($decoded === false || !str_contains($decoded, '|')) {
             return true;
         }
 
-        $loadTime = (int) $decodedTime;
-        $currentTime = time();
-        $elapsedSeconds = $currentTime - $loadTime;
+        [$timestamp, $signature] = explode('|', $decoded, 2);
 
-        return $elapsedSeconds < $this->minTimeSeconds;
+        if (!is_numeric($timestamp)) {
+            return true;
+        }
+
+        // La firma debe coincidir con la generada por la app.
+        $expected = hash_hmac('sha256', $timestamp, config('app.key'));
+
+        if (!hash_equals($expected, $signature)) {
+            return true;
+        }
+
+        $elapsedSeconds = time() - (int) $timestamp;
+
+        // Demasiado rápido: bot. Demasiado viejo: token reutilizado.
+        return $elapsedSeconds < $this->minTimeSeconds
+            || $elapsedSeconds > $this->maxTimeSeconds;
     }
 
     /**
