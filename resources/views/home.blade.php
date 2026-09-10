@@ -695,5 +695,4 @@
         </div>
     </section>
 
-    @include('partials.floating-button')
 </x-public-layout>
