@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Symfony\Component\HttpFoundation\Response;
 
 class AntiSpam
@@ -65,6 +66,16 @@ class AntiSpam
             return $this->rejectRequest($request);
         }
 
+        // 4. Validar reCAPTCHA v2 con Google desde el servidor
+        if ($this->failsRecaptchaCheck($request)) {
+            \Log::warning('AntiSpam: reCAPTCHA no superado', [
+                'ip' => $request->ip(),
+                'user_agent' => $request->userAgent(),
+            ]);
+            $this->recordSpamAttempt('recaptcha', $request);
+            return $this->rejectRequest($request);
+        }
+
         return $next($request);
     }
 
@@ -92,9 +103,14 @@ class AntiSpam
                     'user_agent' => 0,
                     'honeypot' => 0,
                     'time_check' => 0,
+                    'recaptcha' => 0,
                 ],
                 'ips' => [],
             ];
+        }
+
+        if (!isset($stats[$month]['by_type'][$type])) {
+            $stats[$month]['by_type'][$type] = 0;
         }
 
         // Incrementar contadores
@@ -189,6 +205,38 @@ class AntiSpam
         // Demasiado rápido: bot. Demasiado viejo: token reutilizado.
         return $elapsedSeconds < $this->minTimeSeconds
             || $elapsedSeconds > $this->maxTimeSeconds;
+    }
+
+    /**
+     * Verifica el token de reCAPTCHA v2 contra Google.
+     */
+    protected function failsRecaptchaCheck(Request $request): bool
+    {
+        $secretKey = config('services.recaptcha.secret_key');
+        $recaptchaResponse = $request->input('g-recaptcha-response');
+
+        if (empty($secretKey) || empty($recaptchaResponse)) {
+            return true;
+        }
+
+        try {
+            $response = Http::asForm()
+                ->timeout(5)
+                ->post('https://www.google.com/recaptcha/api/siteverify', [
+                    'secret' => $secretKey,
+                    'response' => $recaptchaResponse,
+                    'remoteip' => $request->ip(),
+                ]);
+
+            return !$response->successful()
+                || $response->json('success') !== true;
+        } catch (\Throwable $e) {
+            \Log::warning('AntiSpam: Error verificando reCAPTCHA', [
+                'error' => $e->getMessage(),
+            ]);
+
+            return true;
+        }
     }
 
     /**
