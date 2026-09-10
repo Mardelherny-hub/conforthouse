@@ -9,10 +9,18 @@ use Tests\TestCase;
 
 class AntiSpamRecaptchaTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        config([
+            'app.key' => 'test-app-key',
+            'services.recaptcha.secret_key' => 'test-secret',
+        ]);
+    }
+
     public function test_allows_request_when_recaptcha_is_valid(): void
     {
-        config(['services.recaptcha.secret_key' => 'test-secret']);
-
         Http::fake([
             'https://www.google.com/recaptcha/api/siteverify' => Http::response([
                 'success' => true,
@@ -32,8 +40,6 @@ class AntiSpamRecaptchaTest extends TestCase
 
     public function test_rejects_request_when_recaptcha_is_invalid(): void
     {
-        config(['services.recaptcha.secret_key' => 'test-secret']);
-
         Http::fake([
             'https://www.google.com/recaptcha/api/siteverify' => Http::response([
                 'success' => false,
@@ -54,8 +60,6 @@ class AntiSpamRecaptchaTest extends TestCase
 
     public function test_rejects_request_when_recaptcha_token_is_missing(): void
     {
-        config(['services.recaptcha.secret_key' => 'test-secret']);
-
         Http::fake();
 
         $response = $this->middleware()->handle(
