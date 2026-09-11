@@ -37,6 +37,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success) {
                     // Mostrar mensaje de éxito
                     showNotification(data.message, 'success');
+
+                    // Registrar la conversión solo después de una respuesta exitosa del backend
+                    if (typeof window.trackLeadConversion === 'function') {
+                        window.trackLeadConversion();
+                    }
                     
                     // Limpiar formulario
                     form.reset();
@@ -64,6 +69,17 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // El formulario de propiedad usa su propio fetch y solo ejecuta form.reset() tras data.success.
+    // Escuchar ese reset permite registrar la misma conversión sin duplicar su lógica AJAX.
+    const propertyForm = document.querySelector('[data-property-contact-form]');
+    if (propertyForm) {
+        propertyForm.addEventListener('reset', function() {
+            if (typeof window.trackLeadConversion === 'function') {
+                window.trackLeadConversion();
+            }
+        });
+    }
 });
 
 /**
