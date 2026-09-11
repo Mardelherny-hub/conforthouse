@@ -59,12 +59,17 @@ class ConsultationController extends Controller
     public function storeHomeContact(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'nullable|string|max:20',
             'subject' => 'required|string|max:255|in:comprar,vender,alquilar,valoracion,consultoria,otro',
             'message' => 'required|string|max:2000',
         ]);
+
+        // Normalizar el nombre al formato común usado por consultas y emails.
+        $validated['name'] = trim($validated['first_name'] . ' ' . $validated['last_name']);
+        unset($validated['first_name'], $validated['last_name']);
 
         // Agregar tipo de formulario
         $validated['form_type'] = 'Formulario Home';
