@@ -1,11 +1,36 @@
 @php
     $ga4MeasurementId = config('services.google_analytics.measurement_id');
     $cookieLabels = [
-        'es' => ['accept' => 'Aceptar', 'reject' => 'Rechazar', 'settings' => 'Cookies'],
-        'en' => ['accept' => 'Accept', 'reject' => 'Reject', 'settings' => 'Cookies'],
-        'fr' => ['accept' => 'Accepter', 'reject' => 'Refuser', 'settings' => 'Cookies'],
-        'de' => ['accept' => 'Akzeptieren', 'reject' => 'Ablehnen', 'settings' => 'Cookies'],
-        'nl' => ['accept' => 'Accepteren', 'reject' => 'Weigeren', 'settings' => 'Cookies'],
+        'es' => [
+            'accept' => 'Aceptar',
+            'reject' => 'Rechazar',
+            'settings' => 'Cookies',
+            'message' => 'Usamos cookies de analítica y medición publicitaria para conocer el uso del sitio y medir el rendimiento de nuestras campañas. Puedes aceptarlas o rechazarlas.',
+        ],
+        'en' => [
+            'accept' => 'Accept',
+            'reject' => 'Reject',
+            'settings' => 'Cookies',
+            'message' => 'We use analytics and advertising measurement cookies to understand site usage and measure campaign performance. You can accept or reject these cookies.',
+        ],
+        'fr' => [
+            'accept' => 'Accepter',
+            'reject' => 'Refuser',
+            'settings' => 'Cookies',
+            'message' => 'Nous utilisons des cookies d’analyse et de mesure publicitaire pour comprendre l’utilisation du site et mesurer les performances de nos campagnes. Vous pouvez les accepter ou les refuser.',
+        ],
+        'de' => [
+            'accept' => 'Akzeptieren',
+            'reject' => 'Ablehnen',
+            'settings' => 'Cookies',
+            'message' => 'Wir verwenden Analyse- und Werbemessungs-Cookies, um die Nutzung der Website zu verstehen und die Leistung unserer Kampagnen zu messen. Sie können diese Cookies akzeptieren oder ablehnen.',
+        ],
+        'nl' => [
+            'accept' => 'Accepteren',
+            'reject' => 'Weigeren',
+            'settings' => 'Cookies',
+            'message' => 'We gebruiken cookies voor analyse en advertentiemeting om het gebruik van de website te begrijpen en de prestaties van onze campagnes te meten. U kunt deze cookies accepteren of weigeren.',
+        ],
     ];
     $cookieLabel = $cookieLabels[app()->getLocale()] ?? $cookieLabels['es'];
 @endphp
@@ -18,7 +43,7 @@
             const labels = @json($cookieLabel);
             const copy = {
                 title: @json(__('messages.cookies_policy')),
-                message: @json(__('messages.cookies_details')),
+                message: labels.message,
                 privacy: @json(__('messages.privacy_policy')),
                 privacyUrl: @json(route('privacy', ['locale' => app()->getLocale()])),
             };
@@ -68,7 +93,7 @@
                     analytics_storage: 'granted',
                     ad_storage: 'granted',
                     ad_user_data: 'granted',
-                    ad_personalization: 'granted'
+                    ad_personalization: 'denied'
                 });
 
                 const script = document.createElement('script');
