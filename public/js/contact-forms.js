@@ -37,6 +37,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success) {
                     // Mostrar mensaje de éxito
                     showNotification(data.message, 'success');
+
+                    // Registrar la conversión solo después de una respuesta exitosa del backend
+                    if (typeof window.trackLeadConversion === 'function') {
+                        window.trackLeadConversion();
+                    }
                     
                     // Limpiar formulario
                     form.reset();
