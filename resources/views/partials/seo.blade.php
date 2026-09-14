@@ -14,7 +14,7 @@
 
     if ($seoRouteName === 'prop.show' && isset($property)) {
         $propertyTitle = trim((string) ($property->title ?? ''));
-        $propertyDescription = trim((string) ($property->description ?? $property->meta_description ?? ''));
+        $propertyDescription = trim((string) ($property->description ?: $property->meta_description ?: ''));
         $propertySlug = trim((string) ($property->slug ?? ''));
 
         if ($propertyTitle !== '') {
@@ -34,7 +34,7 @@
             if (!empty($seoPropertyImage?->image_path)) {
                 $dynamicSeoImage = str_starts_with($seoPropertyImage->image_path, 'http')
                     ? $seoPropertyImage->image_path
-                    : asset('storage/' . ltrim($seoPropertyImage->image_path, '/'));
+                    : $seoBaseUrl . '/storage/' . ltrim($seoPropertyImage->image_path, '/');
             }
         }
     }
@@ -118,9 +118,9 @@
 
     $resolvedSeoImage = trim((string) ($seoImage ?? $dynamicSeoImage ?? ''));
     if ($resolvedSeoImage === '') {
-        $resolvedSeoImage = asset('assets/images/home/hero.webp');
+        $resolvedSeoImage = $seoBaseUrl . '/assets/images/home/hero.webp';
     } elseif (!str_starts_with($resolvedSeoImage, 'http://') && !str_starts_with($resolvedSeoImage, 'https://')) {
-        $resolvedSeoImage = asset(ltrim($resolvedSeoImage, '/'));
+        $resolvedSeoImage = $seoBaseUrl . '/' . ltrim($resolvedSeoImage, '/');
     }
 
     $resolvedSeoCanonical = trim((string) ($seoCanonical ?? ''));
@@ -180,6 +180,10 @@
             $alternateParameters = array_merge(['locale' => $alternateLocale], $seoRouteParameters);
             $alternatePath = route($seoRouteName, $alternateParameters, false);
             $alternateUrl = rtrim($seoBaseUrl, '/') . '/' . ltrim($alternatePath, '/');
+
+            if (in_array($seoRouteName, ['properties.index', 'complexes.index'], true) && request()->integer('page') > 1) {
+                $alternateUrl .= '?page=' . request()->integer('page');
+            }
         @endphp
         <link rel="alternate" hreflang="{{ $alternateLocale }}" href="{{ $alternateUrl }}">
     @endforeach
