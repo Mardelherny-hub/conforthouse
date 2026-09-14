@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Confort House') }}</title>
-
-    <link rel="alternate" hreflang="es" href="https://localhost:8000/es/" />
-    <link rel="alternate" hreflang="en" href="https://localhost:8000/en/" />
-    <link rel="alternate" hreflang="fr" href="https://localhost:8000/fr/" />
-    <link rel="alternate" hreflang="de" href="https://localhost:8000/de/" />
+    @include('partials.seo', [
+        'seoTitle' => $seoTitle ?? null,
+        'seoDescription' => $seoDescription ?? null,
+        'seoImage' => $seoImage ?? null,
+        'seoCanonical' => $seoCanonical ?? null,
+        'seoRobots' => $seoRobots ?? null,
+        'seoSlug' => $seoSlug ?? null,
+    ])
 
     <!--    Favicons
     =============================================
