@@ -10,7 +10,16 @@ class SitemapController extends Controller
     public function index(): Response
     {
         $locales = ['es', 'en', 'fr', 'de', 'nl'];
-        $staticRoutes = ['home', 'properties.index', 'complexes.index', 'services', 'about', 'contact'];
+        $staticRoutes = [
+            'home',
+            'properties.index',
+            'complexes.index',
+            'services',
+            'about',
+            'contact',
+            'privacy',
+            'legal',
+        ];
 
         $properties = Property::query()
             ->whereNotNull('slug')
