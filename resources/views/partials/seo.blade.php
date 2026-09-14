@@ -8,6 +8,57 @@
 
     unset($seoRouteParameters['locale']);
 
+    $dynamicSeoTitle = null;
+    $dynamicSeoDescription = null;
+    $dynamicSeoImage = null;
+
+    if ($seoRouteName === 'prop.show' && isset($property)) {
+        $propertyTitle = trim((string) ($property->title ?? ''));
+        $propertyDescription = trim((string) ($property->description ?? $property->meta_description ?? ''));
+        $propertySlug = trim((string) ($property->slug ?? ''));
+
+        if ($propertyTitle !== '') {
+            $dynamicSeoTitle = $propertyTitle . ' | ' . $seoBrand;
+        }
+
+        if ($propertyDescription !== '') {
+            $dynamicSeoDescription = $propertyDescription;
+        }
+
+        if ($propertySlug !== '') {
+            $seoRouteParameters['slug'] = $propertySlug;
+        }
+
+        if ($property->relationLoaded('images') && $property->images->isNotEmpty()) {
+            $seoPropertyImage = $property->images->first();
+            if (!empty($seoPropertyImage?->image_path)) {
+                $dynamicSeoImage = str_starts_with($seoPropertyImage->image_path, 'http')
+                    ? $seoPropertyImage->image_path
+                    : asset('storage/' . ltrim($seoPropertyImage->image_path, '/'));
+            }
+        }
+    }
+
+    if ($seoRouteName === 'complexes.show' && isset($complex)) {
+        $complexName = trim((string) ($complex['name'] ?? ''));
+        $complexCity = trim((string) ($complex['city'] ?? ''));
+        $complexCount = $complex['count'] ?? null;
+
+        if ($complexName !== '') {
+            $dynamicSeoTitle = $complexName . ' | ' . $seoBrand;
+        }
+
+        $complexDescriptionParts = array_values(array_filter([
+            $complexName,
+            $complexCity,
+            $complexCount !== null ? $complexCount . ' ' . __('messages.propiedades_disponibles') : null,
+        ], fn ($value) => $value !== null && $value !== ''));
+
+        if (!empty($complexDescriptionParts)) {
+            $dynamicSeoDescription = implode(' · ', $complexDescriptionParts);
+        }
+    }
+
     if (!empty($seoSlug)) {
         $seoRouteParameters['slug'] = trim((string) $seoSlug);
     }
@@ -21,9 +72,17 @@
             'title' => __('messages.properties_title') . ' | ' . $seoBrand,
             'description' => __('messages.properties_subtitle'),
         ],
+        'prop.show' => [
+            'title' => $dynamicSeoTitle ?? $seoBrand,
+            'description' => $dynamicSeoDescription ?? __('messages.footer_about_description'),
+        ],
         'complexes.index' => [
             'title' => __('messages.complejos_residenciales') . ' | ' . $seoBrand,
             'description' => __('messages.descubre_exclusivos_complejos'),
+        ],
+        'complexes.show' => [
+            'title' => $dynamicSeoTitle ?? __('messages.complejos_residenciales') . ' | ' . $seoBrand,
+            'description' => $dynamicSeoDescription ?? __('messages.descubre_exclusivos_complejos'),
         ],
         'services' => [
             'title' => __('messages.services_title') . ' | ' . $seoBrand,
@@ -57,7 +116,7 @@
     $resolvedSeoDescription = preg_replace('/\s+/u', ' ', $resolvedSeoDescription) ?? $resolvedSeoDescription;
     $resolvedSeoDescription = \Illuminate\Support\Str::limit($resolvedSeoDescription, 160, '');
 
-    $resolvedSeoImage = trim((string) ($seoImage ?? ''));
+    $resolvedSeoImage = trim((string) ($seoImage ?? $dynamicSeoImage ?? ''));
     if ($resolvedSeoImage === '') {
         $resolvedSeoImage = asset('assets/images/home/hero.webp');
     } elseif (!str_starts_with($resolvedSeoImage, 'http://') && !str_starts_with($resolvedSeoImage, 'https://')) {
