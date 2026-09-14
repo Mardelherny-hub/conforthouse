@@ -14,7 +14,16 @@
 
     if ($seoRouteName === 'prop.show' && isset($property)) {
         $propertyTitle = trim((string) ($property->title ?? ''));
-        $propertyDescription = trim((string) ($property->description ?: $property->meta_description ?: ''));
+        $propertyTranslation = $property->relationLoaded('descriptions')
+            ? $property->descriptions->firstWhere('locale', $seoLocale)
+            : null;
+        $localizedMetaDescription = trim((string) ($propertyTranslation?->meta_description ?? ''));
+        $localizedDescription = trim((string) ($propertyTranslation?->description ?? ''));
+        $propertyDescription = $localizedMetaDescription !== ''
+            ? $localizedMetaDescription
+            : ($localizedDescription !== ''
+                ? $localizedDescription
+                : trim((string) ($property->meta_description ?: $property->description ?: '')));
         $propertySlug = trim((string) ($property->slug ?? ''));
 
         if ($propertyTitle !== '') {
@@ -187,6 +196,16 @@
         @endphp
         <link rel="alternate" hreflang="{{ $alternateLocale }}" href="{{ $alternateUrl }}">
     @endforeach
+    @php
+        $defaultParameters = array_merge(['locale' => 'es'], $seoRouteParameters);
+        $defaultPath = route($seoRouteName, $defaultParameters, false);
+        $defaultUrl = rtrim($seoBaseUrl, '/') . '/' . ltrim($defaultPath, '/');
+
+        if (in_array($seoRouteName, ['properties.index', 'complexes.index'], true) && request()->integer('page') > 1) {
+            $defaultUrl .= '?page=' . request()->integer('page');
+        }
+    @endphp
+    <link rel="alternate" hreflang="x-default" href="{{ $defaultUrl }}">
 @endif
 
 <meta property="og:site_name" content="{{ $seoBrand }}">
