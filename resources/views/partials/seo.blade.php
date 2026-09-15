@@ -173,6 +173,7 @@
     $resolvedSeoTitle = trim((string) ($seoTitle ?? $seoDefaults['title']));
     $resolvedSeoDescription = trim((string) ($seoDescription ?? $seoDefaults['description']));
     $resolvedSeoDescription = html_entity_decode(strip_tags($resolvedSeoDescription), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $resolvedSeoDescription = str_replace('~', ' ', $resolvedSeoDescription);
     $resolvedSeoDescription = preg_replace('/\s+/u', ' ', $resolvedSeoDescription) ?? $resolvedSeoDescription;
     $resolvedSeoDescription = \Illuminate\Support\Str::limit($resolvedSeoDescription, 160, '');
 
