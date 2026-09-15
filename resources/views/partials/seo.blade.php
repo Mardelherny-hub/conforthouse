@@ -12,11 +12,62 @@
     $dynamicSeoDescription = null;
     $dynamicSeoImage = null;
 
+    // Los layouts públicos son Blade components aislados. En las vistas de detalle,
+    // el modelo puede existir en el slot pero no en el scope del layout. Recuperamos
+    // sólo el contexto SEO necesario a partir de la ruta para evitar caer en metadata genérica.
+    if ($seoRouteName === 'prop.show' && !isset($property)) {
+        $routePropertySlug = trim((string) ($seoRouteParameters['slug'] ?? ''));
+
+        if ($routePropertySlug !== '') {
+            $seoPropertyQuery = \App\Models\Property::with([
+                'images',
+                'descriptions' => function ($query) use ($seoLocale) {
+                    $query->whereIn('locale', [$seoLocale, 'es'])
+                        ->orderByRaw("locale = ? DESC", [$seoLocale]);
+                },
+            ]);
+
+            $property = (clone $seoPropertyQuery)
+                ->where('slug', $routePropertySlug)
+                ->first();
+
+            if (!$property) {
+                $translatedPropertyId = \App\Models\PropertyTranslation::query()
+                    ->where('slug', $routePropertySlug)
+                    ->where('locale', $seoLocale)
+                    ->value('property_id');
+
+                if ($translatedPropertyId) {
+                    $property = (clone $seoPropertyQuery)->find($translatedPropertyId);
+                }
+            }
+        }
+    }
+
+    if ($seoRouteName === 'complexes.show' && !isset($complex)) {
+        $routeKeypromo = $seoRouteParameters['keypromo'] ?? null;
+
+        if ($routeKeypromo !== null && $routeKeypromo !== '') {
+            $complexSeoRow = \App\Models\Property::query()
+                ->where('keypromo', $routeKeypromo)
+                ->selectRaw('MAX(zona_inmovilla) as name, MAX(ciudad_inmovilla) as city, COUNT(*) as property_count')
+                ->first();
+
+            if ($complexSeoRow && (int) $complexSeoRow->property_count > 0) {
+                $complex = [
+                    'name' => $complexSeoRow->name,
+                    'city' => $complexSeoRow->city,
+                    'count' => (int) $complexSeoRow->property_count,
+                ];
+            }
+        }
+    }
+
     if ($seoRouteName === 'prop.show' && isset($property)) {
-        $propertyTitle = trim((string) ($property->title ?? ''));
         $propertyTranslation = $property->relationLoaded('descriptions')
             ? $property->descriptions->firstWhere('locale', $seoLocale)
             : null;
+        $propertyTitle = trim((string) ($propertyTranslation?->title ?: ($property->title ?? '')));
         $localizedMetaDescription = trim((string) ($propertyTranslation?->meta_description ?? ''));
         $localizedDescription = trim((string) ($propertyTranslation?->description ?? ''));
         $propertyDescription = $localizedMetaDescription !== ''
