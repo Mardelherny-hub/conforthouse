@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\TestPropertyController;
 use App\Http\Controllers\ComplexController;
+use App\Http\Controllers\SitemapController;
 
 //controladores para el panel de control
 use App\Http\Controllers\Admin\DashboardController;
@@ -29,6 +30,9 @@ $languages = ['en', 'es', 'fr', 'de', 'nl'];
 Route::get('/', function () {
     return redirect(app()->getLocale());
 });
+
+// Sitemap público para buscadores
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // Rutas públicas con prefijo de idioma
 Route::group([
