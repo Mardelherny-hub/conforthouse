@@ -13,6 +13,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
+        // Solo habilitar tras QA y configuración explícita del acceso de lectura.
+        if (config('maintenance_evidence.schedule_enabled', false)) {
+            $schedule->command('maintenance:evidence --store')
+                ->monthlyOn(15, '08:00')
+                ->timezone('Europe/Madrid')
+                ->withoutOverlapping();
+        }
+
         // Actualización diaria de Inmovilla - 3:00 AM
         $schedule->command('inmovilla:update')
             ->dailyAt('03:00')
