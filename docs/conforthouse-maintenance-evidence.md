@@ -1,107 +1,118 @@
-# ConfortHouse — recolector de evidencias de mantenimiento (REV0)
+# ConfortHouse — API privada de mantenimiento para Red-Byte (REV1)
 
-**Alcance:** SOLO mantenimiento técnico. NO genera un informe comercial, NO ejecuta
-actualizaciones ni modifica datos de la aplicación. Esta REV0 es una fuente de
-**evidencia parcial**, NO el JSON que admite `ReportDraftService` de Red-Byte.
+**Estado:** desarrollo local, rama PR #9. Sin merge, despliegue ni activación en IONOS.
 
-## Qué hace
+**Responsabilidad:** ConfortHouse expone estadísticas técnicas agregadas. Red-Byte las
+recupera por API junto con UptimeRobot e intervenciones documentadas, entrega las
+evidencias consolidadas a Dot, y recibe de Dot un borrador para `ReportDraftService`.
+**Este JSON es evidencia técnica, no un informe importable.** No incluye SEO/SEM/Growth.
 
-- Consulta la conexión de base de datos con `SELECT 1` y estadísticas agregadas de
-  propiedades activas, destacadas, eliminadas lógicamente y por operación.
-- Lee la caché existente de sincronización Inmovilla (`last_run` y contadores).
-  La caché puede expirar: la ausencia no prueba que haya fallado la sincronización.
-- Lee `storage/app/spam_stats.json` por meses **calendario**; incluye los
-  contadores almacenados y la cantidad de IPs de la muestra, nunca sus valores.
-  Las campañas bloqueadas por reglas que no invocan `recordSpamAttempt` no están
-  incluidas. El volumen de IPs muestreadas está limitado por la aplicación.
-- Lee el tamaño del log Laravel y cuenta eventos de severidad del archivo actual
-  dentro de la ventana solicitada, **sin exportar mensajes ni identificadores**.
-  Los logs rotados no se incluyen: los totales son potencialmente incompletos.
-  Si el log supera 250 MiB, omite el escaneo y lo indica.
-- Obtiene una observación puntual del espacio en el filesystem (NO la cuota IONOS).
-- Marca UptimeRobot y las intervenciones del equipo como **fuentes externas pendientes**:
-  no inventa uptime, causas raíz, cron ejecutados ni trabajos realizados.
+## Contrato común v1
 
-## Ejecución local o manual (no requiere Artisan heredado)
+La salida adopta el contrato base también utilizado en Next Level:
 
-Estos comandos NO hacen escrituras en DB ni modifican los servicios:
+- `schema_version: redbyte.maintenance-evidence.v1`
+- `client: conforthouse`
+- `collected_at_utc`
+- `window: {start, end, timezone, inclusive, kind}` (zona `Europe/Madrid`)
+- `snapshot`: información observada al ejecutar el recolector; puede variar respecto al cierre.
+- `activity`: recuentos agregados que se pueden recuperar de archivos existentes.
+- `external_sources`: fuentes que debe consultar por separado Red-Byte.
+- `limitations`: límites de cobertura que Dot **debe** respetar.
+
+### Datos exclusivos de ConfortHouse
+
+**Snapshot**: conexión de BD con `SELECT 1`; recuentos de propiedades vigentes,
+retiradas lógicamente y destacadas, con distribución por operación; últimos datos
+almacenados en caché sobre Inmovilla; tamaño/fecha de actualización del log actual;
+espacio del filesystem compartido observado en ese momento (no equivale a cuota IONOS).
+
+**Actividad**: antispam leído de `storage/app/spam_stats.json` por meses *calendario*;
+log de Laravel, recuentos de severidad por fecha dentro del rango solicitado, sin
+exportar el texto de mensajes. Los logs rotados no se incluyen; un log mayor a
+250 MiB **no se escanea**. Ni cuentas IPs personales ni correos ni secretos se
+exportan. Los contadores de antispam no incluyen reglas que no registran estadísticas.
+
+**No inferir**: uptime mensual, causa raíz, éxito de respaldos, actividad en Inmovilla
+cuando expiró la caché, ni trabajos realizados. UptimeRobot, tickets y despliegues
+se recopilan desde Red-Byte por otras fuentes.
+
+## Preparación mensual del ciclo cerrado
+
+ConfortHouse tiene ciclo contractual del 16 al 15. El ciclo queda cerrado
+**recién el día 16**, por lo que generar el día 15 un documento periódico para
+importación sería prematuro. El informe SEO/SEM `special` es independiente.
+
+El comando existente admite los modos:
 
 ```bash
-# Por defecto: JSON a stdout, sin guardar nada. Ventana rodante de 30 días.
-php artisan maintenance:evidence
-
-# Ventana explícita, ambos extremos incluidos. NO modifica datos ni guarda archivo.
+# Solo salida JSON por stdout, sin guardar archivos:
 php artisan maintenance:evidence --from=2026-09-16 --to=2026-10-15
 
-# Solo si se desea un snapshot privado: crea archivos JSON fuera de public/.
-php artisan maintenance:evidence --from=2026-09-16 --to=2026-10-15 --store
+# Solo el ciclo contractual más reciente efectivamente cerrado:
+php artisan maintenance:evidence --closed-cycle
+
+# Genera (o reemplaza) UN único snapshot en ubicación privada:
+php artisan maintenance:evidence --closed-cycle --store
 ```
 
-`--store` conserva snapshots únicos y actualiza atómicamente
-`storage/app/private/report-evidence/conforthouse/latest.json`; archivos
-con permisos 0600. El directorio NO está enlazado por `storage:link`.
+`--store` crea o reemplaza exclusivamente
+`storage/app/private/report-evidence/conforthouse/latest.json`, permisos de
+archivo `0600`, fuera de `public/` y sin modificar registros de la aplicación.
+No acumula `snapshot-YYYY*.json` ni archivos por cada mes. Red-Byte aplica su
+propia retención de 7 días a JSON **importados exitosamente**; esa política
+no debe borrar documentos protegidos como la investigación SEO/SEM original.
 
-La ventana predeterminada del scheduler es una **observación rodante de 30
-días**; no se considera automáticamente el ciclo contractual. Para preparar
-un informe, contrastar el período real acordado con UptimeRobot y tickets.
+Si se activa **expresamente** `REDBYTE_EVIDENCE_SCHEDULE_ENABLED=true`, y existe
+un scheduler Laravel real en IONOS, se ejecutará el día **16 a las 08:00,
+Europe/Madrid**. Este cambio NO altera la tarea vigente de Inmovilla.
+El scheduler está desactivado por defecto.
 
-## Acceso de consulta para Red-Byte / Dot
+## API de lectura de la evidencia guardada
 
-Ruta GET de solo lectura:
-`https://rbconforthouse.com/api/internal/maintenance-evidence/conforthouse`.
+```text
+GET https://www.rbconforthouse.com/api/internal/maintenance-evidence/v1?from=2026-09-16&to=2026-10-15
+X-RedByte-Evidence-Token: <token exclusivo de la fuente>
+```
 
-**Desactivado por defecto.** Una vez validado el deploy, la prueba de
-compatibilidad y las restricciones del alojamiento, configurar en el entorno
-del servidor (nunca en Git o en chats):
+- Disponible **solo después de la activación expresa** en producción.
+- HTTPS, token de lectura de longitud mínima 32 caracteres, `throttle:6,1`;
+  nunca incluir el token en parámetros URL, Git o logs.
+- El endpoint únicamente lee el JSON previamente consolidado. No ejecuta
+  Artisan, escaneos de logs ni consultas costosas por solicitud.
+- Un rango inválido devuelve 422. Si no existe snapshot o sus fechas son
+  distintas a `from` y `to`, devuelve 404: **no mezcla períodos**.
+- Respuesta `Cache-Control: private, no-store` y sin valores identificatorios.
+- El secreto **no** habilita edición, acceso SSH ni consulta de otras aplicaciones.
 
 ```dotenv
-REDBYTE_EVIDENCE_ENABLED=true
-REDBYTE_EVIDENCE_READ_TOKEN=<clave-larga-aleatoria-de-32-o-mas-caracteres>
-# Activar recién después de comprobar la recopilación mensual:
+REDBYTE_EVIDENCE_ENABLED=false
+REDBYTE_EVIDENCE_READ_TOKEN=<generar-secreto-de-minimo-32-caracteres>
 REDBYTE_EVIDENCE_SCHEDULE_ENABLED=false
 ```
 
-La solicitud debe enviarse por HTTPS con el encabezado
-`X-RedByte-Evidence-Token`. Nunca incluir el token en la URL ni en logs.
+En IONOS se debe verificar que el proceso PHP que sirve la API pueda leer
+el archivo con permisos seguros; nunca relajar permisos a `777`.
+La aplicación todavía no tiene esos valores activos ni snapshots publicados.
 
-Sin flag, con token corto/ausente/inválido o sin snapshot, responde 404.
-Tiene límite de 6 solicitudes/minuto y encabezado `Cache-Control: no-store`.
-Es imprescindible verificar en IONOS que el usuario que ejecuta PHP puede
-leer los archivos privados; **no relajar permisos hasta 777**.
+## UptimeRobot
 
-**Esto no otorga acceso SSH ni acceso a base de datos a Dot.** El objetivo
-es que un proceso central autorizado consulte el snapshot previamente
-generado. No importar ni publicar ningún informe automáticamente.
+La API externa de UptimeRobot se consulta desde **Red-Byte**, no desde IONOS.
+El monitor asociado es `https://rbconforthouse.com/health` y durante las
+pruebas del 15/10/2026 respondió correctamente la **API v2** con clave de
+solo lectura (la v3 no aceptó esa clave). Su acceso se configura de forma
+centralizada y separada. Las cifras e incidentes deben corresponder al período
+exacto y la causa reportada por UptimeRobot no constituye diagnóstico de origen.
 
-## Programación mensual (opt-in)
+## Validación y pendientes
 
-Solo al configurar `REDBYTE_EVIDENCE_SCHEDULE_ENABLED=true`, y si ya
-funciona el scheduler de Laravel en IONOS, queda una ejecución el **día 15
-a las 08:00 hora Europe/Madrid**. Genera evidencia privada; no genera PDFs,
-no envía correos y no publica.
+- Ejecutar en local los tests `ConfortHouseMaintenanceEvidenceTest` con SQLite.
+- Verificar que modo normal no crea JSON y `--store` conserva uno solo.
+- Verificar 404 sin flag/token, 422 con fecha inválida, 404 por ventana no
+  coincidente y respuesta autenticada en fechas correctas.
+- QA, aprobación y pruebas en IONOS previos a activar scheduler o endpoint.
+- Red-Byte debe ser el único consumidor y transportar evidencias hacia Dot.
+- El administrador es el único que autoriza publicar informes.
 
-Antes de habilitar:
-1. Ejecutar tests locales y verificar `--store` en entorno de prueba.
-2. Desplegar únicamente después de aprobación; verificar configuración,
-   permisos de carpetas y logs en IONOS.
-3. Verificar 404 con feature desactivada; activar y comprobar la petición
-   autenticada. Mantener la credencial fuera del repositorio.
-4. Comprobar la ejecución programada y comparar el snapshot con los datos
-   originales sin convertir observaciones puntuales en históricos.
-
-## Integración UptimeRobot (fuente separada)
-
-Obtener estadísticas e incidentes desde la API **oficial v3**, con una clave
-**read-only** resguardada en el recolector central Red-Byte, no en este
-hosting compartido. El monitor de ConfortHouse es:
-`https://rbconforthouse.com/health`.
-
-El integrador debe aportar: rango exacto, zona horaria, uptime,
-eventos, duración y motivo reportado por el proveedor; conciliar
-totales y cantidad de eventos antes de redactar. Los motivos de monitor
-no prueban por sí mismos que IONOS sea la causa.
-
-**Flujo final previsto:** snapshot técnico + UptimeRobot + cambios y tickets
-verificados → Dot → borrador compatible con `ReportDraftService` →
-validación → aprobación humana. Este commit implementa solamente la
-primera fuente y su mecanismo de consulta protegida.
+**No ejecutar merge, deploy, Artisan sobre producción ni cambios comerciales
+sin aprobación expresa.**

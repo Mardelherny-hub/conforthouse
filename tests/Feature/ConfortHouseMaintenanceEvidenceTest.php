@@ -46,6 +46,7 @@ class ConfortHouseMaintenanceEvidenceTest extends TestCase
 
     protected function tearDown(): void
     {
+        CarbonImmutable::setTestNow();
         DB::disconnect('sqlite');
         $this->removeTree($this->testDir);
         parent::tearDown();
@@ -77,17 +78,20 @@ class ConfortHouseMaintenanceEvidenceTest extends TestCase
             'explicit_report_window'
         );
 
-        $this->assertSame('redbyte.conforthouse.maintenance-evidence.v1', $result['schema_version']);
-        $this->assertSame(2, $result['database_and_catalog']['counts_as_of_collection']['active']);
-        $this->assertSame(1, $result['database_and_catalog']['counts_as_of_collection']['soft_deleted']);
-        $this->assertSame(1, $result['database_and_catalog']['counts_as_of_collection']['featured_active']);
-        $this->assertSame(180, $result['inmovilla']['last_sync_counters']['total_processed']);
-        $this->assertSame(9, $result['spam']['calendar_months']['2026-09']['recorded_total']);
-        $this->assertSame(22, $result['spam']['calendar_months']['2026-10']['recorded_total']);
-        $this->assertSame(7, $result['spam']['calendar_months']['2026-10']['by_type']['recaptcha']);
-        $this->assertSame(1, $result['laravel_log']['event_counts_in_requested_window']['ERROR']);
-        $this->assertSame(1, $result['laravel_log']['event_counts_in_requested_window']['WARNING']);
-        $this->assertSame('not_collected_here', $result['external_sources']['uptimerobot']['status']);
+        $this->assertSame('redbyte.maintenance-evidence.v1', $result['schema_version']);
+        $this->assertSame('2026-09-16', $result['window']['start']);
+        $this->assertSame('2026-10-15', $result['window']['end']);
+        $this->assertSame('Europe/Madrid', $result['window']['timezone']);
+        $this->assertSame(2, $result['snapshot']['properties']['active']);
+        $this->assertSame(1, $result['snapshot']['properties']['soft_deleted']);
+        $this->assertSame(1, $result['snapshot']['properties']['featured_active']);
+        $this->assertSame(180, $result['snapshot']['inmovilla']['last_sync_counters']['total_processed']);
+        $this->assertSame(9, $result['activity']['antispam']['calendar_months']['2026-09']['recorded_total']);
+        $this->assertSame(22, $result['activity']['antispam']['calendar_months']['2026-10']['recorded_total']);
+        $this->assertSame(7, $result['activity']['antispam']['calendar_months']['2026-10']['by_type']['recaptcha']);
+        $this->assertSame(1, $result['activity']['laravel_log_counts']['event_counts_in_requested_window']['ERROR']);
+        $this->assertSame(1, $result['activity']['laravel_log_counts']['event_counts_in_requested_window']['WARNING']);
+        $this->assertSame('collected_by_redbyte_centrally', $result['external_sources']['uptimerobot']);
         $serialized = json_encode($result);
         $this->assertStringNotContainsString('example@example.com', $serialized);
         $this->assertStringNotContainsString('192.0.2.1', $serialized);
@@ -112,12 +116,21 @@ class ConfortHouseMaintenanceEvidenceTest extends TestCase
         $this->assertSame('explicit_report_window', $data['window']['kind']);
         $this->assertSame('conforthouse', $data['client']);
         $this->assertSame($data, app(ConfortHouseEvidenceSnapshots::class)->latest());
+        $this->artisan('maintenance:evidence', [
+            '--from' => '2026-10-01', '--to' => '2026-10-15', '--store' => true,
+        ])->assertExitCode(0);
+        $files = glob($this->testDir . '/snapshots/*.json');
+        $this->assertCount(1, $files, 'No deben acumularse snapshots históricos en el hosting');
+        $updated = json_decode(file_get_contents($path), true);
+        $this->assertSame('2026-10-01', $updated['window']['start']);
     }
 
     public function test_private_http_endpoint_denies_access_until_explicitly_enabled_and_authenticated(): void
     {
-        $this->artisan('maintenance:evidence', ['--store' => true])->assertExitCode(0);
-        $route = '/api/internal/maintenance-evidence/conforthouse';
+        $this->artisan('maintenance:evidence', [
+            '--from' => '2026-09-16', '--to' => '2026-10-15', '--store' => true,
+        ])->assertExitCode(0);
+        $route = '/api/internal/maintenance-evidence/v1';
         $validToken = str_repeat('S', 48);
 
         $this->getJson($route)->assertNotFound();
@@ -128,10 +141,29 @@ class ConfortHouseMaintenanceEvidenceTest extends TestCase
         config()->set('maintenance_evidence.read_token', $validToken);
         $this->getJson($route)->assertNotFound();
         $this->getJson($route, ['X-RedByte-Evidence-Token' => str_repeat('X', 48)])->assertNotFound();
-        $response = $this->getJson($route, ['X-RedByte-Evidence-Token' => $validToken])->assertOk()
-            ->assertJsonPath('client', 'conforthouse');
+        $response = $this->getJson($route . '?from=2026-09-16&to=2026-10-15', [
+            'X-RedByte-Evidence-Token' => $validToken,
+        ])->assertOk()->assertJsonPath('client', 'conforthouse')
+            ->assertJsonPath('schema_version', 'redbyte.maintenance-evidence.v1');
         $this->assertStringContainsString('no-store', $response->headers->get('Cache-Control'));
         $this->assertStringNotContainsString($validToken, $response->getContent());
+    }
+
+    public function test_authenticated_endpoint_rejects_missing_wrong_or_invalid_periods(): void
+    {
+        $this->artisan('maintenance:evidence', [
+            '--from' => '2026-09-16', '--to' => '2026-10-15', '--store' => true,
+        ])->assertExitCode(0);
+        $validToken = str_repeat('S', 48);
+        config()->set('maintenance_evidence.enabled', true);
+        config()->set('maintenance_evidence.read_token', $validToken);
+        $route = '/api/internal/maintenance-evidence/v1';
+        $headers = ['X-RedByte-Evidence-Token' => $validToken];
+        $this->getJson($route, $headers)->assertUnprocessable();
+        $this->getJson($route . '?from=2026-09-01&to=2026-10-15', $headers)->assertNotFound();
+        $this->getJson($route . '?from=2026-02-30&to=2026-03-01', $headers)->assertUnprocessable();
+        $this->getJson($route . '?from=2026-10-15&to=2026-09-16', $headers)->assertUnprocessable();
+        $this->getJson($route . '?from=2099-01-01&to=2099-01-02', $headers)->assertUnprocessable();
     }
 
     public function test_invalid_periods_fail_without_creating_evidence(): void
@@ -148,12 +180,41 @@ class ConfortHouseMaintenanceEvidenceTest extends TestCase
         $this->assertFileDoesNotExist($this->testDir . '/snapshots/latest.json');
     }
 
+    public function test_closed_cycle_is_exact_and_does_not_generate_the_current_unclosed_cycle(): void
+    {
+        CarbonImmutable::setTestNow(CarbonImmutable::parse('2026-10-15 20:00:00', 'Europe/Madrid'));
+        $this->artisan('maintenance:evidence', [
+            '--closed-cycle' => true, '--store' => true,
+        ])->assertExitCode(0);
+        $data = app(ConfortHouseEvidenceSnapshots::class)->latest();
+        $this->assertSame('2026-08-16', $data['window']['start']);
+        $this->assertSame('2026-09-15', $data['window']['end']);
+
+        CarbonImmutable::setTestNow(CarbonImmutable::parse('2026-10-16 08:00:00', 'Europe/Madrid'));
+        $this->artisan('maintenance:evidence', [
+            '--closed-cycle' => true, '--store' => true,
+        ])->assertExitCode(0);
+        $data = app(ConfortHouseEvidenceSnapshots::class)->latest();
+        $this->assertSame('2026-09-16', $data['window']['start']);
+        $this->assertSame('2026-10-15', $data['window']['end']);
+        $this->assertSame('most_recent_closed_contract_cycle', $data['window']['kind']);
+    }
+
+    public function test_closed_cycle_cannot_be_mixed_with_manual_dates(): void
+    {
+        $this->artisan('maintenance:evidence', [
+            '--closed-cycle' => true, '--from' => '2026-10-01', '--to' => '2026-10-15',
+            '--store' => true,
+        ])->assertExitCode(1);
+        $this->assertFileDoesNotExist($this->testDir . '/snapshots/latest.json');
+    }
+
     public function test_private_writer_rejects_public_path(): void
     {
         config()->set('maintenance_evidence.snapshot_dir', public_path());
         $this->expectException(\RuntimeException::class);
         app(ConfortHouseEvidenceSnapshots::class)->save([
-            'schema_version' => 'redbyte.conforthouse.maintenance-evidence.v1',
+            'schema_version' => 'redbyte.maintenance-evidence.v1',
             'client' => 'conforthouse',
         ]);
     }

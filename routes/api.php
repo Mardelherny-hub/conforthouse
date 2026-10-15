@@ -23,5 +23,5 @@ Route::get('/inmovilla-proxy-test', function() {
     return response()->json(['message' => 'Proxy endpoint disponible']);
 });
 // Private monthly evidence snapshot. Disabled unless REDBYTE_EVIDENCE_ENABLED=1 and a strong token are set.
-Route::get('/internal/maintenance-evidence/conforthouse', [App\Http\Controllers\Api\ConfortHouseEvidenceController::class, 'show'])
+Route::get('/internal/maintenance-evidence/v1', [App\Http\Controllers\Api\ConfortHouseEvidenceController::class, 'show'])
     ->middleware('throttle:6,1');

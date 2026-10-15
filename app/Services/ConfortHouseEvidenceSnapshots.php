@@ -23,9 +23,9 @@ class ConfortHouseEvidenceSnapshots
         }
 
         $json = json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR) . "\n";
-        $name = 'snapshot-' . gmdate('Ymd\THis\Z') . '-' . bin2hex(random_bytes(4)) . '.json';
+        // Single replaceable snapshot. Do not accumulate monthly JSON files on IONOS.
+        $name = 'latest.json';
         $this->atomicWrite($root . DIRECTORY_SEPARATOR . $name, $json);
-        $this->atomicWrite($root . DIRECTORY_SEPARATOR . 'latest.json', $json);
 
         return $name;
     }
@@ -45,7 +45,7 @@ class ConfortHouseEvidenceSnapshots
         $raw = @file_get_contents($path);
         $snapshot = $raw === false ? null : json_decode($raw, true);
         if (!is_array($snapshot) ||
-            ($snapshot['schema_version'] ?? null) !== 'redbyte.conforthouse.maintenance-evidence.v1' ||
+            ($snapshot['schema_version'] ?? null) !== 'redbyte.maintenance-evidence.v1' ||
             ($snapshot['client'] ?? null) !== 'conforthouse') {
             return null;
         }

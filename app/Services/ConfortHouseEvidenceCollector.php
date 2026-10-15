@@ -17,40 +17,55 @@ class ConfortHouseEvidenceCollector
 {
     public function collect(CarbonImmutable $from, CarbonImmutable $to, string $periodKind): array
     {
-        $now = CarbonImmutable::now('UTC');
+        $database = $this->databaseAndCatalog();
+        $inmovilla = $this->inmovillaCache();
+        $spam = $this->spamStatistics($from, $to);
+        $laravelLog = $this->laravelLog($from, $to);
 
         return [
-            'schema_version' => 'redbyte.conforthouse.maintenance-evidence.v1',
+            'schema_version' => 'redbyte.maintenance-evidence.v1',
             'client' => 'conforthouse',
-            'collected_at_utc' => $now->toIso8601String(),
+            'collected_at_utc' => CarbonImmutable::now('UTC')->toIso8601String(),
             'window' => [
-                'from_date' => $from->toDateString(),
-                'through_date' => $to->toDateString(),
+                'start' => $from->toDateString(),
+                'end' => $to->toDateString(),
+                'timezone' => 'Europe/Madrid',
+                'inclusive' => true,
                 'kind' => $periodKind,
-                'completeness' => 'partial_snapshot_and_available_logs',
             ],
-            'database_and_catalog' => $this->databaseAndCatalog(),
-            'inmovilla' => $this->inmovillaCache(),
-            'spam' => $this->spamStatistics($from, $to),
-            'laravel_log' => $this->laravelLog($from, $to),
-            'disk' => $this->diskSnapshot(),
+            'snapshot' => [
+                'database' => $database['status'] ?? 'unavailable',
+                'properties' => $database['counts_as_of_collection'] ?? null,
+                'inmovilla' => $inmovilla,
+                'laravel_log' => [
+                    'status' => $laravelLog['status'],
+                    'size_bytes_at_collection' => $laravelLog['size_bytes_at_collection'] ?? null,
+                    'size_over_50_mb' => $laravelLog['size_over_50_mb'] ?? null,
+                    'modified_at_utc' => $laravelLog['modified_at_utc'] ?? null,
+                ],
+                'disk' => $this->diskSnapshot(),
+            ],
+            'activity' => [
+                'antispam' => $spam,
+                'laravel_log_counts' => [
+                    'status' => $laravelLog['status'],
+                    'source' => 'current_laravel_log_only',
+                    'event_counts_in_requested_window' => $laravelLog['event_counts_in_requested_window'] ?? null,
+                    'coverage' => $laravelLog['coverage'] ?? 'unknown',
+                ],
+            ],
             'external_sources' => [
-                'uptimerobot' => [
-                    'status' => 'not_collected_here',
-                    'monitor' => 'https://rbconforthouse.com/health',
-                    'note' => 'Fetch external incidents and uptime for the exact report dates from UptimeRobot.',
-                ],
-                'interventions' => [
-                    'status' => 'not_collected_here',
-                    'note' => 'Cross-check support tickets, deployments and completed work separately.',
-                ],
+                'uptimerobot' => 'collected_by_redbyte_centrally',
+                'tickets_and_interventions' => 'collected_by_redbyte_centrally',
+                'server_backups_and_errors' => 'backups_not_verified_here; partial_log_counts_in_activity',
             ],
-            'limits' => [
-                'Current counts, cache values, disk and file sizes are observations at collection time.',
-                'The source log may be rotated or incomplete; zero recorded errors is not proof of zero incidents.',
-                'Antispam file aggregates calendar months, not arbitrary report-day ranges.',
-                'Do not infer historical uptime, completed backups, or root cause from this snapshot.',
-                'This evidence JSON is NOT the ReportDraftService import schema.',
+            'limitations' => [
+                'Property totals, Inmovilla cache, disk and log file size are point-in-time observations.',
+                'The log includes only the current file; rotation or missing dates can undercount errors.',
+                'Antispam counters cover calendar months, not exact contract-day windows.',
+                'Cached synchronization absence is not evidence of a failed Inmovilla job.',
+                'Historical uptime, successful backups and incident root causes require independent evidence.',
+                'This evidence JSON is not the ReportDraftService import schema.',
             ],
         ];
     }

@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
     {
         // Solo habilitar tras QA y configuración explícita del acceso de lectura.
         if (config('maintenance_evidence.schedule_enabled', false)) {
-            $schedule->command('maintenance:evidence --store')
-                ->monthlyOn(15, '08:00')
+            $schedule->command('maintenance:evidence --closed-cycle --store')
+                ->monthlyOn(16, '08:00')
                 ->timezone('Europe/Madrid')
                 ->withoutOverlapping();
         }
