@@ -216,11 +216,20 @@ class ConfortHouseEvidenceCollector
 
         $counts = ['EMERGENCY' => 0, 'ALERT' => 0, 'CRITICAL' => 0, 'ERROR' => 0, 'WARNING' => 0];
         try {
+            // Reporting days are Madrid calendar days; Laravel timestamps use app.timezone.
+            // Compare half-open boundaries in the log's clock (DST-safe), not raw date labels.
+            $reportTz = (string) config('maintenance_evidence.timezone', 'Europe/Madrid');
+            $logTz = (string) config('app.timezone', 'UTC');
+            $firstLogTime = CarbonImmutable::parse($from->toDateString(), $reportTz)
+                ->startOfDay()->setTimezone($logTz)->format('Y-m-d H:i:s');
+            $afterLastLogTime = CarbonImmutable::parse($to->toDateString(), $reportTz)
+                ->startOfDay()->addDay()->setTimezone($logTz)->format('Y-m-d H:i:s');
+
             $file = new \SplFileObject($path, 'r');
             while (!$file->eof()) {
                 $line = $file->fgets();
-                if (preg_match('/^\[(\d{4}-\d{2}-\d{2}) \d{2}:\d{2}:\d{2}\] [^.\s]+\.(EMERGENCY|ALERT|CRITICAL|ERROR|WARNING):/', $line, $matches)) {
-                    if ($matches[1] >= $from->toDateString() && $matches[1] <= $to->toDateString()) {
+                if (preg_match('/^\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\] [^.\s]+\.(EMERGENCY|ALERT|CRITICAL|ERROR|WARNING):/', $line, $matches)) {
+                    if ($matches[1] >= $firstLogTime && $matches[1] < $afterLastLogTime) {
                         $counts[$matches[2]]++;
                     }
                 }

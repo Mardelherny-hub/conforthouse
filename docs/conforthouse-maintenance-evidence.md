@@ -28,7 +28,7 @@ almacenados en caché sobre Inmovilla; tamaño/fecha de actualización del log a
 espacio del filesystem compartido observado en ese momento (no equivale a cuota IONOS).
 
 **Actividad**: antispam leído de `storage/app/spam_stats.json` por meses *calendario*;
-log de Laravel, recuentos de severidad por fecha dentro del rango solicitado, sin
+log de Laravel, recuentos de severidad dentro de los días locales de Madrid (conversión desde zona horaria Laravel y ajuste horario de verano), sin
 exportar el texto de mensajes. Los logs rotados no se incluyen; un log mayor a
 250 MiB **no se escanea**. Ni cuentas IPs personales ni correos ni secretos se
 exportan. Los contadores de antispam no incluyen reglas que no registran estadísticas.

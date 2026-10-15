@@ -99,6 +99,46 @@ class ConfortHouseMaintenanceEvidenceTest extends TestCase
         $this->assertStringNotContainsString('198.51.100.9', $serialized);
     }
 
+    public function test_log_counts_convert_madrid_reporting_days_to_utc_at_both_edges(): void
+    {
+        config()->set('app.timezone', 'UTC');
+        file_put_contents($this->testDir . '/laravel.log', implode("\n", [
+            '[2026-09-15 21:59:59] production.ERROR: Outside before Madrid day',
+            '[2026-09-15 22:00:00] production.ERROR: First second of Madrid cycle',
+            '[2026-10-15 21:59:59] production.WARNING: Last second of Madrid cycle',
+            '[2026-10-15 22:00:00] production.WARNING: First second of next cycle',
+        ]) . "\n");
+
+        $result = app(ConfortHouseEvidenceCollector::class)->collect(
+            CarbonImmutable::parse('2026-09-16', 'Europe/Madrid'),
+            CarbonImmutable::parse('2026-10-15', 'Europe/Madrid'),
+            'explicit_report_window'
+        );
+        $counts = $result['activity']['laravel_log_counts']['event_counts_in_requested_window'];
+        $this->assertSame(1, $counts['ERROR']);
+        $this->assertSame(1, $counts['WARNING']);
+    }
+
+    public function test_log_counts_handle_daylight_saving_transition_in_madrid(): void
+    {
+        config()->set('app.timezone', 'UTC');
+        file_put_contents($this->testDir . '/laravel.log', implode("\n", [
+            '[2026-10-24 21:59:59] production.ERROR: Before Madrid October 25',
+            '[2026-10-24 22:00:00] production.ERROR: Start Madrid October 25',
+            '[2026-10-25 22:59:59] production.WARNING: End Madrid October 25',
+            '[2026-10-25 23:00:00] production.WARNING: Madrid October 26',
+        ]) . "\n");
+
+        $result = app(ConfortHouseEvidenceCollector::class)->collect(
+            CarbonImmutable::parse('2026-10-25', 'Europe/Madrid'),
+            CarbonImmutable::parse('2026-10-25', 'Europe/Madrid'),
+            'explicit_report_window'
+        );
+        $counts = $result['activity']['laravel_log_counts']['event_counts_in_requested_window'];
+        $this->assertSame(1, $counts['ERROR']);
+        $this->assertSame(1, $counts['WARNING']);
+    }
+
     public function test_cli_creates_private_evidence_only_when_explicitly_requested(): void
     {
         $this->artisan('maintenance:evidence', [
@@ -207,6 +247,49 @@ class ConfortHouseMaintenanceEvidenceTest extends TestCase
             '--store' => true,
         ])->assertExitCode(1);
         $this->assertFileDoesNotExist($this->testDir . '/snapshots/latest.json');
+    }
+
+    public function test_read_only_collector_issues_no_mutating_database_queries(): void
+    {
+        DB::flushQueryLog();
+        DB::enableQueryLog();
+
+        app(ConfortHouseEvidenceCollector::class)->collect(
+            CarbonImmutable::parse('2026-09-16', 'Europe/Madrid'),
+            CarbonImmutable::parse('2026-10-15', 'Europe/Madrid'),
+            'explicit_report_window'
+        );
+
+        $queries = DB::getQueryLog();
+        DB::disableQueryLog();
+        DB::flushQueryLog();
+        $this->assertNotEmpty($queries);
+        foreach ($queries as $query) {
+            $this->assertMatchesRegularExpression('/^select\s/i', trim($query['query']));
+        }
+    }
+
+    public function test_private_snapshot_reader_rejects_invalid_schema_and_symlink(): void
+    {
+        $dir = $this->testDir . '/snapshots';
+        mkdir($dir, 0700);
+        $path = $dir . '/latest.json';
+        file_put_contents($path, '{not-valid-json');
+        $this->assertNull(app(ConfortHouseEvidenceSnapshots::class)->latest());
+
+        $valid = json_encode([
+            'schema_version' => 'redbyte.maintenance-evidence.v1',
+            'client' => 'other-client',
+            'window' => ['start' => '2026-09-16', 'end' => '2026-10-15'],
+        ]);
+        file_put_contents($path, $valid);
+        $this->assertNull(app(ConfortHouseEvidenceSnapshots::class)->latest());
+
+        $otherPath = $this->testDir . '/elsewhere.json';
+        file_put_contents($otherPath, str_replace('other-client', 'conforthouse', $valid));
+        unlink($path);
+        symlink($otherPath, $path);
+        $this->assertNull(app(ConfortHouseEvidenceSnapshots::class)->latest());
     }
 
     public function test_private_writer_rejects_public_path(): void
