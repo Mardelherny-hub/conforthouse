@@ -33,12 +33,16 @@ class ConfortHouseMaintenanceEvidenceTest extends TestCase
             $table->increments('id');
             $table->boolean('is_featured')->default(false);
             $table->unsignedInteger('operation_id')->nullable();
+            $table->unsignedBigInteger('cod_ofer')->nullable();
+            $table->timestamps();
             $table->softDeletes();
         });
 
         config()->set('maintenance_evidence.snapshot_dir', $this->testDir . '/snapshots');
         config()->set('maintenance_evidence.spam_stats_path', $this->testDir . '/spam_stats.json');
         config()->set('maintenance_evidence.laravel_log_path', $this->testDir . '/laravel.log');
+        config()->set('maintenance_evidence.inmovilla_xml_directory', $this->testDir . '/inmovilla');
+        mkdir($this->testDir . '/inmovilla', 0700, true);
         config()->set('maintenance_evidence.enabled', false);
         config()->set('maintenance_evidence.read_token', '');
         Cache::clear();
@@ -97,6 +101,93 @@ class ConfortHouseMaintenanceEvidenceTest extends TestCase
         $this->assertStringNotContainsString('192.0.2.1', $serialized);
         $this->assertStringNotContainsString('192.0.2.5', $serialized);
         $this->assertStringNotContainsString('198.51.100.9', $serialized);
+    }
+
+    public function test_inmovilla_execution_history_uses_xml_metadata_and_successful_log_events_in_reporting_window(): void
+    {
+        $dir = $this->testDir . '/inmovilla';
+        foreach ([
+            '2026-09-15T21:59:59Z' => 'inmovilla-2026-09-15-235959.xml',
+            '2026-09-16T01:11:38Z' => 'inmovilla-2026-09-16-031138.xml',
+            '2026-10-01T01:11:40Z' => 'inmovilla-2026-10-01-031140.xml',
+            '2026-10-15T21:59:59Z' => 'inmovilla-2026-10-15-235959.xml',
+            '2026-10-15T22:00:00Z' => 'inmovilla-2026-10-16-000000.xml',
+        ] as $iso => $filename) {
+            $path = $dir . '/' . $filename;
+            file_put_contents($path, '<private>user@example.com</private>');
+            touch($path, CarbonImmutable::parse($iso)->timestamp);
+        }
+        file_put_contents($dir . '/unrelated-file.xml', '<something private>');
+        file_put_contents($this->testDir . '/laravel.log', implode("\n", [
+            '[2026-09-15 21:59:59] production.INFO: Actualización diaria Inmovilla completada',
+            '[2026-09-16 01:11:45] production.INFO: Actualización diaria Inmovilla completada',
+            '[2026-10-01 01:11:47] production.INFO: Actualización diaria Inmovilla completada',
+            '[2026-10-01 01:12:01] production.ERROR: Error importando propiedad private-123@example.com',
+            '[2026-10-15 21:59:59] production.INFO: Actualización automática Inmovilla completada',
+            '[2026-10-15 22:00:00] production.INFO: Actualización diaria Inmovilla completada',
+        ]) . "\n");
+        DB::table('properties')->insert([
+            ['cod_ofer' => 1001, 'operation_id' => 1, 'is_featured' => true, 'updated_at' => '2026-07-20 17:29:00'],
+            ['cod_ofer' => 1002, 'operation_id' => 1, 'is_featured' => false, 'updated_at' => '2026-07-19 12:00:00'],
+            ['cod_ofer' => null, 'operation_id' => 2, 'is_featured' => false, 'updated_at' => '2026-07-19 12:00:00'],
+        ]);
+
+        $result = app(ConfortHouseEvidenceCollector::class)->collect(
+            CarbonImmutable::parse('2026-09-16', 'Europe/Madrid'),
+            CarbonImmutable::parse('2026-10-15', 'Europe/Madrid'),
+            'explicit_report_window'
+        );
+        $h = $result['activity']['inmovilla_executions'];
+        $this->assertSame('available_with_partial_log_coverage', $h['status']);
+        $this->assertSame('America/Argentina/Buenos_Aires', $h['schedule_declared']['timezone']);
+        $this->assertSame(3, $h['archived_xml_downloads']['count']);
+        $this->assertSame(['2026-09-16', '2026-10-01', '2026-10-15'], $h['archived_xml_downloads']['dates']);
+        $this->assertSame('2026-09-16T01:11:38Z', $h['archived_xml_downloads']['first_at_utc']);
+        $this->assertSame(2, $h['application_log']['events']['daily_completion']['count']);
+        $this->assertSame(['2026-09-16', '2026-10-01'], $h['application_log']['events']['daily_completion']['dates']);
+        $this->assertSame(1, $h['application_log']['events']['scheduler_completion']['count']);
+        $this->assertSame(1, $h['application_log']['events']['individual_property_error']['count']);
+        $this->assertCount(28, $h['dates_without_a_completion_entry_in_available_log']);
+        $this->assertContains('2026-10-15', $h['dates_without_a_completion_entry_in_available_log']);
+        $this->assertSame(2, $h['catalog_snapshot']['inmovilla_referenced_active_properties']);
+        $this->assertSame('2026-07-20 17:29:00', $h['catalog_snapshot']['latest_property_updated_at_app_timezone']);
+        $json = json_encode($result);
+        $this->assertStringNotContainsString('user@example.com', $json);
+        $this->assertStringNotContainsString('private-123@example.com', $json);
+        $this->assertStringNotContainsString('inmovilla-2026-09-16-031138.xml', $json);
+    }
+
+    public function test_inmovilla_history_marks_missing_or_skipped_sources_without_falsely_claiming_zero_successes(): void
+    {
+        rmdir($this->testDir . '/inmovilla');
+        config()->set('maintenance_evidence.max_log_scan_bytes', 10);
+        file_put_contents($this->testDir . '/laravel.log', str_repeat('A', 30));
+
+        $result = app(ConfortHouseEvidenceCollector::class)->collect(
+            CarbonImmutable::parse('2026-09-16', 'Europe/Madrid'),
+            CarbonImmutable::parse('2026-10-15', 'Europe/Madrid'),
+            'explicit_report_window'
+        );
+        $history = $result['activity']['inmovilla_executions'];
+        $this->assertSame('partial', $history['status']);
+        $this->assertSame('missing_or_unreadable', $history['archived_xml_downloads']['status']);
+        $this->assertNull($history['archived_xml_downloads']['count']);
+        $this->assertSame('scan_skipped_size_limit', $history['application_log']['status']);
+        $this->assertSame([], $history['dates_without_a_completion_entry_in_available_log']);
+    }
+
+    public function test_inmovilla_xml_symlinks_and_unrelated_files_are_not_counted(): void
+    {
+        $dir = $this->testDir . '/inmovilla';
+        file_put_contents($dir . '/source.xml', 'private');
+        symlink($dir . '/source.xml', $dir . '/inmovilla-2026-09-20-031100.xml');
+        file_put_contents($dir . '/inmovilla-malformed.xml', 'private');
+        $result = app(ConfortHouseEvidenceCollector::class)->collect(
+            CarbonImmutable::parse('2026-09-16', 'Europe/Madrid'),
+            CarbonImmutable::parse('2026-10-15', 'Europe/Madrid'),
+            'explicit_report_window'
+        );
+        $this->assertSame(0, $result['activity']['inmovilla_executions']['archived_xml_downloads']['count']);
     }
 
     public function test_log_counts_convert_madrid_reporting_days_to_utc_at_both_edges(): void
