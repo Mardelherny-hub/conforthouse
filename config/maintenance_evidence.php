@@ -9,5 +9,8 @@ return [
     'snapshot_dir' => storage_path('app/private/report-evidence/conforthouse'),
     'spam_stats_path' => storage_path('app/spam_stats.json'),
     'laravel_log_path' => storage_path('logs/laravel.log'),
+    // Metadata of stored Inmovilla XML downloads; never read XML contents here.
+    'inmovilla_xml_directory' => storage_path('app/inmovilla'),
+    'max_inmovilla_archive_entries' => 50000,
     'max_log_scan_bytes' => 250 * 1024 * 1024,
 ];

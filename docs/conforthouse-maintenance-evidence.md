@@ -116,3 +116,52 @@ exacto y la causa reportada por UptimeRobot no constituye diagnóstico de origen
 
 **No ejecutar merge, deploy, Artisan sobre producción ni cambios comerciales
 sin aprobación expresa.**
+
+## REV2 — Historial verificable de Inmovilla (16/10/2026)
+
+La API sigue respondiendo `redbyte.maintenance-evidence.v1`, ahora con un campo
+**aditivo** `activity.inmovilla_executions` y, en `snapshot.backups`, un indicador
+sobre la procedencia de las copias de IONOS. El endpoint HTTP **sigue siendo
+únicamente de lectura** y no ejecuta `inmovilla:update` ni escanea logs.
+
+El comando `maintenance:evidence --closed-cycle --store` (al crear el snapshot
+privado) recupera el historial desde dos fuentes que ya existen:
+
+- `storage/app/inmovilla/inmovilla-YYYY-MM-DD-HHMMSS.xml`: solo metadatos del
+  archivo (fecha de modificación, cantidad y días); no lee ni divulga XML,
+  direcciones, precios ni identificadores de inmuebles.
+- `storage/logs/laravel.log`: cuenta exclusivamente entradas fechadas de
+  finalización del comando `inmovilla:update`, finalizaciones del scheduler y
+  errores de descarga, comando o propiedades, sin exportar mensajes completos.
+  El escaneo conserva el límite actual de 250 MiB y no busca fuera del archivo
+  actual; si hubo rotación, lo señala como cobertura parcial.
+
+El período se calcula usando **días locales de Madrid** y compara los timestamps
+que genera Laravel según `app.timezone`; respeta el horario de verano y utiliza
+extremos [inicio, fin siguiente día). El cron declarado en código está a las
+03:00 **America/Argentina/Buenos_Aires**: esa declaración **no prueba** la
+programación efectiva de IONOS. El horario de los XML refleja la modificación
+del archivo, no necesariamente la finalización del trabajo.
+
+`dates_without_a_completion_entry_in_available_log` indica solamente fechas sin
+un mensaje observado de finalización. **No significa que hubiera un fallo o que
+no se ejecutara la tarea**. Una finalización de comando tampoco certifica que
+cada propiedad se haya actualizado sin errores. Los datos actuales del catálogo
+(referencias Inmovilla y última fecha de actualización) son una **fotografía
+actual**, no estadísticas de actualizaciones del período.
+
+Los respaldos administrados por IONOS aparecen como fuente con historial de
+confirmación **no accesible desde Laravel**; no se presume su éxito. El control
+real de ejecuciones del proveedor corresponde al panel IONOS. Esta observación
+no altera la frecuencia ni los trabajos contratados.
+
+Auditoría inicial read-only realizada con la sesión autorizada de IONOS para el
+ciclo 16/09–15/10: 16 archivos XML en 16 días, del 16/09 al 01/10; 16 entradas
+de finalización del comando, ninguna entrada de error de las categorías
+examinadas en el archivo actual, 180 inmuebles activos con referencia Inmovilla.
+Son resultados de las fuentes **observadas**; no equivalen a la certificación
+de 30 sincronizaciones ni de 30 días completos de logs.
+
+Este cambio no modifica `inmovilla:update`, el importador, el scheduler vigente,
+los endpoints públicos ni la lógica de propiedades. No exige migraciones ni
+nuevos paquetes. Conservar las modificaciones locales deliberadas de IONOS.

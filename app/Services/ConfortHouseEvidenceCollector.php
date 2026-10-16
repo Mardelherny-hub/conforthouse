@@ -19,6 +19,7 @@ class ConfortHouseEvidenceCollector
     {
         $database = $this->databaseAndCatalog();
         $inmovilla = $this->inmovillaCache();
+        $inmovillaHistory = app(ConfortHouseInmovillaHistory::class)->collect($from, $to);
         $spam = $this->spamStatistics($from, $to);
         $laravelLog = $this->laravelLog($from, $to);
 
@@ -44,9 +45,15 @@ class ConfortHouseEvidenceCollector
                     'modified_at_utc' => $laravelLog['modified_at_utc'] ?? null,
                 ],
                 'disk' => $this->diskSnapshot(),
+                'backups' => [
+                    'provider' => 'IONOS',
+                    'execution_evidence' => 'provider_console_only_not_in_laravel',
+                    'confirmed_successful_backups_in_cycle' => null,
+                ],
             ],
             'activity' => [
                 'antispam' => $spam,
+                'inmovilla_executions' => $inmovillaHistory,
                 'laravel_log_counts' => [
                     'status' => $laravelLog['status'],
                     'source' => 'current_laravel_log_only',
@@ -63,7 +70,8 @@ class ConfortHouseEvidenceCollector
                 'Property totals, Inmovilla cache, disk and log file size are point-in-time observations.',
                 'The log includes only the current file; rotation or missing dates can undercount errors.',
                 'Antispam counters cover calendar months, not exact contract-day windows.',
-                'Cached synchronization absence is not evidence of a failed Inmovilla job.',
+                'Cached synchronization absence is not evidence of a failed Inmovilla job; use activity.inmovilla_executions.',
+                'Inmovilla logs and XML file metadata are observed historical evidence and may be incomplete after rotation or pruning.',
                 'Historical uptime, successful backups and incident root causes require independent evidence.',
                 'This evidence JSON is not the ReportDraftService import schema.',
             ],
